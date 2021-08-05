@@ -61,8 +61,9 @@ exports.searchProduct = async(req,res,next)=>{
   const {name}=req.params
   
    try {
-       const nameSearch = await Product.find();
-      const includeName= nameSearch.filter(e => e.name.toUpperCase().includes(name.toUpperCase()))
+      /*  const nameSearch = await Product.find();
+      const includeName= nameSearch.filter(e => e.name.toUpperCase().includes(name.toUpperCase())) */
+       const includeName = await Product.find({name: new RegExp (name, "i")});
        console.log(includeName)
        includeName.length >0
        ?  res.json(includeName) 
