@@ -17,7 +17,7 @@ export const getAllProducts = () => async (dispatch) => {
            type: GET_ALL_PRODUCTS,
            payload: res.data
        });
-       console.log('DATAAA --->', res.data);
+       console.log('DATAAA --->', res.data);//Me trae 7 por ahora, chequear las imágenes de c/u
    } catch (err) {
        console.log(err)
    }

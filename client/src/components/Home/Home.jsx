@@ -1,6 +1,8 @@
 import React from 'react';
 import Footer from '../Footer/Footer';
 import GridCardsProducts from '../cards/CardsProducts';
+import {useSelector, useDispatch } from 'react-redux';
+
 
 function Home() {
     return (

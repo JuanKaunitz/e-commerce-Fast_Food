@@ -24,7 +24,7 @@ const server = express();
 server.use(express.json());
 server.use(express.urlencoded({extended:true}));
 //habilitar el cors
-app.use(cors());
+server.use(cors());
 //rutas de la server
 server.use('/',routers())
 
