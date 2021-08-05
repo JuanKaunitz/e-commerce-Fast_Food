@@ -1,29 +1,36 @@
-
+import {
+    GET_ALL_PRODUCTS,
+    GET_BY_ID,
+    CREATE_PRODUCT,
+    UPDATE_PRODUCT,
+    DELETE_PRODUCT
+} from '../constants'
 
 import axios from 'axios';
 
 //Obteniendo todos las foods.
-export const getAllPokemons = () => async (dispatch) => {
+export const getAllProducts = () => async (dispatch) => {
     
    try {
-       const res = await axios.get("...");
+       const res = await axios.get('http://localhost:5001/food/api/products');
        dispatch({
-           type: '...',
+           type: GET_ALL_PRODUCTS,
            payload: res.data
        });
+       console.log('DATAAA --->', res.data);
    } catch (err) {
        console.log(err)
    }
 }
 
-//Buscar pokemons por query.
-export const searchQueryPokes = (name) => async (dispatch) => {
+//Obteniendo productos por ID.
+export const getById = (id) => async (dispatch) => {
     
     try {
-        const res = await axios.get(/* `http://localhost:3001/pokemons?name=${name}` */);
+        const res = await axios.get(`http://localhost:5001/food/api/${id}`);
         
         dispatch({
-            type: '...',
+            type: GET_BY_ID,
             payload: res.data
         });
     } catch (err) {
@@ -31,12 +38,12 @@ export const searchQueryPokes = (name) => async (dispatch) => {
     }
  }
 
- //Obteniendo types.
- export const getType = () => async (dispatch) => {
+ //Creando un producto.
+ export const createProduct = () => async (dispatch) => {
     try {
-        const res = await axios.get(/* "http://localhost:3001/types" */);
+        const res = await axios.post('http://localhost:5001/food/api');
         dispatch({
-            type: '...',
+            type: CREATE_PRODUCT,
             payload: res.data
         });
     } catch (err) {
@@ -44,14 +51,13 @@ export const searchQueryPokes = (name) => async (dispatch) => {
     }
  }
 
- //Obteniendo juegos por ID.
- export const getPokeById = (id) => async (dispatch) => {
+ //Actualizando procuto.
+ export const getUpdate = (id) => async (dispatch) => {
      
     try {        
-        const res = await axios.get(/* `http://localhost:3001/pokemons/${id}` */);  
-        console.log('DATA: ',res.data)      
+        const res = await axios.get(`http://localhost:5001/food/api/${id}`);  
         dispatch({
-            type: '...',
+            type: UPDATE_PRODUCT,
             payload: res.data
         });
         
@@ -60,49 +66,16 @@ export const searchQueryPokes = (name) => async (dispatch) => {
     }
  }
 
-//Creando un nuevo juego.
-/* export const postPoke = (poke) => async (dispatch) => {
-    try {
-        const res = await axios.post("http://localhost:3001/newPokemon", poke);     
-        console.log(res.data);
-
-        dispatch({
-            type: ADD_NEW_POKE,
-            payload: res.data
-        });
-    } catch (err) {
-        console.log(err)
-    }
- }
-
- //Limpiando el delay del game.
- export function clearPoke() {
-     return {
-         type: GET_POKE_ID,
-         payload: undefined
+ //Borrando un producto.
+ export const deleteProduct = (id) => async (dispatch) => {
+     try {
+         const res = await axios.get(`http://localhost:5001/food/api/${id}`);
+         dispatch({
+             type: DELETE_PRODUCT,
+             payload: res.data
+         });
+     } catch (err) {
+         console.log(err)
      }
  }
 
- // ORDENAMIENTO ASCENDENTE Y DESCENDENTE RATING Y NAME
-export const orderBy = (sort) => (dispatch) => {  
-    //console.log(sort)    
-    dispatch({
-        type: sort,        
-      })    
-  };
-
-  export const filterBy = (filter) => (dispatch) => {  
-       
-    dispatch({
-        type: FILTER, 
-        payload: filter       
-      })    
-  };
-
-  export const filterMine = (filter) => (dispatch) => {  
-       
-    dispatch({
-        type: FILTER_MINE, 
-        payload: filter       
-      })    
-  }; */
