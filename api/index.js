@@ -17,7 +17,7 @@ mongoose.connect(`${URL_CONNECTION}${DB}`, {
 })
 //
 //CREAMOS EL SERVIDOR
-
+//
 const server = express();
 //habilitar el parseo de los datos
 server.use(express.json());
