@@ -1,11 +1,13 @@
 import React from 'react';
 import Footer from '../Footer/Footer';
-
+import GridCardsProducts from '../cards/CardsProducts';
 
 function Home() {
     return (
         <div>        
-
+            <div>
+                <GridCardsProducts/>
+            </div>
             <div>
               <Footer/>  
             </div>
