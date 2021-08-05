@@ -1,13 +1,26 @@
 import React from "react";
 import { BrowserRouter, Route } from "react-router-dom";
+import AboutUs from "./components/aboutUs/AboutUs.jsx";
+import Cart from "./components/cart/Cart.jsx";
 import Home from "./components/Home/Home.jsx";
+import Login from "./components/login/Login.jsx";
+import Navbar from "./components/Navbar/Navbar.jsx";
+import Register from "./components/register/Register.jsx";
 
 
 function App() {
   return (
-    <BrowserRouter>
-      <Route exact path="/" component={Home} />
-    </BrowserRouter>
+      <div>
+        <BrowserRouter>
+        <Navbar />
+          <Route exact path="/" component={Home} />
+          <Route exact path="/aboutUs" component={AboutUs} />
+          <Route exact path="/cart" component={Cart} />
+          <Route exact path="/register" component={Register} />
+          <Route exact path="/login" component={Login} />
+        </BrowserRouter>
+
+      </div>
   );
 }
 
