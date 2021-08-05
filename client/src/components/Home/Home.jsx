@@ -1,14 +1,15 @@
 import React from 'react';
 import Footer from '../Footer/Footer';
-import Navbar from '../Navbar/Navbar';
+import GridCardsProducts from '../cards/CardsProducts';
+import {useSelector, useDispatch } from 'react-redux';
+
 
 function Home() {
     return (
-        <div>
+        <div>        
             <div>
-            <Navbar />
+                <GridCardsProducts/>
             </div>
-
             <div>
               <Footer/>  
             </div>
