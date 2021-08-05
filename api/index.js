@@ -15,7 +15,7 @@ mongoose.connect(`${URL_CONNECTION}${DB}`, {
 }, () => {
     console.log('DataBase connected')
 })
-
+//
 //CREAMOS EL SERVIDOR
 
 const server = express();
