@@ -24,7 +24,7 @@ export default function GridCardsProducts() {
       dispatch(getAllProducts())    
   }, [dispatch])
 
-
+  
 
 
 
@@ -33,11 +33,12 @@ export default function GridCardsProducts() {
   return (
       <Grid container xs={10} className={classes.root} spacing={2}>
         { 
-          loading && loading ? searchProducts.map(product => (
+           loading ? searchProducts.length > 0 ? searchProducts.map(product => (
             <Grid  item xs={3}>
               <CardProduct name={product.name} image={product.image} price={product.price} />
             </Grid>
           ))
+          : <h4>Product not found!</h4>
 
           :
           getAll.map(product => (
