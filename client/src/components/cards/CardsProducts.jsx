@@ -3,6 +3,7 @@ import {useSelector, useDispatch } from 'react-redux';
 import { makeStyles } from '@material-ui/core/styles';
 import Grid from '@material-ui/core/Grid';
 import CardProduct from '../card/CardProduct';
+import { search } from '../Navbar/Navbar';
 import {getAllProducts} from '../../Redux/actions/actions';
 
 
@@ -16,9 +17,11 @@ const useStyles = makeStyles((theme) => ({
 export default function GridCardsProducts() {
   const dispatch = useDispatch();
   const getAll = useSelector((state) => state.getProducts);
+  const { searchProducts, loading }= useSelector((state) => state);
   
-  useEffect(() => {
-    dispatch(getAllProducts())
+
+  useEffect(() => {    
+      dispatch(getAllProducts())    
   }, [dispatch])
 
 
@@ -30,6 +33,13 @@ export default function GridCardsProducts() {
   return (
       <Grid container xs={10} className={classes.root} spacing={2}>
         { 
+          loading && loading ? searchProducts.map(product => (
+            <Grid  item xs={3}>
+              <CardProduct name={product.name} image={product.image} price={product.price} />
+            </Grid>
+          ))
+
+          :
           getAll.map(product => (
             <Grid  item xs={3}>
               <CardProduct name={product.name} image={product.image} price={product.price} />

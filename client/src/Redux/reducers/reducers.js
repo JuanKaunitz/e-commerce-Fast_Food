@@ -1,16 +1,20 @@
-import React from 'react'
 
 import {
   GET_ALL_PRODUCTS,
   GET_BY_ID,
   CREATE_PRODUCT,
+  SEARCH_PRODUCTS,
+ // SEARCH
 } from '../constants'
 
 
 const initialState = {
+  //search: Boolean,
   getProducts : [],
   getDetail : {},
   createNewProduct : {},
+  searchProducts: [], 
+  loading: false
 }
 
 const rootReducer = (state = initialState, action) => {
@@ -19,6 +23,7 @@ const rootReducer = (state = initialState, action) => {
       return {
         ...state,
         getProducts: action.payload,
+        loading: false
       };
     case GET_BY_ID: 
     return {
@@ -30,6 +35,17 @@ const rootReducer = (state = initialState, action) => {
       ...state,
       createNewProduct: action.payload
     }
+    case SEARCH_PRODUCTS:
+      return {
+        ...state,
+        searchProducts: action.payload,
+        loading: true
+      }
+    /* case SEARCH: 
+    return {
+      ...state,
+      search: !state.search
+    }   */
     default:
       return state;
   };
