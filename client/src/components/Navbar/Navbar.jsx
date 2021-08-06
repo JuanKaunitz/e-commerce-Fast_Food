@@ -3,8 +3,8 @@ import { NavLink } from 'react-router-dom';
 import { AppBar, Toolbar, Typography, alpha, makeStyles, Button, IconButton, Input } from '@material-ui/core'
 import HomeIcon from '@material-ui/icons/Home';
 import AddShoppingCartIcon from '@material-ui/icons/AddShoppingCart';
-import SearchIcon from '@material-ui/icons/Search'
-import { useDispatch, useSelector } from 'react-redux';
+//import SearchIcon from '@material-ui/icons/Search'
+import { useDispatch } from 'react-redux';
 import { getAllProducts, searchQueryProducts } from '../../Redux/actions/actions';
 
 const useStyles = makeStyles(theme => ({
@@ -20,8 +20,6 @@ const useStyles = makeStyles(theme => ({
       },
       search: {
         position: 'relative',
-        display: 'flex',
-        alignItems: 'center',
         borderRadius: theme.shape.borderRadius,
         backgroundColor: alpha(theme.palette.common.white, 0.15),
         '&:hover': {
@@ -38,18 +36,12 @@ const useStyles = makeStyles(theme => ({
       searchIcon: {
         padding: theme.spacing(0, 2),
         height: '100%',
-        //position: 'absolute',
+        position: 'absolute',
         pointerEvents: 'none',
         display: 'flex',
         alignItems: 'center',
         justifyContent: 'center',
       },
-      boton: {
-        backgroundColor: '#3f51b5',
-        border: 'none',
-        height: '50px',
-
-      }
 }));
 
 
@@ -68,11 +60,11 @@ const Navbar =  () => {
         dispatch(searchQueryProducts(name))  
       }
     
-    /* useEffect(() =>{
-      if(search) {
-          searchProduct(name)      
-      } 
-    }, [search, name])  */
+      useEffect(() =>{
+        if(search) {
+            searchProduct(name)      
+        } 
+      }, [search, name]) 
 
     const handleInputChange = (e) => {        
         e.preventDefault()
@@ -80,17 +72,17 @@ const Navbar =  () => {
         console.log(name)
     }
 
-    const onClickHandler = (name) => {
-        searchProduct(name);
+    const onClickHandler = (e) => {
+        e.preventDefault() 
         setSearch(true)           
     }
-    /* const onClickXHandler = (e) => {
+    const onClickXHandler = (e) => {
         e.preventDefault()  
         dispatch(getAllProducts()) 
         setSearch(false)    
         
     }
- */
+
     return (
         <div>
             <AppBar>
@@ -109,16 +101,16 @@ const Navbar =  () => {
                 </Button>
 
                 <div className={classes.search}>
-                  <form className={classes.root} >  
-                    <div className={classes.searchIcon}>
-                      <Input placeholder="Placeholder" inputProps={{ 'aria-label': 'description'}} 
-                          value={name} onChange={(e) => {handleInputChange(e)}} /> 
-
-                        <button className={classes.boton} onClick={(e) => onClickHandler(e)} type='button'>                      
-                          {/* <SearchIcon /> */} search
-                        </button>  
-                    </div>                     
-                  </form>                
+                {/* <div className={classes.searchIcon}>
+                    <SearchIcon />
+                </div> */}
+                <form className={classes.root} noValidate autoComplete="off">  
+                    <Input placeholder="Placeholder" inputProps={{ 'aria-label': 'description'}} 
+                        value={name} onChange={(e) => {handleInputChange(e)}} /> 
+                    <button onClick={(e) => {onClickHandler(e)}} type="submit" >Search</button>
+                    <button onClick={(e) => {onClickXHandler(e)}} >GoBack</button>
+                </form>
+                
                 </div>
 
                 <div className={classes.toolbarButtons}>
