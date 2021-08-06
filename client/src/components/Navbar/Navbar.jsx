@@ -1,9 +1,11 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import { NavLink } from 'react-router-dom';
 import { AppBar, Toolbar, Typography, alpha, makeStyles, Button, IconButton, Input } from '@material-ui/core'
 import HomeIcon from '@material-ui/icons/Home';
 import AddShoppingCartIcon from '@material-ui/icons/AddShoppingCart';
-import SearchIcon from '@material-ui/icons/Search'
+//import SearchIcon from '@material-ui/icons/Search'
+import { useDispatch, useSelector } from 'react-redux';
+import { getAllProducts, searchQueryProducts } from '../../Redux/actions/actions';
 
 const useStyles = makeStyles(theme => ({
     offset: theme.mixins.toolbar,
@@ -43,15 +45,26 @@ const useStyles = makeStyles(theme => ({
 }));
 
 
+const Navbar =  () => {
 
+  const classes = useStyles() 
 
-
-
-
-
-const Navbar = () => {
+    const dispatch = useDispatch();
+    //const searchProducts = useSelector((state) => state.searchProducts);
     const [name, setName] = useState('')
-    const classes = useStyles()
+    const [search, setSearch] = useState(false);
+
+
+    function searchProduct(name) {
+        console.log('VER SI LLEGO A SEARCHPRODUCTS: ',name)      
+        dispatch(searchQueryProducts(name))  
+      }
+    
+      useEffect(() =>{
+        if(search) {
+            searchProduct(name)      
+        } 
+      }, [search, name]) 
 
     const handleInputChange = (e) => {        
         e.preventDefault()
@@ -60,11 +73,14 @@ const Navbar = () => {
     }
 
     const onClickHandler = (e) => {
-        e.preventDefault()
-        console.log(name)    
+        e.preventDefault() 
+        setSearch(true)           
     }
     const onClickXHandler = (e) => {
-        e.preventDefault()      
+        e.preventDefault()  
+        dispatch(getAllProducts()) 
+        setSearch(false)    
+        
     }
 
     return (
@@ -92,7 +108,7 @@ const Navbar = () => {
                     <Input placeholder="Placeholder" inputProps={{ 'aria-label': 'description'}} 
                         value={name} onChange={(e) => {handleInputChange(e)}} /> 
                     <button onClick={(e) => {onClickHandler(e)}} type="submit" >Search</button>
-                    <button onClick={(e) => {onClickXHandler(e)}} >X</button>
+                    <button onClick={(e) => {onClickXHandler(e)}} >GoBack</button>
                 </form>
                 
                 </div>
