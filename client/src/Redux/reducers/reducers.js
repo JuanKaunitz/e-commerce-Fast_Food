@@ -4,17 +4,17 @@ import {
   GET_BY_ID,
   CREATE_PRODUCT,
   SEARCH_PRODUCTS,
- // SEARCH
+  GET_CATEGORIES
 } from '../constants'
 
 
 const initialState = {
-  //search: Boolean,
   getProducts : [],
   getDetail : {},
   createNewProduct : {},
   searchProducts: [], 
-  loading: false
+  loading: false,
+  allCategories : []
 }
 
 const rootReducer = (state = initialState, action) => {
@@ -41,11 +41,12 @@ const rootReducer = (state = initialState, action) => {
         searchProducts: action.payload,
         loading: true
       }
-    /* case SEARCH: 
+ 
+    case GET_CATEGORIES:
     return {
       ...state,
-      search: !state.search
-    }   */
+      allCategories: action.payload
+    }
     default:
       return state;
   };

@@ -5,7 +5,7 @@ import {
     CREATE_PRODUCT,
     UPDATE_PRODUCT,
     DELETE_PRODUCT,
-    SEARCH
+    GET_CATEGORIES
 } from '../constants'
 
 import axios from 'axios';
@@ -96,3 +96,16 @@ export const getById = (id) => async (dispatch) => {
      }
  }
 
+
+ //Obteniendo las categorías.
+ export const getCategories = () => async (dispatch) => {
+     try {
+         const res = await axios.get('http://localhost:5001/food/api/category');
+         dispatch({
+             type: GET_CATEGORIES,
+             payload: res.data
+         });
+     } catch (err) {
+         console.log(err)
+     }
+ }
