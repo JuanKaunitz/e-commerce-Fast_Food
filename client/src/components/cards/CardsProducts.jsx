@@ -1,9 +1,8 @@
-import React, {useState, useEffect} from 'react';
+import React, {useEffect} from 'react';
 import {useSelector, useDispatch } from 'react-redux';
 import { makeStyles } from '@material-ui/core/styles';
 import Grid from '@material-ui/core/Grid';
 import CardProduct from '../card/CardProduct';
-import { search } from '../Navbar/Navbar';
 import {getAllProducts} from '../../Redux/actions/actions';
 
 
@@ -33,13 +32,14 @@ export default function GridCardsProducts() {
   return (
       <Grid container xs={10} className={classes.root} spacing={2}>
         { 
-          loading && loading ? searchProducts.map(product => (
+          loading ? searchProducts.length > 0 ? searchProducts.map(product => (
             <Grid key={product._id} item xs={3}>
               <CardProduct id={product._id}
                 name={product.name} image={product.image} price={product.price} />
             </Grid>
           ))
-
+          : <h4>Product not found!</h4>
+           
           :
           getAll.map(product => (
             <Grid key={product._id} item xs={3}>
@@ -51,3 +51,5 @@ export default function GridCardsProducts() {
       </Grid>
   );
 }
+
+
