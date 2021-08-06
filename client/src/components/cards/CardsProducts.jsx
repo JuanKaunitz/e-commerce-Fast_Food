@@ -34,15 +34,17 @@ export default function GridCardsProducts() {
       <Grid container xs={10} className={classes.root} spacing={2}>
         { 
           loading && loading ? searchProducts.map(product => (
-            <Grid  item xs={3}>
-              <CardProduct name={product.name} image={product.image} price={product.price} />
+            <Grid key={product._id} item xs={3}>
+              <CardProduct id={product._id}
+                name={product.name} image={product.image} price={product.price} />
             </Grid>
           ))
 
           :
           getAll.map(product => (
-            <Grid  item xs={3}>
-              <CardProduct name={product.name} image={product.image} price={product.price} />
+            <Grid key={product._id} item xs={3}>
+              <CardProduct id={product._id}
+                name={product.name} image={product.image} price={product.price} />
             </Grid>
           ))
         } 
