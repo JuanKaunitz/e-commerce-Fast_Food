@@ -96,7 +96,7 @@ const Navbar =  () => {
             <AppBar>
               <Toolbar>
               <IconButton aria-label="delete" className={classes.homeIcon}>
-                <NavLink className='a' to="/home" activeClassName="active" ><HomeIcon /></NavLink>
+                <NavLink className='a' to="/" activeClassName="active" ><HomeIcon /></NavLink>
                 
               </IconButton>
 
