@@ -4,6 +4,7 @@ import {
   GET_ALL_PRODUCTS,
   GET_BY_ID,
   CREATE_PRODUCT,
+  GET_CATEGORIES
 } from '../constants'
 
 
@@ -11,6 +12,7 @@ const initialState = {
   getProducts : [],
   getDetail : {},
   createNewProduct : {},
+  allCategories : []
 }
 
 const rootReducer = (state = initialState, action) => {
@@ -29,6 +31,11 @@ const rootReducer = (state = initialState, action) => {
     return {
       ...state,
       createNewProduct: action.payload
+    }
+    case GET_CATEGORIES:
+    return {
+      ...state,
+      allCategories: action.payload
     }
     default:
       return state;
