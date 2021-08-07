@@ -1,11 +1,5 @@
-<<<<<<< HEAD
-const User = require('../models/User');
-const jwt = require('jsonwebtoken');
-// const bcrypt = require('bcrypt');
-=======
 const User = require("../models/User");
 const bcrypt = require("bcrypt");
->>>>>>> 31cca46f54d783b2be0a69e83b65a0553be3a618
 
 exports.getUsers = async (req, res) => {
   const { limite = 5, desde = 0 } = req.query;
