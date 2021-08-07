@@ -1,4 +1,4 @@
-import React, {useEffect} from 'react';
+import React, {useEffect,useRef} from 'react';
 import {useSelector, useDispatch } from 'react-redux';
 
 import { makeStyles } from '@material-ui/core/styles';
@@ -41,18 +41,18 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-export default function CardDetails(props) {
+export default function CardDetails({match}) {
   const classes = useStyles();
 
   const dispatch = useDispatch();
-  const productId = props.match.params.id;
+  const productId = useRef(match.params.id);
   console.log("ID ----", productId)
 
   useEffect(() => {
-    dispatch(getById(productId));
+    dispatch(getById(productId.current));
   },[dispatch, productId]);
   
-  const detail = useSelector(state => state.getDetail);
+  const detail = useSelector(state => state.getDetail.product);
 
   return (
     <Card className={classes.root}>

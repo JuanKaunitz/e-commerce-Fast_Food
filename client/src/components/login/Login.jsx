@@ -1,5 +1,3 @@
-<<<<<<< HEAD
-=======
 import React from 'react'
 
 const Login = () => {
@@ -11,4 +9,3 @@ const Login = () => {
 }
 
 export default Login
->>>>>>> 7bb1c742d938a35bf1e63bca273823c4176f41ec

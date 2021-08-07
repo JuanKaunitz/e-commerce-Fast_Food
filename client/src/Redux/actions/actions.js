@@ -44,8 +44,8 @@ export const searchQueryProducts = (name) => async (dispatch) => {
 export const getById = (id) => async (dispatch) => {
     
     try {
-        const res = await axios.get(`http://localhost:5001/food/api/${id}`);
-        
+        const res = await axios.get(`http://localhost:5001/food/api/products/${id}`);
+        console.log('RES id: ', res.data)
         dispatch({
             type: GET_BY_ID,
             payload: res.data
