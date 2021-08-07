@@ -24,7 +24,7 @@ router.post(
     check("password", "El password debe ser mas de 6 caracteres").isLength({
       min: 6,
     }),
-    check("email").custom((email) => validateEmail(email)),
+    check("email").custom((email) => validateEmail(email)).isEmail(),
     validateInputs,
   ],
   userControllers.createUsers
