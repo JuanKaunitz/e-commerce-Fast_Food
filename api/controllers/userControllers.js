@@ -32,8 +32,8 @@ exports.updateUser = async (req, res) => {
   res.json(user);
 };
 exports.createUsers = async (req, res) => {
-  const { name, email, password, role } = req.body;
-  const user = new User({ name, email, password, role });
+  const { name, email, password } = req.body;
+  const user = new User({ name, email, password});
 
   //encriptar contraseña del
   const salt = bcrypt.genSaltSync();
@@ -49,12 +49,8 @@ exports.createUsers = async (req, res) => {
 };
 exports.deleteUsers = async (req, res) => {
   const { id } = req.params;
-  const uid = req.uid;
   //borrar fisicamente de la BD,
-  // const user = await User.findByIdAndDelete(id);
-  //borrar de la respuesta pero no de la BD
-  const user = await User.findByIdAndUpdate(id, { status: false });
-  // const userAuthenticate = req.user;
+  const user = await User.findByIdAndDelete(id);
   res.json({
     msg: "DELETE user API",
     user,

@@ -32,7 +32,7 @@ router.post(
 router.delete(
   "/:id",
   [
-    validateJWT,
+    // validateJWT,
     check("id", "No es un ID valido").isMongoId(),
     check("id").custom((id) => validateId(id)),
     validateInputs,
