@@ -73,6 +73,7 @@ export default function CardDetails({match}) {
             <GradeIcon/>
             <GradeIcon/>
             <GradeIcon/>
+            <GradeIcon/>
           </IconButton>
           <IconButton >
             <FavoriteIcon/>
