@@ -20,6 +20,8 @@ const Category = () => {
             categories[0]?.Hamburguesas.map((c) => (
                 <p>{c.name}</p> 
             ))
+
+            
                
                
            }  
