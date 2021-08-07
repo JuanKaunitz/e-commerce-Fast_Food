@@ -16,7 +16,8 @@ const useStyles = makeStyles((theme) => ({
   media: {
     height: 0,
     paddingTop: '56.25%', // 16:9
-  }
+  },
+  
 }));
 
 export default function CardProduct({id, name, image,price}) {
