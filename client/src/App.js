@@ -6,7 +6,7 @@ import Home from "./components/Home/Home.jsx";
 import Login from "./components/login/Login.jsx";
 import Navbar from "./components/Navbar/Navbar.jsx";
 import Register from "./components/register/Register.jsx";
-
+import CardDetails from "./components/details/CardDetails.jsx";
 
 function App() {
   return (
@@ -18,6 +18,7 @@ function App() {
           <Route exact path="/cart" component={Cart} />
           <Route exact path="/register" component={Register} />
           <Route exact path="/login" component={Login} />
+          <Route exact path="/detail/:id" component={CardDetails}/>
         </BrowserRouter>
 
       </div>

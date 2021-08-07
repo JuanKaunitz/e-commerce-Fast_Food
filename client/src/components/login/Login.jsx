@@ -1,11 +1,12 @@
+
 import React from 'react'
 
 const Login = () => {
-    return (
-        <div>
-            <h1>aca renderiza login</h1>
-        </div>
-    )
+  return (
+    <div>
+      <h1>Login</h1>
+    </div>
+  )
 }
 
 export default Login

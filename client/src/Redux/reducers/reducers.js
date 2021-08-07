@@ -1,9 +1,10 @@
-import React from 'react'
 
 import {
   GET_ALL_PRODUCTS,
   GET_BY_ID,
   CREATE_PRODUCT,
+  SEARCH_PRODUCTS,
+  GET_CATEGORIES
 } from '../constants'
 
 
@@ -11,6 +12,9 @@ const initialState = {
   getProducts : [],
   getDetail : {},
   createNewProduct : {},
+  searchProducts: [], 
+  loading: false,
+  allCategories : []
 }
 
 const rootReducer = (state = initialState, action) => {
@@ -19,6 +23,7 @@ const rootReducer = (state = initialState, action) => {
       return {
         ...state,
         getProducts: action.payload,
+        loading: false
       };
     case GET_BY_ID: 
     return {
@@ -29,6 +34,18 @@ const rootReducer = (state = initialState, action) => {
     return {
       ...state,
       createNewProduct: action.payload
+    }
+    case SEARCH_PRODUCTS:
+      return {
+        ...state,
+        searchProducts: action.payload,
+        loading: true
+      }
+ 
+    case GET_CATEGORIES:
+    return {
+      ...state,
+      allCategories: action.payload
     }
     default:
       return state;

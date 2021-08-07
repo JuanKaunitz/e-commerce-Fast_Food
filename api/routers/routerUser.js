@@ -1,59 +1,43 @@
-const express = require('express');
+const { Router } = require("express");
+const { check } = require("express-validator");
 const userControllers = require("../controllers/userControllers");
+const { validateEmail, validateId } = require("../helpers/validate-db");
 
-const router = express.Router();
-//add new user
-router.post('/', userControllers.createNewUser);
+const { validateInputs, validateJWT } = require("../middlewares");
 
+const router = Router();
+
+router.get("/", userControllers.getUsers);
+router.put(
+  "/:id",
+  [
+    check("id", "No es un ID valido").isMongoId(),
+    check("id").custom((id) => validateId(id)),
+    validateInputs,
+  ],
+  userControllers.updateUser
+);
+router.post(
+  "/",
+  [
+    check("name", "El nombre es obligatorio").not().isEmpty(),
+    check("password", "El password debe ser mas de 6 caracteres").isLength({
+      min: 6,
+    }),
+    check("email").custom((email) => validateEmail(email)),
+    validateInputs,
+  ],
+  userControllers.createUsers
+);
+router.delete(
+  "/:id",
+  [
+    validateJWT,
+    check("id", "No es un ID valido").isMongoId(),
+    check("id").custom((id) => validateId(id)),
+    validateInputs,
+  ],
+  userControllers.deleteUsers
+);
 
 module.exports = router;
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-// const app = express();
-
-// app.use(express.json());
-
-
-// const { body, validationResult } = require('express-validator');
-
-// app.post(
-//   '/',
-//   // username must be an email
-//   body('username').isEmail(),
-//   // password must be at least 5 chars long
-//   body('password').isLength({ min: 5 }),
-//   (req, res) => {
-//     // Finds the validation errors in this request and wraps them in an object with handy functions
-//     const errors = validationResult(req);
-//     if (!errors.isEmpty()) {
-//       return res.status(400).json({ errors: errors.array() });
-//     }
-
-//     User.create({
-//       username: req.body.username,
-//       password: req.body.password,
-//     }).then(user => res.json(user));
-//   },
-// );
-  

@@ -40,3 +40,13 @@ exports.getAllCategories = async(req,res,next)=>{
     }
   
   };
+
+  exports.deleteCategori = async(req,res,next)=>{
+    try {
+        await Category.findOneAndDelete({_id: req.params.id});
+        res.json({msg:'Category  deleted'});
+    } catch (error) {
+        console.log(error);
+        return next();
+    }
+  };
