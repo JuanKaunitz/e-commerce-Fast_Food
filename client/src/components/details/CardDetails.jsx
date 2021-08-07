@@ -1,4 +1,4 @@
-import React, {useEffect} from 'react';
+import React, {useEffect,useRef} from 'react';
 import {useSelector, useDispatch } from 'react-redux';
 
 import { makeStyles } from '@material-ui/core/styles';
@@ -26,8 +26,8 @@ const useStyles = makeStyles((theme) => ({
     flex: '1 0 auto',
   },
   cover: {
-    width: 600,
-    height:500
+    width: 400,
+    height:300
   },
   controls: {
     display: 'flex',
@@ -41,52 +41,58 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-export default function CardDetails(props) {
+export default function CardDetails({match}) {
   const classes = useStyles();
 
   const dispatch = useDispatch();
-  const productId = props.match.params.id;
+  const detail = useSelector(state => state.getDetail.product);
+  const productId = useRef(match.params.id);
   console.log("ID ----", productId)
 
   useEffect(() => {
-    dispatch(getById(productId));
+    dispatch(getById(productId.current));
   },[dispatch, productId]);
   
-  const detail = useSelector(state => state.getDetail);
+  console.log("DETAIL", detail)
 
   return (
-    <Card className={classes.root}>
-      <div className={classes.details}>
-        <CardContent className={classes.content}>
-          <Typography component="h5" variant="h5">
-           {detail.name}
-          </Typography>
-          <Typography variant="subtitle1" color="textSecondary">
-            {detail.description}
-          </Typography>
-        </CardContent>
-        <div className={classes.controls}>
-          <Typography variant="subtitle1" color="textSecondary">
-            ${detail.price}
-          </Typography>
-          <IconButton >
-            <GradeIcon/>
-            <GradeIcon/>
-            <GradeIcon/>
-          </IconButton>
-          <IconButton >
-            <FavoriteIcon/>
-          </IconButton>
-          <IconButton >
-            <AddShoppingCartIcon color="secondary"/>
-          </IconButton>
-        </div>
-      </div>
-      <CardMedia
-        className={classes.cover}
-        image={detail.image}
-        title="Live from space album cover"
-      />
-    </Card>
+     detail?
+        <Card className={classes.root}>
+          <div className={classes.details}>
+            <CardContent className={classes.content}>
+              <Typography component="h5" variant="h5">
+               {detail.name}
+              </Typography>
+              <Typography variant="subtitle1" color="textSecondary">
+                {detail.description}
+              </Typography>
+            </CardContent>
+            <div className={classes.controls}>
+              <Typography variant="subtitle1" color="textSecondary">
+                ${detail.price}
+              </Typography>
+              <IconButton >
+                <GradeIcon/>
+                <GradeIcon/>
+                <GradeIcon/>
+                <GradeIcon/>
+              </IconButton>
+              <IconButton >
+                <FavoriteIcon/>
+              </IconButton>
+              <IconButton >
+                <AddShoppingCartIcon color="secondary"/>
+              </IconButton>
+            </div>
+          </div>
+          <CardMedia
+            className={classes.cover}
+            image={detail.image}
+            title="Live from space album cover"
+          />
+        </Card>
+      : <h4>loading....</h4>
+     
+      
   );
 }

@@ -7,18 +7,20 @@ import Login from "./components/login/Login.jsx";
 import Navbar from "./components/Navbar/Navbar.jsx";
 import Register from "./components/register/Register.jsx";
 import CardDetails from "./components/details/CardDetails.jsx";
+import Form from "./components/Form/Form.jsx";
 
 function App() {
   return (
       <div>
         <BrowserRouter>
         <Navbar />
+         <Form />
           <Route exact path="/" component={Home} />
           <Route exact path="/aboutUs" component={AboutUs} />
           <Route exact path="/cart" component={Cart} />
           <Route exact path="/register" component={Register} />
           <Route exact path="/login" component={Login} />
-          <Route exact path="/detail/:id" component={CardDetails}/>
+          <Route path="/detail/:id" exact component={CardDetails}/>
         </BrowserRouter>
 
       </div>
