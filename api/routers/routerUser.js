@@ -20,7 +20,7 @@ router.put(
 router.post(
   "/",
   [
-    check("name", "El nombre es obligatorio").not().isEmpty(),
+    check("name", "El nombre es obligatorio").isAlpha(),
     check("password", "El password debe ser mas de 6 caracteres").isLength({
       min: 6,
     }),
