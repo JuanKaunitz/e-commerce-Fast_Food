@@ -15,7 +15,10 @@ exports.createNewProduct = async (req, res, next) => {
 //traer todos los productos
 exports.getAllProducts = async(req,res,next)=>{
   try {
-    const products = await Product.find({});
+    const products = await Product.find({}).populate('categories').populate({
+      path:'categories.category',
+      model:'Category'
+    });
     res.json(products);
 } catch (error) {
     console.log(error);
