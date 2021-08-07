@@ -11,6 +11,7 @@ import FavoriteIcon from '@material-ui/icons/Favorite';
 import AddShoppingCartIcon from '@material-ui/icons/AddShoppingCart';
 import { Link } from 'react-router-dom';
 
+
 const useStyles = makeStyles((theme) => ({
   media: {
     height: 0,
@@ -20,11 +21,11 @@ const useStyles = makeStyles((theme) => ({
 
 export default function CardProduct({id, name, image,price}) {
   const classes = useStyles();
-  //const preventDefault = (event) => event.preventDefault();
+  //const preventDefault = (event) => event.preventDefault()
 
   return (
     <Card >
-      <Link to={`/detail/${id}`} >
+      <Link to={`/detail/${id}`}>
         <CardHeader title={name}/>
         <CardMedia
           className={classes.media}
