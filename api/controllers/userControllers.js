@@ -2,10 +2,20 @@ const User = require("../models/User");
 const bcrypt = require("bcrypt");
 
 exports.getUsers = async (req, res) => {
+  const { limite = 5, desde = 0 } = req.query;
+  const query = { status: true };
 
-  const users = await User.find({});
+  // const users = await User.find(query).skip(Number(desde)).limit(Number(limite));//esta forma tarda mas tiempo
+  // const total = await User.countDocuments(query);
+
+  const [total, users] = await Promise.all([
+    User.countDocuments(query),
+    User.find().skip(Number(desde)).limit(Number(limite)),
+  ]);
+
   res.json({
     msg: "GET users API",
+    total,
     users,
   });
 };
@@ -22,8 +32,8 @@ exports.updateUser = async (req, res) => {
   res.json(user);
 };
 exports.createUsers = async (req, res) => {
-  const { name, email, password } = req.body;
-  const user = new User({ name, email, password });
+  const { name, email, password, role } = req.body;
+  const user = new User({ name, email, password, role });
 
   //encriptar contraseña del
   const salt = bcrypt.genSaltSync();
