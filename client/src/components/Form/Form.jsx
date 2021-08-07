@@ -49,8 +49,6 @@ const Form = () => {
         
     }    
 
-
-
     return (
         <div>
             <h1>Create Product!</h1>
@@ -124,4 +122,4 @@ const Form = () => {
 }
 
 
-export default Form
+export default Form;
