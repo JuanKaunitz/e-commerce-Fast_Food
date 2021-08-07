@@ -58,7 +58,8 @@ export const getById = (id) => async (dispatch) => {
  //Creando un producto.
  export const createProduct = () => async (dispatch) => {
     try {
-        const res = await axios.post('http://localhost:5001/food/api');
+        const res = await axios.post('http://localhost:5001/food/api/products');
+        console.log('PRODUCTO CREADO: ', res.data);
         dispatch({
             type: CREATE_PRODUCT,
             payload: res.data
