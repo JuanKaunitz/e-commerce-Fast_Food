@@ -1,3 +1,4 @@
+import { Grid } from '@material-ui/core';
 import React, { useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { getCategories } from '../../Redux/actions/actions';
@@ -15,16 +16,15 @@ const Category = () => {
 
     return (
         <div>
-           {
-               
-            categories[0]?.Hamburguesas.map((c) => (
+            <Grid>
+           {               
+            categories?.map((c) => (
                 <p>{c.name}</p> 
-            ))
-
-            
-               
+            ))             
                
            }  
+
+            </Grid>
         </div>
     )
 }

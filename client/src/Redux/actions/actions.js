@@ -102,6 +102,7 @@ export const getById = (id) => async (dispatch) => {
  export const getCategories = () => async (dispatch) => {
      try {
          const res = await axios.get('http://localhost:5001/food/api/category');
+         console.log('CATEGORIAS: ', res.data)
          dispatch({
              type: GET_CATEGORIES,
              payload: res.data
