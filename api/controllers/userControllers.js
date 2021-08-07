@@ -29,7 +29,7 @@ exports.updateUser = async (req, res) => {
     rest.password = bcrypt.hashSync(password, salt);
   }
   const user = await User.findByIdAndUpdate(id, rest);
-  res.json(user);
+  res.json({msg:'User Updated',user});
 };
 exports.createUsers = async (req, res) => {
   const { name, email, password } = req.body;
