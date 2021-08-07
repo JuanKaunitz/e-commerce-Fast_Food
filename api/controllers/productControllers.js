@@ -62,7 +62,6 @@ exports.searchProduct = async(req,res,next)=>{
   
    try {
     const includeName = await Product.find({name: new RegExp (name, "i")});
-       console.log(includeName)
        includeName.length >0
        ?  res.json(includeName) 
        : res.json({msg:"Product not found"})         
