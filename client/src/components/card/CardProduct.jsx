@@ -17,6 +17,16 @@ const useStyles = makeStyles((theme) => ({
     height: 0,
     paddingTop: '56.25%', // 16:9
   },
+  cardContent: {
+    width: '180px',
+    heigth: '200px'
+  },
+  headerTitle: {
+    fontSize: '25px'
+  },
+  MuiTypography: {
+    fontSize: '20px'
+  }
   
 }));
 
@@ -25,9 +35,9 @@ export default function CardProduct({id, name, image,price}) {
   //const preventDefault = (event) => event.preventDefault()
 
   return (
-    <Card >
+    <Card className={classes.cardContent} >
       <Link to={`/detail/${id}`}>
-        <CardHeader title={name}/>
+        <CardHeader className={classes.headerTitle} title={name}/>
         <CardMedia
           className={classes.media}
           image={image}

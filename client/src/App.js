@@ -7,6 +7,7 @@ import Login from "./components/login/Login.jsx";
 import Navbar from "./components/Navbar/Navbar.jsx";
 import Register from "./components/register/Register.jsx";
 import CardDetails from "./components/details/CardDetails.jsx";
+import Categories from "./components/categories/Categories.jsx";
 import Form from "./components/Form/Form.jsx";
 
 function App() {
@@ -21,6 +22,7 @@ function App() {
           <Route exact path="/login" component={Login} />
           <Route path="/detail/:id" exact component={CardDetails}/>
           <Route exact path="/form" component={Form} />
+          <Route exact path="/categories" component={Categories} />
         </BrowserRouter>
 
       </div>

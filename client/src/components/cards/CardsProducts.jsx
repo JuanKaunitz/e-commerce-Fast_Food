@@ -10,7 +10,8 @@ import './CardsProducts.css';
 const useStyles = makeStyles((theme) => ({
   root: {
     marginLeft: 80
-  }
+  },
+  
 }));
 
 export default function GridCardsProducts() {
@@ -40,7 +41,7 @@ export default function GridCardsProducts() {
   const classes = useStyles();
 
   return (
-    <div>
+    <div >
       <Grid container xs={10} className={classes.root} spacing={2}>
         { 
           loading ? searchProducts.length > 0 ? searchProducts.map(product => (
