@@ -22,7 +22,6 @@ export {
     LOWER_PRICE,
     HIGHER_PRICE,
     ASC,
-    DESC,
-    NULL,
+    DESC,    
     CATEGORY_NAME
 }
