@@ -6,6 +6,7 @@ import {
     UPDATE_PRODUCT,
     DELETE_PRODUCT,
     GET_CATEGORIES,
+    CATEGORY_NAME
     
 } from '../constants'
 
@@ -103,7 +104,7 @@ export const getById = (id) => async (dispatch) => {
  export const getCategories = () => async (dispatch) => {
      try {
          const res = await axios.get('http://localhost:5001/food/api/category');
-         //console.log('CATEGORIAS: ', res.data)
+         console.log('CATEGORIAS: ', res.data)
          dispatch({
              type: GET_CATEGORIES,
              payload: res.data
@@ -121,3 +122,11 @@ dispatch({
     type: sort,        
 })    
 };
+
+export const categoryName = (name) => (dispatch) => {  
+    console.log("name", name)    
+    dispatch({
+        type: CATEGORY_NAME,
+        payload: name        
+    })    
+    };

@@ -22,9 +22,12 @@ import AddShoppingCartIcon from "@material-ui/icons/AddShoppingCart";
 //import SearchIcon from '@material-ui/icons/Search'
 import useStyles from "./styles";
 import SerchBar from "../serchbar/SerchBar";
-import { useSelector } from "react-redux";
+import { useSelector,useDispatch } from "react-redux";
+import { categoryName} from '../../Redux/actions/actions';
+import { Link } from 'react-router-dom'
 
 const Navbar = () => {
+  const dispatch = useDispatch();
   const classes = useStyles();
   //const searchProducts = useSelector((state) => state.searchProducts);
   const theme = useTheme();
@@ -38,6 +41,25 @@ const Navbar = () => {
   const handleDrawerClose = () => {
     setOpen(false);
   };
+
+  function handlerCategory(name){
+    console.log("NAME",name)
+    if(name === 'Hamburguesas'){
+      dispatch(categoryName('hamburguesa'))
+    }
+    if(name === 'Bebidas'){
+      dispatch(categoryName('Bebidas'))
+    }
+    if(name === 'Combos'){
+      dispatch(categoryName('Empanadas'))
+    }
+    if(name === 'Guarniciones'){
+      dispatch(categoryName('Guarnicion'))
+    }
+    if(name === 'Sandwich'){
+      dispatch(categoryName('Sandwich'))
+    }
+}
 
   return (
     <div>
@@ -125,9 +147,11 @@ const Navbar = () => {
         <List>
           {" "}
           {categories.map((e) => (
-            <ListItem button key={e.name}>
+            <ListItem button key={e.name} >
               {/* <ListItemIcon></ListItemIcon> */}
-              <ListItemText primary={e.name} />
+              <Link to="/categories">
+                <ListItemText primary={e.name} onClick={() => handlerCategory(e.name)}/>
+              </Link>
             </ListItem>
           ))}
         </List>

@@ -21,7 +21,7 @@ export default function GridCardsProducts() {
   const [page, setPage] = useState(0);
 
   useEffect(() => {    
-      dispatch(getAllProducts())    
+      dispatch(getAllProducts())  
   }, [dispatch])
 
   function handlePrev(){
