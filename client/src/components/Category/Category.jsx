@@ -1,32 +1,22 @@
-import React, { useEffect } from 'react';
-import { useSelector, useDispatch } from 'react-redux';
-import { getCategories } from '../../Redux/actions/actions';
-
+import React, { useEffect } from "react";
+import { useSelector, useDispatch } from "react-redux";
+import { getCategories } from "../../Redux/actions/actions";
 
 const Category = () => {
-    const categories = useSelector((state) => state.allCategories);
-    console.log('CATEGORIES: ', categories);
-    const dispatch = useDispatch();
-    
+  const categories = useSelector((state) => state.allCategories);
+  const dispatch = useDispatch();
 
-    useEffect(() => {
-        dispatch(getCategories())
-    }, [])
+  useEffect(() => {
+    dispatch(getCategories());
+  }, []);
 
-    return (
-        <div>
-           {
-               
-            categories[0]?.Hamburguesas.map((c) => (
-                <p>{c.name}</p> 
-            ))
+  return (
+    <div>
+      {categories.map((c,_id) => (
+        <p key={_id}>{c.name}</p>
+      ))}
+    </div>
+  );
+};
 
-            
-               
-               
-           }  
-        </div>
-    )
-}
-
-export default Category
+export default Category;
