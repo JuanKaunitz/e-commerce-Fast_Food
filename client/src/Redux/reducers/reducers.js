@@ -7,8 +7,8 @@ import {
   GET_CATEGORIES,
   LOWER_PRICE,
   HIGHER_PRICE,
-  ASC,
-  DESC
+  /* ASC,
+  DESC */
 } from '../constants'
 
 
@@ -18,7 +18,7 @@ const initialState = {
   createNewProduct : {},
   searchProducts: [], 
   loading: false,
-  allCategories : []
+  allCategories : [{name:'Hamburguers'},{ name:'Sandwitches'},{name: 'Drinks'},{ name:'Combos'},{name: 'Siders'} ]
 }
 
 const rootReducer = (state = initialState, action) => {

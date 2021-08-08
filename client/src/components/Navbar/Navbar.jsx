@@ -10,8 +10,7 @@ import {
   Divider,
   Drawer,
   useTheme,
-  ListItem,
-  ListItemIcon,
+  ListItem,  
   ListItemText,
   List,
 } from "@material-ui/core";
@@ -21,16 +20,16 @@ import HomeIcon from "@material-ui/icons/Home";
 import MenuIcon from "@material-ui/icons/Menu";
 import AddShoppingCartIcon from "@material-ui/icons/AddShoppingCart";
 //import SearchIcon from '@material-ui/icons/Search'
-import InboxIcon from "@material-ui/icons/MoveToInbox";
-import MailIcon from "@material-ui/icons/Mail";
 import useStyles from "./styles";
 import SerchBar from "../serchbar/SerchBar";
+import { useSelector } from "react-redux";
 
 const Navbar = () => {
   const classes = useStyles();
   //const searchProducts = useSelector((state) => state.searchProducts);
   const theme = useTheme();
   const [open, setOpen] = React.useState(false);
+  const categories = useSelector((state) => state.allCategories)
 
   const handleDrawerOpen = () => {
     setOpen(true);
@@ -125,12 +124,10 @@ const Navbar = () => {
         <Divider />
         <List>
           {" "}
-          {["Inbox", "Starred", "Send email", "Drafts"].map((text, index) => (
-            <ListItem button key={text}>
-              <ListItemIcon>
-                {index % 2 === 0 ? <InboxIcon /> : <MailIcon />}
-              </ListItemIcon>
-              <ListItemText primary={text} />
+          {categories.map((e) => (
+            <ListItem button key={e.name}>
+              {/* <ListItemIcon></ListItemIcon> */}
+              <ListItemText primary={e.name} />
             </ListItem>
           ))}
         </List>
