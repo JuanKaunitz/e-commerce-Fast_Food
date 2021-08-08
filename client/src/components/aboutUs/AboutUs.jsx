@@ -6,7 +6,7 @@ import UseStyles from './styles.js'
 const aboutUs = () => {
   const classes = UseStyles()
   return (
-    <div>
+    <div /* className={classes.cards} */ >
       <p>
         Somos un grupo de 7 integrantes los cuales nos encontramos cursando el
         bootcamp HENRY en la etapa final denominada 'Proyecto Grupal', la cual
@@ -56,7 +56,6 @@ const aboutUs = () => {
         <img src="https://media-exp1.licdn.com/dms/image/C4E03AQEelOT7LzhUyg/profile-displayphoto-shrink_800_800/0/1563523709883?e=1634169600&v=beta&t=LVBJJqLNfMPX0Dxd8ss3tj5i2-eq444lJgP0VADd1ec" style={{width:150}} alt="img not found"/>
         </a>
         </div>
-      
         <div className={classes.listItem}>
        <a href='https://www.linkedin.com/in/octavio-bissutti/' target='_blank'>
         Octavio Bissutti

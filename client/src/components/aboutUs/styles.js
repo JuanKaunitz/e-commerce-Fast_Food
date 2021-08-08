@@ -11,6 +11,11 @@ const UseStyles = makeStyles(() => ({
         alignItems:'center',
         boxShadow: '#5a5050 1px 1px 14px',
         flexDirection: 'column',
+    },
+    cards:{
+        display:'flex',
+        flexDirection:'column',
+        width:80
     }
 })
 )
