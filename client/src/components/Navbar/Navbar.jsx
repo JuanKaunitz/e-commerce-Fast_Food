@@ -23,6 +23,12 @@ import AddShoppingCartIcon from "@material-ui/icons/AddShoppingCart";
 import useStyles from "./styles";
 import SerchBar from "../serchbar/SerchBar";
 import { useSelector } from "react-redux";
+import { useLocation } from 'react-router-dom'
+
+/* function HeaderView() {
+  return <span>Path : {location.pathname}</span>
+} */
+
 
 const Navbar = () => {
   const classes = useStyles();
@@ -30,6 +36,11 @@ const Navbar = () => {
   const theme = useTheme();
   const [open, setOpen] = React.useState(false);
   const categories = useSelector((state) => state.allCategories)
+  
+  const location = useLocation();
+  //console.log(location.pathname);
+
+
 
   const handleDrawerOpen = () => {
     setOpen(true);
@@ -105,7 +116,7 @@ const Navbar = () => {
       </AppBar>
       <Drawer
         className={classes.drawer}
-        variant="persistent"
+        variant={location.pathname === '/categories' ? "permanent": "persistent" }
         anchor="left"
         open={open}
         classes={{
