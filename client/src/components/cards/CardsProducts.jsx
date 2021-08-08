@@ -65,7 +65,7 @@ export default function GridCardsProducts() {
         disabled={page <= 0}>prev</button>
       <p className="pagina" > {page + 1} </p>
       <button value="next" onClick={handleNext} 
-        disabled={loading? searchProducts.slice(page * 8, page * 8 + 8).length < 8
+        disabled={loading? searchProducts?.slice(page * 8, page * 8 + 8).length < 8
           : getAll.slice(page * 8, page * 8 + 8).length < 8}>next</button>
       </div>
     </div>
