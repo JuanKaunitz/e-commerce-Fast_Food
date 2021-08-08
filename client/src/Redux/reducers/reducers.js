@@ -9,11 +9,13 @@ import {
   HIGHER_PRICE,
   /* ASC,
   DESC */
+  NULL,
 } from '../constants'
 
 
 const initialState = {
   getProducts : [],
+  productsBackUp : [],
   getDetail : {},
   createNewProduct : {},
   searchProducts: [], 
@@ -27,6 +29,7 @@ const rootReducer = (state = initialState, action) => {
       return {
         ...state,
         getProducts: action.payload,
+        productsBackUp: action.payload,
         loading: false
       };
     case GET_BY_ID: 
@@ -67,6 +70,13 @@ const rootReducer = (state = initialState, action) => {
         getProducts: [...res1],
       };
 
+      /* case NULL:   
+       console.log(NULL)  
+       console.log(state.productsBackUp)   
+        return {          
+          getProducts: state.productsBackUp
+        }
+ */
     default:
       return state;
   };

@@ -32,6 +32,7 @@ import { useLocation } from 'react-router-dom'
 
 const Navbar = () => {
   const classes = useStyles();
+  console.log(classes)
   //const searchProducts = useSelector((state) => state.searchProducts);
   const theme = useTheme();
   const [open, setOpen] = React.useState(false);
@@ -52,71 +53,74 @@ const Navbar = () => {
 
   return (
     <div>
-      <AppBar>
-        <Toolbar>
-          <IconButton
-            color="inherit"
-            aria-label="open drawer"
-            onClick={handleDrawerOpen}
-            edge="start"
-            className={clsx(classes.menuButton, open && classes.hide)}
-          >
-            <MenuIcon />
-          </IconButton>
-
-          <IconButton aria-label="delete" className={classes.homeIcon}>
-            <NavLink className="a" to="/" activeClassName="active">
-              <HomeIcon className={classes.MuiButtonLabel} />
-            </NavLink>
-          </IconButton>
-          <Typography variant="h5">Home</Typography>
-          <Button color="inherit">
-            <NavLink className={classes.MuiButtonLabel} to="/aboutUs">
-              About Us
-            </NavLink>
-          </Button>
-          <SerchBar />
-          <div className={classes.toolbarButtons}>
-            <NavLink
-              className={classes.MuiButtonLabel}
-              to="/form"
-              activeClassName="active"
+      <div className={location.pathname === '/categories'? classes.shiftTextRight : classes.shiftTextLeft }>
+        <AppBar>          
+          <Toolbar>
+            <IconButton
+              color="inherit"
+              aria-label="open drawer"
+              onClick={handleDrawerOpen}
+              edge="start"
+              className={clsx(classes.menuButton, open && classes.hide)}
             >
-              Form
-            </NavLink>
-            <IconButton aria-label="add to shopping cart">
-              <NavLink
-                className={classes.MuiButtonLabel}
-                to="/cart"
-                activeClassName="active"
-              >
-                <AddShoppingCartIcon />
+              <MenuIcon />
+            </IconButton>
+
+            <IconButton aria-label="delete" className={classes.homeIcon}>
+              <NavLink className="a" to="/" activeClassName="active">
+                <HomeIcon className={classes.MuiButtonLabel} />
               </NavLink>
             </IconButton>
+            <Typography variant="h5">Home</Typography>
             <Button color="inherit">
-              <NavLink
-                className={classes.MuiButtonLabel}
-                to="/register"
-                activeClassName="active"
-              >
-                Register
+              <NavLink className={classes.MuiButtonLabel} to="/aboutUs">
+                About Us
               </NavLink>
             </Button>
-            <Button color="inherit" className={classes.loginButton}>
+            <SerchBar />
+            <div className={classes.toolbarButtons}>
               <NavLink
                 className={classes.MuiButtonLabel}
-                to="/login"
+                to="/form"
                 activeClassName="active"
               >
-                Login
+                Form
               </NavLink>
-            </Button>
-          </div>
-        </Toolbar>
-      </AppBar>
+              <IconButton aria-label="add to shopping cart">
+                <NavLink
+                  className={classes.MuiButtonLabel}
+                  to="/cart"
+                  activeClassName="active"
+                >
+                  <AddShoppingCartIcon />
+                </NavLink>
+              </IconButton>
+              <Button color="inherit">
+                <NavLink
+                  className={classes.MuiButtonLabel}
+                  to="/register"
+                  activeClassName="active"
+                >
+                  Register
+                </NavLink>
+              </Button>
+              <Button color="inherit" className={classes.loginButton}>
+                <NavLink
+                  className={classes.MuiButtonLabel}
+                  to="/login"
+                  activeClassName="active"
+                >
+                  Login
+                </NavLink>
+              </Button>
+            </div>
+          </Toolbar>
+
+        </AppBar>
+      </div>
       <Drawer
         className={classes.drawer}
-        variant={location.pathname === '/categories' ? "permanent": "persistent" }
+        variant={location.pathname === '/categories' ? /* "permanent" */"persistent" : "persistent" }
         anchor="left"
         open={open}
         classes={{

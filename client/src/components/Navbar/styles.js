@@ -1,7 +1,7 @@
 import { makeStyles,alpha} from "@material-ui/core";
 
 
-const drawerWidth = 240;
+const drawerWidth = 240
 const useStyles = makeStyles(theme => ({
     // const theme = useTheme();
     offset: theme.mixins.toolbar,
@@ -87,6 +87,12 @@ fontSize:'20px'
         display: 'flex',
         alignItems: 'center',
         justifyContent: 'center',
+      },
+      shiftTextLeft: {
+        marginLeft: '0px',
+      },
+      shiftTextRight: {
+        marginLeft: drawerWidth,
       },
 }));
 

@@ -9,6 +9,7 @@ const LOWER_PRICE = "startLowerPrice";
 const HIGHER_PRICE = "startHighestPrice";
 const ASC = "ASC";
 const DESC = "DESC";
+const NULL = 'null';
 
 export {
     GET_ALL_PRODUCTS,
@@ -21,5 +22,6 @@ export {
     LOWER_PRICE,
     HIGHER_PRICE,
     ASC,
-    DESC
+    DESC,
+    NULL
 }
