@@ -7,6 +7,7 @@ import {
   GET_CATEGORIES,
   LOWER_PRICE,
   HIGHER_PRICE,
+  CATEGORY_NAME,
   /* ASC,
   DESC */
   NULL,
@@ -20,7 +21,8 @@ const initialState = {
   createNewProduct : {},
   searchProducts: [], 
   loading: false,
-  allCategories : [{name:'Hamburguers'},{ name:'Sandwitches'},{name: 'Drinks'},{ name:'Combos'},{name: 'Siders'} ]
+  allCategories : [],
+  categoryName: ''
 }
 
 const rootReducer = (state = initialState, action) => {
@@ -77,6 +79,12 @@ const rootReducer = (state = initialState, action) => {
           getProducts: state.productsBackUp
         }
  */
+      case CATEGORY_NAME:
+        return {
+          ...state,
+          categoryName: action.payload
+        }
+
     default:
       return state;
   };
