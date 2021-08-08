@@ -1,6 +1,6 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import {  createProduct } from '../../Redux/actions/actions';
-import { useDispatch, useSelector } from 'react-redux';
+import { useDispatch} from 'react-redux';
 
 
 
@@ -51,7 +51,6 @@ const Form = () => {
 
     return (
         <div>
-            <h1>Create Product!</h1>
             <form onSubmit={handleSubmit}>
             <div>
               <h1>Create <span>Product</span></h1>
