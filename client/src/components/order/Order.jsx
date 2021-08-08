@@ -1,13 +1,17 @@
 import React from "react";
 import "./Order.css";
 import { useDispatch } from "react-redux";
-import { orderBy } from '../../Redux/actions/actions'
+import { getAllProducts, orderBy } from '../../Redux/actions/actions'
 
 const Order = () => {
   const dispatch = useDispatch();  
   
-  const onOrderChange = (e) => {   
-    dispatch(orderBy(e.target.value));
+  const onOrderChange = (e) => {  
+    if(e.target.value === 'null') {
+      dispatch(getAllProducts())
+    } else {
+      dispatch(orderBy(e.target.value));
+    }
   }  
 
   return (

@@ -9,7 +9,6 @@ const LOWER_PRICE = "startLowerPrice";
 const HIGHER_PRICE = "startHighestPrice";
 const ASC = "ASC";
 const DESC = "DESC";
-const NULL = 'null';
 const CATEGORY_NAME = "CATEGORY_NAME";
 
 export {

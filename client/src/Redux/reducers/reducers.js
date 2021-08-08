@@ -9,8 +9,7 @@ import {
   HIGHER_PRICE,
   CATEGORY_NAME,
   /* ASC,
-  DESC */
-  NULL,
+  DESC */  
 } from '../constants'
 
 
@@ -70,15 +69,8 @@ const rootReducer = (state = initialState, action) => {
       return {
         ...state,        
         getProducts: [...res1],
-      };
-
-      /* case NULL:   
-       console.log(NULL)  
-       console.log(state.productsBackUp)   
-        return {          
-          getProducts: state.productsBackUp
-        }
- */
+      };      
+ 
       case CATEGORY_NAME:
         return {
           ...state,
