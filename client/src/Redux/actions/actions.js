@@ -5,7 +5,8 @@ import {
     CREATE_PRODUCT,
     UPDATE_PRODUCT,
     DELETE_PRODUCT,
-    GET_CATEGORIES
+    GET_CATEGORIES,
+    
 } from '../constants'
 
 import axios from 'axios';
@@ -69,7 +70,7 @@ export const getById = (id) => async (dispatch) => {
     }
  }
 
- //Actualizando procuto.
+ //Actualizando producto.
  export const getUpdate = (id) => async (dispatch) => {
      
     try {        
@@ -102,7 +103,7 @@ export const getById = (id) => async (dispatch) => {
  export const getCategories = () => async (dispatch) => {
      try {
          const res = await axios.get('http://localhost:5001/food/api/category');
-         console.log('CATEGORIAS: ', res.data)
+         //console.log('CATEGORIAS: ', res.data)
          dispatch({
              type: GET_CATEGORIES,
              payload: res.data
@@ -110,4 +111,13 @@ export const getById = (id) => async (dispatch) => {
      } catch (err) {
          console.log(err)
      }
- }
+
+};
+
+// ORDENAMIENTO ASCENDENTE Y DESCENDENTE POR PRECIO Y RANKING
+export const orderBy = (sort) => (dispatch) => {  
+//console.log(sort)    
+dispatch({
+    type: sort,        
+})    
+};

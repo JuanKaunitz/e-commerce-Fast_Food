@@ -4,7 +4,11 @@ import {
   GET_BY_ID,
   CREATE_PRODUCT,
   SEARCH_PRODUCTS,
-  GET_CATEGORIES
+  GET_CATEGORIES,
+  LOWER_PRICE,
+  HIGHER_PRICE,
+  ASC,
+  DESC
 } from '../constants'
 
 
@@ -47,6 +51,22 @@ const rootReducer = (state = initialState, action) => {
       ...state,
       allCategories: action.payload
     }
+
+    case LOWER_PRICE:
+
+      const res = state.getProducts.sort((a, b) => parseInt(a.price) - parseInt(b.price));     
+      return {
+        ...state,        
+        getProducts: [...res],
+      };
+
+      case HIGHER_PRICE:
+        const res1 = state.getProducts.sort((a, b) => parseInt(b.price) - parseInt(a.price));     
+      return {
+        ...state,        
+        getProducts: [...res1],
+      };
+
     default:
       return state;
   };
