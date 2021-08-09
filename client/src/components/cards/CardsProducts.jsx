@@ -7,9 +7,11 @@ import {getAllProducts} from '../../Redux/actions/actions';
 import './CardsProducts.css';
 
 
-const useStyles = makeStyles((theme) => ({
+const useStyles = makeStyles(() => ({
   root: {
-    marginLeft: 80
+    margin:'auto',
+    height:'auto',
+    maxWidth:1024
   },
   
 }));
