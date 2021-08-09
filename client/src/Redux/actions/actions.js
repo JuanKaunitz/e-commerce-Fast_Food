@@ -31,7 +31,7 @@ export const searchQueryProducts = (name) => async (dispatch) => {
     
     try {
         const res = await axios.get(`http://localhost:5001/food/api/products/search/${name}`);
-        console.log('RES DATA: ', res.data)
+        console.log('RES SEARCH DATA: ', res.data)
         dispatch({            
             type: SEARCH_PRODUCTS, 
             payload: res.data
@@ -61,8 +61,8 @@ export const getById = (id) => async (dispatch) => {
      console.log(input)
     try {
         const product = await axios.post('http://localhost:5001/food/api/products',input);
-        console.log('PRODUCTO CREADO: ', input);
-        console.log('respuesta: ', product);
+        //console.log('PRODUCTO CREADO: ', input);
+        //console.log('respuesta: ', product);
         dispatch({
             type: CREATE_PRODUCT,
             payload: product.data.product

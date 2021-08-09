@@ -52,6 +52,7 @@ export default function GridCardsProducts() {
                 name={product.name} image={product.image} price={product.price} />
             </Grid>
           ))
+          
           : <h4>Product not found!</h4>
            
           :

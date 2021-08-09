@@ -40,6 +40,7 @@ const SerchBar = () => {
     e.preventDefault();
     dispatch(getAllProducts());
     setSearch(false);
+
   };
   return (
     <div className={classes.search}>

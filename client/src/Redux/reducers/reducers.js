@@ -38,7 +38,8 @@ const rootReducer = (state = initialState, action) => {
     case GET_BY_ID: 
     return {
       ...state,
-      getDetail: action.payload
+      getDetail: action.payload,
+      loading: true
     }  
     case CREATE_PRODUCT: 
     return {

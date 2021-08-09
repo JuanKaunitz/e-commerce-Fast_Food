@@ -10,6 +10,7 @@ import Typography from '@material-ui/core/Typography';
 import FavoriteIcon from '@material-ui/icons/Favorite';
 import AddShoppingCartIcon from '@material-ui/icons/AddShoppingCart';
 import GradeIcon from '@material-ui/icons/Grade';
+import HourglassEmptyIcon from '@material-ui/icons/HourglassEmpty';
 
 import {getById} from '../../Redux/actions/actions';
 
@@ -42,21 +43,22 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 export default function CardDetails({match}) {
+  const dispatch = useDispatch();
   const classes = useStyles();
 
-  const dispatch = useDispatch();
+  const loading = useSelector(state => state.loading);
   const detail = useSelector(state => state.getDetail.product);
   const productId = useRef(match.params.id);
   // console.log("ID ----", productId)
-
+  
   useEffect(() => {
     dispatch(getById(productId.current));
   },[dispatch, productId]);
   
-  // console.log("DETAIL", detail)
+  //console.log("DETAIL", detail)
 
   return (
-     detail?
+     loading?
         <Card className={classes.root}>
           <div className={classes.details}>
             <CardContent className={classes.content}>
@@ -91,7 +93,7 @@ export default function CardDetails({match}) {
             title="Live from space album cover"
           />
         </Card>
-      : <h4>loading....</h4>
+      : <HourglassEmptyIcon fontSize="large"/>
      
       
   );
