@@ -1,10 +1,11 @@
 const Category = require('../models/Category');
+const Product = require('../models/Product');
 
 
 exports.createNewCategory = async(req,res,next)=>{
     const category = new Category(req.body);
     try {
-        await category.save();
+        await category.save()
         res.json({
             msg:'Category create susses',
             category
@@ -16,14 +17,28 @@ exports.createNewCategory = async(req,res,next)=>{
 };
 
 exports.getAllCategories = async(req,res,next)=>{
+    const products = await Product.find({});
     try {
-      const categories = await Category.find({});
-      res.json(categories);
-  } catch (error) {
+        // const categories = await Category.find({});
+        // res.json(categories);
+        let recip = products.filter((c) => { //probar some 
+
+            
+               
+                    if (c.categories.map(r=>r.category.name==="Hamburguesas")) {
+                        return true;
+                    } 
+                })
+
+res.json(recip)
+            
+        }
+   catch (error) {
       console.log(error);
       return next();
   }
-  };
+}
+
   exports.updateCategori = async(req,res,next)=>{
     try {
         let category = await Category.findOneAndUpdate({_id:req.params.id},

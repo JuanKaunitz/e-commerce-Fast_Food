@@ -28,8 +28,8 @@ server.use(cors());
 //rutas de la server
 server.use('/',routers())
 
-server.listen(PORT,()=>{
-    console.log(`servidor corriendo en el puerto: ${PORT}`)
+server.listen(5001,()=>{
+    console.log(`servidor corriendo en el puerto: `)
 })
 
 

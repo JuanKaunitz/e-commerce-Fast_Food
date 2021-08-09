@@ -25,12 +25,13 @@ const ProductSchema = new Schema({
   stock: {
     type: Boolean,
   },
-  categories: [
-    {
-      type: mongoose.Schema.Types.ObjectId,
-      ref: "Category",
-    },
-  ],
+  
+category:
+{
+  type: mongoose.Schema.Types.ObjectId,
+  ref: "Category",
+}
+
 });
 
 module.exports = mongoose.model("Product", ProductSchema);
