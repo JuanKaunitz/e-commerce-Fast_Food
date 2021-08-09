@@ -6,7 +6,7 @@ import UseStyles from './styles.js'
 const aboutUs = () => {
   const classes = UseStyles()
   return (
-    <div /* className={classes.cards} */ >
+    <div  >
       <p>
         Somos un grupo de 7 integrantes los cuales nos encontramos cursando el
         bootcamp HENRY en la etapa final denominada 'Proyecto Grupal', la cual
@@ -20,9 +20,10 @@ const aboutUs = () => {
         la barra de busqueda entre otras funcionalidades y por ultimo un usuario
         registrado o la opcion de poder regstrarse para poder realizar compras.
       </p>
+      <div className={classes.cards}>
        <div className={classes.listItem}>
        <a href='https://www.linkedin.com/in/jose-alberto-carballo-rojas-31b606165/' target='_blank'>
-        Jose Alberto Carballo Rojas
+      Jose Alberto Carballo Rojas
         <img src="https://media-exp1.licdn.com/dms/image/C4E03AQGXPu_dVhOQZg/profile-displayphoto-shrink_200_200/0/1627651344866?e=1634169600&v=beta&t=zmrvLWZrw-9nACfWtXBiola_6CAizvhtGOauAOzKANk" style={{width:150}}  alt="img not found"/>
       </a>
        </div>
@@ -61,6 +62,7 @@ const aboutUs = () => {
         Octavio Bissutti
         <img src="https://media-exp1.licdn.com/dms/image/C4E03AQFpH6x6o0OlTw/profile-displayphoto-shrink_800_800/0/1627669261072?e=1634169600&v=beta&t=jNL9H7PwnlwFWwAL20Y3iK3-TMJlwTrCzvUBf3YgzEc" style={{width:150}} alt="img not found"/>
         </a>
+        </div>
         </div>
     </div>
   );
