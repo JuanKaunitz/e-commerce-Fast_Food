@@ -42,10 +42,10 @@ export default function GridCardsProducts() {
 
   return (
     <div >
-      <Grid container xs={10} className={classes.root} spacing={2}>
+      <Grid container  className={classes.root} spacing={2}>
         { 
           loading ? searchProducts.length > 0 ? searchProducts.map(product => (
-            <Grid key={product._id} item xs={3}>
+            <Grid item key={product._id}  xs={3}>
               <CardProduct id={product._id}
                 name={product.name} image={product.image} price={product.price} />
             </Grid>
@@ -54,7 +54,7 @@ export default function GridCardsProducts() {
            
           :
           getAll.slice(page * 8, page * 8 + 8).map(product => (
-            <Grid key={product._id} item xs={3}>
+            <Grid item key={product._id}  xs={3}>
               <CardProduct id={product._id}
                 name={product.name} image={product.image} price={product.price} />
             </Grid>

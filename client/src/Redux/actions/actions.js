@@ -21,7 +21,6 @@ export const getAllProducts = () => async (dispatch) => {
            type: GET_ALL_PRODUCTS,
            payload: res.data
        });
-       console.log('DATAAA --->', res.data);//Me trae 7 por ahora, chequear las imágenes de c/u
    } catch (err) {
        console.log(err)
    }
@@ -47,7 +46,7 @@ export const getById = (id) => async (dispatch) => {
     
     try {
         const res = await axios.get(`http://localhost:5001/food/api/products/${id}`);
-        console.log('RES id: ', res.data)
+        // console.log('RES id: ', res.data)
         dispatch({
             type: GET_BY_ID,
             payload: res.data
@@ -106,7 +105,6 @@ export const getById = (id) => async (dispatch) => {
  export const getCategories = () => async (dispatch) => {
      try {
          const res = await axios.get('http://localhost:5001/food/api/category');
-         console.log('CATEGORIAS: ', res.data)
          dispatch({
              type: GET_CATEGORIES,
              payload: res.data
@@ -126,7 +124,7 @@ dispatch({
 };
 
 export const categoryName = (name) => (dispatch) => {  
-    console.log("name", name)    
+    // console.log("name", name)    
     dispatch({
         type: CATEGORY_NAME,
         payload: name        

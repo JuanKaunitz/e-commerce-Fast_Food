@@ -47,13 +47,13 @@ export default function CardDetails({match}) {
   const dispatch = useDispatch();
   const detail = useSelector(state => state.getDetail.product);
   const productId = useRef(match.params.id);
-  console.log("ID ----", productId)
+  // console.log("ID ----", productId)
 
   useEffect(() => {
     dispatch(getById(productId.current));
   },[dispatch, productId]);
   
-  console.log("DETAIL", detail)
+  // console.log("DETAIL", detail)
 
   return (
      detail?

@@ -16,17 +16,17 @@ export default function Footer() {
             <Grid item xs={12} sm={4}>
               <Box borderBottom={1}>Buy in foodapp.com</Box>
               <Box>
-                <Link href="/" color="black">
+                <Link href="/">
                   Contact
                 </Link>
               </Box>
               <Box>
-                <Link href="/" color="black">
+                <Link href="/">
                   Help
                 </Link>
               </Box>
               <Box>
-                <Link href="/" color="black">
+                <Link href="/">
                   More about us
                 </Link>
               </Box>
@@ -34,17 +34,17 @@ export default function Footer() {
             <Grid item xs={12} sm={4}>
               <Box borderBottom={1} >Access </Box>
               <Box>
-                <Link href="/" color="black">
+                <Link href="/">
                   Login
                 </Link>
               </Box>
               <Box>
-                <Link href="/" color="black">
+                <Link href="/" >
                   Register
                 </Link>
               </Box>
               <Box>
-                <Link href="/" color="black">
+                <Link href="/">
                   Administrator
                 </Link>
               </Box>
@@ -52,17 +52,17 @@ export default function Footer() {
             <Grid item xs={12} sm={4}>
               <Box borderBottom={1}>Social Media</Box>
               <Box>
-                <Link href="/" color="black">
+                <Link href="/" >
                   Instagram 
                 </Link>
               </Box>
               <Box>
-                <Link href="/" color="black">
+                <Link href="/">
                  Facebook
                 </Link>
               </Box>
               <Box>
-                <Link href="/" color="black">
+                <Link href="/" >
                   Twitter
                 </Link>
               </Box>

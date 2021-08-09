@@ -1,12 +1,12 @@
-import React, {useState, useEffect} from 'react';
-import {useSelector, useDispatch } from 'react-redux';
+import React, { useEffect} from 'react';
+import { useDispatch } from 'react-redux';
 import { Link } from 'react-router-dom'
 import './Gallery.css'
 import { getCategories, categoryName} from '../../Redux/actions/actions';
 
 const Gallery = () => {
     const dispatch = useDispatch();
-    const categoria = useSelector((state) => state.allCategories);
+    // const categoria = useSelector((state) => state.allCategories);
     
     useEffect(() => {    
         dispatch(getCategories())    

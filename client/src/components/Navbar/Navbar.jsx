@@ -33,7 +33,6 @@ import { categoryName} from '../../Redux/actions/actions';
 const Navbar = () => {
   const dispatch = useDispatch();
   const classes = useStyles();
-  console.log(classes)
   //const searchProducts = useSelector((state) => state.searchProducts);
   const theme = useTheme();
   const [open, setOpen] = React.useState(false);
