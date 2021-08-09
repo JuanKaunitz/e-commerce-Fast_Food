@@ -10,6 +10,7 @@ import {
 
 const initialState = {
   getProducts : [],
+  allProducts:[],
   getDetail : {},
   createNewProduct : {},
   searchProducts: [], 
@@ -23,6 +24,7 @@ const rootReducer = (state = initialState, action) => {
       return {
         ...state,
         getProducts: action.payload,
+        allProducts:action.payload,
         loading: false
       };
     case GET_BY_ID: 
@@ -33,7 +35,7 @@ const rootReducer = (state = initialState, action) => {
     case CREATE_PRODUCT: 
     return {
       ...state,
-      createNewProduct: action.payload
+      getProducts: [...state.allProducts,action.payload]
     }
     case SEARCH_PRODUCTS:
       return {
