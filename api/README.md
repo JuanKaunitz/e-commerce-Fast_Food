@@ -1,4 +1,4 @@
-# Funsionamiento de la api
+# Funcionamiento de la api
 
 ### correr el comando ``npm install`` para instalar las dependencias necesarias para el back.
 
