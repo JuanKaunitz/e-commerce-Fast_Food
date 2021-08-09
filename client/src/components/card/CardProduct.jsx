@@ -14,30 +14,31 @@ import { Link } from 'react-router-dom';
 
 const useStyles = makeStyles((theme) => ({
   media: {
-    height: 0,
-    paddingTop: '56.25%', // 16:9
+    height: '35px',
+    width:200,
+    paddingTop: '50%', // 16:9
   },
   cardContent: {
-    width: '180px',
-    heigth: '200px'
+    width: '200px',
+    heigth: '200px',
+    boxShadow: '3px 4px 8px #0b0c0c1a',
+
   },
   headerTitle: {
-    fontSize: '25px'
+    color:'#363636',
+    textDecoration:'none',
   },
-  MuiTypography: {
-    fontSize: '20px'
-  }
+ 
   
 }));
 
 export default function CardProduct({id, name, image,price}) {
   const classes = useStyles();
-  //const preventDefault = (event) => event.preventDefault()
 
   return (
     <Card className={classes.cardContent} >
-      <Link to={`/detail/${id}`}>
-        <CardHeader className={classes.headerTitle} title={name}/>
+      <Link to={`/detail/${id}`} className={classes.headerTitle}>
+        <CardHeader  title={name}/>
         <CardMedia
           className={classes.media}
           image={image}
