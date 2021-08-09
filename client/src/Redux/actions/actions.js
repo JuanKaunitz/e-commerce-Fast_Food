@@ -5,7 +5,9 @@ import {
     CREATE_PRODUCT,
     UPDATE_PRODUCT,
     DELETE_PRODUCT,
-    GET_CATEGORIES
+    GET_CATEGORIES,
+    CATEGORY_NAME
+    
 } from '../constants'
 
 import axios from 'axios';
@@ -71,7 +73,7 @@ export const getById = (id) => async (dispatch) => {
     }
  }
 
- //Actualizando procuto.
+ //Actualizando producto.
  export const getUpdate = (id) => async (dispatch) => {
      
     try {        
@@ -112,4 +114,21 @@ export const getById = (id) => async (dispatch) => {
      } catch (err) {
          console.log(err)
      }
- }
+
+};
+
+// ORDENAMIENTO ASCENDENTE Y DESCENDENTE POR PRECIO Y RANKING
+export const orderBy = (sort) => (dispatch) => {  
+//console.log(sort)    
+dispatch({
+    type: sort,        
+})    
+};
+
+export const categoryName = (name) => (dispatch) => {  
+    console.log("name", name)    
+    dispatch({
+        type: CATEGORY_NAME,
+        payload: name        
+    })    
+    };

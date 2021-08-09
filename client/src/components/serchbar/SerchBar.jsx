@@ -15,10 +15,11 @@ const SerchBar = () => {
 
   const [name, setName] = useState("");
   const [search, setSearch] = useState(false);
+  
   function searchProduct() {
     dispatch(searchQueryProducts(name));
-  }
-
+  } 
+ 
   useEffect(() => {
     if (search) {
       searchProduct();

@@ -4,18 +4,25 @@ import {
   GET_BY_ID,
   CREATE_PRODUCT,
   SEARCH_PRODUCTS,
-  GET_CATEGORIES
+  GET_CATEGORIES,
+  LOWER_PRICE,
+  HIGHER_PRICE,
+  CATEGORY_NAME,
+  /* ASC,
+  DESC */  
 } from '../constants'
 
 
 const initialState = {
   getProducts : [],
   allProducts:[],
+  productsBackUp : [],
   getDetail : {},
   createNewProduct : {},
   searchProducts: [], 
   loading: false,
-  allCategories : []
+  allCategories : [],
+  categoryName: ''
 }
 
 const rootReducer = (state = initialState, action) => {
@@ -25,6 +32,7 @@ const rootReducer = (state = initialState, action) => {
         ...state,
         getProducts: action.payload,
         allProducts:action.payload,
+        productsBackUp: action.payload,
         loading: false
       };
     case GET_BY_ID: 
@@ -49,6 +57,28 @@ const rootReducer = (state = initialState, action) => {
       ...state,
       allCategories: action.payload
     }
+
+    case LOWER_PRICE:
+
+      const res = state.getProducts.sort((a, b) => parseInt(a.price) - parseInt(b.price));     
+      return {
+        ...state,        
+        getProducts: [...res],
+      };
+
+      case HIGHER_PRICE:
+        const res1 = state.getProducts.sort((a, b) => parseInt(b.price) - parseInt(a.price));     
+      return {
+        ...state,        
+        getProducts: [...res1],
+      };      
+ 
+      case CATEGORY_NAME:
+        return {
+          ...state,
+          categoryName: action.payload
+        }
+
     default:
       return state;
   };

@@ -5,6 +5,11 @@ const CREATE_PRODUCT = 'CREATE_PRODUCT';
 const UPDATE_PRODUCT = 'UPDATE_PRODUCT';
 const DELETE_PRODUCT = 'DELETE_PRODUCT';
 const GET_CATEGORIES = 'GET_CATEGORIES';
+const LOWER_PRICE = "startLowerPrice";
+const HIGHER_PRICE = "startHighestPrice";
+const ASC = "ASC";
+const DESC = "DESC";
+const CATEGORY_NAME = "CATEGORY_NAME";
 
 export {
     GET_ALL_PRODUCTS,
@@ -13,5 +18,10 @@ export {
     CREATE_PRODUCT,
     UPDATE_PRODUCT,
     DELETE_PRODUCT,
-    GET_CATEGORIES
+    GET_CATEGORIES,
+    LOWER_PRICE,
+    HIGHER_PRICE,
+    ASC,
+    DESC,    
+    CATEGORY_NAME
 }

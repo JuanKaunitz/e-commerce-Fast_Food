@@ -10,8 +10,7 @@ import {
   Divider,
   Drawer,
   useTheme,
-  ListItem,
-  ListItemIcon,
+  ListItem,  
   ListItemText,
   List,
 } from "@material-ui/core";
@@ -21,16 +20,27 @@ import HomeIcon from "@material-ui/icons/Home";
 import MenuIcon from "@material-ui/icons/Menu";
 import AddShoppingCartIcon from "@material-ui/icons/AddShoppingCart";
 //import SearchIcon from '@material-ui/icons/Search'
-import InboxIcon from "@material-ui/icons/MoveToInbox";
-import MailIcon from "@material-ui/icons/Mail";
 import useStyles from "./styles";
 import SerchBar from "../serchbar/SerchBar";
+import { useLocation, Link  } from 'react-router-dom'
+import { useSelector,useDispatch } from "react-redux";
+import { categoryName} from '../../Redux/actions/actions';
+
+/* function HeaderView() {
+  return <span>Path : {location.pathname}</span>
+} */
 
 const Navbar = () => {
+  const dispatch = useDispatch();
   const classes = useStyles();
+  console.log(classes)
   //const searchProducts = useSelector((state) => state.searchProducts);
   const theme = useTheme();
   const [open, setOpen] = React.useState(false);
+  const categories = useSelector((state) => state.allCategories)
+  
+  const location = useLocation();
+    //console.log(location.pathname);
 
   const handleDrawerOpen = () => {
     setOpen(true);
@@ -40,73 +50,95 @@ const Navbar = () => {
     setOpen(false);
   };
 
+  function handlerCategory(name){
+    console.log("NAME",name)
+    if(name === 'Hamburguesas'){
+      dispatch(categoryName('hamburguesa'))
+    }
+    if(name === 'Bebidas'){
+      dispatch(categoryName('Bebidas'))
+    }
+    if(name === 'Combos'){
+      dispatch(categoryName('Empanadas'))
+    }
+    if(name === 'Guarniciones'){
+      dispatch(categoryName('Guarnicion'))
+    }
+    if(name === 'Sandwich'){
+      dispatch(categoryName('Sandwich'))
+    }
+}
+
   return (
     <div>
-      <AppBar>
-        <Toolbar>
-          <IconButton
-            color="inherit"
-            aria-label="open drawer"
-            onClick={handleDrawerOpen}
-            edge="start"
-            className={clsx(classes.menuButton, open && classes.hide)}
-          >
-            <MenuIcon />
-          </IconButton>
-
-          <IconButton aria-label="delete" className={classes.homeIcon}>
-            <NavLink className="a" to="/" activeClassName="active">
-              <HomeIcon className={classes.MuiButtonLabel} />
-            </NavLink>
-          </IconButton>
-          <Typography variant="h5">Home</Typography>
-          <Button color="inherit">
-            <NavLink className={classes.MuiButtonLabel} to="/aboutUs">
-              About Us
-            </NavLink>
-          </Button>
-          <SerchBar />
-          <div className={classes.toolbarButtons}>
-            <NavLink
-              className={classes.MuiButtonLabel}
-              to="/form"
-              activeClassName="active"
+      <div className={location.pathname === '/categories'? classes.shiftTextRight : classes.shiftTextLeft }>
+        <AppBar>          
+          <Toolbar>
+            <IconButton
+              color="inherit"
+              aria-label="open drawer"
+              onClick={handleDrawerOpen}
+              edge="start"
+              className={clsx(classes.menuButton, open && classes.hide)}
             >
-              Form
-            </NavLink>
-            <IconButton aria-label="add to shopping cart">
-              <NavLink
-                className={classes.MuiButtonLabel}
-                to="/cart"
-                activeClassName="active"
-              >
-                <AddShoppingCartIcon />
+              <MenuIcon />
+            </IconButton>
+
+            <IconButton aria-label="delete" className={classes.homeIcon}>
+              <NavLink className="a" to="/" activeClassName="active">
+                <HomeIcon className={classes.MuiButtonLabel} />
               </NavLink>
             </IconButton>
+            <Typography variant="h5">Home</Typography>
             <Button color="inherit">
-              <NavLink
-                className={classes.MuiButtonLabel}
-                to="/register"
-                activeClassName="active"
-              >
-                Register
+              <NavLink className={classes.MuiButtonLabel} to="/aboutUs">
+                About Us
               </NavLink>
             </Button>
-            <Button color="inherit" className={classes.loginButton}>
+            <SerchBar />
+            <div className={classes.toolbarButtons}>
               <NavLink
                 className={classes.MuiButtonLabel}
-                to="/login"
+                to="/form"
                 activeClassName="active"
               >
-                Login
+                Form
               </NavLink>
-            </Button>
-          </div>
-        </Toolbar>
-      </AppBar>
+              <IconButton aria-label="add to shopping cart">
+                <NavLink
+                  className={classes.MuiButtonLabel}
+                  to="/cart"
+                  activeClassName="active"
+                >
+                  <AddShoppingCartIcon />
+                </NavLink>
+              </IconButton>
+              <Button color="inherit">
+                <NavLink
+                  className={classes.MuiButtonLabel}
+                  to="/register"
+                  activeClassName="active"
+                >
+                  Register
+                </NavLink>
+              </Button>
+              <Button color="inherit" className={classes.loginButton}>
+                <NavLink
+                  className={classes.MuiButtonLabel}
+                  to="/login"
+                  activeClassName="active"
+                >
+                  Login
+                </NavLink>
+              </Button>
+            </div>
+          </Toolbar>
+
+        </AppBar>
+      </div>
       <Drawer
         className={classes.drawer}
-        variant="persistent"
+        variant={location.pathname === '/categories' ? /* "permanent" */"persistent" : "persistent" }
         anchor="left"
         open={open}
         classes={{
@@ -125,12 +157,12 @@ const Navbar = () => {
         <Divider />
         <List>
           {" "}
-          {["Inbox", "Starred", "Send email", "Drafts"].map((text, index) => (
-            <ListItem button key={text}>
-              <ListItemIcon>
-                {index % 2 === 0 ? <InboxIcon /> : <MailIcon />}
-              </ListItemIcon>
-              <ListItemText primary={text} />
+          {categories.map((e) => (
+            <ListItem button key={e.name} >
+              {/* <ListItemIcon></ListItemIcon> */}
+              <Link to="/categories">
+                <ListItemText primary={e.name} onClick={() => handlerCategory(e.name)}/>
+              </Link>
             </ListItem>
           ))}
         </List>
