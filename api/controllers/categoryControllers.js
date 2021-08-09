@@ -19,21 +19,12 @@ exports.createNewCategory = async(req,res,next)=>{
 exports.getAllCategories = async(req,res,next)=>{
     const products = await Product.find({});
     try {
-        // const categories = await Category.find({});
-        // res.json(categories);
-        let recip = products.filter((c) => { //probar some 
-
-            
-               
-                    if (c.categories.map(r=>r.category.name==="Hamburguesas")) {
-                        return true;
-                    } 
-                })
-
-res.json(recip)
-            
-        }
-   catch (error) {
+      const categories = await Category.find({}).populate('products').populate({
+          path:'products.product',
+          model:'Product'
+      });
+      res.json(categories);
+  } catch (error) {
       console.log(error);
       return next();
   }

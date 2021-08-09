@@ -11,21 +11,33 @@ import FavoriteIcon from '@material-ui/icons/Favorite';
 import AddShoppingCartIcon from '@material-ui/icons/AddShoppingCart';
 import { Link } from 'react-router-dom';
 
+
 const useStyles = makeStyles((theme) => ({
   media: {
     height: 0,
     paddingTop: '56.25%', // 16:9
+  },
+  cardContent: {
+    width: '180px',
+    heigth: '200px'
+  },
+  headerTitle: {
+    fontSize: '25px'
+  },
+  MuiTypography: {
+    fontSize: '20px'
   }
+  
 }));
 
 export default function CardProduct({id, name, image,price}) {
   const classes = useStyles();
-  //const preventDefault = (event) => event.preventDefault();
+  //const preventDefault = (event) => event.preventDefault()
 
   return (
-    <Card >
-      <Link to={`/detail/${id}`} >
-        <CardHeader title={name}/>
+    <Card className={classes.cardContent} >
+      <Link to={`/detail/${id}`}>
+        <CardHeader className={classes.headerTitle} title={name}/>
         <CardMedia
           className={classes.media}
           image={image}

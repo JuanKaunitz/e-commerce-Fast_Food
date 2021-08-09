@@ -5,7 +5,9 @@ import {
     CREATE_PRODUCT,
     UPDATE_PRODUCT,
     DELETE_PRODUCT,
-    GET_CATEGORIES
+    GET_CATEGORIES,
+    CATEGORY_NAME
+    
 } from '../constants'
 
 import axios from 'axios';
@@ -19,7 +21,6 @@ export const getAllProducts = () => async (dispatch) => {
            type: GET_ALL_PRODUCTS,
            payload: res.data
        });
-       console.log('DATAAA --->', res.data);//Me trae 7 por ahora, chequear las imágenes de c/u
    } catch (err) {
        console.log(err)
    }
@@ -44,8 +45,8 @@ export const searchQueryProducts = (name) => async (dispatch) => {
 export const getById = (id) => async (dispatch) => {
     
     try {
-        const res = await axios.get(`http://localhost:5001/food/api/${id}`);
-        
+        const res = await axios.get(`http://localhost:5001/food/api/products/${id}`);
+        // console.log('RES id: ', res.data)
         dispatch({
             type: GET_BY_ID,
             payload: res.data
@@ -56,19 +57,22 @@ export const getById = (id) => async (dispatch) => {
  }
 
  //Creando un producto.
- export const createProduct = () => async (dispatch) => {
+ export const createProduct = (input) => async (dispatch) => {
+     console.log(input)
     try {
-        const res = await axios.post('http://localhost:5001/food/api');
+        const product = await axios.post('http://localhost:5001/food/api/products',input);
+        console.log('PRODUCTO CREADO: ', input);
+        console.log('respuesta: ', product);
         dispatch({
             type: CREATE_PRODUCT,
-            payload: res.data
+            payload: product.data.product
         });
     } catch (err) {
         console.log(err)
     }
  }
 
- //Actualizando procuto.
+ //Actualizando producto.
  export const getUpdate = (id) => async (dispatch) => {
      
     try {        
@@ -108,4 +112,21 @@ export const getById = (id) => async (dispatch) => {
      } catch (err) {
          console.log(err)
      }
- }
+
+};
+
+// ORDENAMIENTO ASCENDENTE Y DESCENDENTE POR PRECIO Y RANKING
+export const orderBy = (sort) => (dispatch) => {  
+//console.log(sort)    
+dispatch({
+    type: sort,        
+})    
+};
+
+export const categoryName = (name) => (dispatch) => {  
+    // console.log("name", name)    
+    dispatch({
+        type: CATEGORY_NAME,
+        payload: name        
+    })    
+    };

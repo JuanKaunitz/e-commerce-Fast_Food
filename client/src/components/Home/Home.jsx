@@ -1,45 +1,18 @@
 import React from 'react';
+import './Home.css'
 import Footer from '../Footer/Footer';
 import GridCardsProducts from '../cards/CardsProducts';
-import {useSelector, useDispatch } from 'react-redux';
-import Category from '../Category/Category';
-
+import Gallery from '../gallery/Gallery';
+import Order from '../order/Order';
 
 function Home() {
-
     return (
-        <div>        
-            <div>
-                <GridCardsProducts/>
-            </div>
-            <div>
-            <Category />
-            </div>
-            <div>
-              <Footer/>  
-            </div>
-
-            
+        <div className='content'>
+            <Gallery/>  
+            <Order/>           
+            <GridCardsProducts/>
+            <Footer/>           
         </div>
     )
 }
-
-export default Home 
-
-
-
-// import PrimarySearchAppBar from '../Navbar'
-
-
-// import ThemeProvider from '@material-ui/styles/ThemeProvider'
-// import theme from '../themeConfig'
-
-// export const Home = () => {
-//     return (
-//         <ThemeProvider theme={theme}>
-//             <PrimarySearchAppBar />
-//         </ThemeProvider>
-        
-        
-//     )
-// }
+export default Home; 
