@@ -24,7 +24,7 @@ const Gallery = () => {
           <div className='Grid-Item'  key={item._id}>
             <img
               alt={item.name}
-              src="https://www.infobae.com/new-resizer/1YkLtqEyhWFdpQ9XjJVCUrBgrm0=/1200x900/filters:format(jpg):quality(85)//arc-anglerfish-arc2-prod-infobae.s3.amazonaws.com/public/FJKXKQKMMJBV7KQ7XQ3YNFO7LU.jpg"
+              src={item.image}
             />
             <Link to={'/categories'}  onClick={() => categoryHamburguesa(item.name)} >{item.name}</Link>
           </div>
