@@ -25,11 +25,13 @@ const useStyles = makeStyles(()=>({
         
     },
     btn_save:{
+        position: 'absolute',
         backgroundColor: '#3f51b5',
         borderStyle: 'none',
         width: 100,
         height: 40,
         color: 'white',
+        cursor: 'pointer'
     }
     
 }));

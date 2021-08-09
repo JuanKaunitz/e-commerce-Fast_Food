@@ -14,6 +14,8 @@ const UseStyles = makeStyles(() => ({
         webkitBorderRadius: '40px 0px 40px 40px',
         mozBorderRadius: '40px 0px 40px 40px',
         borderRadius: '40px 0px 40px 40px',
+        marginBottom: '50px',
+        textDecoration: 'none'
        /*  flexDirection: 'column', */
     },
     cards:{

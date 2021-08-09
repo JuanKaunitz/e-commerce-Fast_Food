@@ -56,7 +56,7 @@ const SerchBar = () => {
             handleInputChange(e);
           }}
         />
-        <button
+        <button 
           onClick={(e) => {
             onClickHandler(e);
           }}
@@ -64,13 +64,13 @@ const SerchBar = () => {
         >
           Search
         </button>
-        <button
+        {/* <button className={classes.ocultarBtn}
           onClick={(e) => {
             onClickXHandler(e);
           }}
         >
           GoBack
-        </button>
+        </button> */}
       </form>
     </div>
   );

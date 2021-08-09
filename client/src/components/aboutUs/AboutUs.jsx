@@ -1,29 +1,31 @@
 import React from "react";
-import {Link, NavLink} from 'react-router-dom'
 import UseStyles from './styles.js'
+import './About.css';
 
 
 const aboutUs = () => {
   const classes = UseStyles()
   return (
-    <div  >
+    <div  className = 'about'>
+      <h1 className = 'h1'>Ecommerce fast food</h1>
       <p>
         Somos un grupo de 7 integrantes los cuales nos encontramos cursando el
         bootcamp HENRY en la etapa final denominada 'Proyecto Grupal', la cual
         consiste en crear un Ecommerce con diversas requisitos y
-        funcionalidades. Nosotros decidimos realizar una app de fast food, en la
+        funcionalidades. <br></br>Nosotros decidimos realizar una app de fast food, en la
         cual se pueden observar los productos disponibles, observando sus
         detalles, su rating y su precio, con la opcion de poder seleccionarlos y
-        agregarlos al carrito. Por otro lado realizamos 3 opciones de loggeo,
+        agregarlos al carrito. <br></br>Por otro lado realizamos 3 opciones de loggeo,
         una como administrador, para poder modificar el contenido de la pagina,
         una como usuario invitado, que puede navegar por la pagina web utilizar
         la barra de busqueda entre otras funcionalidades y por ultimo un usuario
-        registrado o la opcion de poder regstrarse para poder realizar compras.
+        registrado o la opción de poder regstrarse para poder realizar compras.
       </p>
-      <div className={classes.cards}>
+      <h1 className = 'h1'>¿Quienes somos?</h1>
+      <div className= 'cards'>
        <div className={classes.listItem}>
        <a href='https://www.linkedin.com/in/jose-alberto-carballo-rojas-31b606165/' target='_blank'>
-      Jose Alberto Carballo Rojas
+      Jose A.Carballo Rojas
         <img src="https://media-exp1.licdn.com/dms/image/C4E03AQGXPu_dVhOQZg/profile-displayphoto-shrink_200_200/0/1627651344866?e=1634169600&v=beta&t=zmrvLWZrw-9nACfWtXBiola_6CAizvhtGOauAOzKANk" style={{width:150}}  alt="img not found"/>
       </a>
        </div>
@@ -53,7 +55,7 @@ const aboutUs = () => {
         </div>
         <div className={classes.listItem}>
        <a href='https://www.linkedin.com/in/kevin-luciano-favre-jarupkin/' target='_blank'>
-        Kevin Luciano Favre Jarupkin
+        Kevin L.Favre Jarupkin 
         <img src="https://media-exp1.licdn.com/dms/image/C4E03AQEelOT7LzhUyg/profile-displayphoto-shrink_800_800/0/1563523709883?e=1634169600&v=beta&t=LVBJJqLNfMPX0Dxd8ss3tj5i2-eq444lJgP0VADd1ec" style={{width:150}} alt="img not found"/>
         </a>
         </div>
