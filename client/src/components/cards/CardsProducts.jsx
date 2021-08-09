@@ -19,7 +19,7 @@ export default function GridCardsProducts() {
   const getAll = useSelector((state) => state.getProducts);
   const { searchProducts, loading }= useSelector((state) => state);
   const [page, setPage] = useState(0);
-
+  console.log("SEARCHPRODUCT",searchProducts )
   useEffect(() => {    
       dispatch(getAllProducts())  
   }, [dispatch])
@@ -44,7 +44,7 @@ export default function GridCardsProducts() {
     <div >
       <Grid container  className={classes.root} spacing={2}>
         { 
-          loading ? searchProducts.length > 0 ? searchProducts.map(product => (
+          loading ? searchProducts.length > 0? searchProducts.map(product => (
             <Grid item key={product._id}  xs={3}>
               <CardProduct id={product._id}
                 name={product.name} image={product.image} price={product.price} />

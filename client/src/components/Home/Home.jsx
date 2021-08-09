@@ -6,6 +6,7 @@ import Gallery from '../gallery/Gallery';
 import Order from '../order/Order';
 
 function Home() {
+
     return (
         <div className='content'>
             <Gallery/>  
