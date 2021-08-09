@@ -14,18 +14,16 @@ const useStyles = makeStyles((theme) => ({
 
 const Categories = ({ match }) => {
   const categoryName = useSelector((state) => state.categoryName);
-  // console.log("categoryName", categoryName)
   const getAll = useSelector((state) => state.getProducts);
-  const [page, setPage] = useState(0);
-  // console.log("GETALL", getAll);
+  const [page, setPage] = useState(0);  
 
   let filter1 = getAll.filter((product) => {
     const categoryName1 = product.categories.map((category) => {
       return category.category.name;
     });
-    return categoryName1 == categoryName;
+    return categoryName1 === categoryName;
   });
-  // console.log("FILTER", filter1);
+  
   function handlePrev() {
     if (page > 0) {
       return setPage(page - 1);
