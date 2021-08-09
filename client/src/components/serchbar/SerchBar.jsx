@@ -14,53 +14,42 @@ const SerchBar = () => {
   const dispatch = useDispatch();
 
   const [name, setName] = useState("");
+  console.log(name)
   const [search, setSearch] = useState(false);
   
   function searchProduct() {
     dispatch(searchQueryProducts(name));
+    setSearch(true);
   } 
  
   useEffect(() => {
-    if (search) {
+    if (name.length > 0) {
       searchProduct();
+    }else{
+      getAllProducts()
     }
      //eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [search,searchProduct]);
+  }, [name]);
 
-  const handleInputChange = (e) => {
-    e.preventDefault();
-    setName(e.target.value);
-  };
-
-  const onClickHandler = (e) => {
-    e.preventDefault();
-    setSearch(true);
-  };
   const onClickXHandler = (e) => {
     e.preventDefault();
-    dispatch(getAllProducts());
-    setSearch(false);
-
+    searchProduct();
+    // setSearch(false);
   };
   return (
     <div className={classes.search}>
       {/* <div className={classes.searchIcon}>
             <SearchIcon />
         </div> */}
-      <form className={classes.root}>
+      <form className={classes.root} onSubmit={onClickXHandler}>
         <Input
           placeholder="Buscar.."
           inputProps={{ "aria-label": "description" }}
           value={name}
           autoComplete='on'
-          onChange={(e) => {
-            handleInputChange(e);
-          }}
+          onChange={(e) => setName(e.target.value)}
         />
         <button 
-          onClick={(e) => {
-            onClickHandler(e);
-          }}
           type="submit"
         >
           Search
