@@ -6,11 +6,13 @@ import {
     UPDATE_PRODUCT,
     DELETE_PRODUCT,
     GET_CATEGORIES,
-    CATEGORY_NAME
+    CATEGORY_NAME,
+    LOGIN_CLIENT
     
 } from '../constants'
 
 import axios from 'axios';
+import { bindActionCreators } from 'redux';
 
 //Obteniendo todos las foods.
 export const getAllProducts = () => async (dispatch) => {
@@ -130,3 +132,19 @@ export const categoryName = (name) => (dispatch) => {
         payload: name        
     })    
     };
+
+export const authUser =  (user) => async (dispatch) => {
+    try {
+        const client = await axios.post('http://localhost:5001/food/api/user', user);
+        console.log('CLIENT ', client)
+        dispatch({
+            type: LOGIN_CLIENT,
+            payload: client.data
+        })
+
+    } catch (err) {
+        console.log(err)
+    }
+}  
+
+

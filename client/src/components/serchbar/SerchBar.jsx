@@ -17,6 +17,8 @@ const SerchBar = () => {
   console.log(name)
   const [search, setSearch] = useState(false);
   
+
+  
   function searchProduct() {
     dispatch(searchQueryProducts(name));
     setSearch(true);
