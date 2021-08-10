@@ -13,9 +13,9 @@ function Home() {
   const stateGlobal = useSelector((state) => state.allProducts);
 
     useEffect(() => {
-        if(!stateGlobal) {
+        
             dispatch(getAllProducts()) 
-        } 
+        // return getAllProducts()
         //eslint-disable-next-line react-hooks/exhaustive-deps         
     },[dispatch])
     return (
