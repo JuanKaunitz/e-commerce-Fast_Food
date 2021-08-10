@@ -8,6 +8,7 @@ import {
   LOWER_PRICE,
   HIGHER_PRICE,
   CATEGORY_NAME,
+  LOADING,
   /* ASC,
   DESC */  
 } from '../constants'
@@ -79,6 +80,12 @@ const rootReducer = (state = initialState, action) => {
           ...state,
           categoryName: action.payload
         }
+
+      case LOADING: 
+      return {
+        ...state,
+        loading: action.payload
+      }
 
     default:
       return state;

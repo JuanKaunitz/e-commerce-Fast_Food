@@ -6,7 +6,8 @@ import {
     UPDATE_PRODUCT,
     DELETE_PRODUCT,
     GET_CATEGORIES,
-    CATEGORY_NAME
+    CATEGORY_NAME,
+    LOADING
     
 } from '../constants'
 
@@ -129,4 +130,12 @@ export const categoryName = (name) => (dispatch) => {
         type: CATEGORY_NAME,
         payload: name        
     })    
-    };
+};
+
+export const loadingFalse = () => (dispatch) => {  
+    // console.log("name", name)    
+    dispatch({
+        type: LOADING,
+        payload: false        
+    })    
+};
