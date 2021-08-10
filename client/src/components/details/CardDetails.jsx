@@ -9,7 +9,6 @@ import IconButton from '@material-ui/core/IconButton';
 import Typography from '@material-ui/core/Typography';
 import FavoriteIcon from '@material-ui/icons/Favorite';
 import AddShoppingCartIcon from '@material-ui/icons/AddShoppingCart';
-import GradeIcon from '@material-ui/icons/Grade';
 import HourglassEmptyIcon from '@material-ui/icons/HourglassEmpty';
 
 import {getById} from '../../Redux/actions/actions';
@@ -55,6 +54,23 @@ export default function CardDetails({match}) {
     dispatch(getById(productId.current));
   },[dispatch, productId]);
   
+  function addCarts(){
+    //dispatch(addCart(id))
+    if(localStorage.getItem('order')){
+      let object = JSON.parse(localStorage.getItem('order'));
+     
+      let order = object;
+      console.log("PRODUCT", order)
+      order.push({id: detail.id, name: detail.name, 
+          image: detail.image, price: detail.price, description: detail.description});
+      localStorage.setItem('order', JSON.stringify(order));
+    }else {
+      let order = [{id: detail.id, name: detail.name, 
+        image: detail.image, price: detail.price, description: detail.description}];
+      localStorage.setItem('order', JSON.stringify(order));
+      console.log("PRODUCT2", order)
+    }
+  }
   //console.log("DETAIL", detail)
 
   return (
@@ -74,16 +90,10 @@ export default function CardDetails({match}) {
                 ${detail.price}
               </Typography>
               <IconButton >
-                <GradeIcon/>
-                <GradeIcon/>
-                <GradeIcon/>
-                <GradeIcon/>
-              </IconButton>
-              <IconButton >
                 <FavoriteIcon/>
               </IconButton>
               <IconButton >
-                <AddShoppingCartIcon color="secondary"/>
+                <AddShoppingCartIcon color="secondary" onClick={() => addCarts()}/>
               </IconButton>
             </div>
           </div>
