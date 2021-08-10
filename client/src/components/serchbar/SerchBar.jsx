@@ -29,7 +29,7 @@ const SerchBar = () => {
       getAllProducts()
     }
      //eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [name]);
+  }, []);
 
   const onClickXHandler = (e) => {
     e.preventDefault();

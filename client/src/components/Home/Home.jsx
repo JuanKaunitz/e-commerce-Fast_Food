@@ -5,6 +5,7 @@ import Footer from '../Footer/Footer';
 import GridCardsProducts from '../cards/CardsProducts';
 import {getAllProducts} from '../../Redux/actions/actions';
 
+
 import Gallery from '../gallery/Gallery';
 import Order from '../order/Order';
 
@@ -20,7 +21,7 @@ function Home() {
     },[dispatch])
     return (
         <div className='content'>
-            <Gallery/>  
+            <Gallery/>              
             <Order/>           
             <GridCardsProducts/>
             <Footer/>           
