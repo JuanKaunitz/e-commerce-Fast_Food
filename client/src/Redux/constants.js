@@ -10,6 +10,8 @@ const HIGHER_PRICE = "startHighestPrice";
 const ASC = "ASC";
 const DESC = "DESC";
 const CATEGORY_NAME = "CATEGORY_NAME";
+const ADD_CART = "ADD_CART";
+const REMOVE_CART = " REMOVE_CART";
 
 export {
     GET_ALL_PRODUCTS,
@@ -23,5 +25,7 @@ export {
     HIGHER_PRICE,
     ASC,
     DESC,    
-    CATEGORY_NAME
+    CATEGORY_NAME,
+    ADD_CART,
+    REMOVE_CART
 }
