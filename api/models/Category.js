@@ -6,6 +6,9 @@ const CategorySchema = Schema({
 name:{
   type:String
 },
+image:{
+  type:String
+}
 // products:[
 //   {product:{
 //     type: mongoose.Schema.Types.ObjectId,

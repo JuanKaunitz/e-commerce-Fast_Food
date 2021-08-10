@@ -14,7 +14,7 @@ const Form = (props) => {
     image: "",
     price: "",
     description: "",
-    stock: false,
+    stock: true,
     categories: [],
   });
   const saveProduct = () => {
@@ -37,7 +37,7 @@ const Form = (props) => {
 
   return (
     <div className={classes.form_content}>
-      <h1>Create Product</h1>
+      <h1>Create your own product</h1>
       <form onSubmit={handleSubmit}>
         <div className={classes.form_group}>
        
@@ -64,7 +64,7 @@ const Form = (props) => {
           />
         </div>
 
-        <div className={classes.form_group}>
+        {/* <div className={classes.form_group}>
           <label>Identifier:</label>
           <input
           className={classes.input_items}
@@ -74,7 +74,7 @@ const Form = (props) => {
             value={input.identifier}
             required
           />
-        </div>
+        </div> */}
 
         <div className={classes.form_group}>
           <label>Image:</label>
@@ -113,7 +113,7 @@ const Form = (props) => {
           />
         </div>
 
-        <div className={classes.form_group}>
+        {/* <div className={classes.form_group}>
           <label>Stock:</label>
           <input
           className={classes.input_items}
@@ -123,7 +123,7 @@ const Form = (props) => {
             value={input.stock}
             required
           />
-        </div>
+        </div> */}
 
         {/* <div>
               <label>categories:</label>

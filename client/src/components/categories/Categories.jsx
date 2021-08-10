@@ -1,4 +1,4 @@
-import React, {useState } from "react";
+import React, { useState } from "react";
 import { useSelector } from "react-redux";
 import Grid from "@material-ui/core/Grid";
 import { makeStyles } from "@material-ui/core/styles";
@@ -14,14 +14,16 @@ const useStyles = makeStyles((theme) => ({
 
 const Categories = ({ match }) => {
   const categoryName = useSelector((state) => state.categoryName);
-  // console.log("categoryName", categoryName)
   const getAll = useSelector((state) => state.getProducts);
-  const [page, setPage] = useState(0);
-  // console.log("GETALL", getAll);
+  const [page, setPage] = useState(0);  
 
-  let filter1 = getAll.filter((product) => product.type === categoryName);
-  // console.log("FILTER", filter1);
-
+  let filter1 = getAll.filter((product) => {
+    const categoryName1 = product.categories.map((category) => {
+      return category.category.name;
+    });
+    return categoryName1 === categoryName;
+  });
+  
   function handlePrev() {
     if (page > 0) {
       return setPage(page - 1);
