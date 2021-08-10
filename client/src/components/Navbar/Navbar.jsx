@@ -73,8 +73,8 @@ const Navbar = () => {
                 <HomeIcon className={classes.MuiButtonLabel} />
               </NavLink>
             </IconButton>
-            <Typography variant="h5">Home</Typography>
-            <Button color="inherit">
+            <Typography variant="h5" >Home</Typography>
+            <Button color="orange">
               <NavLink className={classes.MuiButtonLabel} to="/aboutUs">
                 About Us
               </NavLink>

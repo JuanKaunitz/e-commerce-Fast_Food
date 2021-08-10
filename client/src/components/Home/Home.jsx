@@ -4,6 +4,8 @@ import Footer from '../Footer/Footer';
 import GridCardsProducts from '../cards/CardsProducts';
 import Gallery from '../gallery/Gallery';
 import Order from '../order/Order';
+import Otters from '../Otters/Otters';
+
 
 function Home() {
     return (
@@ -11,7 +13,8 @@ function Home() {
             <Gallery/>  
             <Order/>           
             <GridCardsProducts/>
-            <Footer/>           
+            <Otters/>  
+            <Footer/>          
         </div>
     )
 }
