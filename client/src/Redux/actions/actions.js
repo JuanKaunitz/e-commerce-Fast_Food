@@ -8,6 +8,8 @@ import {
     GET_CATEGORIES,
     CATEGORY_NAME,
     LOADING
+    ADD_CART,
+    REMOVE_CART
     
 } from '../constants'
 
@@ -139,3 +141,24 @@ export const loadingFalse = () => (dispatch) => {
         payload: false        
     })    
 };
+//AGREGAR PRODUCTO AL CARRITO
+export const addCart = (id) => async (dispatch) => {
+    try {
+        const res = await axios.get(`http://localhost:5001/food/api/products/${id}`);
+        // console.log('RES id: ', res.data)
+        dispatch({
+            type: ADD_CART,
+            payload: res.data
+        });
+    } catch (err) {
+        console.log(err)
+    }
+}
+
+//QUITAR PRODUCTO AL CARRITO
+export const removeCart = (id) => (dispatch) => {
+    dispatch({
+        type:REMOVE_CART,
+        payload: id
+    })
+}
