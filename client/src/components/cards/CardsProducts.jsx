@@ -26,7 +26,12 @@ export default function GridCardsProducts() {
   }
 
   function handleNext(){
-    let pageMax = Math.ceil(getAll.length / 8 - 1);
+    let array = getAll;
+    if(loading){
+      setPage(0);
+      array = searchProducts
+    }
+    let pageMax = Math.ceil(array.length / 8 - 1);
     if(pageMax < 0){return setPage(0)}
     if(page < pageMax){ return setPage(page + 1)}
     return setPage(pageMax);
