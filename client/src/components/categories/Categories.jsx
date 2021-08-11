@@ -19,9 +19,12 @@ const Categories = ({ match }) => {
 
   let filter1 = getAll.filter((product) => {
     const categoryName1 = product.categories.map((category) => {
+      console.log('CATEGORYNAME: ', categoryName)
       return category.category.name;
     });
-    return categoryName1 === categoryName;
+    console.log('CATEGORYNAME1: ', categoryName1)
+    return categoryName1 == categoryName;
+    
   });
   function handlePrev() {
     if (page > 0) {

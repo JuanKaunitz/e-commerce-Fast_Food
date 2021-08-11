@@ -22,12 +22,13 @@ const ProductSchema = new Schema({
   description: {
     type: String,
   },
+  stock: {
+    type: Number,
+  },
   available: {
-    type: Boolean,
+    type: Boolean
   },
-  stock:{
-    type:Number
-  },
+  
   categories: [
     {
       category: {

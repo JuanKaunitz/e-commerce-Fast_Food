@@ -21,11 +21,8 @@ const query = {stock:true}
       path:'categories.category',
       model:'Category'
     });
-    res.json({
-      msg:'GET products DB',
-      total,
-      products
-    });
+    res.json(products);  
+    
 } catch (error) {
     console.log(error);
     return next();
@@ -68,30 +65,15 @@ exports.deleteProduct = async(req,res,next)=>{
 
 exports.searchProduct = async(req,res,next)=>{
   const {name}=req.params
-  
+
    try {
     const includeName = await Product.find({name: new RegExp (name, "i")});
        includeName.length >0
        ?  res.json(includeName) 
-       : res.json({msg:"Product not found"})         
-     
+       : res.json({msg:"Product not found"})
+
    } catch (error) {
        console.log(error);
        return next();
    }
  };
-
-// exports.searchProduct = async(req,res,next)=>{
-//   // {name: new RegExp ('^'+name+'$', "i")}
-//   try {
-//     const namedb = req.params.name;
-//     const nameSearch = await Product.find({},{name:namedb});
-//       nameSearch 
-//       ?  res.json(nameSearch) 
-//       : res.json({msg:"Product not found"})         
-    
-//   } catch (error) {
-//       console.log(error);
-//       return next();
-//   }
-// };
