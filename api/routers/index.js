@@ -4,6 +4,7 @@ const routerClients = require('./routerClient');
 const routerUser = require('./routerUser');
 const routerAuth = require('./routerAuth');
 const routerCategories = require('./routerCategories');
+const routerAuth = require('./routerAuth');
 const router = express.Router();
 
 module.exports = () => {
@@ -17,6 +18,8 @@ module.exports = () => {
   router.use("/food/api/client", routerClients);
   //categories
   router.use("/food/api/category", routerCategories);
+  //usuarios
+  router.use("/food/api/auth-sesion", routerAuth);
 
   return router;
 };
