@@ -4,7 +4,6 @@ import { Input } from "@material-ui/core";
 import {
   getAllProducts,
   searchQueryProducts,
-  loadingFalse
 } from "../../Redux/actions/actions";
 import useStyles from '../Navbar/styles';
 
@@ -20,18 +19,17 @@ const SerchBar = () => {
   
   function searchProduct() {
     dispatch(searchQueryProducts(name));
-    setSearch(true);    
+    setSearch(true);
   } 
  
   useEffect(() => {
-    
     if (name.length > 0) {
-      searchProduct();      
+      searchProduct();
     }else{
       getAllProducts()
     }
      //eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
+  }, [name]);
 
   const onClickXHandler = (e) => {
     e.preventDefault();

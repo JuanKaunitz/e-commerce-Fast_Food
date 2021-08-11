@@ -22,3 +22,19 @@
 ### POST http://localhost:5001/food/api/category Crear una nueva category.
 ### PUT http://localhost:5001/food/api/category/:id Este actualiza la categoria en la propiedad deseada.
 ### DELETE http://localhost:5001/food/api/category/:id Este elimina la categoria por su ID.
+
+
+## Endpoints Usuarios
+### usuarios que se registran en la platafroma para realizar sus compras y usuarios administrativos
+### encargados de agregar eliminar y modificar los productos del Stock.
+###
+### GET http://localhost:5001/food/api/user  Este traera todos los Usuarios.
+### POST http://localhost:5001/food/api/user Crear un nuevo usuario.
+### PUT http://localhost:5001/food/api/user/:id Este actualiza el usuario.
+### DELETE http://localhost:5001/food/api/user/:id Este elimina el usuario por su ID.
+
+
+## Endpoints Auth Login
+### Usuarios registrados en la plataforma para iniciar sesion
+###
+### POST http://localhost:5001/food/api/auth-sesion Iniciar sesion en la plataforma.

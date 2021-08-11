@@ -19,6 +19,7 @@ client/node_modules/
 .DS_Store
 .env.local
 api/.env
+client/.env
 .env.development.local
 .env.test.local
 .env.production.local
