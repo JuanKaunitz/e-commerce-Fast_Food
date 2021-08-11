@@ -13,7 +13,7 @@ function Home() {
 
     useEffect(() => {    
         dispatch(getAllProducts())  
-    }, [dispatch, stateGlobal])
+    }, [dispatch])
     return (
         <div className='content'>
             <Gallery/>  
