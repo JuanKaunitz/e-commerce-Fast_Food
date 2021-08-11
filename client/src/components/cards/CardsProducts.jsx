@@ -1,4 +1,4 @@
-import React, {useState } from 'react';
+import React, {useState} from 'react';
 import {useSelector} from 'react-redux';
 import { makeStyles } from '@material-ui/core/styles';
 import Grid from '@material-ui/core/Grid';
@@ -8,7 +8,6 @@ import './CardsProducts.css';
 
 const useStyles = makeStyles(() => ({
   root: {
-    // marginLeft: 40
     margin:'auto',
     height:'auto',
     maxWidth:1024

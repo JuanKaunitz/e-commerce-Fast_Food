@@ -19,14 +19,6 @@ router.put(
 );
 router.post(
   "/",
-  [
-    check("name", "El nombre es obligatorio").isAlpha(),
-    check("password", "El password debe ser mas de 6 caracteres").isLength({
-      min: 6,
-    }),
-    check("email").custom((email) => validateEmail(email)).isEmail(),
-    validateInputs,
-  ],
   userControllers.createUsers
 );
 router.delete(

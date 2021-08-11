@@ -4,7 +4,6 @@ import './Home.css'
 import Footer from '../Footer/Footer';
 import GridCardsProducts from '../cards/CardsProducts';
 import {getAllProducts} from '../../Redux/actions/actions';
-
 import Gallery from '../gallery/Gallery';
 import Order from '../order/Order';
 
@@ -14,8 +13,7 @@ function Home() {
 
     useEffect(() => {    
         dispatch(getAllProducts())  
-    }, [dispatch])
-
+    }, [dispatch, stateGlobal])
     return (
         <div className='content'>
             <Gallery/>  

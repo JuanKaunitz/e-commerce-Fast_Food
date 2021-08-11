@@ -11,6 +11,8 @@ const ASC = "ASC";
 const DESC = "DESC";
 const CATEGORY_NAME = "CATEGORY_NAME";
 const UPDATE_CART = "UPDATE_CART";
+const LOGIN_CLIENT = "LOGIN_CLIENT";
+
 
 export {
     GET_ALL_PRODUCTS,
@@ -26,4 +28,5 @@ export {
     DESC,    
     CATEGORY_NAME,
     UPDATE_CART,
+    LOGIN_CLIENT,
 }

@@ -63,6 +63,6 @@ const Cart = () => {
         <h1>TOTAL: ${suma}</h1>
       </div>
     )
-}
+};
 
 export default Cart
