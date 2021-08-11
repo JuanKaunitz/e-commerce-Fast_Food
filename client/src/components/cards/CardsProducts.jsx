@@ -1,5 +1,5 @@
-import React, {useState, useEffect} from 'react';
-import {useSelector, useDispatch } from 'react-redux';
+import React, {useState } from 'react';
+import {useSelector} from 'react-redux';
 import { makeStyles } from '@material-ui/core/styles';
 import Grid from '@material-ui/core/Grid';
 import CardProduct from '../card/CardProduct';

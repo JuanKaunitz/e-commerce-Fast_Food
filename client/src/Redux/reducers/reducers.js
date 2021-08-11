@@ -8,7 +8,7 @@ import {
   LOWER_PRICE,
   HIGHER_PRICE,
   CATEGORY_NAME,
-  ADD_CART,
+  UPDATE_CART,
   /* ASC,
   DESC */  
 } from '../constants'
@@ -82,10 +82,10 @@ const rootReducer = (state = initialState, action) => {
           categoryName: action.payload
         }
 
-      case ADD_CART:
+      case UPDATE_CART:
         return {
           ...state,
-          cart:[...state.cart, action.payload]
+          cart: action.payload
         }
 
     default:

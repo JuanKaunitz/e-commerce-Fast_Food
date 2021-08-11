@@ -12,7 +12,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-const Categories = ({ match }) => {
+const Categories = () => {
   const categoryName = useSelector((state) => state.categoryName);
   // console.log("categoryName", categoryName)
   const getAll = useSelector((state) => state.getProducts);
@@ -23,7 +23,9 @@ const Categories = ({ match }) => {
     const categoryName1 = product.categories.map((category) => {
       return category.category.name;
     });
-    return categoryName1 == categoryName;
+    //console.log("CATEGORYNAME1", categoryName1[0])
+    //console.log("CATEGORY_NAME", categoryName)
+    return categoryName1[0] === categoryName;
   });
   // console.log("FILTER", filter1);
   function handlePrev() {

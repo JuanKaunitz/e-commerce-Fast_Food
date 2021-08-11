@@ -7,8 +7,7 @@ import {
     DELETE_PRODUCT,
     GET_CATEGORIES,
     CATEGORY_NAME,
-    ADD_CART,
-    REMOVE_CART
+    UPDATE_CART,
     
 } from '../constants'
 
@@ -133,24 +132,17 @@ export const categoryName = (name) => (dispatch) => {
     })    
 };
 
-//AGREGAR PRODUCTO AL CARRITO
-export const addCart = (id) => async (dispatch) => {
-    try {
-        const res = await axios.get(`http://localhost:5001/food/api/products/${id}`);
-        // console.log('RES id: ', res.data)
-        dispatch({
-            type: ADD_CART,
-            payload: res.data
-        });
-    } catch (err) {
-        console.log(err)
-    }
+//ACTUALIZAR CARRITO
+export const updateCart = (order) => (dispatch) => {
+
+    dispatch({
+        type: UPDATE_CART,
+        payload: order
+    });
+    
 }
 
-//QUITAR PRODUCTO AL CARRITO
-export const removeCart = (id) => (dispatch) => {
-    dispatch({
-        type:REMOVE_CART,
-        payload: id
-    })
+//ENVIO DE ORDEN DE COMPRA DE CARRITO
+export const shoppingCart = (order) => (dispatch) => {
+    
 }

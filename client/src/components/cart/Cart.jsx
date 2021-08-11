@@ -1,8 +1,10 @@
-import React from 'react'
-import { useSelector } from "react-redux";
+import React, { useEffect }  from 'react'
+import {useSelector, useDispatch } from 'react-redux';
 import { makeStyles } from '@material-ui/core/styles';
 import Grid from '@material-ui/core/Grid';
 import CardCart from './CardCart';
+import {deleteCart}  from './deleteCart.js';
+import {updateCart} from '../../Redux/actions/actions'
 
 
 const useStyles = makeStyles(() => ({
@@ -16,9 +18,23 @@ const useStyles = makeStyles(() => ({
   }));
 
 const Cart = () => {
-    const carts = JSON.parse(localStorage.getItem('order'));
-    
-    
+  const dispatch = useDispatch();
+
+    const carts = useSelector(state => state.cart);
+    //const carts = JSON.parse(localStorage.getItem('order'))
+    useEffect(() => {
+      if(carts.length <= 0){
+        if(localStorage.getItem('order')){
+          let object = JSON.parse(localStorage.getItem('order'));
+          dispatch(updateCart(object));
+        }
+      }
+    },[dispatch, carts])
+
+    function handleDeleteCart(id){
+      let delet = deleteCart(id)
+      dispatch(updateCart(delet))
+    }
 
     const classes = useStyles();
     if(carts){
@@ -38,10 +54,10 @@ const Cart = () => {
                     <Grid item key={e.CardCartid} xs={12} >
                       <CardCart id={e.id}
                         name={e.name} description={e.description}
-                        image={e.image} price={e.price} />
+                        image={e.image} price={e.price} deleteCart={handleDeleteCart}/>
                     </Grid>
                   ))
-                  : <h1></h1>
+                  : <h1>  </h1>
             }
         </Grid>
         <h1>TOTAL: ${suma}</h1>

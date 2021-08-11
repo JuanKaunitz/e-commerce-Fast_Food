@@ -1,13 +1,11 @@
 import React from 'react';
-import  { useDispatch} from "react-redux";
 import { makeStyles } from '@material-ui/core/styles';
 import Card from '@material-ui/core/Card';
 import CardContent from '@material-ui/core/CardContent';
 import CardMedia from '@material-ui/core/CardMedia';
 import DeleteIcon from '@material-ui/icons/Delete';
 import Typography from '@material-ui/core/Typography';
-import HourglassEmptyIcon from '@material-ui/icons/HourglassEmpty';
-import { Link } from 'react-router-dom';
+import IconButton from '@material-ui/core/IconButton';
 
 
 const useStyles = makeStyles((theme) => ({
@@ -29,12 +27,9 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-export default function CardCart({id, name, image,price,description}) {
+export default function CardCart({id, name, image,price,description, deleteCart}) {
 
   const classes = useStyles();
-
-  
-  
 
   return (
     <Card className={classes.root}>
@@ -61,7 +56,9 @@ export default function CardCart({id, name, image,price,description}) {
         </Typography>
       </div>
       <div>
-        <DeleteIcon />
+      <IconButton >
+        <DeleteIcon onClick={() => deleteCart(id)}/>
+      </IconButton>
       </div>
     </Card>
   );

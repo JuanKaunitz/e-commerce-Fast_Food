@@ -11,7 +11,8 @@ import FavoriteIcon from '@material-ui/icons/Favorite';
 import AddShoppingCartIcon from '@material-ui/icons/AddShoppingCart';
 import HourglassEmptyIcon from '@material-ui/icons/HourglassEmpty';
 
-import {getById} from '../../Redux/actions/actions';
+import {getById, updateCart} from '../../Redux/actions/actions';
+import {addCarts}  from '../cart/addCarts.js';
 
 
 const useStyles = makeStyles((theme) => ({
@@ -54,24 +55,11 @@ export default function CardDetails({match}) {
     dispatch(getById(productId.current));
   },[dispatch, productId]);
   
-  function addCarts(){
-    //dispatch(addCart(id))
-    if(localStorage.getItem('order')){
-      let object = JSON.parse(localStorage.getItem('order'));
-     
-      let order = object;
-      console.log("PRODUCT", order)
-      order.push({id: detail.id, name: detail.name, 
-          image: detail.image, price: detail.price, description: detail.description});
-      localStorage.setItem('order', JSON.stringify(order));
-    }else {
-      let order = [{id: detail.id, name: detail.name, 
-        image: detail.image, price: detail.price, description: detail.description}];
-      localStorage.setItem('order', JSON.stringify(order));
-      console.log("PRODUCT2", order)
-    }
-  }
   //console.log("DETAIL", detail)
+  function handleAddCart() {
+    const res = addCarts(detail);
+    dispatch(updateCart(res))
+  }
 
   return (
      loading?
@@ -93,7 +81,7 @@ export default function CardDetails({match}) {
                 <FavoriteIcon/>
               </IconButton>
               <IconButton >
-                <AddShoppingCartIcon color="secondary" onClick={() => addCarts()}/>
+                <AddShoppingCartIcon color="secondary" onClick={() => handleAddCart()}/>
               </IconButton>
             </div>
           </div>

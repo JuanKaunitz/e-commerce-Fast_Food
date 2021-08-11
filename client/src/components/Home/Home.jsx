@@ -10,11 +10,12 @@ import Order from '../order/Order';
 
 function Home() {
   const dispatch = useDispatch();
-  const stateGlobal = useSelector( state => state.getAllProducts)
+  const stateGlobal = useSelector( state => state.getProducts)
 
     useEffect(() => {    
         dispatch(getAllProducts())  
-    }, [stateGlobal])
+    }, [dispatch])
+
     return (
         <div className='content'>
             <Gallery/>  
