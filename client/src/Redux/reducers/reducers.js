@@ -8,6 +8,7 @@ import {
   LOWER_PRICE,
   HIGHER_PRICE,
   CATEGORY_NAME,
+  LOGIN_CLIENT,
   ADD_CART,
   /* ASC,
   DESC */  
@@ -24,6 +25,7 @@ const initialState = {
   loading: false,
   allCategories : [],
   categoryName: '',
+  client: {},
   cart:[]
 }
 
@@ -82,6 +84,11 @@ const rootReducer = (state = initialState, action) => {
           categoryName: action.payload
         }
 
+      case LOGIN_CLIENT: 
+        return {
+          ...state,
+          client: action.payload
+        }  
       case ADD_CART:
         return {
           ...state,

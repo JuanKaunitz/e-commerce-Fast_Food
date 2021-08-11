@@ -14,18 +14,15 @@ const useStyles = makeStyles((theme) => ({
 
 const Categories = ({ match }) => {
   const categoryName = useSelector((state) => state.categoryName);
-  // console.log("categoryName", categoryName)
   const getAll = useSelector((state) => state.getProducts);
   const [page, setPage] = useState(0);
-  // console.log("GETALL", getAll);
 
   let filter1 = getAll.filter((product) => {
     const categoryName1 = product.categories.map((category) => {
       return category.category.name;
     });
-    return categoryName1 == categoryName;
+    return categoryName1 === categoryName;
   });
-  // console.log("FILTER", filter1);
   function handlePrev() {
     if (page > 0) {
       return setPage(page - 1);
@@ -67,7 +64,7 @@ const Categories = ({ match }) => {
       </Grid>
       <div className="paginado">
         <button value="prev" onClick={handlePrev} disabled={page <= 0}>
-          prev
+          Prev
         </button>
         <p className="pagina"> {page + 1} </p>
         <button
@@ -75,7 +72,7 @@ const Categories = ({ match }) => {
           onClick={handleNext}
           disabled={filter1.slice(page * 8, page * 8 + 8).length < 8}
         >
-          next
+          Next
         </button>
       </div>
     </div>

@@ -9,14 +9,14 @@ import useStyles from '../Navbar/styles';
 
 
 const SerchBar = () => {
-    const classes = useStyles();
-
+  const classes = useStyles();
   const dispatch = useDispatch();
 
   const [name, setName] = useState("");
-  console.log(name)
   const [search, setSearch] = useState(false);
 const globalState = useSelector(state => state.getProducts)
+
+  
 
   
   function searchProduct() {
@@ -38,9 +38,6 @@ const globalState = useSelector(state => state.getProducts)
   };
   return (
     <div className={classes.search}>
-      {/* <div className={classes.searchIcon}>
-            <SearchIcon />
-        </div> */}
       <form className={classes.root} onSubmit={onClickXHandler}>
         <Input
           placeholder="Buscar.."
@@ -54,13 +51,7 @@ const globalState = useSelector(state => state.getProducts)
         >
           Search
         </button>
-        {/* <button className={classes.ocultarBtn}
-          onClick={(e) => {
-            onClickXHandler(e);
-          }}
-        >
-          GoBack
-        </button> */}
+     
       </form>
     </div>
   );
