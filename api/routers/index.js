@@ -2,7 +2,7 @@ const express = require("express");
 const routerProducts = require('./routerProduct');
 const routerClients = require('./routerClient');
 const routerUser = require('./routerUser');
-const routerAuth = require('./routerAuth');
+
 const routerCategories = require('./routerCategories');
 const routerAuth = require('./routerAuth');
 const router = express.Router();
