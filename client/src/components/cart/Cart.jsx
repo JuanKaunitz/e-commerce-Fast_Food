@@ -1,5 +1,4 @@
 import React from 'react'
-import { useSelector } from "react-redux";
 import { makeStyles } from '@material-ui/core/styles';
 import Grid from '@material-ui/core/Grid';
 import CardCart from './CardCart';
@@ -41,12 +40,12 @@ const Cart = () => {
                         image={e.image} price={e.price} />
                     </Grid>
                   ))
-                  : <h1></h1>
+                  : <h1>Loading...</h1>
             }
         </Grid>
         <h1>TOTAL: ${suma}</h1>
       </div>
     )
-}
+};
 
 export default Cart

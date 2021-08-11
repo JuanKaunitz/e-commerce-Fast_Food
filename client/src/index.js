@@ -5,7 +5,6 @@ import store from "./Redux/store/store";
 import { Provider } from "react-redux";
 import { Auth0Provider } from "@auth0/auth0-react";
 import { domain, clientId } from "../src/components/Authentication/octavio";
-import Log from '../src/components/Authentication/Log';
 
 ReactDOM.render(
   <Provider store={store}>
