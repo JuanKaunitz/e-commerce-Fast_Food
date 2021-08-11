@@ -3,13 +3,17 @@ import { BrowserRouter, Route } from "react-router-dom";
 import AboutUs from "./components/aboutUs/AboutUs.jsx";
 import Cart from "./components/cart/Cart.jsx";
 import Home from "./components/Home/Home.jsx";
-import Login from "./components/login/Login.jsx";
+import Log from "./components/Authentication/Log.jsx";
 import Navbar from "./components/Navbar/Navbar.jsx";
 import Register from "./components/register/Register.jsx";
 import CardDetails from "./components/details/CardDetails.jsx";
 import Categories from "./components/categories/Categories.jsx";
 import Form from "./components/Form/Form.jsx";
-import Otters from "./components/Otters/Otters.js";
+
+
+
+
+
 function App() {
   return (
       <div>
@@ -19,7 +23,7 @@ function App() {
           <Route exact path="/aboutUs" component={AboutUs} />
           <Route exact path="/cart" component={Cart} />
           <Route exact path="/register" component={Register} />
-          <Route exact path="/login" component={Login} />
+          <Route path="/log" exact component={Log} />
           <Route path="/detail/:id" exact component={CardDetails}/>
           <Route exact path="/form" component={Form} />
           <Route exact path="/categories" component={Categories} />

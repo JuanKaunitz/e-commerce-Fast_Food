@@ -1,0 +1,14 @@
+.Log {
+   display: flex;
+   flex-direction: column;
+   justify-content: center;
+   width: 40px;
+   margin-left: 10px;
+}
+
+.img-log {
+    display: flex;
+    justify-self: right;
+    width: 25px;
+    height: 25px;
+}

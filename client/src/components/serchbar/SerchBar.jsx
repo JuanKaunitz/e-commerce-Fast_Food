@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { Input } from "@material-ui/core";
 import {
   getAllProducts,
@@ -9,13 +9,15 @@ import useStyles from '../Navbar/styles';
 
 
 const SerchBar = () => {
-    const classes = useStyles();
-
+  const classes = useStyles();
   const dispatch = useDispatch();
 
   const [name, setName] = useState("");
-  console.log(name)
   const [search, setSearch] = useState(false);
+const globalState = useSelector(state => state.getProducts)
+
+  
+
   
   function searchProduct() {
     dispatch(searchQueryProducts(name));
@@ -25,11 +27,9 @@ const SerchBar = () => {
   useEffect(() => {
     if (name.length > 0) {
       searchProduct();
-    }else{
-      getAllProducts()
     }
      //eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [name]);
+  }, [globalState]);
 
   const onClickXHandler = (e) => {
     e.preventDefault();
@@ -38,9 +38,6 @@ const SerchBar = () => {
   };
   return (
     <div className={classes.search}>
-      {/* <div className={classes.searchIcon}>
-            <SearchIcon />
-        </div> */}
       <form className={classes.root} onSubmit={onClickXHandler}>
         <Input
           placeholder="Buscar.."
@@ -54,13 +51,7 @@ const SerchBar = () => {
         >
           Search
         </button>
-        {/* <button className={classes.ocultarBtn}
-          onClick={(e) => {
-            onClickXHandler(e);
-          }}
-        >
-          GoBack
-        </button> */}
+     
       </form>
     </div>
   );

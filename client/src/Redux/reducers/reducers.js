@@ -8,6 +8,8 @@ import {
   LOWER_PRICE,
   HIGHER_PRICE,
   CATEGORY_NAME,
+  LOGIN_CLIENT,
+  ADD_CART,
   /* ASC,
   DESC */  
 } from '../constants'
@@ -22,7 +24,9 @@ const initialState = {
   searchProducts: [], 
   loading: false,
   allCategories : [],
-  categoryName: ''
+  categoryName: '',
+  client: {},
+  cart:[]
 }
 
 const rootReducer = (state = initialState, action) => {
@@ -78,6 +82,17 @@ const rootReducer = (state = initialState, action) => {
         return {
           ...state,
           categoryName: action.payload
+        }
+
+      case LOGIN_CLIENT: 
+        return {
+          ...state,
+          client: action.payload
+        }  
+      case ADD_CART:
+        return {
+          ...state,
+          cart:[...state.cart, action.payload]
         }
 
     default:

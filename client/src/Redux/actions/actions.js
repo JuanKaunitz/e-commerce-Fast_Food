@@ -6,15 +6,18 @@ import {
     UPDATE_PRODUCT,
     DELETE_PRODUCT,
     GET_CATEGORIES,
-    CATEGORY_NAME
+    CATEGORY_NAME,
+    LOGIN_CLIENT,
+    ADD_CART,
+    REMOVE_CART
     
 } from '../constants'
 
 import axios from 'axios';
+// import { bindActionCreators } from 'redux';
 
 //Obteniendo todos las foods.
 export const getAllProducts = () => async (dispatch) => {
-    
    try {
        const res = await axios.get('http://localhost:5001/food/api/products');
        dispatch({
@@ -24,14 +27,12 @@ export const getAllProducts = () => async (dispatch) => {
    } catch (err) {
        console.log(err)
    }
-}
+};
 
 //Obteniendo los productos por Query Name.
 export const searchQueryProducts = (name) => async (dispatch) => {
-    
     try {
         const res = await axios.get(`http://localhost:5001/food/api/products/search/${name}`);
-        console.log('RES SEARCH DATA: ', res.data)
         dispatch({            
             type: SEARCH_PRODUCTS, 
             payload: res.data
@@ -39,14 +40,12 @@ export const searchQueryProducts = (name) => async (dispatch) => {
     } catch (err) {
         console.log(err)
     }
- }
+ };
 
 //Obteniendo productos por ID.
 export const getById = (id) => async (dispatch) => {
-    
     try {
         const res = await axios.get(`http://localhost:5001/food/api/products/${id}`);
-        // console.log('RES id: ', res.data)
         dispatch({
             type: GET_BY_ID,
             payload: res.data
@@ -54,15 +53,12 @@ export const getById = (id) => async (dispatch) => {
     } catch (err) {
         console.log(err)
     }
- }
+ };
 
  //Creando un producto.
  export const createProduct = (input) => async (dispatch) => {
-     console.log(input)
     try {
         const product = await axios.post('http://localhost:5001/food/api/products',input);
-        //console.log('PRODUCTO CREADO: ', input);
-        //console.log('respuesta: ', product);
         dispatch({
             type: CREATE_PRODUCT,
             payload: product.data.product
@@ -70,11 +66,10 @@ export const getById = (id) => async (dispatch) => {
     } catch (err) {
         console.log(err)
     }
- }
+ };
 
  //Actualizando producto.
  export const getUpdate = (id) => async (dispatch) => {
-     
     try {        
         const res = await axios.get(`http://localhost:5001/food/api/${id}`);  
         dispatch({
@@ -85,7 +80,7 @@ export const getById = (id) => async (dispatch) => {
     } catch (err) {
       console.log(err)
     }
- }
+ };
 
  //Borrando un producto.
  export const deleteProduct = (id) => async (dispatch) => {
@@ -98,7 +93,7 @@ export const getById = (id) => async (dispatch) => {
      } catch (err) {
          console.log(err)
      }
- }
+ };
 
 
  //Obteniendo las categorías.
@@ -115,18 +110,52 @@ export const getById = (id) => async (dispatch) => {
 
 };
 
-// ORDENAMIENTO ASCENDENTE Y DESCENDENTE POR PRECIO Y RANKING
+// Ordenamiento ascendente y descendente.
 export const orderBy = (sort) => (dispatch) => {  
-//console.log(sort)    
-dispatch({
-    type: sort,        
-})    
+    dispatch({
+       type: sort,        
+   })    
 };
 
 export const categoryName = (name) => (dispatch) => {  
-    // console.log("name", name)    
     dispatch({
         type: CATEGORY_NAME,
         payload: name        
     })    
-    };
+};
+
+//Autenticación de usuario.    
+export const authUser =  (user) => async (dispatch) => {
+    try {
+        const client = await axios.post('http://localhost:5001/food/api/user', user);
+        dispatch({
+            type: LOGIN_CLIENT,
+            payload: client.data
+        })
+
+    } catch (err) {
+        console.log(err)
+    }
+};  
+
+
+//Agregar el carrito.
+export const addCart = (id) => async (dispatch) => {
+    try {
+        const res = await axios.get(`http://localhost:5001/food/api/products/${id}`);
+        dispatch({
+            type: ADD_CART,
+            payload: res.data
+        });
+    } catch (err) {
+        console.log(err)
+    }
+};
+
+//Quitar el producto del carrito.
+export const removeCart = (id) => (dispatch) => {
+    dispatch({
+        type:REMOVE_CART,
+        payload: id
+    })
+};
