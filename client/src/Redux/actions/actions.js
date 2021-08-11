@@ -127,7 +127,8 @@ export const categoryName = (name) => (dispatch) => {
 //Autenticación de usuario.    
 export const authUser =  (user) => async (dispatch) => {
     try {
-        const client = await axios.post('http://localhost:5001/food/api/user', user);
+        const client = await axios.post('http://localhost:5001/food/api/auth-sesion', user);
+        console.log('CLIENT: ', client)
         dispatch({
             type: LOGIN_CLIENT,
             payload: client.data
