@@ -7,9 +7,9 @@ import {
     DELETE_PRODUCT,
     GET_CATEGORIES,
     CATEGORY_NAME,
-    LOADING
+    LOADING,
     ADD_CART,
-    REMOVE_CART
+    REMOVE_CART,
     
 } from '../constants'
 
