@@ -8,7 +8,7 @@ const { URL_CONNECTION, DB ,PORT} = process.env;
 //conectar a mongoose
 
 mongoose.Promise = global.Promise;
-mongoose.connect(`${URL_CONNECTION}${DB}`, {
+mongoose.connect(`mongodb+srv://duartes:24090512@cluster0.21jwd.mongodb.net/fastfood`, {
     useNewUrlParser:true,
     useUnifiedTopology:true,
     useCreateIndex:true,
@@ -28,7 +28,7 @@ server.use(cors());
 //rutas de la server
 server.use('/',routers())
 
-server.listen(5001,()=>{
+server.listen(3001,()=>{
     console.log(`servidor corriendo en el puerto: `)
 })
 

@@ -6,7 +6,7 @@ import GridCardsProducts from '../cards/CardsProducts';
 import {getAllProducts} from '../../Redux/actions/actions';
 import Gallery from '../gallery/Gallery';
 import Order from '../order/Order';
-import Otters from '../Otters/Otters';
+
 
 function Home() {
   const dispatch = useDispatch();

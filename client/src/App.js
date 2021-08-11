@@ -11,9 +11,6 @@ import Categories from "./components/categories/Categories.jsx";
 import Form from "./components/Form/Form.jsx";
 
 
-
-
-
 function App() {
   return (
       <div>
