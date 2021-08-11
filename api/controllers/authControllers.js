@@ -3,7 +3,7 @@ const { generateJWT } = require("../helpers/generate-jwt");
 const User = require("../models/User");
 
 const authLogin = async (req, res) => {
-  const { email, password } = req.body;
+  const { email } = req.body;
 
   try {
     const user = await User.findOne({ email });
@@ -14,19 +14,19 @@ const authLogin = async (req, res) => {
       });
     }
     //si el usuario es activo
-    if (!user.status) {
-      return res.status(400).json({
-        msg: "Username inactive  - status:false",
-      });
-    }
+    // if (!user.status) {
+    //   return res.status(400).json({
+    //     msg: "Username inactive  - status:false",
+    //   });
+    // }
     //verificar la contraseña de
-    const validPassword = bcrypt.compareSync(password, user.password);
+    // const validPassword = bcrypt.compareSync(password, user.password);
 
-    if (!validPassword) {
-      return res.status(400).json({
-        msg: "Username and Password not Found - Password",
-      });
-    }
+    // if (!validPassword) {
+    //   return res.status(400).json({
+    //     msg: "Username and Password not Found - Password",
+    //   });
+    // }
     //generar el JWT
     const token = await generateJWT(user.id);
 

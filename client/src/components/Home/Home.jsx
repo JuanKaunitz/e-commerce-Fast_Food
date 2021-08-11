@@ -10,7 +10,6 @@ import Order from '../order/Order';
 
 function Home() {
   const dispatch = useDispatch();
-
     useEffect(() => {    
         dispatch(getAllProducts())  
     }, [dispatch])

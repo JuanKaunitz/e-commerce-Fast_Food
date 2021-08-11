@@ -1,5 +1,40 @@
 const User = require("../models/User");
 const bcrypt = require("bcrypt");
+const multer = require('multer');
+const shortid = require('shortid');
+
+
+const configMulter = {
+  storage: fileStorage = multer.diskStorage({
+    destination: (req,file,cb)=>{
+      cb(null, __dirname+'../public/uploads');
+    },
+    filename: (req,file,cb)=>{
+      const extension = file.mimetype.split('/')[1];
+
+      cb(null,`${shortid.generate()}.${extension}`);
+    }
+  }),
+  fileFilter(req,file,cb){
+    if(file.mimetype === 'image/jpeg' || file.mimetype === 'image/png'){
+      cb(null,true)
+    }else{
+      cb(null,false)
+    }
+  },
+  limits:{fileSize:200000}
+}
+const upload = multer(configMulter).single('image');
+exports.uploadImage = async(req,res,next)=>{
+  upload(req,res,next, function(error){
+    if(error instanceof multer.MulterError){
+      return next();
+    }
+  });
+  next();
+};
+
+
 
 exports.getUsers = async (req, res) => {
   const { limite = 5, desde = 0 } = req.query;
@@ -32,12 +67,16 @@ exports.updateUser = async (req, res) => {
   res.json({msg:'User Updated',user});
 };
 exports.createUsers = async (req, res) => {
-  const { name, email, password } = req.body;
-  const user = new User({ name, email, password});
+  if(req.file){
+    newUser.picture = req.file.filename;
+  }
+  const newUser = req.body;
+// const {password}= req.body;
+  const user = new User(newUser);
 
   //encriptar contraseña del
-  const salt = bcrypt.genSaltSync();
-  user.password = bcrypt.hashSync(password, salt);
+  // const salt = bcrypt.genSaltSync();
+  // user.password = bcrypt.hashSync(password, salt);
 
   //gardar en la BD
   await user.save();
