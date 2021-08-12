@@ -8,7 +8,7 @@ const { URL_CONNECTION, DB ,PORT} = process.env;
 //conectar a mongoose
 
 mongoose.Promise = global.Promise;
-mongoose.connect(`${URL_CONNECTION}${DB}`, {
+mongoose.connect(`${URL_CONNECTION}`, {
     useNewUrlParser:true,
     useUnifiedTopology:true,
     useCreateIndex:true,
