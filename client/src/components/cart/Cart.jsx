@@ -3,6 +3,9 @@ import {useSelector, useDispatch } from 'react-redux';
 import { makeStyles } from '@material-ui/core/styles';
 import Grid from '@material-ui/core/Grid';
 import CardCart from './CardCart';
+import DeleteIcon from '@material-ui/icons/Delete';
+import Typography from '@material-ui/core/Typography';
+import IconButton from '@material-ui/core/IconButton';
 import {updateCart} from '../../Redux/actions/actions'
 import { deleteCart, sumProduct, resProduct } from './addCarts';
 
@@ -33,32 +36,61 @@ const Cart = () => {
 
   function handleDeleteCart(id){
     let delet = deleteCart(id)
+    const precios = delet.map(e =>  e.count);
+    var sumaProductos = 0;
+    for(let i = 0; i < precios.length; i++){
+      sumaProductos = sumaProductos + parseInt(precios[i]);
+    }
+    console.log("TOTAL", sumaProductos);
     dispatch(updateCart(delet))
   }
 
   function handleAdd(id){
     let sum = sumProduct(id)
+    const precios = sum.map(e =>  e.count);
+    var sumaProductos = 0;
+    for(let i = 0; i < precios.length; i++){
+      sumaProductos = sumaProductos + parseInt(precios[i]);
+    }
+    console.log("TOTAL", sumaProductos);
     dispatch(updateCart(sum))
   }
 
   function handleRes(id){
     let res = resProduct(id)
+    const precios = res.map(e =>  e.count);
+    var sumaProductos = 0;
+    for(let i = 0; i < precios.length; i++){
+      sumaProductos = sumaProductos + parseInt(precios[i]);
+    }
+    console.log("TOTAL", sumaProductos);
     dispatch(updateCart(res))
   }
+
+  function deleteCompleteOrder(){
+    localStorage.removeItem('order');
+    dispatch(updateCart([]));
+  }  
 
   const classes = useStyles();
 
   if(carts.length > 0){
     const precios = carts.map(e => e.price * e.count);
-    var suma = 0;
+    var precioTotal = 0;
     for(let i = 0; i < precios.length; i++){
-        suma = suma + parseInt(precios[i]);
+      precioTotal = precioTotal + parseInt(precios[i]);
     }
   }
 
   return (
     <div>
       <h1>THIS IS YOUR CART</h1>
+      <IconButton >
+        <Typography>
+          Falta alert de mensaje: Esto borra toda la orden CUIDADO CON EL PERRO, PERROOOO!!!!!
+        </Typography>
+        <DeleteIcon onClick={() => deleteCompleteOrder()}/>
+      </IconButton>
       <Grid container  className={classes.root} spacing={2}>
           {
             carts? carts.map(e => (
@@ -72,7 +104,7 @@ const Cart = () => {
                 : <h1>  </h1>
           }
       </Grid>
-      <h1>TOTAL: ${suma}</h1>
+      <h1>TOTAL: ${precioTotal}</h1>
     </div>
   )
 };

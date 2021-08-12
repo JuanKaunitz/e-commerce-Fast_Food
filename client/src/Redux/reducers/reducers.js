@@ -27,7 +27,14 @@ const initialState = {
   categoryName: '',
   client: {},
   order:[],
-  clientToken: {}
+  clientToken: {},
+  orderFinal: {
+      clientId: '',
+      token: '',
+      precioTotal: '',
+      totalProductos: '',
+      order: [],
+    }
 }
 
 const rootReducer = (state = initialState, action) => {

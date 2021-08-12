@@ -47,6 +47,16 @@ export default function CardProduct({id, name, image,price, description}) {
   }
   //localStorage.removeItem('order');
 
+  //1- sumar la cantidad total de productos y mostrar en la navbar 
+  //2- total de productos = mapear order y sumar los count
+  /*{
+    idCliente: 444,
+    token: 2j2j2,
+    precioTotal: 522,
+    totalProductos: 5,
+    order: [{}],
+  }*/
+
   function handleAddCart() {
     /*if(token){
       dispatch(orderUser(token)); //pido al back el carrito del usuario
@@ -58,6 +68,12 @@ export default function CardProduct({id, name, image,price, description}) {
       dispatch(updateOrderUser(order)); //guardo la nueva orden del carrito
     }*/
     const res = addCarts(detail);
+    const precios = res.map(e =>  e.count);
+    var suma = 0;
+    for(let i = 0; i < precios.length; i++){
+        suma = suma + parseInt(precios[i]);
+    }
+    console.log("TOTAL", suma);
     dispatch(updateCart(res));
   }
 
