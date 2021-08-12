@@ -9,7 +9,8 @@ import {
     CATEGORY_NAME,
     LOGIN_CLIENT,
     ADD_CART,
-    REMOVE_CART
+    REMOVE_CART,
+    NEW_USER
     
 } from '../constants'
 
@@ -124,7 +125,7 @@ export const categoryName = (name) => (dispatch) => {
     })    
 };
 
-//Autenticación de usuario.    
+//Autenticación de usuario.  
 export const authUser =  (user) => async (dispatch) => {
     try {
         const client = await axios.post('http://localhost:5001/food/api/auth-sesion', user);
@@ -159,4 +160,17 @@ export const removeCart = (id) => (dispatch) => {
         type:REMOVE_CART,
         payload: id
     })
+};
+
+//Crear nuevo usuario(register).
+export const newUser = (user) => async (dispatch) => {
+    try {
+        const res = await axios.post('http://localhost:5001/food/api/user', user);
+        dispatch({
+           type: NEW_USER,
+           payload: res.data
+       });
+   } catch (err) {
+    console.log(err)
+  }
 };

@@ -25,6 +25,8 @@ import { useLocation, Link } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import { categoryName } from "../../Redux/actions/actions";
 import Log from "../Authentication/Log";
+import FormRegister from "../LogForm/FormRegister";
+import FormNav from "../LogForm/FormNav";
 
 const Navbar = () => {
   const dispatch = useDispatch();
@@ -103,7 +105,7 @@ const Navbar = () => {
                   to="/register"
                   activeClassName="active"
                 >
-                  Register
+                  LOGIN
                 </NavLink>
               </Button>
               <Button color="inherit" className={classes.loginButton}>
@@ -114,7 +116,16 @@ const Navbar = () => {
                 >
                   Login
                 </NavLink> */}
-              <Log />
+              {/* <Log /> */}
+              </Button>
+              <Button color ="inherit">
+                <NavLink 
+                className={classes.MuiButtonLabel}
+                to="/formregister"
+                activeClassName="active"
+                >
+                  REGISTER
+                </NavLink>
               </Button>
             </div>
           </Toolbar>
