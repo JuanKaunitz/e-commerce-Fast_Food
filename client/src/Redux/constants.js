@@ -13,6 +13,7 @@ const CATEGORY_NAME = "CATEGORY_NAME";
 const LOGIN_CLIENT = "LOGIN_CLIENT";
 const ADD_CART = "ADD_CART";
 const REMOVE_CART = " REMOVE_CART";
+const NEW_USER = "NEW_USER";
 
 export {
     GET_ALL_PRODUCTS,
@@ -29,5 +30,6 @@ export {
     CATEGORY_NAME,
     LOGIN_CLIENT,
     ADD_CART,
-    REMOVE_CART
+    REMOVE_CART,
+    NEW_USER
 }

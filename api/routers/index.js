@@ -17,8 +17,7 @@ module.exports = () => {
   router.use("/food/api/client", routerClients);
   //categories
   router.use("/food/api/category", routerCategories);
-  //usuarios
-  router.use("/food/api/auth-sesion", routerAuth);
+  
 
   return router;
 };
