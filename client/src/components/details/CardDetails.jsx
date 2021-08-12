@@ -57,6 +57,7 @@ export default function CardDetails({match}) {
   
   //console.log("DETAIL", detail)
   function handleAddCart() {
+
     const res = addCarts(detail);
     dispatch(updateCart(res))
   }

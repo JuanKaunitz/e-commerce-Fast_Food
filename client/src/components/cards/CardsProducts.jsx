@@ -44,7 +44,7 @@ export default function GridCardsProducts() {
           loading ? searchProducts.length > 0 ?
            searchProducts.map(product => (
             <Grid item key={product._id}  xs={3}>
-              <CardProduct id={product._id}
+              <CardProduct id={product._id} description={product.description}
                 name={product.name} image={product.image} price={product.price} />
             </Grid>
           ))
@@ -53,7 +53,7 @@ export default function GridCardsProducts() {
           :
           getAll.slice(page * 8, page * 8 + 8).map(product => (
             <Grid item key={product._id}  xs={3}>
-              <CardProduct id={product._id}
+              <CardProduct id={product._id} description={product.description}
                 name={product.name} image={product.image} price={product.price} />
             </Grid>
           ))

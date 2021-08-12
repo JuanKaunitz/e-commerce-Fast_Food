@@ -26,7 +26,8 @@ const initialState = {
   allCategories : [],
   categoryName: '',
   client: {},
-  cart:[]
+  order:[],
+  clientToken: {}
 }
 
 const rootReducer = (state = initialState, action) => {
@@ -83,7 +84,7 @@ const rootReducer = (state = initialState, action) => {
           ...state,
           categoryName: action.payload
         }
-
+      
       case LOGIN_CLIENT: 
         return {
           ...state,
@@ -93,7 +94,7 @@ const rootReducer = (state = initialState, action) => {
       case UPDATE_CART:
         return {
           ...state,
-          cart: action.payload
+          order: action.payload
         }
 
     default:
