@@ -3,7 +3,6 @@ import { BrowserRouter, Route } from "react-router-dom";
 import AboutUs from "./components/aboutUs/AboutUs.jsx";
 import Cart from "./components/cart/Cart.jsx";
 import Home from "./components/Home/Home.jsx";
-// import Log from "./components/Authentication/Log.jsx";
 import Navbar from "./components/Navbar/Navbar.jsx";
 import Register from "./components/register/Register.jsx";
 import CardDetails from "./components/details/CardDetails.jsx";
@@ -22,7 +21,6 @@ function App() {
           <Route exact path="/" component={Home} />
           <Route exact path="/aboutUs" component={AboutUs} />
           <Route exact path="/cart" component={Cart} />
-          {/* <Route path="/log" exact component={Log} /> */}
           <Route path="/detail/:id" exact component={CardDetails}/>
           <Route exact path="/form" component={Form} />
           <Route exact path="/categories" component={Categories} />

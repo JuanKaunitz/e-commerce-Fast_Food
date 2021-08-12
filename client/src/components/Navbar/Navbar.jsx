@@ -24,9 +24,7 @@ import SerchBar from "../serchbar/SerchBar";
 import { useLocation, Link } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import { categoryName } from "../../Redux/actions/actions";
-import Log from "../Authentication/Log";
-import FormRegister from "../LogForm/FormRegister";
-import FormNav from "../LogForm/FormNav";
+
 
 const Navbar = () => {
   const dispatch = useDispatch();
@@ -107,16 +105,6 @@ const Navbar = () => {
                 >
                   LOGIN
                 </NavLink>
-              </Button>
-              <Button color="inherit" className={classes.loginButton}>
-                {/* <NavLink
-                  className={classes.MuiButtonLabel}
-                  to="/log"
-                  activeClassName="active"
-                >
-                  Login
-                </NavLink> */}
-              {/* <Log /> */}
               </Button>
               <Button color ="inherit">
                 <NavLink 
