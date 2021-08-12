@@ -23,8 +23,12 @@ const ProductSchema = new Schema({
     type: String,
   },
   stock: {
-    type: Boolean,
+    type: Number,
   },
+  available: {
+    type: Boolean
+  },
+  
   categories: [
     {
       category: {

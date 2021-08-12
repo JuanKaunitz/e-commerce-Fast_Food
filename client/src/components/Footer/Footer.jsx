@@ -4,6 +4,7 @@
 // import { Box } from "@material-ui/core";
 // import { Link } from "@material-ui/core";
 
+<<<<<<< HEAD
 // export default function Footer() {
 //   return (
 //       <Box 
@@ -73,6 +74,77 @@
 //               </Box>
 //         </Container>
 //       </Box>
+=======
+export default function Footer() {
+  return (
+      <Box 
+      px= {{ xs:3, sm: 10}} 
+      py={{xs: 5}}bgcolor='text.secondary'
+      color='white'
+      > 
+        <Container maxWidth="lg">
+          <Grid container spacing={5}>
+            <Grid item xs={12} sm={4}>
+              <Box borderBottom={1}>Buy in foodapp.com</Box>
+              <Box>
+                <Link href="/aboutUs">
+                  Contact
+                </Link>
+              </Box>
+              <Box>
+                <Link href="/">
+                  Help
+                </Link>
+              </Box>
+              <Box>
+                <Link href="/aboutUs">
+                  More about us
+                </Link>
+              </Box>
+            </Grid>
+            <Grid item xs={12} sm={4}>
+              <Box borderBottom={1} >Access </Box>
+              <Box>
+                <Link href="/">
+                  Login
+                </Link>
+              </Box>
+              <Box>
+                <Link href="/" >
+                  Register
+                </Link>
+              </Box>
+              <Box>
+                <Link href="/">
+                  Administrator
+                </Link>
+              </Box>
+            </Grid>
+            <Grid item xs={12} sm={4}>
+              <Box borderBottom={1}>Social Media</Box>
+              <Box>
+                <Link href="/" >
+                  Instagram 
+                </Link>
+              </Box>
+              <Box>
+                <Link href="/">
+                 Facebook
+                </Link>
+              </Box>
+              <Box>
+                <Link href="/" >
+                  Twitter
+                </Link>
+              </Box>
+            </Grid>
+          </Grid>
+          <Box textAlign='center' pt={{xs:5, sm:10}} pb={{xs:5, sm: 0}}>
+              FoodApp Henry Bootcamp &reg; {new Date().getFullYear()}
+              </Box>
+        </Container>
+      </Box>
+>>>>>>> 5e730cc37fbf6e283e5efb01a66a283ad8edaada
     
 //   );
 // }

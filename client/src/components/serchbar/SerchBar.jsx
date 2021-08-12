@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { Input } from "@material-ui/core";
 import {
   getAllProducts,
@@ -9,68 +9,49 @@ import useStyles from '../Navbar/styles';
 
 
 const SerchBar = () => {
-    const classes = useStyles();
-
+  const classes = useStyles();
   const dispatch = useDispatch();
 
   const [name, setName] = useState("");
   const [search, setSearch] = useState(false);
+const globalState = useSelector(state => state.getProducts)
+
+  
+
   
   function searchProduct() {
     dispatch(searchQueryProducts(name));
+    setSearch(true);
   } 
  
   useEffect(() => {
-    if (search) {
+    if (name.length > 0) {
       searchProduct();
     }
      //eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [search,searchProduct]);
+  }, [globalState]);
 
-  const handleInputChange = (e) => {
-    e.preventDefault();
-    setName(e.target.value);
-  };
-
-  const onClickHandler = (e) => {
-    e.preventDefault();
-    setSearch(true);
-  };
   const onClickXHandler = (e) => {
     e.preventDefault();
-    dispatch(getAllProducts());
-    setSearch(false);
+    searchProduct();
+    // setSearch(false);
   };
   return (
     <div className={classes.search}>
-      {/* <div className={classes.searchIcon}>
-            <SearchIcon />
-        </div> */}
-      <form className={classes.root}>
+      <form className={classes.root} onSubmit={onClickXHandler}>
         <Input
           placeholder="Buscar.."
           inputProps={{ "aria-label": "description" }}
           value={name}
           autoComplete='on'
-          onChange={(e) => {
-            handleInputChange(e);
-          }}
+          onChange={(e) => setName(e.target.value)}
         />
         <button 
-          onClick={(e) => {
-            onClickHandler(e);
-          }}
           type="submit"
         >
           Search
         </button>
-        {/* <button className={classes.ocultarBtn}
-          onClick={(e) => {
-            onClickXHandler(e);
-          }}
-        >
-          GoBack
-        </button> */}
+     
       </form>
     </div>
   );

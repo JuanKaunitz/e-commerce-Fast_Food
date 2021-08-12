@@ -16,10 +16,10 @@ const OrderSchema = new Schema({
     total:{
         type:Number
     },
-    state:{
+    status:{
         type:String,
 		enum: {
-			values: ['pagado', 'pendiente de pago','cancelado'],
+			values: ['carrito', 'creada','procesando','cancelado','completada'],
     }
 }
 

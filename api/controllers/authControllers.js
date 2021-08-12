@@ -14,11 +14,11 @@ const authLogin = async (req, res) => {
       });
     }
     //si el usuario es activo
-    if (!user.status) {
-      return res.status(400).json({
-        msg: "Username inactive  - status:false",
-      });
-    }
+    // if (!user.status) {
+    //   return res.status(400).json({
+    //     msg: "Username inactive  - status:false",
+    //   });
+    // }
     //verificar la contraseña de
     const validPassword = bcrypt.compareSync(password, user.password);
 
@@ -43,6 +43,10 @@ const authLogin = async (req, res) => {
   }
 };
 
+const googleSignIn = (req, res) => {
+  res.json({
+    msg: "Todo ok!",
+  });
+};
 
-
-module.exports = { authLogin };
+module.exports = { authLogin, googleSignIn };
