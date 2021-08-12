@@ -10,10 +10,10 @@ import Otters from '../Otters/Otters';
 function Home() {
     return (
         <div className='content'>
+            <Otters/>  
             <Gallery/>  
             <Order/>           
             <GridCardsProducts/>
-            <Otters/>  
             <Footer/>          
         </div>
     )

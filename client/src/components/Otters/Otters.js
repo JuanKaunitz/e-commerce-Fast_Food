@@ -1,21 +1,18 @@
 import React from 'react';
 import {Carousel} from "react-responsive-carousel";
 import "react-responsive-carousel/lib/styles/carousel.min.css"
-import images from "./images"
-import styles from "./styles.css"
+
+import "./styles.css"
+import i6 from "../../images/i6.png"
+import i7 from "../../images/i7.png"
 
 const Otters =() =>{
     return (
-        
-        <div className={styles.carousel}>   
-            {images.map(imagen =>{
-                return (
-                    <img className={styles.legend} src={imagen.images} alt={imagen.images} />
-
-                )
-            })
-
-            }
+        <div>
+        <Carousel className="carousel" autoPlay="true"  showIndicators="false" showArrows="false" infiniteLoop="true" interval="5000" className="carousel3">
+             <div className="carousel1"><img  className="carousel"src={i6}/></div>
+            <div className="carousel1"><img className="carousel" src={i7} /></div>
+        </Carousel>
         </div>
     )
 }

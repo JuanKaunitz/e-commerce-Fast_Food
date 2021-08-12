@@ -1,5 +1,9 @@
 
 
+.button{
+  background-color:rgb(240, 119, 6);
+}
+
 .paginado{
   display: grid;
   align-items: center;
@@ -8,7 +12,11 @@
   grid-gap: 5px;
 }
 .pagina{
+  background-color: white;
   display: grid;
   align-items: center;
   justify-content: center;
+}
+.card{
+  background-color:red;
 }

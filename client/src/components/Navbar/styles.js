@@ -5,6 +5,7 @@ const drawerWidth = 240
 const useStyles = makeStyles(theme => ({
     // const theme = useTheme();
     offset: theme.mixins.toolbar,
+    color:"white",
     grow: {
         flexGrow: 1,
     },
@@ -93,7 +94,7 @@ fontSize:'20px'
       },
       shiftTextRight: {
         marginLeft: drawerWidth,
-      },
+      }
       
 }));
 

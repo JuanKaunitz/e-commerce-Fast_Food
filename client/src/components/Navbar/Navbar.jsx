@@ -50,11 +50,7 @@ const Navbar = () => {
   return (
     <div>
       <div
-        className={
-          location.pathname === "/categories"
-            ? classes.shiftTextRight
-            : classes.shiftTextLeft
-        }
+        className="prueba"
       >
         <AppBar>
           <Toolbar>
@@ -73,7 +69,7 @@ const Navbar = () => {
                 <HomeIcon className={classes.MuiButtonLabel} />
               </NavLink>
             </IconButton>
-            <Typography variant="h5" >Home</Typography>
+            {/* <Typography variant="h5" >Home</Typography> */}
             <Button color="orange">
               <NavLink className={classes.MuiButtonLabel} to="/aboutUs">
                 About Us
@@ -106,7 +102,7 @@ const Navbar = () => {
                   Register
                 </NavLink>
               </Button>
-              <Button color="inherit" className={classes.loginButton}>
+              <Button color="white" className={classes.loginButton}>
                 <NavLink
                   className={classes.MuiButtonLabel}
                   to="/login"

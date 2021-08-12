@@ -18,7 +18,8 @@
     align-items: center;
     height: 150px;
     max-width: 150px;
-    margin: 5px;
+    margin-top: 50px;
+    margin: 20;
    
 }
 .Grid-Item a{
@@ -28,7 +29,7 @@
     color: #fafafa;
 }
 
-img {
+.img1 {
     width:100%;
     height:80%;
     border-radius: 50%;

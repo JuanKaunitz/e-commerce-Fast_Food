@@ -1,81 +1,81 @@
-import React from 'react'
-import { Container } from "@material-ui/core";
-import { Grid } from "@material-ui/core";
-import { Box } from "@material-ui/core";
-import { Link } from "@material-ui/core";
+// import React from 'react'
+// import { Container } from "@material-ui/core";
+// import { Grid } from "@material-ui/core";
+// import { Box } from "@material-ui/core";
+// import { Link } from "@material-ui/core";
 
-export default function Footer() {
-  return (
-      <Box 
-      px= {{ xs:3, sm: 10}} 
-      py={{xs: 5}}bgcolor='text.secondary'
-      color='white'
-      > 
-        <Container maxWidth="lg">
-          <Grid container spacing={5}>
-            <Grid item xs={12} sm={4}>
-              <Box borderBottom={1}>Buy in fastfoodapp.com</Box>
-              <Box>
-                <Link href="/">
-                  Contact
-                </Link>
-              </Box>
-              <Box>
-                <Link href="/">
-                  Help
-                </Link>
-              </Box>
-              <Box>
-                <Link href="/">
-                  More about us
-                </Link>
-              </Box>
-            </Grid>
-            <Grid item xs={12} sm={4}>
-              <Box borderBottom={1} >Access </Box>
-              <Box>
-                <Link href="/">
-                  Login
-                </Link>
-              </Box>
-              <Box>
-                <Link href="/" >
-                  Register
-                </Link>
-              </Box>
-              <Box>
-                <Link href="/">
-                  Administrator
-                </Link>
-              </Box>
-            </Grid>
-            <Grid item xs={12} sm={4}>
-              <Box borderBottom={1}>Social Media</Box>
-              <Box>
-                <Link href="/" >
-                  Instagram 
-                </Link>
-              </Box>
-              <Box>
-                <Link href="/">
-                 Facebook
-                </Link>
-              </Box>
-              <Box>
-                <Link href="/" >
-                  Twitter
-                </Link>
-              </Box>
-            </Grid>
-          </Grid>
-          <Box color="orange" textAlign='center' pt={{xs:5, sm:10}} pb={{xs:5, sm: 0}}>
-              FastFood App - Henry Bootcamp &reg; {new Date().getFullYear()}
-              </Box>
-        </Container>
-      </Box>
+// export default function Footer() {
+//   return (
+//       <Box 
+//       px= {{ xs:3, sm: 10}} 
+//       py={{xs: 5}}bgcolor='text.secondary'
+//       color='white'
+//       > 
+//         <Container maxWidth="lg">
+//           <Grid container spacing={5}>
+//             <Grid item xs={12} sm={4}>
+//               <Box borderBottom={1}>Buy in fastfoodapp.com</Box>
+//               <Box>
+//                 <Link href="/">
+//                   Contact
+//                 </Link>
+//               </Box>
+//               <Box>
+//                 <Link href="/">
+//                   Help
+//                 </Link>
+//               </Box>
+//               <Box>
+//                 <Link href="/">
+//                   More about us
+//                 </Link>
+//               </Box>
+//             </Grid>
+//             <Grid item xs={12} sm={4}>
+//               <Box borderBottom={1} >Access </Box>
+//               <Box>
+//                 <Link href="/">
+//                   Login
+//                 </Link>
+//               </Box>
+//               <Box>
+//                 <Link href="/" >
+//                   Register
+//                 </Link>
+//               </Box>
+//               <Box>
+//                 <Link href="/">
+//                   Administrator
+//                 </Link>
+//               </Box>
+//             </Grid>
+//             <Grid item xs={12} sm={4}>
+//               <Box borderBottom={1}>Social Media</Box>
+//               <Box>
+//                 <Link href="/" >
+//                   Instagram 
+//                 </Link>
+//               </Box>
+//               <Box>
+//                 <Link href="/">
+//                  Facebook
+//                 </Link>
+//               </Box>
+//               <Box>
+//                 <Link href="/" >
+//                   Twitter
+//                 </Link>
+//               </Box>
+//             </Grid>
+//           </Grid>
+//           <Box color="orange" textAlign='center' pt={{xs:5, sm:10}} pb={{xs:5, sm: 0}}>
+//               FastFood App - Henry Bootcamp &reg; {new Date().getFullYear()}
+//               </Box>
+//         </Container>
+//       </Box>
     
-  );
-}
+//   );
+// }
 
 /* import React from 'react'
 
@@ -123,3 +123,23 @@ export default function Footer(){
 </div>
   );
 } */
+
+  
+import React from 'react';
+import {NavLink} from 'react-router-dom';
+import Style from './Footer.module.css';
+
+
+
+function Footer(){
+    return(
+      <div className={Style.container}>   
+          
+            <h3 className={Style.fast}>© 2021 FAST FOOD</h3>
+            <h3><NavLink className={Style.comida} to='/' >LA COMIDA QUE TE GUSTA</NavLink></h3>
+            <h3><NavLink className={Style.about2} to='/aboutUs' >ABOUT US</NavLink></h3>
+        </div>
+    )
+}
+
+export default Footer;

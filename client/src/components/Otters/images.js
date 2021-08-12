@@ -1,11 +1,13 @@
-const image1 = "../../images/i1.png";
-const image2 = "../../images/i2.png";
+import image1 from "../../images/i1.png"
+import image2 from "../../images/i2.png";
+import image3 from "../../images/i3.jpg";
 
 
 
 const images = [
-    {"image": image1},
-    {"image": image2},
+    {image: image1},
+    {image: image2},
+    {image: image3},
 ]
 
 
