@@ -10,11 +10,8 @@ const HIGHER_PRICE = "startHighestPrice";
 const ASC = "ASC";
 const DESC = "DESC";
 const CATEGORY_NAME = "CATEGORY_NAME";
-<<<<<<< HEAD
 const LOADING = 'LOADING';
-=======
 const LOGIN_CLIENT = "LOGIN_CLIENT";
->>>>>>> main
 const ADD_CART = "ADD_CART";
 const REMOVE_CART = " REMOVE_CART";
 
@@ -31,11 +28,8 @@ export {
     ASC,
     DESC,    
     CATEGORY_NAME,
-<<<<<<< HEAD
     LOADING,
-=======
     LOGIN_CLIENT,
->>>>>>> main
     ADD_CART,
     REMOVE_CART,
 }
