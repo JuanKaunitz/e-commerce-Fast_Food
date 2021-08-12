@@ -3,8 +3,8 @@ import {Carousel} from "react-responsive-carousel";
 import "react-responsive-carousel/lib/styles/carousel.min.css"
 
 import "./styles.css"
-import i6 from "../../images/i6.png"
-import i7 from "../../images/i7.png"
+import i6 from "../../assets/i6.png"
+import i7 from "../../assets/i7.png"
 
 const Otters =() =>{
     return (
