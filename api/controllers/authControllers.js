@@ -1,28 +1,38 @@
-const jwt = require("jsonwebtoken");
+const bcrypt = require("bcryptjs");
+const { generateJWT } = require("../helpers/generate-jwt");
 const User = require("../models/User");
 
 const authLogin = async (req, res) => {
-  const { email } = req.body;
+  const { email, password } = req.body;
 
   try {
     const user = await User.findOne({ email });
     //verificar el email
     if (!user) {
-      return res.status(401).json({
+      return res.status(400).json({
         msg: "Username and Password not Found - Email",
       });
     }
-    const token = jwt.sign(
-      {
-        email: user.email,
-        name: user.name,
-        id: user._id,
-      },
-      "SECRETKEY",
-      { expiresIn: "12h" }
-    );
+    //si el usuario es activo
+    // if (!user.status) {
+    //   return res.status(400).json({
+    //     msg: "Username inactive  - status:false",
+    //   });
+    // }
+    //verificar la contraseña de
+    const validPassword = bcrypt.compareSync(password, user.password);
+
+    if (!validPassword) {
+      return res.status(400).json({
+        msg: "Username and Password not Found - Password",
+      });
+    }
+    //generar el JWT
+    const token = await generateJWT(user.id);
+
     res.json({
       msg: "POST login",
+      user,
       token,
     });
   } catch (error) {
@@ -33,4 +43,10 @@ const authLogin = async (req, res) => {
   }
 };
 
-module.exports = { authLogin };
+const googleSignIn = (req, res) => {
+  res.json({
+    msg: "Todo ok!",
+  });
+};
+
+module.exports = { authLogin, googleSignIn };
