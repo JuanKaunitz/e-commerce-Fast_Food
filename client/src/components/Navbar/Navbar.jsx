@@ -103,17 +103,17 @@ const Navbar = () => {
                   to="/register"
                   activeClassName="active"
                 >
-                  Register
+                  LOGIN
                 </NavLink>
               </Button>
-              <Button color="inherit" className={classes.loginButton}>
-                {/* <NavLink
-                  className={classes.MuiButtonLabel}
-                  to="/log"
-                  activeClassName="active"
+              <Button color ="inherit">
+                <NavLink 
+                className={classes.MuiButtonLabel}
+                to="/formregister"
+                activeClassName="active"
                 >
-                  Login
-                </NavLink> */}
+                  REGISTER
+                </NavLink>
               </Button>
             </div>
           </Toolbar>

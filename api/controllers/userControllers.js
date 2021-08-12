@@ -54,6 +54,7 @@ exports.getUsers = async (req, res) => {
     users,
   });
 };
+//actualizar usuario
 exports.updateUser = async (req, res) => {
   const { id } = req.params;
   const { _id, password, ...rest } = req.body;
@@ -66,17 +67,18 @@ exports.updateUser = async (req, res) => {
   const user = await User.findByIdAndUpdate(id, rest);
   res.json({msg:'User Updated',user});
 };
+//crear usuario
 exports.createUsers = async (req, res) => {
   if(req.file){
     newUser.picture = req.file.filename;
   }
   const newUser = req.body;
-// const {password}= req.body;
+const {password}= req.body;
   const user = new User(newUser);
 
   //encriptar contraseña del
-  // const salt = bcrypt.genSaltSync();
-  // user.password = bcrypt.hashSync(password, salt);
+  const salt = bcrypt.genSaltSync();
+  user.password = bcrypt.hashSync(password, salt);
 
   //gardar en la BD
   await user.save();

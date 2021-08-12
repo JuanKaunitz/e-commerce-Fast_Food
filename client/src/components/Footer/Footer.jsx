@@ -16,7 +16,7 @@ export default function Footer() {
             <Grid item xs={12} sm={4}>
               <Box borderBottom={1}>Buy in foodapp.com</Box>
               <Box>
-                <Link href="/">
+                <Link href="/aboutUs">
                   Contact
                 </Link>
               </Box>
@@ -26,7 +26,7 @@ export default function Footer() {
                 </Link>
               </Box>
               <Box>
-                <Link href="/">
+                <Link href="/aboutUs">
                   More about us
                 </Link>
               </Box>

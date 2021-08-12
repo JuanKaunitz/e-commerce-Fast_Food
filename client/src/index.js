@@ -7,7 +7,7 @@ import { Provider } from "react-redux";
 
 ReactDOM.render(
   <Provider store={store}>
-    <React.StrictMode>
+    <React.StrictMode>  
       <App />
     </React.StrictMode>
   </Provider>,

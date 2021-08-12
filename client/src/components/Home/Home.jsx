@@ -14,7 +14,6 @@ function Home() {
     useEffect(() => {    
         dispatch(getAllProducts())  
     }, [dispatch])
-
     return (
         <div className='content'>
             <Gallery/>  
