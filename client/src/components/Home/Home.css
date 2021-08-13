@@ -1,9 +1,6 @@
 .content {
     display: flex;
     flex-direction: column;
-    max-width: 90vw;
-    margin: auto;
-    background-color: #b4b1b166;
-    border-radius: 10px;
+    align-items: center;
 }
 

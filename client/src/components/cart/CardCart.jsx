@@ -5,6 +5,9 @@ import CardContent from '@material-ui/core/CardContent';
 import CardMedia from '@material-ui/core/CardMedia';
 import DeleteIcon from '@material-ui/icons/Delete';
 import Typography from '@material-ui/core/Typography';
+import IconButton from '@material-ui/core/IconButton';
+import ExposureNeg1Icon from '@material-ui/icons/ExposureNeg1';
+import ExposurePlus1Icon from '@material-ui/icons/ExposurePlus1';
 
 
 const useStyles = makeStyles((theme) => ({
@@ -26,9 +29,11 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-export default function CardCart({id, name, image,price,description}) {
+export default function CardCart({id, name, image,price,description, count,
+                                  deleteCart, resProduct, addProduct}) {
 
   const classes = useStyles();
+
   return (
     <Card className={classes.root}>
       <div>
@@ -54,7 +59,25 @@ export default function CardCart({id, name, image,price,description}) {
         </Typography>
       </div>
       <div>
-        <DeleteIcon />
+      <IconButton >
+        <DeleteIcon onClick={() => deleteCart(id)}/>
+      </IconButton>
+      </div>
+      <div>
+        <IconButton >
+          <ExposureNeg1Icon onClick={() => resProduct(id)}/>
+        </IconButton>
+        <div>
+          <h3>{count}</h3>
+        </div>
+        <IconButton >
+          <ExposurePlus1Icon onClick={() => addProduct(id)}/>
+        </IconButton>
+      </div>
+      <div className={classes.controls}>
+        <Typography variant="subtitle1" color="textSecondary">
+         <h2>Subtotal $ {price * count}</h2> 
+        </Typography>
       </div>
     </Card>
   );

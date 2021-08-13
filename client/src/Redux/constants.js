@@ -11,9 +11,9 @@ const ASC = "ASC";
 const DESC = "DESC";
 const CATEGORY_NAME = "CATEGORY_NAME";
 const LOADING = 'LOADING';
+const UPDATE_CART = "UPDATE_CART";
 const LOGIN_CLIENT = "LOGIN_CLIENT";
-const ADD_CART = "ADD_CART";
-const REMOVE_CART = " REMOVE_CART";
+const NEW_USER = "NEW_USER";
 
 export {
     GET_ALL_PRODUCTS,
@@ -29,7 +29,8 @@ export {
     DESC,    
     CATEGORY_NAME,
     LOADING,
+    LOGIN_CLIENT,    
+    UPDATE_CART,
     LOGIN_CLIENT,
-    ADD_CART,
-    REMOVE_CART,
+    NEW_USER
 }

@@ -11,12 +11,18 @@ import FavoriteIcon from '@material-ui/icons/Favorite';
 import AddShoppingCartIcon from '@material-ui/icons/AddShoppingCart';
 import HourglassEmptyIcon from '@material-ui/icons/HourglassEmpty';
 
-import {getById} from '../../Redux/actions/actions';
+import {getById, updateCart} from '../../Redux/actions/actions';
+import {addCarts}  from '../cart/addCarts.js';
 
 
 const useStyles = makeStyles((theme) => ({
   root: {
     display: 'flex',
+    marginTop:100,
+    width:'50%',
+    paddingTop:10,
+    margin:'auto',
+    height:500
   },
   details: {
     display: 'flex',
@@ -52,26 +58,13 @@ export default function CardDetails({match}) {
   
   useEffect(() => {
     dispatch(getById(productId.current));
-  },[dispatch, productId]);
+  },[dispatch]);
   
-  function addCarts(){
-    //dispatch(addCart(id))
-    if(localStorage.getItem('order')){
-      let object = JSON.parse(localStorage.getItem('order'));
-     
-      let order = object;
-      console.log("PRODUCT", order)
-      order.push({id: detail.id, name: detail.name, 
-          image: detail.image, price: detail.price, description: detail.description});
-      localStorage.setItem('order', JSON.stringify(order));
-    }else {
-      let order = [{id: detail.id, name: detail.name, 
-        image: detail.image, price: detail.price, description: detail.description}];
-      localStorage.setItem('order', JSON.stringify(order));
-      console.log("PRODUCT2", order)
-    }
-  }
   //console.log("DETAIL", detail)
+  function handleAddCart() {
+    const res = addCarts(detail);
+    dispatch(updateCart(res))
+  }
 
   return (
      loading?
@@ -92,8 +85,8 @@ export default function CardDetails({match}) {
               <IconButton >
                 <FavoriteIcon/>
               </IconButton>
-              <IconButton >
-                <AddShoppingCartIcon color="secondary" onClick={() => addCarts()}/>
+              <IconButton onClick={() => handleAddCart()}>
+                <AddShoppingCartIcon color="secondary" />
               </IconButton>
             </div>
           </div>

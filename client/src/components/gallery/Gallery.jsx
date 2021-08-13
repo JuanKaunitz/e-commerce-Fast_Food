@@ -23,8 +23,10 @@ const Gallery = () => {
         return (
           <div className='Grid-Item'  key={item._id}>
             <img
+              className="img1"
               alt={item.name}
               src={item.image}
+              
             />
             <Link to={'/categories'}  onClick={() => categoryHamburguesa(item.name)} >{item.name}</Link>
           </div>

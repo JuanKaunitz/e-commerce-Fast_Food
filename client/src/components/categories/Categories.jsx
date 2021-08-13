@@ -9,20 +9,24 @@ import Order from "../order/Order";
 const useStyles = makeStyles((theme) => ({
   root: {
     marginLeft: 80,
+    marginTop:20,
+    width:'80%',
+
   },
+
 }));
 
-const Categories = ({ match }) => {
+const Categories = () => {
   const categoryName = useSelector((state) => state.categoryName);
   const getAll = useSelector((state) => state.getProducts);
   const [page, setPage] = useState(0);
 
   let filter1 = getAll.filter((product) => {
     const categoryName1 = product.categories.map((category) => {
-      console.log('CATEGORYNAME: ', categoryName)
+      //console.log('CATEGORYNAME: ', categoryName)
       return category.category.name;
     });
-    console.log('CATEGORYNAME1: ', categoryName1)
+    //console.log('CATEGORYNAME1: ', categoryName1)
     return categoryName1 == categoryName;
     
   });

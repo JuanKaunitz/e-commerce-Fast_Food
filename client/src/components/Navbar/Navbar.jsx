@@ -4,7 +4,6 @@ import { NavLink } from "react-router-dom";
 import {
   AppBar,
   Toolbar,
-  Typography,
   Button,
   IconButton,
   Divider,
@@ -24,7 +23,6 @@ import SerchBar from "../serchbar/SerchBar";
 import { useLocation, Link } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import { categoryName } from "../../Redux/actions/actions";
-import Log from "../Authentication/Log";
 
 const Navbar = () => {
   const dispatch = useDispatch();
@@ -49,14 +47,8 @@ const Navbar = () => {
 
   return (
     <div>
-      <div
-        className={
-          location.pathname === "/categories"
-            ? classes.shiftTextRight
-            : classes.shiftTextLeft
-        }
-      >
-        <AppBar>
+      <div >
+        <AppBar className={classes.prueba}>
           <Toolbar>
             <IconButton
               color="inherit"
@@ -73,8 +65,8 @@ const Navbar = () => {
                 <HomeIcon className={classes.MuiButtonLabel} />
               </NavLink>
             </IconButton>
-            <Typography variant="h5">Home</Typography>
-            <Button color="inherit">
+            {/* <Typography variant="h5" >Home</Typography> */}
+            <Button>
               <NavLink className={classes.MuiButtonLabel} to="/aboutUs">
                 About Us
               </NavLink>
@@ -103,18 +95,17 @@ const Navbar = () => {
                   to="/register"
                   activeClassName="active"
                 >
-                  Register
+                  LOGIN
                 </NavLink>
               </Button>
-              <Button color="inherit" className={classes.loginButton}>
-                {/* <NavLink
+              <Button color="inherit">
+                <NavLink
                   className={classes.MuiButtonLabel}
-                  to="/log"
+                  to="/formregister"
                   activeClassName="active"
                 >
-                  Login
-                </NavLink> */}
-              <Log />
+                  REGISTER
+                </NavLink>
               </Button>
             </div>
           </Toolbar>
@@ -158,7 +149,6 @@ const Navbar = () => {
           ))}
         </List>
       </Drawer>
-      <div className={classes.offset} />
     </div>
   );
 };
