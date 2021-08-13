@@ -44,11 +44,7 @@ export default function GridCardsProducts() {
           loading ? searchProducts.length > 0 ?
            searchProducts.map(product => (
             <Grid item key={product._id}  xs={3}>
-<<<<<<< HEAD
-              <CardProduct className="card" id={product._id}
-=======
               <CardProduct id={product._id} description={product.description}
->>>>>>> 5e730cc37fbf6e283e5efb01a66a283ad8edaada
                 name={product.name} image={product.image} price={product.price} />
             </Grid>
           ))
@@ -57,11 +53,7 @@ export default function GridCardsProducts() {
           :
           getAll.slice(page * 8, page * 8 + 8).map(product => (
             <Grid item key={product._id}  xs={3}>
-<<<<<<< HEAD
-              <CardProduct className="card" id={product._id}
-=======
               <CardProduct id={product._id} description={product.description}
->>>>>>> 5e730cc37fbf6e283e5efb01a66a283ad8edaada
                 name={product.name} image={product.image} price={product.price} />
             </Grid>
           ))
@@ -71,15 +63,9 @@ export default function GridCardsProducts() {
       <button className="button" value="prev" onClick={handlePrev} 
         disabled={page <= 0}>PREV</button>
       <p className="pagina" > {page + 1} </p>
-<<<<<<< HEAD
-      <button className="button"value="next" onClick={handleNext} 
-        disabled={loading? searchProducts?.slice(page * 8, page * 8 + 8).length < 8
-          : getAll.slice(page * 8, page * 8 + 8).length < 8}>NEXT</button>
-=======
       <button value="next" onClick={handleNext} 
         disabled={searchProducts.length > 0 ? searchProducts?.slice(page * 8, page * 8 + 8).length < 8
           : getAll.slice(page * 8, page * 8 + 8).length < 8}>next</button>
->>>>>>> 5e730cc37fbf6e283e5efb01a66a283ad8edaada
       </div>
     </div>
   );
