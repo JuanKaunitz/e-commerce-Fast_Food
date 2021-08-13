@@ -32,4 +32,20 @@ server.listen(PORT ,()=>{
     console.log(`servidor corriendo en el puerto: `)
 })
 
+//MIDDLEWARES
 
+server.use(multer({
+dest: path.join(_dirname,"destino") //destino donde quiero que vuelvan las imagenes
+
+
+}).singel("imput_delimage"))
+
+
+
+server.post('/upload' , (req,res)=>{
+
+
+req.file // objeto con prop de la imagen 
+res.send("subida")
+
+})
