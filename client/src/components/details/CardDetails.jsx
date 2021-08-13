@@ -18,6 +18,11 @@ import {addCarts}  from '../cart/addCarts.js';
 const useStyles = makeStyles((theme) => ({
   root: {
     display: 'flex',
+    marginTop:100,
+    width:'50%',
+    paddingTop:10,
+    margin:'auto',
+    height:500
   },
   details: {
     display: 'flex',
@@ -53,11 +58,10 @@ export default function CardDetails({match}) {
   
   useEffect(() => {
     dispatch(getById(productId.current));
-  },[dispatch, productId]);
+  },[dispatch]);
   
   //console.log("DETAIL", detail)
   function handleAddCart() {
-
     const res = addCarts(detail);
     dispatch(updateCart(res))
   }
@@ -81,8 +85,8 @@ export default function CardDetails({match}) {
               <IconButton >
                 <FavoriteIcon/>
               </IconButton>
-              <IconButton >
-                <AddShoppingCartIcon color="secondary" onClick={() => handleAddCart()}/>
+              <IconButton onClick={() => handleAddCart()}>
+                <AddShoppingCartIcon color="secondary" />
               </IconButton>
             </div>
           </div>

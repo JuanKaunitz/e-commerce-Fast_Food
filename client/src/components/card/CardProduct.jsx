@@ -19,13 +19,14 @@ const useStyles = makeStyles((theme) => ({
     paddingTop: '50%', // 16:9
   },
   cardContent: {
+    backgroundColor:'rgb(240, 119, 6)',
     width: '200px',
     heigth: '200px',
     boxShadow: '3px 4px 8px #0b0c0c1a',
 
   },
   headerTitle: {
-    color:'#363636',
+    color:'black',
     textDecoration:'none',
   }, 
   

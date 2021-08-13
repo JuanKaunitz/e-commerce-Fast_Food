@@ -9,24 +9,23 @@ import CardDetails from "./components/details/CardDetails.jsx";
 import Categories from "./components/categories/Categories.jsx";
 import Form from "./components/Form/Form.jsx";
 import FormNav from "./components/LogForm/FormNav.jsx";
-
+import "./App.css";
 
 function App() {
   return (
-      <div>
-        <BrowserRouter>
-        <Navbar />         
-          <Route exact path="/" component={Home} />
-          <Route exact path="/aboutUs" component={AboutUs} />
-          <Route exact path="/cart" component={Cart} />
-          <Route path="/detail/:id" exact component={CardDetails}/>
-          <Route exact path="/form" component={Form} />
-          <Route exact path="/categories" component={Categories} />
-          <Route exact path="/register" component={Register} />
-          <Route exact path="/formregister" component={FormNav} />
-        </BrowserRouter>
-
-      </div>
+    <div className="App">
+      <BrowserRouter>
+        <Navbar />
+        <Route exact path="/" component={Home} />
+        <Route exact path="/aboutUs" component={AboutUs} />
+        <Route exact path="/cart" component={Cart} />
+        <Route path="/detail/:id" exact component={CardDetails} />
+        <Route exact path="/form" component={Form} />
+        <Route exact path="/categories" component={Categories} />
+        <Route exact path="/register" component={Register} />
+        <Route exact path="/formregister" component={FormNav} />
+      </BrowserRouter>
+    </div>
   );
 }
 
