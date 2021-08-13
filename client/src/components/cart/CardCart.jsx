@@ -59,19 +59,19 @@ export default function CardCart({id, name, image,price,description, count,
         </Typography>
       </div>
       <div>
-      <IconButton >
-        <DeleteIcon onClick={() => deleteCart(id)}/>
+      <IconButton onClick={() => deleteCart(id)}>
+        <DeleteIcon />
       </IconButton>
       </div>
       <div>
-        <IconButton >
-          <ExposureNeg1Icon onClick={() => resProduct(id)}/>
+        <IconButton onClick={() => resProduct(id)}>
+          <ExposureNeg1Icon />
         </IconButton>
         <div>
           <h3>{count}</h3>
         </div>
-        <IconButton >
-          <ExposurePlus1Icon onClick={() => addProduct(id)}/>
+        <IconButton onClick={() => addProduct(id)}>
+          <ExposurePlus1Icon />
         </IconButton>
       </div>
       <div className={classes.controls}>

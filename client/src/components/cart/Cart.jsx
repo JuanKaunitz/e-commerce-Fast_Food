@@ -85,11 +85,11 @@ const Cart = () => {
   return (
     <div>
       <h1>THIS IS YOUR CART</h1>
-      <IconButton >
+      <IconButton onClick={() => deleteCompleteOrder()}>
         <Typography>
           Falta alert de mensaje: Esto borra toda la orden CUIDADO CON EL PERRO, PERROOOO!!!!!
         </Typography>
-        <DeleteIcon onClick={() => deleteCompleteOrder()}/>
+        <DeleteIcon />
       </IconButton>
       <Grid container  className={classes.root} spacing={2}>
           {

@@ -155,7 +155,7 @@ export const updateCart = (order) => (dispatch) => {
 }
 
 //ENVIO DE ORDEN DE COMPRA DE CARRITO
-export const shoppingCart = (order) => (dispatch) => {
+export const updateCartOrder = (order) => (dispatch) => {
     
 }
 
