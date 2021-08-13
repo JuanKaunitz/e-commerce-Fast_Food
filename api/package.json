@@ -4,13 +4,8 @@
   "description": "backend appfastfood",
   "main": "index.js",
   "scripts": {
-<<<<<<< HEAD
-    "start": "nodemon ./index",
-    "test": " jest -w ./tests/**/*.spec.js"
-=======
     "start": "node index.js",
     "test": "echo \"Error: no test specified\" && exit 1"
->>>>>>> 5e730cc37fbf6e283e5efb01a66a283ad8edaada
   },
   "author": "",
   "license": "ISC",
