@@ -7,8 +7,8 @@ const router = express.Router();
 
 //add new client
 router.post('/',clientControllers.createNewClient);
-// //get all clients
-// router.get('/',clientControllers);//fata su controlador
+//get all clients
+router.get('/',clientControllers.showClient);//fata su controlador
 // //client by id
 // router.get('/:id',clientControllers);//fata su controlador
 // //update clients

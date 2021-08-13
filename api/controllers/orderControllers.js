@@ -10,4 +10,14 @@ exports.newOrder = async(req,res,next) =>{
         console.log(error);
         next();
     }
-}
+};
+
+exports.showOrder = async(req,res,next)=>{
+    try {
+        const order = await Order.find({});
+        res.json(order);
+    } catch (error) {
+        console.log(error);
+        next();
+    }
+};
