@@ -7,19 +7,23 @@ import {
     DELETE_PRODUCT,
     GET_CATEGORIES,
     CATEGORY_NAME,
+    UPDATE_CART,
     LOGIN_CLIENT,
-    ADD_CART,
-    REMOVE_CART
-    
+    NEW_USER
 } from '../constants'
 
+import dotenv from 'dotenv'
 import axios from 'axios';
+
 // import { bindActionCreators } from 'redux';
+dotenv.config()
+
+const URL = process.env.REACT_APP_BACKEND_URL
 
 //Obteniendo todos las foods.
 export const getAllProducts = () => async (dispatch) => {
    try {
-       const res = await axios.get('http://localhost:5001/food/api/products');
+       const res = await axios.get(`${URL}/food/api/products`);
        dispatch({
            type: GET_ALL_PRODUCTS,
            payload: res.data
@@ -32,7 +36,7 @@ export const getAllProducts = () => async (dispatch) => {
 //Obteniendo los productos por Query Name.
 export const searchQueryProducts = (name) => async (dispatch) => {
     try {
-        const res = await axios.get(`http://localhost:5001/food/api/products/search/${name}`);
+        const res = await axios.get(`${URL}/food/api/products/search/${name}`);
         dispatch({            
             type: SEARCH_PRODUCTS, 
             payload: res.data
@@ -45,7 +49,7 @@ export const searchQueryProducts = (name) => async (dispatch) => {
 //Obteniendo productos por ID.
 export const getById = (id) => async (dispatch) => {
     try {
-        const res = await axios.get(`http://localhost:5001/food/api/products/${id}`);
+        const res = await axios.get(`${URL}/food/api/products/${id}`);
         dispatch({
             type: GET_BY_ID,
             payload: res.data
@@ -58,7 +62,7 @@ export const getById = (id) => async (dispatch) => {
  //Creando un producto.
  export const createProduct = (input) => async (dispatch) => {
     try {
-        const product = await axios.post('http://localhost:5001/food/api/products',input);
+        const product = await axios.post(`${URL}/food/api/products`,input);
         dispatch({
             type: CREATE_PRODUCT,
             payload: product.data.product
@@ -71,7 +75,7 @@ export const getById = (id) => async (dispatch) => {
  //Actualizando producto.
  export const getUpdate = (id) => async (dispatch) => {
     try {        
-        const res = await axios.get(`http://localhost:5001/food/api/${id}`);  
+        const res = await axios.get(`${URL}/food/api/${id}`);  
         dispatch({
             type: UPDATE_PRODUCT,
             payload: res.data
@@ -85,7 +89,7 @@ export const getById = (id) => async (dispatch) => {
  //Borrando un producto.
  export const deleteProduct = (id) => async (dispatch) => {
      try {
-         const res = await axios.get(`http://localhost:5001/food/api/${id}`);
+         const res = await axios.get(`${URL}/food/api/${id}`);
          dispatch({
              type: DELETE_PRODUCT,
              payload: res.data
@@ -99,7 +103,7 @@ export const getById = (id) => async (dispatch) => {
  //Obteniendo las categorías.
  export const getCategories = () => async (dispatch) => {
      try {
-         const res = await axios.get('http://localhost:5001/food/api/category');
+         const res = await axios.get(`${URL}/food/api/category`);
          dispatch({
              type: GET_CATEGORIES,
              payload: res.data
@@ -124,10 +128,10 @@ export const categoryName = (name) => (dispatch) => {
     })    
 };
 
-//Autenticación de usuario.    
+//Autenticación de usuario.  
 export const authUser =  (user) => async (dispatch) => {
     try {
-        const client = await axios.post('http://localhost:5001/food/api/auth-sesion', user);
+        const client = await axios.post(`${URL}/food/api/auth-sesion`, user);
         console.log('CLIENT: ', client)
         dispatch({
             type: LOGIN_CLIENT,
@@ -140,23 +144,30 @@ export const authUser =  (user) => async (dispatch) => {
 };  
 
 
-//Agregar el carrito.
-export const addCart = (id) => async (dispatch) => {
-    try {
-        const res = await axios.get(`http://localhost:5001/food/api/products/${id}`);
-        dispatch({
-            type: ADD_CART,
-            payload: res.data
-        });
-    } catch (err) {
-        console.log(err)
-    }
-};
+//ACTUALIZAR CARRITO
+export const updateCart = (order) => (dispatch) => {
 
-//Quitar el producto del carrito.
-export const removeCart = (id) => (dispatch) => {
     dispatch({
-        type:REMOVE_CART,
-        payload: id
-    })
+        type: UPDATE_CART,
+        payload: order
+    });
+    
+}
+
+//ENVIO DE ORDEN DE COMPRA DE CARRITO
+export const shoppingCart = (order) => (dispatch) => {
+    
+}
+
+//Crear nuevo usuario(register).
+export const newUser = (user) => async (dispatch) => {
+    try {
+        const res = await axios.post('http://localhost:5001/food/api/user', user);
+        dispatch({
+           type: NEW_USER,
+           payload: res.data
+       });
+   } catch (err) {
+    console.log(err)
+  }
 };

@@ -5,12 +5,16 @@ const drawerWidth = 240
 const useStyles = makeStyles(theme => ({
     // const theme = useTheme();
     offset: theme.mixins.toolbar,
+    color:"white",
     grow: {
         flexGrow: 1,
     },
+    prueba:{
+      backgroundColor:'#444546'
+    },
     MuiButtonLabel:{
 textDecoration:'none',
-color:'#fff',
+color:'orange',
 fontSize:'20px'
     },
     appBarShift: {
@@ -93,7 +97,8 @@ fontSize:'20px'
       },
       shiftTextRight: {
         marginLeft: drawerWidth,
-      },
+      }
+      
 }));
 
 export default useStyles;

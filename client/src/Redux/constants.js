@@ -10,9 +10,9 @@ const HIGHER_PRICE = "startHighestPrice";
 const ASC = "ASC";
 const DESC = "DESC";
 const CATEGORY_NAME = "CATEGORY_NAME";
+const UPDATE_CART = "UPDATE_CART";
 const LOGIN_CLIENT = "LOGIN_CLIENT";
-const ADD_CART = "ADD_CART";
-const REMOVE_CART = " REMOVE_CART";
+const NEW_USER = "NEW_USER";
 
 export {
     GET_ALL_PRODUCTS,
@@ -27,7 +27,7 @@ export {
     ASC,
     DESC,    
     CATEGORY_NAME,
+    UPDATE_CART,
     LOGIN_CLIENT,
-    ADD_CART,
-    REMOVE_CART
+    NEW_USER
 }

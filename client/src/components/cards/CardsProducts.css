@@ -6,7 +6,11 @@
   grid-gap: 5px;
 }
 .pagina{
+  background-color: white;
   display: grid;
   align-items: center;
   justify-content: center;
+}
+.card{
+  background-color:red;
 }

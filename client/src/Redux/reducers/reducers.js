@@ -8,8 +8,9 @@ import {
   LOWER_PRICE,
   HIGHER_PRICE,
   CATEGORY_NAME,
+  UPDATE_CART,
   LOGIN_CLIENT,
-  ADD_CART,
+  NEW_USER
   /* ASC,
   DESC */  
 } from '../constants'
@@ -26,7 +27,16 @@ const initialState = {
   allCategories : [],
   categoryName: '',
   client: {},
-  cart:[]
+  order:[],
+  clientToken: {},
+  orderFinal: {
+      clientId: '',
+      token: '',
+      precioTotal: '',
+      totalProductos: '',
+      order: [],
+    },
+  createNewUser: {}
 }
 
 const rootReducer = (state = initialState, action) => {
@@ -83,17 +93,24 @@ const rootReducer = (state = initialState, action) => {
           ...state,
           categoryName: action.payload
         }
-
+      
       case LOGIN_CLIENT: 
         return {
           ...state,
           client: action.payload
         }  
-      case ADD_CART:
+        
+      case UPDATE_CART:
         return {
           ...state,
-          cart:[...state.cart, action.payload]
+          order: action.payload
         }
+
+      case NEW_USER:
+        return {
+          ...state,
+          createNewUser: action.payload
+        }  
 
     default:
       return state;

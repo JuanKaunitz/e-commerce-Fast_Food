@@ -26,7 +26,12 @@ export default function GridCardsProducts() {
   }
 
   function handleNext(){
-    let pageMax = Math.ceil(getAll.length / 8 - 1);
+    let array = getAll;
+    if(loading){
+      setPage(0);
+      array = searchProducts
+    }
+    let pageMax = Math.ceil(array.length / 8 - 1);
     if(pageMax < 0){return setPage(0)}
     if(page < pageMax){ return setPage(page + 1)}
     return setPage(pageMax);
@@ -39,7 +44,7 @@ export default function GridCardsProducts() {
           loading ? searchProducts.length > 0 ?
            searchProducts.map(product => (
             <Grid item key={product._id}  xs={3}>
-              <CardProduct id={product._id}
+              <CardProduct id={product._id} description={product.description}
                 name={product.name} image={product.image} price={product.price} />
             </Grid>
           ))
@@ -48,15 +53,15 @@ export default function GridCardsProducts() {
           :
           getAll.slice(page * 8, page * 8 + 8).map(product => (
             <Grid item key={product._id}  xs={3}>
-              <CardProduct id={product._id}
+              <CardProduct id={product._id} description={product.description}
                 name={product.name} image={product.image} price={product.price} />
             </Grid>
           ))
         } 
       </Grid>
       <div className="paginado">
-      <button value="prev" onClick={handlePrev} 
-        disabled={page <= 0}>prev</button>
+      <button className="button" value="prev" onClick={handlePrev} 
+        disabled={page <= 0}>PREV</button>
       <p className="pagina" > {page + 1} </p>
       <button value="next" onClick={handleNext} 
         disabled={searchProducts.length > 0 ? searchProducts?.slice(page * 8, page * 8 + 8).length < 8
