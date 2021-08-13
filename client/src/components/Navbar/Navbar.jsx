@@ -4,7 +4,6 @@ import { NavLink } from "react-router-dom";
 import {
   AppBar,
   Toolbar,
-  Typography,
   Button,
   IconButton,
   Divider,
@@ -24,7 +23,6 @@ import SerchBar from "../serchbar/SerchBar";
 import { useLocation, Link } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import { categoryName } from "../../Redux/actions/actions";
-
 
 const Navbar = () => {
   const dispatch = useDispatch();
@@ -49,10 +47,8 @@ const Navbar = () => {
 
   return (
     <div>
-      <div
-        className="prueba"
-      >
-        <AppBar>
+      <div >
+        <AppBar className={classes.prueba}>
           <Toolbar>
             <IconButton
               color="inherit"
@@ -70,7 +66,7 @@ const Navbar = () => {
               </NavLink>
             </IconButton>
             {/* <Typography variant="h5" >Home</Typography> */}
-            <Button color="orange">
+            <Button>
               <NavLink className={classes.MuiButtonLabel} to="/aboutUs">
                 About Us
               </NavLink>
@@ -99,16 +95,16 @@ const Navbar = () => {
                   to="/register"
                   activeClassName="active"
                 >
-                  Register
+                  LOGIN
                 </NavLink>
               </Button>
-              <Button color="white" className={classes.loginButton}>
+              <Button color="inherit">
                 <NavLink
                   className={classes.MuiButtonLabel}
-                  to="/login"
+                  to="/formregister"
                   activeClassName="active"
                 >
-                  Login
+                  REGISTER
                 </NavLink>
               </Button>
             </div>
@@ -153,7 +149,6 @@ const Navbar = () => {
           ))}
         </List>
       </Drawer>
-      <div className={classes.offset} />
     </div>
   );
 };
