@@ -9,7 +9,11 @@ import Order from "../order/Order";
 const useStyles = makeStyles((theme) => ({
   root: {
     marginLeft: 80,
+    marginTop:20,
+    width:'80%',
+
   },
+
 }));
 
 const Categories = () => {
