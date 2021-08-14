@@ -9,7 +9,8 @@ import {
     CATEGORY_NAME,
     UPDATE_CART,
     LOGIN_CLIENT,
-    NEW_USER
+    NEW_USER,
+    EDIT_PRODUCT
 } from '../constants'
 
 import dotenv from 'dotenv'
@@ -171,3 +172,17 @@ export const newUser = (user) => async (dispatch) => {
     console.log(err)
   }
 };
+
+//recuperar el producto de la api para edicion
+export const getProductById = (id) => async(dispatch)=>{
+    try{
+        const product = await axios.get(`${URL}/food/api/products/${id}`);
+        console.log(product.data.product)
+        dispatch({
+            type:EDIT_PRODUCT,
+            payload:product.data.product
+        })
+    }catch(err){
+        console.log(err)
+    }
+}

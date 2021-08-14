@@ -9,6 +9,7 @@ import CardDetails from "./components/details/CardDetails.jsx";
 import Categories from "./components/categories/Categories.jsx";
 import Form from "./components/Form/Form.jsx";
 import FormNav from "./components/LogForm/FormNav.jsx";
+import EditProduct from "./components/editProduct/EditProduct.jsx";
 import "./App.css";
 
 function App() {
@@ -20,10 +21,12 @@ function App() {
         <Route exact path="/aboutUs" component={AboutUs} />
         <Route exact path="/cart" component={Cart} />
         <Route path="/detail/:id" exact component={CardDetails} />
+        <Route path="/editProduct/:id" exact component={EditProduct} />
         <Route exact path="/form" component={Form} />
         <Route exact path="/categories" component={Categories} />
         <Route exact path="/register" component={Register} />
         <Route exact path="/formregister" component={FormNav} />
+        <Route exact path='/https://www.linkedin.com/in/facundo-duartes-dev/'/>
       </BrowserRouter>
     </div>
   );

@@ -17,6 +17,9 @@ const useStyles = makeStyles(() => ({
       height:'auto',
       maxWidth:1024
     },
+    color:{
+      color:"white"
+    }
     
   }));
 
@@ -84,9 +87,9 @@ const Cart = () => {
 
   return (
     <div>
-      <h1>THIS IS YOUR CART</h1>
+      <h1 className={classes.color}>THIS IS YOUR CART</h1>
       <IconButton >
-        <Typography>
+        <Typography className={classes.color}>
           Falta alert de mensaje: Esto borra toda la orden CUIDADO CON EL PERRO, PERROOOO!!!!!
         </Typography>
         <DeleteIcon onClick={() => deleteCompleteOrder()}/>
@@ -104,7 +107,7 @@ const Cart = () => {
                 : <h1>  </h1>
           }
       </Grid>
-      <h1>TOTAL: ${precioTotal}</h1>
+      <h1 className={classes.color}>TOTAL: ${precioTotal}</h1>
     </div>
   )
 };
