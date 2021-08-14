@@ -113,8 +113,12 @@ const FormRegister = () => {
           <p className="danger">{errors.password}</p>
        )}
        </div>
-       <button className = {styles.btnregister}type= "button"  value= "Submit" src="/"/> 
-     </form><div>
+       <div className = "btn submit">
+
+       <button className = {styles.btnregister} type= "submit" src="/">Submit</button>  
+
+
+     
      { showloginButton ?
         <GoogleLogin
           clientId="371009516574-6nj2o8vbfdtom1lafa91d55scq54fm9u.apps.googleusercontent.com"
@@ -131,7 +135,10 @@ const FormRegister = () => {
           onLogoutSuccess={logout}
         />: null
         }
-      </div>
+    
+       </div>
+
+     </form>
 
         </div>
         
