@@ -2,6 +2,7 @@ const Category = require('../models/Category');
 const Product = require('../models/Product');
 
 
+
 exports.createNewCategory = async(req,res,next)=>{
     const category = new Category(req.body);
     try {
@@ -17,12 +18,14 @@ exports.createNewCategory = async(req,res,next)=>{
 };
 
 exports.getAllCategories = async(req,res,next)=>{
-    const products = await Product.find({});
+    // const products = await Product.find({});
     try {
-      const categories = await Category.find({}).populate('products').populate({
-          path:'products.product',
-          model:'Product'
-      });
+      const categories = await Category.find({})
+     
+    //   //.populate('TypeCategory').exec((err, posts) => {
+    //     console.log("Populated User " + posts);
+    //   })
+        
       res.json(categories);
   } catch (error) {
       console.log(error);
@@ -56,3 +59,5 @@ exports.getAllCategories = async(req,res,next)=>{
         return next();
     }
   };
+
+  

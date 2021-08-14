@@ -8,14 +8,13 @@ name:{
 },
 image:{
   type:String
-}
-// products:[
-//   {product:{
-//     type: mongoose.Schema.Types.ObjectId,
-//     ref:"Product"
-//   }}
-// ]
- 
-});
+},
+
+types:[{
+
+    name:{type:String}   
+  
+}]
+})
 
 module.exports = mongoose.model("Category", CategorySchema);

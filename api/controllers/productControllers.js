@@ -17,10 +17,7 @@ exports.getAllProducts = async(req,res,next)=>{
 const query = {stock:true}
   try {
     // const total = await Product.countDocuments(query)//cuenta los productos 
-    const products = await Product.find({}).populate('categories').populate({
-      path:'categories.category',
-      model:'Category'
-    });
+    const products = await Product.find({})
     res.json(products);  
     
 } catch (error) {

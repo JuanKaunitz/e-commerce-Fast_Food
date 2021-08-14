@@ -13,20 +13,6 @@ function Home() {
   const dispatch = useDispatch();
   const stateGlobal = useSelector((state) => state.getProducts);
 
-<<<<<<< HEAD
-    useEffect(() => {    
-        dispatch(getAllProducts())  
-    }, [dispatch, stateGlobal])
-    return (
-        <div className='content'>
-            <Gallery/>  
-            <Order/>           
-            <GridCardsProducts/>
-            <Footer/> 
-               
-        </div>
-    )
-=======
   useEffect(() => {
     dispatch(getAllProducts());
   }, [dispatch]);
@@ -39,6 +25,5 @@ function Home() {
       <Footer />
     </div>
   );
->>>>>>> 27b7bb5ea818b16126c87f5fb1cfbdbd8c178d96
 }
 export default Home;

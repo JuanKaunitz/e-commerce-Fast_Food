@@ -70,10 +70,7 @@ server.use((req, res, next) => {
     next();
   });
 
-server.listen(PORT,()=>{
-    console.log(`servidor corriendo en el puerto: ${PORT}`)
 })
-
 //MIDDLEWARES
 
 // server.use(multer({
