@@ -5,11 +5,10 @@ import {
   getAllProducts,
   searchQueryProducts,
 } from "../../Redux/actions/actions";
-import useStyles from '../Navbar/styles';
-
+import styles from "./styles.module.css"
+import {ReactComponent as SearchButton} from '../../assets/149852.svg'
 
 const SerchBar = () => {
-  const classes = useStyles();
   const dispatch = useDispatch();
 
   const [name, setName] = useState("");
@@ -37,21 +36,21 @@ const globalState = useSelector(state => state.getProducts)
     // setSearch(false);
   };
   return (
-    <div className={classes.search}>
-      <form className={classes.root} onSubmit={onClickXHandler}>
-        <Input
-          placeholder="Buscar.."
+    <div className={styles.searchBarMainContainer}>
+      <form onSubmit={onClickXHandler}>
+        <div className={styles.buttonSearchContainer}>
+        <Input className={styles.inputBox} placeholder="Buscar.."
           inputProps={{ "aria-label": "description" }}
           value={name}
           autoComplete='on'
           onChange={(e) => setName(e.target.value)}
         />
-        <button 
-          type="submit"
-        >
-          Search
-        </button>
-     
+        <div className={styles.backgroundSearchButton}>
+        <SearchButton className={styles.searchIcon} />
+        </div>
+
+        <input className={styles.inputBtn} name="searchBarButton" type='submit' value="asd" />
+      </div>
       </form>
     </div>
   );

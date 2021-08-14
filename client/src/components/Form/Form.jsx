@@ -1,11 +1,10 @@
 import React, { useState} from "react";
 import { createProduct } from "../../Redux/actions/actions";
 import { useDispatch} from "react-redux";
-import useStyles from './styles';
+import styles from "./styles.module.css";
 
 const Form = (props) => {
   const dispatch = useDispatch();
-  const classes = useStyles();
 
   const [input, setInput] = useState({
     name: "",
@@ -36,14 +35,14 @@ const Form = (props) => {
   };
 
   return (
-    <div className={classes.form_content}>
+    <div className={styles.form_content}>
       <h1>Create your own product</h1>
       <form onSubmit={handleSubmit}>
-        <div className={classes.form_group}>
+        <div className={styles.form_group}>
        
           <label>Name:</label>
           <input
-          className={classes.input_items}
+          className={styles.input_items}
             type="text"
             name="name"
             onChange={handleInputChange}
@@ -52,10 +51,10 @@ const Form = (props) => {
           />
         </div>
 
-        <div className={classes.form_group}>
+        <div className={styles.form_group}>
           <label>Type:</label>
           <input
-          className={classes.input_items}
+          className={styles.input_items}
             type="text"
             name="type"
             onChange={handleInputChange}
@@ -76,10 +75,10 @@ const Form = (props) => {
           />
         </div> */}
 
-        <div className={classes.form_group}>
+        <div className={styles.form_group}>
           <label>Image:</label>
           <input
-          className={classes.input_items}
+          className={styles.input_items}
             type="text"
             name="image"
             onChange={handleInputChange}
@@ -88,10 +87,10 @@ const Form = (props) => {
           />
         </div>
 
-        <div className={classes.form_group}>
+        <div className={styles.form_group}>
           <label>Price:</label>
           <input
-          className={classes.input_items}
+          className={styles.input_items}
             type="text"
             name="price"
             onChange={handleInputChange}
@@ -100,10 +99,10 @@ const Form = (props) => {
           />
         </div>
 
-        <div className={classes.form_group}>
+        <div className={styles.form_group}>
           <label>Description:</label>
           <textarea
-          className={classes.input_items}
+          className={styles.input_items}
             type="text"
             name="description"
             rows='5'
@@ -113,7 +112,7 @@ const Form = (props) => {
           />
         </div>
 
-        {/* <div className={classes.form_group}>
+        {/* <div className={styles.form_group}>
           <label>Stock:</label>
           <input
           className={classes.input_items}
@@ -137,7 +136,7 @@ const Form = (props) => {
               </select>
 
               </div>    */}
-        <button className={classes.btn_save} type="submit">
+        <button className={styles.btn_save} type="submit">
           CREATE
         </button>
       </form>

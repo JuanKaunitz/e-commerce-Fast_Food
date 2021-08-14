@@ -1,0 +1,77 @@
+@import url(https://fonts.googleapis.com/css?family=Roboto:400);
+
+
+
+
+.form{
+  margin:0;
+  margin-left: auto;
+  margin-right: auto;
+  padding: 60px;
+  max-width: 400px;
+  max-height:450px;
+  background-color: rgb(228, 130, 3);
+  color:rgb(246, 245, 245);
+  border-radius: 10px;
+  transform: translateY(50%);
+  align-items: center;
+}
+
+.input1{
+
+  margin-bottom: 15px;
+  font-family: "Roboto", sans-serif;
+  position: relative;
+  width: 50%;
+  height:100%;
+  margin: 1rem;
+  padding: 0 1rem;
+  -webkit-box-sizing: border-box; 
+  box-sizing: border-box; 
+  border: none; 
+  color: #ee850e; 
+  font-size: 1em;
+  resize: horizontal; 
+  background-color: rgb(245, 243, 243);
+  border-radius: 5px;
+  border: 1px solid #39c;
+}
+
+.btnregister {
+
+	display: block;
+    margin-bottom: 10px;
+    margin-top: 30px;
+    margin-left: 150px;
+	background-color: #090c0e;
+	padding: 20px 50px 20px 40px;
+	border-radius: 2px;
+	font-size: 1em; 
+	color: 	rgb(231, 14, 14);
+  font-family: "Roboto", sans-serif;
+
+}
+
+.texto{
+  font-family: "Roboto", sans-serif;
+  margin-top: 3px;
+  margin-left: auto;
+  margin-right: auto;
+  padding: 25px;
+  font-size: 1.2em;
+}
+
+.label{
+  font-family: "Roboto", sans-serif;
+
+  margin-left: 20px;
+  padding: 25px;
+  font-size: 1.2em;
+}
+
+.field{
+    margin-left: 33px;
+  }
+  .field1{
+    margin-left: 37px;
+  }
