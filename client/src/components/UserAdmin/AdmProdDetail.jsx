@@ -1,5 +1,6 @@
-import React from 'react'
-import ProductDetail from './ProductDetail'
+import React from 'react';
+import ProductDetail from './ProductDetail';
+import './AdmProdDetail.css';
 
 const AdmProdDetail = () => {
     return (

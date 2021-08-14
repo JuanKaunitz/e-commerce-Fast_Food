@@ -1,6 +1,6 @@
 import React/* , {useState, useEffect}  */ from 'react';
 import { useSelector, useDispatch} from 'react-redux';
-//import { Link } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import { searchQueryProducts } from "../../Redux/actions/actions";
 import './EveryProducts.css'
 
@@ -43,8 +43,9 @@ export default function EveryProducts() {
                 :
                 getAll.map((e) =>
                 <div>
-                    <button onClick={() =>[ searchProduct(e.name)]}> {e.name}</button>
+                     <button onClick={() =>[ searchProduct(e.name)]}> {e.name}</button>                     
                         <ol>Price: {e.price}<br></br> image: {e.image}<br></br> type: {e.type}<br></br> identifier: {e.identifier}<br></br>Stock:  {e.stock}<br></br>Description: {e.description}<br></br>Available: {e.available} </ol>
+                        <Link to={`/AdmProdDetail/${e._id}`}>Editar</Link>
                 </div>
                 )
             }               

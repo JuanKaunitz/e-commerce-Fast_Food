@@ -27,7 +27,7 @@ function App() {
         <Route exact path="/register" component={Register} />
         <Route exact path="/formregister" component={FormNav} />
         <Route exact path="/AdminPanel" component={AdminPanel} />
-        <Route exact path="/AdmProdDetail" component={AdmProdDetail} />        
+        <Route exact path="/AdmProdDetail/:id" component={AdmProdDetail} />        
       </BrowserRouter>
     </div>
   );

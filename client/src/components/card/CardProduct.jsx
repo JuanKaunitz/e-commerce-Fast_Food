@@ -89,6 +89,7 @@ export default function CardProduct({id, name, image,price, description}) {
       </Link>
       <CardActions disableSpacing>
         <h3>$ {price}</h3>
+        <Link to={`/AdmProdDetail/${id}`}>Editar</Link>
       <IconButton onClick={() => handleAddCart()}>
         <AddShoppingCartIcon color="secondary" />
       </IconButton>

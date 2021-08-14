@@ -4,12 +4,13 @@ import { useDispatch, useSelector} from "react-redux";
 import useStyles from './UpdateProdStyles';
 
 const Form = (props) => {
+  console.log(props)
   const dispatch = useDispatch();
   const classes = useStyles();
-  const _id = useSelector((state) => state.searchProducts._id)
+  //const id = props.match.params.id; 
+  //const _id = useSelector((state) => state.searchProducts._id)
 
-  const [input, setInput] = useState({
-    _id: _id,  
+  const [input, setInput] = useState({     
     name: "",
     type: "",
     identifier: "",
