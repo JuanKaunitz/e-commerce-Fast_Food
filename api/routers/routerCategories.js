@@ -5,7 +5,7 @@ const router = express.Router();
 //create categories
 router.post('/', categoryControllers.createNewCategory);
 
-router.post('/type', categoryControllers.addTypeCategory);
+
 //get all categories
 router.get('/', categoryControllers.getAllCategories);
 //update category
