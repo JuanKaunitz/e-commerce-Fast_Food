@@ -1,7 +1,6 @@
 import React/* , {useState, useEffect}  */ from 'react';
 import { useSelector, useDispatch} from 'react-redux';
-import { Link } from 'react-router-dom';
-import { searchQueryProducts,deleteProduct } from "../../Redux/actions/actions";
+import { deleteProduct } from "../../Redux/actions/actions";
 import CardAdmin from './CardAdmin';
 import Grid from "@material-ui/core/Grid";
 //import './EveryProducts.css'

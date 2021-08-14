@@ -169,13 +169,13 @@ export const updateOrderFinal = (order) => (dispatch) => {
 }
 
 //Obtengo lista de cliebtes(register).
-export const allUsers = (user) => async (dispatch) => {
+export const allUsers = () => async (dispatch) => {
     try {
-        const res = await axios.get('http://localhost:5001/food/api/user', user);
-        console.log('ALL USER: ', res.data)
+        const res = await axios.get('http://localhost:5001/food/api/user');
+        console.log('ALL USER: ', res.data.users)
         dispatch({
            type: ALL_USERS,
-           payload: res.data
+           payload: res.data.users
        });
    } catch (err) {
     console.log(err)

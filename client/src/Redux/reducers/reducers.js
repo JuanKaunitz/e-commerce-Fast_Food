@@ -14,6 +14,7 @@ import {
   NEW_USER,
   CLEAR_SEARCH,
   ALL_USERS,
+  EDIT_PRODUCT
   /* ASC,
   DESC */  
 } from '../constants'
@@ -40,7 +41,8 @@ const initialState = {
       totalProductos: '',
       order: [],
     },
-  createNewUser: {}
+  createNewUser: {},
+  editProduct:{}
 }
 
 const rootReducer = (state = initialState, action) => {
@@ -122,12 +124,18 @@ const rootReducer = (state = initialState, action) => {
           ...state,
           order: action.payload
         }  
-
+      
       case NEW_USER:
         return {
           ...state,
           createNewUser: action.payload
-        }  
+        } 
+
+      case EDIT_PRODUCT: 
+      return{
+        ...state,
+        editProduct:action.payload
+      }
 
     default:
       return state;
