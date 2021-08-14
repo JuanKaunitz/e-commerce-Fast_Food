@@ -9,7 +9,8 @@ import {
     CATEGORY_NAME,
     UPDATE_CART,
     LOGIN_CLIENT,
-    NEW_USER
+    NEW_USER,
+    UPDATE_ORDER_FINAL
 } from '../constants'
 
 import dotenv from 'dotenv'
@@ -144,7 +145,7 @@ export const authUser =  (user) => async (dispatch) => {
 };  
 
 
-//ACTUALIZAR CARRITO
+//ACTUALIZAR CARRITO DE CUALQUIER USUARIO
 export const updateCart = (order) => (dispatch) => {
 
     dispatch({
@@ -154,15 +155,19 @@ export const updateCart = (order) => (dispatch) => {
     
 }
 
-//ENVIO DE ORDEN DE COMPRA DE CARRITO
-export const updateCartOrder = (order) => (dispatch) => {
-    
+//ACTUALIZAR ORDEN FINAL DEL USUARIO LOGUEADO
+export const updateOrderFinal = (order) => (dispatch) => {
+    dispatch({
+        type: UPDATE_ORDER_FINAL,
+        payload: order
+    });
 }
 
 //Crear nuevo usuario(register).
 export const newUser = (user) => async (dispatch) => {
     try {
         const res = await axios.post('http://localhost:5001/food/api/user', user);
+        console.log('NEW USER: ', res.data)
         dispatch({
            type: NEW_USER,
            payload: res.data

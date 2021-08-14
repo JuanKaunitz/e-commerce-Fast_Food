@@ -9,7 +9,7 @@ import AddShoppingCartIcon from '@material-ui/icons/AddShoppingCart';
 import IconButton from '@material-ui/core/IconButton';
 import { Link } from 'react-router-dom';
 import {updateCart} from '../../Redux/actions/actions';
-import {addCarts}  from '../cart/addCarts.js';
+import {addCarts, mergeCart, sumaPrecioTotal, sumaCantidadTotal}  from '../cart/utilsCarts.js';
 
 
 const useStyles = makeStyles((theme) => ({
@@ -28,14 +28,17 @@ const useStyles = makeStyles((theme) => ({
   headerTitle: {
     color:'black',
     textDecoration:'none',
-  }, 
+  },
+  color:{
+    color:"white"
+  }
   
 }));
 
 export default function CardProduct({id, name, image,price, description}) {
 
   const dispatch = useDispatch();
-  const token = useSelector(state => state.clientToken);
+  const client = useSelector(state => state.client);
 
   const classes = useStyles();
 
@@ -59,23 +62,27 @@ export default function CardProduct({id, name, image,price, description}) {
   }*/
 
   function handleAddCart() {
-    /*if(token){
-      dispatch(orderUser(token)); //pido al back el carrito del usuario
-      let orderBack = useSelector(state => state.orderBack);
-      const res = addCarts(detail, token);
-      const order = orderBack.concat(res);
-      localStorage.setItem('token', JSON.stringify(order));
+    console.log("CLIENT", client)
+    /*if(client.token){
+      dispatch(orderUser(client.user._id)); //pido al back el carrito del usuario
+      const cart = addCarts(detail, true);
+      const orderBack = useSelector(state => state.orderBack);
+      const order = mergeCart(cart, orderBack);
+      const precioTotal = sumaPrecioTotal(order);
+      const totalProductos = sumaCantidadTotal(order);
+      localStorage.setItem('order', JSON.stringify(order));
       dispatch(updateCart(order)); //actualizo el carrito de redux
-      dispatch(updateOrderUser(order)); //guardo la nueva orden del carrito
-    }*/
-    const res = addCarts(detail);
-    const precios = res.map(e =>  e.count);
-    var suma = 0;
-    for(let i = 0; i < precios.length; i++){
-        suma = suma + parseInt(precios[i]);
-    }
-    console.log("TOTAL", suma);
-    dispatch(updateCart(res));
+      dispatch(updateOrderFinal({
+          clientId: client.user._id,
+          token: client.token,
+          precioTotal: precioTotal,
+          totalProductos: totalProductos,
+          order: order,
+        })); //guardo la nueva orden del carrito
+    }else {*/
+      const cart = addCarts(detail, false);
+      dispatch(updateCart(cart));
+    //}
   }
 
   return (
@@ -88,9 +95,9 @@ export default function CardProduct({id, name, image,price, description}) {
         />
       </Link>
       <CardActions disableSpacing>
-        <h3>$ {price}</h3>
+        <h2 className={classes.color}>$ {price}</h2>
       <IconButton onClick={() => handleAddCart()}>
-        <AddShoppingCartIcon color="secondary" />
+        <AddShoppingCartIcon className={classes.color} />
       </IconButton>
       </CardActions>
     </Card>

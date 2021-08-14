@@ -10,7 +10,8 @@ import {
   CATEGORY_NAME,
   UPDATE_CART,
   LOGIN_CLIENT,
-  NEW_USER
+  NEW_USER,
+  UPDATE_ORDER_FINAL
   /* ASC,
   DESC */  
 } from '../constants'
@@ -104,6 +105,12 @@ const rootReducer = (state = initialState, action) => {
         return {
           ...state,
           order: action.payload
+        }
+
+      case UPDATE_ORDER_FINAL:
+        return{
+          ...state,
+          orderFinal: action.payload
         }
 
       case NEW_USER:

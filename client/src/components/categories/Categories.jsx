@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { useSelector } from "react-redux";
 import Grid from "@material-ui/core/Grid";
 import { makeStyles } from "@material-ui/core/styles";
@@ -13,6 +13,9 @@ const useStyles = makeStyles((theme) => ({
     width:'80%',
 
   },
+  color:{
+    color:"white"
+  }
 
 }));
 
@@ -20,7 +23,8 @@ const Categories = () => {
   const categoryName = useSelector((state) => state.categoryName);
   const getAll = useSelector((state) => state.getProducts);
   const [page, setPage] = useState(0);
-
+  const [type, setType] = useState(" ");
+  
   let filter1 = getAll.filter((product) => {
     const categoryName1 = product.categories.map((category) => {
       //console.log('CATEGORYNAME: ', categoryName)
@@ -30,6 +34,24 @@ const Categories = () => {
     return categoryName1 == categoryName;
     
   });
+  
+  const [filtro, setFiltro] = useState(filter1)
+
+  useEffect(() => {
+    if(type === " "){
+      return setFiltro(filter1);
+    }
+    let tipos = getAll.filter(e => {
+      let tipo = e.description;
+      console.log("TIPO", tipo)
+      if(tipo === undefined){ return }
+      if(tipo.toLowerCase().includes(type.toLowerCase())){
+        return e;
+      }
+    });
+    setFiltro(tipos)
+  },[type]);
+
   function handlePrev() {
     if (page > 0) {
       return setPage(page - 1);
@@ -38,7 +60,7 @@ const Categories = () => {
   }
 
   function handleNext() {
-    let pageMax = Math.ceil(getAll.length / 8 - 1);
+    let pageMax = Math.ceil(filtro.length / 8 - 1);
     if (pageMax < 0) {
       return setPage(0);
     }
@@ -52,10 +74,23 @@ const Categories = () => {
 
   return (
     <div>
+      <div>
+        <h2 className={classes.color}>filtro por tipo</h2>
+        <select onClick={e => setType(e.target.value)}>
+          <option value=" "></option>
+          <option value="pollo">Pollo</option>
+          <option value="carne">Carne</option>
+          <option value="queso">Queso</option>
+          <option value="milanesa">Milanesa</option>
+          <option value="lomo">Lomo</option>
+          <option value="lechuga">Verdura</option>
+          <option value="Papas fritas">Papas fritas</option>
+        </select>
+      </div>
       <Order />
       <Grid container className={classes.root} spacing={2}>
-        {filter1 ? (
-          filter1.slice(page * 8, page * 8 + 8).map((product) => (
+        {filtro ? (
+          filtro.slice(page * 8, page * 8 + 8).map((product) => (
             <Grid item key={product._id} xs={3}>
               <CardProduct
                 id={product._id}
@@ -77,7 +112,7 @@ const Categories = () => {
         <button
           value="next"
           onClick={handleNext}
-          disabled={filter1.slice(page * 8, page * 8 + 8).length < 8}
+          disabled={filtro.slice(page * 8, page * 8 + 8).length < 8}
         >
           Next
         </button>

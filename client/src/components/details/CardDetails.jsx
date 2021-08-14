@@ -12,7 +12,7 @@ import AddShoppingCartIcon from '@material-ui/icons/AddShoppingCart';
 import HourglassEmptyIcon from '@material-ui/icons/HourglassEmpty';
 
 import {getById, updateCart} from '../../Redux/actions/actions';
-import {addCarts}  from '../cart/addCarts.js';
+import {addCarts}  from '../cart/utilsCarts.js';
 
 
 const useStyles = makeStyles((theme) => ({
