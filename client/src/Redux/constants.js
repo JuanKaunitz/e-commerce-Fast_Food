@@ -10,11 +10,14 @@ const HIGHER_PRICE = "startHighestPrice";
 const ASC = "ASC";
 const DESC = "DESC";
 const CATEGORY_NAME = "CATEGORY_NAME";
-const LOADING = 'LOADING';
 const UPDATE_CART = "UPDATE_CART";
 const LOGIN_CLIENT = "LOGIN_CLIENT";
 const NEW_USER = "NEW_USER";
-const CLEAR_SEARCH =  "CLEAR_SEARCH";
+const UPDATE_ORDER_FINAL = "UPDATE_ORDER_FINAL";
+const EDIT_PRODUCT = "EDIT_PRODUCT";
+const TOTAL_CARRITO = "TOTAL_CARRITO";
+const ALL_USERS = "ALL_USERS";
+const LOADING = "LOADING"
 
 export {
     GET_ALL_PRODUCTS,
@@ -29,9 +32,12 @@ export {
     ASC,
     DESC,    
     CATEGORY_NAME,
-    LOADING,
-    LOGIN_CLIENT,    
-    UPDATE_CART,    
-    NEW_USER,    
-    CLEAR_SEARCH
+    UPDATE_CART,
+    LOGIN_CLIENT,
+    NEW_USER,
+    UPDATE_ORDER_FINAL,
+    EDIT_PRODUCT,
+    TOTAL_CARRITO,
+    ALL_USERS,
+    LOADING
 }

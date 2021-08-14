@@ -1,23 +1,19 @@
 import React/* , {useState, useEffect}  */ from 'react';
 import { useSelector, useDispatch} from 'react-redux';
 import { Link } from 'react-router-dom';
-import { searchQueryProducts } from "../../Redux/actions/actions";
-import './EveryProducts.css'
+import { searchQueryProducts,deleteProduct } from "../../Redux/actions/actions";
+import CardAdmin from './CardAdmin';
+import Grid from "@material-ui/core/Grid";
+//import './EveryProducts.css'
 
 export default function EveryProducts() {    
+    const dispatch = useDispatch(); 
     const getAll = useSelector((state) => state.allProducts);
-    const producto = useSelector((state) => state.searchProducts)
-    const dispatch = useDispatch();
-    /* const [ name, setName ] = useState('') */
+    
 
-
-    /* useEffect(() => {
-       searchProduct(name);
-    })
- */
-    function searchProduct(name) {
-        dispatch(searchQueryProducts(name));        
-      } 
+    function handleDeleteProduct(id){
+        dispatch(deleteProduct(id))
+    }
 
     return (
         <div className='list'>
@@ -34,19 +30,13 @@ export default function EveryProducts() {
             
                        
             {
-                producto.length !== 0? producto.map((e) => 
-                <div >
-                    <ol>Name: {e.name} <br></br>  Price: {e.price}<br></br> image: {e.image}<br></br> type: {e.type}<br></br> identifier: {e.identifier}<br></br>Stock:  {e.stock}<br></br>Description: {e.description}<br></br>Available: {e.available}  
-                    </ol>                   
-                </div>
-                ) 
-                :
                 getAll.map((e) =>
-                <div>
-                     <button onClick={() =>[ searchProduct(e.name)]}> {e.name}</button>                     
-                        <ol>Price: {e.price}<br></br> image: {e.image}<br></br> type: {e.type}<br></br> identifier: {e.identifier}<br></br>Stock:  {e.stock}<br></br>Description: {e.description}<br></br>Available: {e.available} </ol>
-                        <Link to={`/AdmProdDetail/${e._id}`}>Editar</Link>
-                </div>
+                <Grid item key={e._id} xs={12} >
+                  <CardAdmin  name={e.name} id={e._id} image={e.image} price={e.price}
+                    avalilable= {e.available} stock={e.stock} type={e.type}
+                    description={e.description} identifier={e.identifier}   
+                    deleteCart={handleDeleteProduct} />
+                </Grid>
                 )
             }               
             </div>

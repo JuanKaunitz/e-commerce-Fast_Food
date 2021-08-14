@@ -1,16 +1,13 @@
 import React, { useState} from "react";
-import { getUpdate } from "../../Redux/actions/actions";
-import { useDispatch, useSelector} from "react-redux";
-import useStyles from './UpdateProdStyles';
+import { createProduct } from "../../Redux/actions/actions";
+import { useDispatch} from "react-redux";
+import useStyles2 from './styles2';
 
-const Form = (props) => {
-  console.log(props)
+const NewProduct = (props) => {
   const dispatch = useDispatch();
-  const classes = useStyles();
-  //const id = props.match.params.id; 
-  //const _id = useSelector((state) => state.searchProducts._id)
+  const classes = useStyles2();
 
-  const [input, setInput] = useState({     
+  const [input, setInput] = useState({
     name: "",
     type: "",
     identifier: "",
@@ -20,15 +17,15 @@ const Form = (props) => {
     stock: true,
     categories: [],
   });
-  const updateProduct = () => {
-    dispatch(getUpdate( input));
+  const saveProduct = () => {
+    dispatch(createProduct(input));
   };
 
   const handleSubmit = (e) => {
     e.preventDefault();
     setInput(input);
-    updateProduct();
-    //props.history.push("/AdminPanel");
+    saveProduct();
+    props.history.push("/");
   };
 
   const handleInputChange = function (e) {
@@ -40,7 +37,7 @@ const Form = (props) => {
 
   return (
     <div className={classes.form_content}>
-      <h1>Update your products</h1>
+      <h1>Create your own product</h1>
       <form onSubmit={handleSubmit}>
         <div className={classes.form_group}>
        
@@ -141,11 +138,11 @@ const Form = (props) => {
 
               </div>    */}
         <button className={classes.btn_save} type="submit">
-          UPDATE
+          CREATE
         </button>
       </form>
     </div>
   );
 };
 
-export default Form;
+export default NewProduct;

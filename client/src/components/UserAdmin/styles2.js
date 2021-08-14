@@ -1,6 +1,6 @@
 import {makeStyles} from '@material-ui/core';
 
-const useStyles = makeStyles(()=>({
+const useStyles2 = makeStyles(()=>({
    form_content:{
     maxWidth:1024,
     paddingLeft:80,
@@ -36,4 +36,4 @@ const useStyles = makeStyles(()=>({
     
 }));
 
-export default useStyles;
+export default useStyles2;

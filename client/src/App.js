@@ -9,9 +9,9 @@ import CardDetails from "./components/details/CardDetails.jsx";
 import Categories from "./components/categories/Categories.jsx";
 import Form from "./components/Form/Form.jsx";
 import FormNav from "./components/LogForm/FormNav.jsx";
-import "./App.css";
 import AdminPanel from "./components/UserAdmin/AdminPanel.jsx";
-import AdmProdDetail from "./components/UserAdmin/ProductDetail.jsx"
+import AdminProductDetail from "./components/UserAdmin/ProductDetail.jsx"
+import "./App.css";
 
 function App() {
   return (
@@ -26,8 +26,8 @@ function App() {
         <Route exact path="/categories" component={Categories} />
         <Route exact path="/register" component={Register} />
         <Route exact path="/formregister" component={FormNav} />
-        <Route exact path="/AdminPanel" component={AdminPanel} />
-        <Route exact path="/AdmProdDetail/:id" component={AdmProdDetail} />        
+        <Route exact path="/adminPanel" component={AdminPanel} />
+        <Route exact path="/admProdDetail/:id" component={AdminProductDetail} />        
       </BrowserRouter>
     </div>
   );

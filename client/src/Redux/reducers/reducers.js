@@ -12,7 +12,8 @@ import {
   UPDATE_CART,
   LOGIN_CLIENT,
   NEW_USER,
-  CLEAR_SEARCH
+  CLEAR_SEARCH,
+  ALL_USERS,
   /* ASC,
   DESC */  
 } from '../constants'
@@ -28,6 +29,7 @@ const initialState = {
   loading: false,
   allCategories : [],
   categoryName: '',
+  clients:[],
   client: {},
   order:[],
   clientToken: {},
@@ -68,12 +70,7 @@ const rootReducer = (state = initialState, action) => {
         searchProducts: action.payload,
         loading: true
       }
-    
-    case CLEAR_SEARCH:
-      return {
-        ...state, 
-        searchProducts: action.payload,
-      }
+        
  
     case GET_CATEGORIES:
     return {
@@ -119,6 +116,12 @@ const rootReducer = (state = initialState, action) => {
           ...state,
           order: action.payload
         }
+
+      case ALL_USERS:
+        return {
+          ...state,
+          order: action.payload
+        }  
 
       case NEW_USER:
         return {

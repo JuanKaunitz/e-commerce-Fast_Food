@@ -7,13 +7,13 @@ import {
     DELETE_PRODUCT,
     GET_CATEGORIES,
     CATEGORY_NAME,
-    LOADING,
-    LOGIN_CLIENT,    
     UPDATE_CART,
+    LOGIN_CLIENT,
     NEW_USER,
-    CLEAR_SEARCH,
-    //REMOVE_CART,    
-     
+    UPDATE_ORDER_FINAL,
+    EDIT_PRODUCT,
+    TOTAL_CARRITO,
+    ALL_USERS
 } from '../constants'
 
 import dotenv from 'dotenv'
@@ -50,21 +50,6 @@ export const searchQueryProducts = (name) => async (dispatch) => {
     }
  };
 
- //borra la busqueda de productos Admin
-
- export const clearSearch = (reset) => async (dispatch) => {
-    try {
-        //const res = await axios.get(`${URL}/food/api/products/search/${name}`);
-        console.log(reset)
-        dispatch({            
-            type: CLEAR_SEARCH, 
-            payload: reset
-        });
-    } catch (err) {
-        console.log(err)
-    }
- };
-
 //Obteniendo productos por ID.
 export const getById = (id) => async (dispatch) => {
     try {
@@ -92,9 +77,10 @@ export const getById = (id) => async (dispatch) => {
  };
 
  //Actualizando producto.
- export const getUpdate = (input) => async (dispatch) => {
+ export const getUpdate = (id) => async (dispatch) => {
     try {        
-        const res = await axios.get(`${URL}/food/api/${input._id}/:${input}`);  
+        //const res = await axios.put(`${URL}/food/api/${id}`); 
+        const res = await axios.put(`http://localhost:5001/food/api/${id}`);
         dispatch({
             type: UPDATE_PRODUCT,
             payload: res.data
@@ -106,9 +92,10 @@ export const getById = (id) => async (dispatch) => {
  };
 
  //Borrando un producto.
- export const deleteProductos = (id) => async (dispatch) => {
+ export const deleteProduct = (id) => async (dispatch) => {
      try {
-         const res = await axios.get(`${URL}/food/api/${id}`);
+         //const res = await axios.delete(`${URL}/food/api/${id}`);
+         const res = await axios.delete(`http://localhost:5001/food/api/${id}`);
          dispatch({
              type: DELETE_PRODUCT,
              payload: res.data
@@ -147,17 +134,7 @@ export const categoryName = (name) => (dispatch) => {
     })    
 };
 
-
-export const loadingFalse = () => (dispatch) => {  
-    // console.log("name", name)    
-    dispatch({
-        type: LOADING,
-        payload: false        
-    })    
-};
-
 //Autenticación de usuario.  
-
 export const authUser =  (user) => async (dispatch) => {
     try {
         const client = await axios.post(`${URL}/food/api/auth-sesion`, user);
@@ -172,24 +149,44 @@ export const authUser =  (user) => async (dispatch) => {
     }
 };  
 
-//ACTUALIZAR CARRITO
+
+//ACTUALIZAR CARRITO DE CUALQUIER USUARIO
 export const updateCart = (order) => (dispatch) => {
+
     dispatch({
         type: UPDATE_CART,
         payload: order
-    })
-
-}   
-
-//ENVIO DE ORDEN DE COMPRA DE CARRITO
-export const shoppingCart = (order) => (dispatch) => {
+    });
     
 }
+
+//ACTUALIZAR ORDEN FINAL DEL USUARIO LOGUEADO
+export const updateOrderFinal = (order) => (dispatch) => {
+    dispatch({
+        type: UPDATE_ORDER_FINAL,
+        payload: order
+    });
+}
+
+//Obtengo lista de cliebtes(register).
+export const allUsers = (user) => async (dispatch) => {
+    try {
+        const res = await axios.get('http://localhost:5001/food/api/user', user);
+        console.log('ALL USER: ', res.data)
+        dispatch({
+           type: ALL_USERS,
+           payload: res.data
+       });
+   } catch (err) {
+    console.log(err)
+  }
+};
 
 //Crear nuevo usuario(register).
 export const newUser = (user) => async (dispatch) => {
     try {
         const res = await axios.post('http://localhost:5001/food/api/user', user);
+        console.log('NEW USER: ', res.data)
         dispatch({
            type: NEW_USER,
            payload: res.data
@@ -199,3 +196,24 @@ export const newUser = (user) => async (dispatch) => {
   }
 };
 
+//recuperar el producto de la api para edicion
+export const getProductById = (id) => async(dispatch)=>{
+    try{
+        const product = await axios.get(`${URL}/food/api/products/${id}`);
+        console.log("PRODUCT DATA EDIT",product.data.product)
+        dispatch({
+            type:EDIT_PRODUCT,
+            payload:product.data.product
+        })
+    }catch(err){
+        console.log(err)
+    }
+}
+
+
+export const totalProductosCarrito = (total) => (dispatch) => {
+    dispatch({
+        type: TOTAL_CARRITO,
+        payload: total
+    })
+}

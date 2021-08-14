@@ -1,11 +1,13 @@
 import React, { useEffect, useState } from 'react';
 import { useDispatch } from 'react-redux';
-import { getAllProducts, clearSearch } from "../../Redux/actions/actions";
-import Form from '../Form/Form';
-import UpdateProd from './UpdateProd';
+import { getAllProducts} from "../../Redux/actions/actions";
+import { NavLink } from 'react-router-dom';
+//import Form from '../Form/Form';
+//import UpdateProd from './UpdateProd';
 import './AdminPanel.css';
+import Drawer2 from './Drawer';
 import EveryProducts from './EveryProducts';
-import DeleteProducts from './DeleteProducts';
+//import DeleteProducts from './DeleteProducts';
 
 export default function AdminPanel() {
     const dispatch = useDispatch(); 
@@ -17,8 +19,13 @@ export default function AdminPanel() {
       }, [dispatch]);
 
     function goBack() {
-        dispatch(clearSearch(reset));       
+        //dispatch(clearSearch(reset));       
     }  
+
+    function edit(value){
+      <NavLink to={value}>
+      </NavLink>
+    }
     
     return (
         <div className='list'>
@@ -36,19 +43,17 @@ export default function AdminPanel() {
             <button onClick={(e) => goBack()}>Go back</button>
             <div className="select">
                 <label className="order">Drawer: </label>
-                <select name="slct" id="slct" /* onChange={onOrderChange} */>
-                    <option defaultValue value="Products">All your products</option>                   
-                    <option value="startLowerPrice">Categories</option>
-                    <option value="startHighestPrice">Types</option>
-                    <option value="DESC">Clients </option>                    
+                <select onClick={(e) => edit(e.target.value)} >
+                    <option value=" "> </option>
+                    <option value="/newProduct">New Product</option> 
+                    <option value="/admProdDetail/:id">Edit Product</option>
+                    <option value="/editCategories">Categories</option>
+                    <option value="/editClient">Clients </option>                    
                 </select>
             </div>
-            <Form/>
-            <UpdateProd/>
-            <DeleteProducts/>
+            
             <EveryProducts/>
         </div>
     )
     
 }
-
