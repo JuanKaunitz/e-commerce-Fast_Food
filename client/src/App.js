@@ -26,6 +26,7 @@ function App() {
         <Route exact path="/categories" component={Categories} />
         <Route exact path="/register" component={Register} />
         <Route exact path="/formregister" component={FormNav} />
+        <Route exact path='/https://www.linkedin.com/in/facundo-duartes-dev/'/>
       </BrowserRouter>
     </div>
   );
