@@ -1,10 +1,8 @@
 import React, { useState } from "react";
 import { useDispatch } from "react-redux";
 import { authUser } from "../../Redux/actions/actions";
-import GoogleLogin from "react-google-login";
-// import { useGoogleLogin } from 'react-google-login'
-// import { GoogleLogout } from "react-google-login";
-// import { useGoogleLogout } from 'react-google-login'
+import styles1 from "./styles1.module.css";
+
 
 export function validate(input) {
   let errors = {};
@@ -28,47 +26,6 @@ const FormLogin = () => {
     email: "",
     password: "",
   });
-  
-  
-
-  // const { signIn, loaded } = useGoogleLogin({
-  //   onSuccess,
-  //   onAutoLoadFinished,
-  //   clientId,
-  //   cookiePolicy,
-  //   loginHint,
-  //   hostedDomain,
-  //   autoLoad,
-  //   isSignedIn,
-  //   fetchBasicProfile,
-  //   redirectUri,
-  //   discoveryDocs,
-  //   onFailure,
-  //   uxMode,
-  //   scope,
-  //   accessType,
-  //   responseType,
-  //   jsSrc,
-  //   onRequest,
-  //   prompt
-  // })
-
-
-  // const { signOut, loaded } = useGoogleLogout({
-  //   jsSrc,
-  //   onFailure,
-  //   clientId,
-  //   cookiePolicy,
-  //   loginHint,
-  //   hostedDomain,
-  //   fetchBasicProfile,
-  //   discoveryDocs,
-  //   uxMode,
-  //   redirectUri,
-  //   scope,
-  //   accessType,
-  //   onLogoutSuccess
-  // })
 
   const [errors, setErrors] = useState({});
 
@@ -95,64 +52,39 @@ const FormLogin = () => {
       password: "",
     });
   };
-
-  const responseGoogle = (response) => {
-    console.log(response);
-    // history.push('/home')
-    console.log(response.profileobj);
-  };
+  
 
   return (
     <div>
-      <form onSubmit={handleSubmit}>
+      <form className={styles1.form} onSubmit={handleSubmit}>
+        <text className={styles1.texto}>Formulario de Loggin</text>
         <div>
-          <label>Email:</label>
+          <label className={styles1.label}>Email:</label>
           <input
-            className={`${errors.email && "danger"}`}
+            className={styles1.input1}
             type="email"
             name="email"
+            className={styles1.field}
             onChange={handleInputChange}
             value={input.email}
           />
           {errors.username && <p className="danger">{errors.email}</p>}
         </div>
         <div>
-          <label>Password:</label>
+          <label className={styles1.label}>Password:</label>
           <input
-            className={`${errors.password && "danger"}`}
+            className={styles1.input1}
             type="password"
             name="password"
+            className={styles1.field1}
             onChange={handleInputChange}
             value={input.password}
           />
           {errors.password && <p className="danger">{errors.password}</p>}
         </div>
-        <input type="submit" value="Submit" />
-        <br /> <br />
-          
-            <div className="Google-login">
-          <GoogleLogin
-            clientId="580821821792-1e9i4f7oh9bps02f5qoqs9b0svvur83c.apps.googleusercontent.com"
-            buttonText="Login"
-            onSuccess={responseGoogle}
-            onFailure={responseGoogle}
-            cookiePolicy={"single_host_origin"}
-            isSignedIn={false}
-            
-          />
-          </div>
-          
-          {/* <div className = "Google-logout">
-            <GoogleLogout
-              clientId="580821821792-1e9i4f7oh9bps02f5qoqs9b0svvur83c.apps.googleusercontent.com"
-              buttonText="Logout"
-              onLogoutSuccess={responseGoogle}
-              isSignedIn={true}
-              onLogoutSuccess={logout}
-              />
-          </div>
-           */}
+        <input className={styles1.btnregister} type="submit" value="Submit" />
       </form>
+      
     </div>
   );
 };
