@@ -6,7 +6,7 @@ const DeleteProducts =  () => {
 
 const dispatch = useDispatch()
 const producto = useSelector((state) => state.searchProducts);
-console.log('PRODUCTO._ID: ',producto[0]._id)
+//console.log('PRODUCTO._ID: ',producto[0]._id)
 
 function delProduct() {
     producto.map((e) => 
