@@ -26,6 +26,12 @@ const query = {stock:true}
 }
 };
 
+exports.getProductById = async(req,res,next)=>{
+  const {id} = req.params.id
+  const product = await Product.findOne({_id:id})
+  res.json(product)
+}
+
 //mostrar un producto 
 exports.showProduct = async(req,res,next)=>{
   const product = await Product.findById(req.params.id);
