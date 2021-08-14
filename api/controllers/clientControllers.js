@@ -13,11 +13,11 @@ exports.createNewClient = async (req, res, next) => {
     });
   } catch (error) {
     console.log(error);
-    res.status(400).json({ msg: "Error" });
+    res.status(400).json({ msg: "Error no se pudo crear el cliente" });
     next();
   }
 };
-exports.showClient = async (req, res, next) => {
+exports.getAllClient = async (req, res, next) => {
   try {
     const clients = await Client.find({});
     res.json(clients);
@@ -25,5 +25,39 @@ exports.showClient = async (req, res, next) => {
     console.log(error);
     res.status(400).json({ msg: "cliente no encontrado" });
     rext();
+  }
+};
+exports.showClientById = async (req, res, next) => {
+  const client = await Client.findById(req.params.id);
+  if (!client) {
+    res.status(400).json({ msg: "Ese Cliente no existe" });
+    return next();
+  }
+  res.json({ msg: "Cliente encontrado", client });
+};
+
+exports.updateClient = async (req, res, next) => {
+  try {
+    let client = await Client.findOneAndUpdate(
+      { _id: req.params.id },
+      req.body,
+      {
+        new: true,
+      }
+    );
+    res.json(client);
+  } catch (error) {
+    console.log(error);
+    return next();
+  }
+};
+
+exports.deleteClient = async (req, res, next) => {
+  try {
+    await Client.findOneAndDelete({ _id: req.params.id });
+    res.json({ msg: "Cliente  eliminado" });
+  } catch (error) {
+    console.log(error);
+    return next();
   }
 };
