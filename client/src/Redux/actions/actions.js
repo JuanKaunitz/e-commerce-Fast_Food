@@ -8,10 +8,12 @@ import {
     GET_CATEGORIES,
     CATEGORY_NAME,
     LOADING,
-    LOGIN_CLIENT,
-    ADD_CART,
-    REMOVE_CART,    
     LOGIN_CLIENT,    
+    UPDATE_CART,
+    NEW_USER,
+    CLEAR_SEARCH,
+    //REMOVE_CART,    
+     
 } from '../constants'
 
 import dotenv from 'dotenv'
@@ -48,6 +50,21 @@ export const searchQueryProducts = (name) => async (dispatch) => {
     }
  };
 
+ //borra la busqueda de productos Admin
+
+ export const clearSearch = (reset) => async (dispatch) => {
+    try {
+        //const res = await axios.get(`${URL}/food/api/products/search/${name}`);
+        console.log(reset)
+        dispatch({            
+            type: CLEAR_SEARCH, 
+            payload: reset
+        });
+    } catch (err) {
+        console.log(err)
+    }
+ };
+
 //Obteniendo productos por ID.
 export const getById = (id) => async (dispatch) => {
     try {
@@ -75,9 +92,9 @@ export const getById = (id) => async (dispatch) => {
  };
 
  //Actualizando producto.
- export const getUpdate = (id) => async (dispatch) => {
+ export const getUpdate = (input) => async (dispatch) => {
     try {        
-        const res = await axios.get(`${URL}/food/api/${id}`);  
+        const res = await axios.get(`${URL}/food/api/${input._id}/:${input}`);  
         dispatch({
             type: UPDATE_PRODUCT,
             payload: res.data
@@ -89,7 +106,7 @@ export const getById = (id) => async (dispatch) => {
  };
 
  //Borrando un producto.
- export const deleteProduct = (id) => async (dispatch) => {
+ export const deleteProductos = (id) => async (dispatch) => {
      try {
          const res = await axios.get(`${URL}/food/api/${id}`);
          dispatch({
@@ -155,26 +172,8 @@ export const authUser =  (user) => async (dispatch) => {
     }
 };  
 
-
-
-//Agregar el carrito.
-
-export const addCart = (id) => async (dispatch) => {
-    try {
-        const res = await axios.get(`http://localhost:5001/food/api/products/${id}`);
-        dispatch({
-            type: ADD_CART,
-            payload: res.data
-        });
-    } catch (err) {
-        console.log(err)
-    }
-};
-
 //ACTUALIZAR CARRITO
 export const updateCart = (order) => (dispatch) => {
-
-
     dispatch({
         type: UPDATE_CART,
         payload: order

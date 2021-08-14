@@ -1,13 +1,15 @@
 import React, { useState} from "react";
-import { createProduct } from "../../Redux/actions/actions";
-import { useDispatch} from "react-redux";
-import useStyles from './styles';
+import { getUpdate } from "../../Redux/actions/actions";
+import { useDispatch, useSelector} from "react-redux";
+import useStyles from './UpdateProdStyles';
 
 const Form = (props) => {
   const dispatch = useDispatch();
   const classes = useStyles();
+  const _id = useSelector((state) => state.searchProducts._id)
 
   const [input, setInput] = useState({
+    _id: _id,  
     name: "",
     type: "",
     identifier: "",
@@ -17,14 +19,14 @@ const Form = (props) => {
     stock: true,
     categories: [],
   });
-  const saveProduct = () => {
-    dispatch(createProduct(input));
+  const updateProduct = () => {
+    dispatch(getUpdate( input));
   };
 
   const handleSubmit = (e) => {
     e.preventDefault();
     setInput(input);
-    saveProduct();
+    updateProduct();
     //props.history.push("/AdminPanel");
   };
 
@@ -37,7 +39,7 @@ const Form = (props) => {
 
   return (
     <div className={classes.form_content}>
-      <h1>Create your own product</h1>
+      <h1>Update your products</h1>
       <form onSubmit={handleSubmit}>
         <div className={classes.form_group}>
        
@@ -138,7 +140,7 @@ const Form = (props) => {
 
               </div>    */}
         <button className={classes.btn_save} type="submit">
-          CREATE
+          UPDATE
         </button>
       </form>
     </div>

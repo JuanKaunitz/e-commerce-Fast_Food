@@ -14,6 +14,7 @@ const LOADING = 'LOADING';
 const UPDATE_CART = "UPDATE_CART";
 const LOGIN_CLIENT = "LOGIN_CLIENT";
 const NEW_USER = "NEW_USER";
+const CLEAR_SEARCH =  "CLEAR_SEARCH";
 
 export {
     GET_ALL_PRODUCTS,
@@ -30,7 +31,7 @@ export {
     CATEGORY_NAME,
     LOADING,
     LOGIN_CLIENT,    
-    UPDATE_CART,
-    LOGIN_CLIENT,
-    NEW_USER
+    UPDATE_CART,    
+    NEW_USER,    
+    CLEAR_SEARCH
 }
