@@ -13,6 +13,7 @@ import HourglassEmptyIcon from '@material-ui/icons/HourglassEmpty';
 
 import {getById, updateCart} from '../../Redux/actions/actions';
 import {addCarts}  from '../cart/addCarts.js';
+import { Link } from 'react-router-dom';
 
 
 const useStyles = makeStyles((theme) => ({
@@ -65,7 +66,6 @@ export default function CardDetails({match}) {
     const res = addCarts(detail);
     dispatch(updateCart(res))
   }
-
   return (
      loading?
         <Card className={classes.root}>
@@ -95,6 +95,7 @@ export default function CardDetails({match}) {
             image={detail.image}
             title="Live from space album cover"
           />
+          <Link to={`/editProduct/${productId.current}`}>Editar</Link>
         </Card>
       : <HourglassEmptyIcon fontSize="large"/>
      

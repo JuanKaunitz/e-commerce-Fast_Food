@@ -9,7 +9,7 @@ const aboutUs = () => {
   return (
     <div  className = 'about'>
       <h1 className = 'h1'>Ecommerce fast food</h1>
-      <p>
+      <p className={classes.color}>
         Somos un grupo de 7 integrantes los cuales nos encontramos cursando el
         bootcamp HENRY en la etapa final denominada 'Proyecto Grupal', la cual
         consiste en crear un Ecommerce con diversas requisitos y
@@ -22,7 +22,7 @@ const aboutUs = () => {
         la barra de busqueda entre otras funcionalidades y por ultimo un usuario
         registrado o la opción de poder regstrarse para poder realizar compras.
       </p>
-      <h1 className = 'h1'>¿Quienes somos?</h1>
+      <h1 className = 'h1'>¿WHO WE ARE?</h1>
       <div className= 'cards'>
        <div className={classes.listItem}>
        <Link  to= 'https://www.linkedin.com/in/jose-alberto-carballo-rojas-31b606165/' target='_blank'>

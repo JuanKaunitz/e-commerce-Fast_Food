@@ -2,7 +2,7 @@
 
 
 <p align="center">
-    <img height="400" src="./assets/fast-food.png"/>
+    <img height="400" src="./assets/fast-food.png"/>te
 </p>
 
 
