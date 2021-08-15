@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { getProductById , getUpdate} from "../../Redux/actions/actions"
 import useStyles from "./styles";
+import { Link } from "react-router-dom"; 
 
 export default function AdminProductDetail(props) {
   const classes = useStyles();
@@ -107,9 +108,11 @@ export default function AdminProductDetail(props) {
             />
           </div>
 
+         <Link to='/adminPanel'>
           <button className={classes.btn_save} type="submit">
             Save
           </button>
+         </Link> 
         </form>
       ) : 
         <p>cargando</p>
