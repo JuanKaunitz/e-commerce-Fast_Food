@@ -10,7 +10,10 @@ import {
     UPDATE_CART,
     LOGIN_CLIENT,
     NEW_USER,
-    UPDATE_ORDER_FINAL
+    UPDATE_ORDER_FINAL,
+    EDIT_PRODUCT,
+    TOTAL_CARRITO,
+    GET_CLIENTS
 } from '../constants'
 
 import dotenv from 'dotenv'
@@ -76,7 +79,8 @@ export const getById = (id) => async (dispatch) => {
  //Actualizando producto.
  export const getUpdate = (id) => async (dispatch) => {
     try {        
-        const res = await axios.get(`${URL}/food/api/${id}`);  
+        //const res = await axios.put(`${URL}/food/api/${id}`); 
+        const res = await axios.put(`http://localhost:5001/food/api/${id}`);
         dispatch({
             type: UPDATE_PRODUCT,
             payload: res.data
@@ -90,7 +94,8 @@ export const getById = (id) => async (dispatch) => {
  //Borrando un producto.
  export const deleteProduct = (id) => async (dispatch) => {
      try {
-         const res = await axios.get(`${URL}/food/api/${id}`);
+         //const res = await axios.delete(`${URL}/food/api/${id}`);
+         const res = await axios.delete(`http://localhost:5001/food/api/${id}`);
          dispatch({
              type: DELETE_PRODUCT,
              payload: res.data
@@ -176,3 +181,25 @@ export const newUser = (user) => async (dispatch) => {
     console.log(err)
   }
 };
+
+//recuperar el producto de la api para edicion
+export const getProductById = (id) => async(dispatch)=>{
+    try{
+        const product = await axios.get(`${URL}/food/api/products/${id}`);
+        console.log("PRODUCT DATA EDIT",product.data.product)
+        dispatch({
+            type:EDIT_PRODUCT,
+            payload:product.data.product
+        })
+    }catch(err){
+        console.log(err)
+    }
+}
+
+
+export const totalProductosCarrito = (total) => (dispatch) => {
+    dispatch({
+        type: TOTAL_CARRITO,
+        payload: total
+    })
+} 

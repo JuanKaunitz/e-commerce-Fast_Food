@@ -10,6 +10,9 @@ import Categories from "./components/categories/Categories.jsx";
 import Form from "./components/Form/Form.jsx";
 import FormNav from "./components/LogForm/FormNav.jsx";
 import "./App.css";
+import AdminPanel from "./components/UserAdmin/AdminPanel.jsx";
+import AdminProductDetail from './components/UserAdmin/AdminProductDetail';
+import NewProduct from "./components/UserAdmin/NewProduct.jsx";
 
 function App() {
   return (
@@ -24,6 +27,9 @@ function App() {
         <Route exact path="/categories" component={Categories} />
         <Route exact path="/register" component={Register} />
         <Route exact path="/formregister" component={FormNav} />
+        <Route exact path="/adminPanel" component={AdminPanel}/>
+        <Route exact path="/admProdDetail/:id" component={AdminProductDetail}/>
+        <Route exact path="/newProduct" component={NewProduct}/>
       </BrowserRouter>
     </div>
   );

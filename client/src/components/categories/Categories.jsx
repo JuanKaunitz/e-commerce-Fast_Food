@@ -14,7 +14,8 @@ const useStyles = makeStyles((theme) => ({
 
   },
   color:{
-    color:"white"
+    color:"white",
+    marginTop:"150px"
   }
 
 }));
@@ -22,28 +23,36 @@ const useStyles = makeStyles((theme) => ({
 const Categories = () => {
   const categoryName = useSelector((state) => state.categoryName);
   const getAll = useSelector((state) => state.getProducts);
+  const categories = useSelector((state) => state.allCategories);
   const [page, setPage] = useState(0);
   const [type, setType] = useState(" ");
+  const [filtro, setFiltro] = useState([]);
+  const [filtro1, setFiltro1] = useState([]);
   
-  let filter1 = getAll.filter((product) => {
-    const categoryName1 = product.categories.map((category) => {
-      //console.log('CATEGORYNAME: ', categoryName)
-      return category.category.name;
+  
+  useEffect(() => {
+    let filter1 = getAll.filter((product) => {
+      const categoryName1 = product.categories.map((category) => {
+        //console.log('CATEGORYNAME: ', categoryName)
+        return category.category.name;
+      });
+      //console.log('CATEGORYNAME1: ', categoryName1)
+      return categoryName1 == categoryName;
+      
     });
-    //console.log('CATEGORYNAME1: ', categoryName1)
-    return categoryName1 == categoryName;
-    
-  });
+    setFiltro(filter1);
+    setFiltro1(filter1);
+
+  },[categoryName])
   
-  const [filtro, setFiltro] = useState(filter1)
 
   useEffect(() => {
-    if(type === " "){
-      return setFiltro(filter1);
+    if(type === "Types"){
+      return setFiltro(filtro1);
     }
     let tipos = getAll.filter(e => {
-      let tipo = e.description;
-      console.log("TIPO", tipo)
+      let tipo = e.type;
+      //console.log("TIPO", tipo)
       if(tipo === undefined){ return }
       if(tipo.toLowerCase().includes(type.toLowerCase())){
         return e;
@@ -51,6 +60,17 @@ const Categories = () => {
     });
     setFiltro(tipos)
   },[type]);
+
+  const categoriesTypes = categories.filter(e => {
+    if(e.name === categoryName){
+      console.log(e.name)
+      console.log(e.types)
+      
+      return e.types
+    }
+  });
+  const types = categoriesTypes[0].types;
+  console.log(types)
 
   function handlePrev() {
     if (page > 0) {
@@ -74,17 +94,16 @@ const Categories = () => {
 
   return (
     <div>
-      <div>
-        <h2 className={classes.color}>filtro por tipo</h2>
+      <div className={classes.color}>
+        <h2 >filtro por tipo</h2>
         <select onClick={e => setType(e.target.value)}>
-          <option value=" "></option>
-          <option value="pollo">Pollo</option>
-          <option value="carne">Carne</option>
-          <option value="queso">Queso</option>
-          <option value="milanesa">Milanesa</option>
-          <option value="lomo">Lomo</option>
-          <option value="lechuga">Verdura</option>
-          <option value="Papas fritas">Papas fritas</option>
+          <option value="Types">Types</option>
+          {
+            types.map(j => (
+                <option value={j.name}>{j.name}</option>
+
+            ))
+          }
         </select>
       </div>
       <Order />

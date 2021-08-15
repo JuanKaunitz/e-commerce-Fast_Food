@@ -11,8 +11,9 @@ import FavoriteIcon from '@material-ui/icons/Favorite';
 import AddShoppingCartIcon from '@material-ui/icons/AddShoppingCart';
 import HourglassEmptyIcon from '@material-ui/icons/HourglassEmpty';
 
-import {getById, updateCart} from '../../Redux/actions/actions';
-import {addCarts}  from '../cart/utilsCarts.js';
+import {getById, updateCart, totalProductosCarrito} from '../../Redux/actions/actions';
+import {addCarts, sumaCantidadTotal}  from '../cart/utilsCarts.js';
+import { Link } from 'react-router-dom';
 
 
 const useStyles = makeStyles((theme) => ({
@@ -63,9 +64,10 @@ export default function CardDetails({match}) {
   //console.log("DETAIL", detail)
   function handleAddCart() {
     const res = addCarts(detail);
+    const cantidadTotal = sumaCantidadTotal(res);
     dispatch(updateCart(res))
+    dispatch(totalProductosCarrito(cantidadTotal))
   }
-
   return (
      loading?
         <Card className={classes.root}>

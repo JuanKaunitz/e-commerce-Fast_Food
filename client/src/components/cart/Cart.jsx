@@ -6,7 +6,7 @@ import CardCart from './CardCart';
 import DeleteIcon from '@material-ui/icons/Delete';
 import Typography from '@material-ui/core/Typography';
 import IconButton from '@material-ui/core/IconButton';
-import {updateCart} from '../../Redux/actions/actions'
+import {updateCart, totalProductosCarrito} from '../../Redux/actions/actions'
 import { deleteCart, sumProduct, resProduct, sumaPrecioTotal, sumaCantidadTotal } from './utilsCarts';
 
 
@@ -42,6 +42,7 @@ const Cart = () => {
     const cantidadTotal = sumaCantidadTotal(delet);
     //console.log("TOTAL", sumaProductos);
     dispatch(updateCart(delet))
+    dispatch(totalProductosCarrito(cantidadTotal))
   }
 
   function handleAdd(id){
@@ -49,6 +50,7 @@ const Cart = () => {
     const cantidadTotal = sumaCantidadTotal(sum);
     //console.log("TOTAL", sumaProductos);
     dispatch(updateCart(sum))
+    dispatch(totalProductosCarrito(cantidadTotal))
   }
 
   function handleRes(id){
@@ -56,11 +58,13 @@ const Cart = () => {
     const cantidadTotal = sumaCantidadTotal(resta);
     //console.log("TOTAL", sumaProductos);
     dispatch(updateCart(resta))
+    dispatch(totalProductosCarrito(cantidadTotal))
   }
 
   function deleteCompleteOrder(){
     localStorage.removeItem('order');
     dispatch(updateCart([]));
+    dispatch(totalProductosCarrito(0));
   }  
 
   const classes = useStyles();

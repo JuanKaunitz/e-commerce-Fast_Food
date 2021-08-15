@@ -8,7 +8,7 @@ import CardActions from '@material-ui/core/CardActions';
 import AddShoppingCartIcon from '@material-ui/icons/AddShoppingCart';
 import IconButton from '@material-ui/core/IconButton';
 import { Link } from 'react-router-dom';
-import {updateCart} from '../../Redux/actions/actions';
+import {updateCart, totalProductosCarrito} from '../../Redux/actions/actions';
 import {addCarts, mergeCart, sumaPrecioTotal, sumaCantidadTotal}  from '../cart/utilsCarts.js';
 
 
@@ -81,7 +81,9 @@ export default function CardProduct({id, name, image,price, description}) {
         })); //guardo la nueva orden del carrito
     }else {*/
       const cart = addCarts(detail, false);
+      const cantidadTotal = sumaCantidadTotal(cart);
       dispatch(updateCart(cart));
+      dispatch(totalProductosCarrito(cantidadTotal))
     //}
   }
 

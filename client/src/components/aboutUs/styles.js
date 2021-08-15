@@ -15,7 +15,8 @@ const UseStyles = makeStyles(() => ({
         mozBorderRadius: '40px 0px 40px 40px',
         borderRadius: '40px 0px 40px 40px',
         marginBottom: '50px',
-        textDecoration: 'none'
+        textDecoration: 'none',
+        backgroundColor: 'white'
        /*  flexDirection: 'column', */
     },
     cards:{
@@ -26,6 +27,9 @@ const UseStyles = makeStyles(() => ({
        /*  justifyContent: 'space-between',  */
         gridTemplateColumns: 'repeat(auto-fill, minmax(min(100%, 30rem), 1fr))'
     },
+    color:{
+        color:"white"
+      }
 })
 )
 

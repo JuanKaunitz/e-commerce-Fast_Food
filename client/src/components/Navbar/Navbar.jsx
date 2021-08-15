@@ -18,6 +18,7 @@ import ChevronRightIcon from "@material-ui/icons/ChevronRight";
 import HomeIcon from "@material-ui/icons/Home";
 import MenuIcon from "@material-ui/icons/Menu";
 import AddShoppingCartIcon from "@material-ui/icons/AddShoppingCart";
+import Typography from '@material-ui/core/Typography';
 import useStyles from "./styles";
 import SerchBar from "../serchbar/SerchBar";
 import { useLocation, Link } from "react-router-dom";
@@ -30,6 +31,7 @@ const Navbar = () => {
   const theme = useTheme();
   const [open, setOpen] = React.useState(false);
   const categories = useSelector((state) => state.allCategories);
+  const totalCarrito = useSelector((state) => state.totalCarrito);
 
   const location = useLocation();
 
@@ -43,6 +45,10 @@ const Navbar = () => {
 
   function handlerCategory(name) {
     dispatch(categoryName(name));
+  }
+
+  function handleType (name){
+    //dispatch(typeName(name));
   }
 
   return (
@@ -75,10 +81,10 @@ const Navbar = () => {
             <div className={classes.toolbarButtons}>
               <NavLink
                 className={classes.MuiButtonLabel}
-                to="/form"
+                to="/adminPanel"
                 activeClassName="active"
               >
-                Form
+                Adim Panel
               </NavLink>
               <IconButton aria-label="add to shopping cart">
                 <NavLink
@@ -86,6 +92,7 @@ const Navbar = () => {
                   to="/cart"
                   activeClassName="active"
                 >
+                <Typography>{totalCarrito}</Typography>
                   <AddShoppingCartIcon />
                 </NavLink>
               </IconButton>
@@ -145,6 +152,8 @@ const Navbar = () => {
                   onClick={() => handlerCategory(e.name)}
                 />
               </Link>
+             
+                
             </ListItem>
           ))}
         </List>
