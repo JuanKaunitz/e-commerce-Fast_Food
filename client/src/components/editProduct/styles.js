@@ -5,6 +5,7 @@ const useStyles = makeStyles(()=>({
     maxWidth:1024,
     paddingLeft:80,
     margin:'auto',
+    marginTop:100,
     height:800,
     backgroundColor:'#c7c9cc29',
     borderRadius:10,

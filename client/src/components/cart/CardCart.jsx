@@ -13,6 +13,14 @@ import ExposurePlus1Icon from '@material-ui/icons/ExposurePlus1';
 const useStyles = makeStyles((theme) => ({
   root: {
     display: 'flex',
+    maxWidth:'80%'
+  },
+  btn_root:{
+    border: '1px solid',
+    height: 40,
+    backgroundColor: 'gray',
+    width:40
+
   },
   content: {
     flex: '1 0 auto',
@@ -23,10 +31,24 @@ const useStyles = makeStyles((theme) => ({
   },
   controls: {
     display: 'flex',
+    flexDirection:'column',
     alignItems: 'center',
     paddingLeft: theme.spacing(1),
     paddingBottom: theme.spacing(1),
   },
+  btn_add:{
+    display: 'flex',
+    alignItems: 'center',
+    backgroundColor: 'bisque',
+    height: 40,
+    width: 110,
+    borderRadius:0,
+    cursor:'pointer'
+  },
+  view_price:{
+    display:'flex',
+    alignItems:'center'
+  }
 }));
 
 export default function CardCart({id, name, image,price,description, count,
@@ -54,25 +76,28 @@ export default function CardCart({id, name, image,price,description, count,
         </CardContent>
       </div>
       <div className={classes.controls}>
-        <Typography variant="subtitle1" color="textSecondary">
+       <div className={classes.view_price}>
+       <Typography variant="subtitle1" color="textSecondary">
          <h2>${price}</h2> 
         </Typography>
-      </div>
       <div>
       <IconButton >
         <DeleteIcon onClick={() => deleteCart(id)}/>
       </IconButton>
       </div>
-      <div>
-        <IconButton >
-          <ExposureNeg1Icon onClick={() => resProduct(id)}/>
-        </IconButton>
+       </div>
+     
+      <div className={classes.btn_add}>
+        <div className={classes.btn_root} onClick={() => resProduct(id)} >
+          <ExposureNeg1Icon  />
+        </div>
         <div>
           <h3>{count}</h3>
         </div>
-        <IconButton >
-          <ExposurePlus1Icon onClick={() => addProduct(id)}/>
-        </IconButton>
+        <div className={classes.btn_root} onClick={() => addProduct(id)}>
+          <ExposurePlus1Icon/>
+        </div>
+      </div>
       </div>
       <div className={classes.controls}>
         <Typography variant="subtitle1" color="textSecondary">

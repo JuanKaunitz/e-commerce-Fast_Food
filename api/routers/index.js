@@ -2,8 +2,9 @@ const express = require("express");
 const routerProducts = require('./routerProduct');
 const routerClients = require('./routerClient');
 const routerUser = require('./routerUser');
-const routerAuth = require('./routerAuth');
+const routerAuth = require('./routerAuth')
 const routerCategories = require('./routerCategories');
+const routerOrder = require('./routerOrder');
 const router = express.Router();
 
 module.exports = () => {
@@ -17,6 +18,8 @@ module.exports = () => {
   router.use("/food/api/client", routerClients);
   //categories
   router.use("/food/api/category", routerCategories);
+  //pedidos
+  router.use("/food/api/order", routerOrder);
   
 
   return router;

@@ -9,7 +9,8 @@ import {
     CATEGORY_NAME,
     UPDATE_CART,
     LOGIN_CLIENT,
-    NEW_USER,
+    NEW_USER,   
+    GET_TYPES,
     UPDATE_ORDER_FINAL,
     EDIT_PRODUCT,
     TOTAL_CARRITO,
@@ -187,7 +188,7 @@ export const allUsers = () => async (dispatch) => {
 //Crear nuevo usuario(register).
 export const newUser = (user) => async (dispatch) => {
     try {
-        const res = await axios.post('http://localhost:5001/food/api/user', user);
+        const res = await axios.post(`${URL}/food/api/user`, user);        
         console.log('NEW USER: ', res.data)
         dispatch({
            type: NEW_USER,
@@ -201,8 +202,7 @@ export const newUser = (user) => async (dispatch) => {
 //recuperar el producto de la api para edicion
 export const getProductById = (id) => async(dispatch)=>{
     try{
-        const product = await axios.get(`${URL}/food/api/products/${id}`);
-        console.log("PRODUCT DATA EDIT",product.data.product)
+        const product = await axios.get(`${URL}/food/api/products/${id}`);        
         dispatch({
             type:EDIT_PRODUCT,
             payload:product.data.product
@@ -212,10 +212,19 @@ export const getProductById = (id) => async(dispatch)=>{
     }
 }
 
+//Acceder a los types de categories.
+export const getTypes = (tipos) => (dispatch) => {
+    dispatch({
+        type: GET_TYPES,
+        payload: tipos
+    });
+}
 
+//SUMA TOTAL DE PRODUCTOS
 export const totalProductosCarrito = (total) => (dispatch) => {
     dispatch({
         type: TOTAL_CARRITO,
         payload: total
     })
 }
+
