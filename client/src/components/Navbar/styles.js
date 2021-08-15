@@ -10,11 +10,12 @@ const useStyles = makeStyles(theme => ({
         flexGrow: 1,
     },
     prueba:{
-      backgroundColor:'#444546'
+      backgroundColor:'black',
+      color:"white"
     },
     MuiButtonLabel:{
-      textDecoration:'none',
       color:'orange',
+      textDecoration:'none',
       fontSize:'20px'
     },
     appBarShift: {
@@ -73,7 +74,7 @@ const useStyles = makeStyles(theme => ({
         borderRadius: theme.shape.borderRadius,
         backgroundColor: alpha(theme.palette.common.white, 0.15),
         '&:hover': {
-          backgroundColor: alpha(theme.palette.common.white, 0.25),
+          backgroundColor: "orange",
         },
         marginRight: theme.spacing(2),
         marginLeft: 0,

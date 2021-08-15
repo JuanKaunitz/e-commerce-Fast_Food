@@ -14,6 +14,7 @@ const UPDATE_CART = "UPDATE_CART";
 const LOGIN_CLIENT = "LOGIN_CLIENT";
 const NEW_USER = "NEW_USER";
 const EDIT_PRODUCT = "EDIT_PRODUCT";
+const GET_TYPES = "GET_TYPES";
 
 export {
     GET_ALL_PRODUCTS,
@@ -31,5 +32,6 @@ export {
     UPDATE_CART,
     LOGIN_CLIENT,
     NEW_USER,
-    EDIT_PRODUCT
+    EDIT_PRODUCT,
+    GET_TYPES
 }

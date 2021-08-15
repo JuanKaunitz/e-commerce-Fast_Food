@@ -1,11 +1,17 @@
-import React, { useState} from "react";
+import React, { useState, useEffect } from "react";
 import { createProduct } from "../../Redux/actions/actions";
-import { useDispatch} from "react-redux";
-import useStyles from './styles';
+import { useDispatch, useSelector } from "react-redux";
+import { getCategories, getTypes } from "../../Redux/actions/actions";
+import styles from "./styles.module.css";
 
 const Form = (props) => {
   const dispatch = useDispatch();
-  const classes = useStyles();
+  const category = useSelector((state) => state.allCategories);
+  const types = useSelector((state) => state.types);
+
+  useEffect(() => {
+    dispatch(getCategories());
+  }, [dispatch]);
 
   const [input, setInput] = useState({
     name: "",
@@ -15,7 +21,6 @@ const Form = (props) => {
     price: "",
     description: "",
     stock: true,
-    categories: [],
   });
   const saveProduct = () => {
     dispatch(createProduct(input));
@@ -35,15 +40,19 @@ const Form = (props) => {
     });
   };
 
+  const handleInputCategory = function (e) {
+    var filtradoCategory = category.filter((el) => el.name === e.target.value);
+    dispatch(getTypes(filtradoCategory[0].types));
+  };
+
   return (
-    <div className={classes.form_content}>
+    <div className={styles.form_content}>
       <h1>Create your own product</h1>
       <form onSubmit={handleSubmit}>
-        <div className={classes.form_group}>
-       
+        <div className={styles.form_group}>
           <label>Name:</label>
           <input
-          className={classes.input_items}
+            className={styles.input_items}
             type="text"
             name="name"
             onChange={handleInputChange}
@@ -52,10 +61,10 @@ const Form = (props) => {
           />
         </div>
 
-        <div className={classes.form_group}>
+        <div className={styles.form_group}>
           <label>Type:</label>
           <input
-          className={classes.input_items}
+            className={styles.input_items}
             type="text"
             name="type"
             onChange={handleInputChange}
@@ -64,22 +73,10 @@ const Form = (props) => {
           />
         </div>
 
-        {/* <div className={classes.form_group}>
-          <label>Identifier:</label>
-          <input
-          className={classes.input_items}
-            type="text"
-            name="identifier"
-            onChange={handleInputChange}
-            value={input.identifier}
-            required
-          />
-        </div> */}
-
-        <div className={classes.form_group}>
+        <div className={styles.form_group}>
           <label>Image:</label>
           <input
-          className={classes.input_items}
+            className={styles.input_items}
             type="text"
             name="image"
             onChange={handleInputChange}
@@ -88,10 +85,10 @@ const Form = (props) => {
           />
         </div>
 
-        <div className={classes.form_group}>
+        <div className={styles.form_group}>
           <label>Price:</label>
           <input
-          className={classes.input_items}
+            className={styles.input_items}
             type="text"
             name="price"
             onChange={handleInputChange}
@@ -100,44 +97,42 @@ const Form = (props) => {
           />
         </div>
 
-        <div className={classes.form_group}>
+        <div className={styles.form_group}>
           <label>Description:</label>
           <textarea
-          className={classes.input_items}
+            className={styles.input_items}
             type="text"
             name="description"
-            rows='5'
+            rows="5"
             onChange={handleInputChange}
             value={input.description}
             required
           />
         </div>
 
-        {/* <div className={classes.form_group}>
-          <label>Stock:</label>
-          <input
-          className={classes.input_items}
-            type="text"
-            name="stock"
-            onChange={handleInputChange}
-            value={input.stock}
-            required
-          />
-        </div> */}
+        <div className="filterName">Category</div>
+        <select className="boton" onChange={(e) => handleInputCategory(e)}>
+          <option>Categories</option>
+          {category &&
+            category.map((t, i) => (
+              <option key={i} value={t.name}>
+                {t.name}
+              </option>
+            ))}
+        </select>
 
-        {/* <div>
-              <label>categories:</label>
-              <br></br>
-              <input  type="text" name="categories" onChange={handleInputChange} value={input.categories} required />
-              <option value='null'>null</option>
-              <select>
-              {input.categories && input.categories.map(c => (
-                <option value = {c.id} name = {c.name}>{c.name}</option>
-              ))}
-              </select>
+        <div className="filterName">Types</div>
+        <select className="boton">
+          <option>TypesCategory</option>
+          {types &&
+            types.map((t, i) => (
+              <option key={i} value={t.name}>
+                {t.name}
+              </option>
+            ))}
+        </select>
 
-              </div>    */}
-        <button className={classes.btn_save} type="submit">
+        <button className={styles.btn_save} type="submit">
           CREATE
         </button>
       </form>

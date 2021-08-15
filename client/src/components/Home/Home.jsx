@@ -8,6 +8,7 @@ import Gallery from "../gallery/Gallery";
 import Order from "../order/Order";
 import Otters from "../Otters/Otters";
 
+
 function Home() {
   const dispatch = useDispatch();
   const stateGlobal = useSelector((state) => state.getProducts);
