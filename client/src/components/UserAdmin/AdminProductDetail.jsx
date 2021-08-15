@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { getProductById , getUpdate} from "../../Redux/actions/actions"
 import useStyles from "./styles";
+/* import axios from 'axios'; */
 
 export default function AdminProductDetail(props) {
   const classes = useStyles();
@@ -18,7 +19,19 @@ export default function AdminProductDetail(props) {
     categories: [],
   });
   
-  const getItemProduct = () => {
+  /* const formData = new FormData(); 
+  formData.append('name', input.name);
+  formData.append('type', input.type);
+  formData.append('image', input.image);
+  formData.append('identifier', input.identifier);
+  formData.append('price', input.price);
+  formData.append('description', input.description);
+  formData.append('stock', input.stock);
+  formData.append('categories', input.categories); */
+
+  
+
+  const getItemProduct = () => {       
     dispatch(getProductById(id));
     // setInput(productEdit);
   };
@@ -28,23 +41,11 @@ export default function AdminProductDetail(props) {
   }, []);
   
   const productEdit = useSelector((state) => state.editProduct);
-
-  const handleSubmit = (e) => {
+  
+  const handleSubmit = async (e) => {
        e.preventDefault();
-       dispatch(getUpdate(id))
-       setInput(
-        {
-          name: "",
-          type: "",
-          identifier: "",
-          image: "",
-          price: "",
-          description: "",
-          stock: true,
-          categories: [],
-        }
-       );
-       props.history.push("/adminPanel");
+       dispatch(getUpdate(id, input))      
+       props.history.push("/adminPanel");      
   };
 
   const handleInputChange = function (e) {
@@ -90,7 +91,7 @@ export default function AdminProductDetail(props) {
               alt={input.name}
               name="image"
               style={{width:200}}
-              // defaultValue={input.image}
+              defaultValue={input.image}
             />
           </div>
 

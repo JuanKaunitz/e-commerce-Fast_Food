@@ -12,8 +12,8 @@ import FormNav from "./components/LogForm/FormNav.jsx";
 import AdminPanel from "./components/UserAdmin/AdminPanel.jsx";
 import AdminProductDetail from "./components/UserAdmin/AdminProductDetail.jsx"
 import GetClients from "./components/UserAdmin/GetClients.jsx";
-import "./App.css";
 import ClientEdit from "./components/UserAdmin/ClientEdit.jsx";
+import "./App.css";
 
 function App() {
   return (

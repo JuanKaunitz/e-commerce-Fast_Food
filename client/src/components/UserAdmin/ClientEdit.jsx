@@ -1,9 +1,15 @@
 import React from 'react'
-
+import './ClientEdit.css'
 const ClientEdit = () => {
+    console.log('CLIENT EDIT PROFILE')
     return (
         <div>
-            <h1>Client Edit</h1>
+            <br></br>
+            <br></br>
+            <br></br>
+            <br></br>
+            <br></br>
+            <h1 className='list'>Client Edit</h1>
         </div>
     )
 }

@@ -23,7 +23,7 @@ export default function EveryProducts() {
             <br></br>
             <br></br>
             <br></br>           
-            <h1>Product List</h1>           
+            <h1>Products List</h1>           
                     
             <div className='list'>  
             

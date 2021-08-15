@@ -5,7 +5,7 @@ import { NavLink } from 'react-router-dom';
 //import Form from '../Form/Form';
 //import UpdateProd from './UpdateProd';
 import './AdminPanel.css';
-import Drawer2 from './Drawer';
+//import Drawer2 from './Drawer';
 import EveryProducts from './EveryProducts';
 //import DeleteProducts from './DeleteProducts';
 
