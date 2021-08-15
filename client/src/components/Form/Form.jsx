@@ -77,10 +77,11 @@ const Form = (props) => {
           <label>Image:</label>
           <input
             className={styles.input_items}
-            type="text"
+            type="url"
             name="image"
             onChange={handleInputChange}
             value={input.image}
+            placeholder="Insert an URL image"
             required
           />
         </div>
