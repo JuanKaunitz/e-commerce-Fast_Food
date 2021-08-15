@@ -15,7 +15,7 @@ const useStyles = makeStyles((theme) => ({
   },
   color:{
     color:"white",
-    marginTop:"150px"
+    marginTop:"100px"
   }
 
 }));
@@ -106,6 +106,7 @@ const Categories = () => {
           }
         </select>
       </div>
+      <br></br>
       <Order />
       <Grid container className={classes.root} spacing={2}>
         {filtro ? (
