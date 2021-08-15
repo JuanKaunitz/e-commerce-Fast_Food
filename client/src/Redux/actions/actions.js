@@ -13,7 +13,9 @@ import {
     UPDATE_ORDER_FINAL,
     EDIT_PRODUCT,
     TOTAL_CARRITO,
-    GET_CLIENTS
+    GET_CLIENTS,
+    GET_TYPES
+
 } from '../constants'
 
 import dotenv from 'dotenv'
@@ -171,7 +173,8 @@ export const updateOrderFinal = (order) => (dispatch) => {
 //Crear nuevo usuario(register).
 export const newUser = (user) => async (dispatch) => {
     try {
-        const res = await axios.post('http://localhost:5001/food/api/user', user);
+        //const res = await axios.post('http://localhost:5001/food/api/user', user);
+        const res = await axios.post(`${URL}/food/api/user`, user);
         console.log('NEW USER: ', res.data)
         dispatch({
            type: NEW_USER,
@@ -182,7 +185,7 @@ export const newUser = (user) => async (dispatch) => {
   }
 };
 
-//recuperar el producto de la api para edicion
+//Recuperar el producto de la api para edición.
 export const getProductById = (id) => async(dispatch)=>{
     try{
         const product = await axios.get(`${URL}/food/api/products/${id}`);
@@ -203,3 +206,10 @@ export const totalProductosCarrito = (total) => (dispatch) => {
         payload: total
     })
 } 
+//Acceder a los types de categories.
+export const getTypes = (tipos) => (dispatch) => {
+    dispatch({
+        type: GET_TYPES,
+        payload: tipos
+    });
+}
