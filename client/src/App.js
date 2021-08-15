@@ -14,8 +14,6 @@ import AdminProductDetail from "./components/UserAdmin/AdminProductDetail.jsx"
 import GetClients from "./components/UserAdmin/GetClients.jsx";
 import ClientEdit from "./components/UserAdmin/ClientEdit.jsx";
 import "./App.css";
-import AdminPanel from "./components/UserAdmin/AdminPanel.jsx";
-import AdminProductDetail from './components/UserAdmin/AdminProductDetail';
 
 function App() {
   return (

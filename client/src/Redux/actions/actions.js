@@ -214,13 +214,6 @@ export const getProductById = (id) => async(dispatch)=>{
     }
 }
 
-
-export const totalProductosCarrito = (total) => (dispatch) => {
-    dispatch({
-        type: TOTAL_CARRITO,
-        payload: total
-    })
-} 
 //Acceder a los types de categories.
 export const getTypes = (tipos) => (dispatch) => {
     dispatch({
