@@ -9,7 +9,10 @@ import CardDetails from "./components/details/CardDetails.jsx";
 import Categories from "./components/categories/Categories.jsx";
 import Form from "./components/Form/Form.jsx";
 import FormNav from "./components/LogForm/FormNav.jsx";
-import EditProduct from "./components/editProduct/EditProduct.jsx";
+import AdminPanel from "./components/UserAdmin/AdminPanel.jsx";
+import AdminProductDetail from "./components/UserAdmin/AdminProductDetail.jsx"
+import GetClients from "./components/UserAdmin/GetClients.jsx";
+import ClientEdit from "./components/UserAdmin/ClientEdit.jsx";
 import "./App.css";
 
 function App() {
@@ -20,13 +23,15 @@ function App() {
         <Route exact path="/" component={Home} />
         <Route exact path="/aboutUs" component={AboutUs} />
         <Route exact path="/cart" component={Cart} />
-        <Route path="/detail/:id" exact component={CardDetails} />
-        <Route path="/editProduct/:id" exact component={EditProduct} />
+        <Route path="/detail/:id" exact component={CardDetails} />        
         <Route exact path="/form" component={Form} />
         <Route exact path="/categories" component={Categories} />
         <Route exact path="/register" component={Register} />
-        <Route exact path="/formregister" component={FormNav} />
-        <Route exact path='/https://www.linkedin.com/in/facundo-duartes-dev/'/>
+        <Route exact path="/formregister" component={FormNav} />        
+        <Route exact path="/adminPanel" component={AdminPanel} />
+        <Route exact path="/admProdDetail/:id" component={AdminProductDetail} />  
+        <Route exact path="/clients" component={GetClients} />   
+        <Route exact path="/clientEdit/:id" component={ClientEdit} />    
       </BrowserRouter>
     </div>
   );
