@@ -11,8 +11,8 @@ import FavoriteIcon from '@material-ui/icons/Favorite';
 import AddShoppingCartIcon from '@material-ui/icons/AddShoppingCart';
 import HourglassEmptyIcon from '@material-ui/icons/HourglassEmpty';
 
-import {getById, updateCart} from '../../Redux/actions/actions';
-import {addCarts}  from '../cart/addCarts.js';
+import {getById, updateCart, totalProductosCarrito} from '../../Redux/actions/actions';
+import {addCarts, sumaCantidadTotal}  from '../cart/utilsCarts.js';
 import { Link } from 'react-router-dom';
 
 
@@ -64,7 +64,9 @@ export default function CardDetails({match}) {
   //console.log("DETAIL", detail)
   function handleAddCart() {
     const res = addCarts(detail);
+    const cantidadTotal = sumaCantidadTotal(res);
     dispatch(updateCart(res))
+    dispatch(totalProductosCarrito(cantidadTotal))
   }
   return (
      loading?
@@ -95,7 +97,6 @@ export default function CardDetails({match}) {
             image={detail.image}
             title="Live from space album cover"
           />
-          <Link to={`/editProduct/${productId.current}`}>Editar</Link>
         </Card>
       : <HourglassEmptyIcon fontSize="large"/>
      

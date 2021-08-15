@@ -13,7 +13,10 @@ import {
   NEW_USER,  
   GET_TYPES,  
   ALL_USERS,
-  EDIT_PRODUCT
+  EDIT_PRODUCT,
+  UPDATE_ORDER_FINAL,
+  TOTAL_CARRITO,
+  GET_CLIENTS,
   /* ASC,
   DESC */
 } from "../constants";
@@ -40,7 +43,8 @@ const initialState = {
     order: [],
   },
   createNewUser: {},
-  editProduct: {},
+  editProduct:{},
+  totalCarrito: 0,
   types: [],
 };
 
@@ -114,16 +118,29 @@ const rootReducer = (state = initialState, action) => {
         order: action.payload,
       };
 
-    case NEW_USER:
-      return {
-        ...state,
-        createNewUser: action.payload,
-      };
-    case EDIT_PRODUCT:
-      return {
-        ...state,
-        editProduct: action.payload,
-      };
+      case UPDATE_ORDER_FINAL:
+        return{
+          ...state,
+          orderFinal: action.payload
+        }
+
+      case NEW_USER:
+        return {
+          ...state,
+          createNewUser: action.payload
+        }
+      case EDIT_PRODUCT: 
+        return{
+          ...state,
+          editProduct:action.payload
+        }
+      
+      case TOTAL_CARRITO:
+        return{
+          ...state,
+          totalCarrito: action.payload
+        }
+
     case GET_TYPES:
       return {
         ...state,

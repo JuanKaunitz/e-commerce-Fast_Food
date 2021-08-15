@@ -2,7 +2,6 @@ import React, { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { getProductById , getUpdate} from "../../Redux/actions/actions"
 import useStyles from "./styles";
-/* import axios from 'axios'; */
 
 export default function AdminProductDetail(props) {
   const classes = useStyles();
@@ -19,19 +18,7 @@ export default function AdminProductDetail(props) {
     categories: [],
   });
   
-  /* const formData = new FormData(); 
-  formData.append('name', input.name);
-  formData.append('type', input.type);
-  formData.append('image', input.image);
-  formData.append('identifier', input.identifier);
-  formData.append('price', input.price);
-  formData.append('description', input.description);
-  formData.append('stock', input.stock);
-  formData.append('categories', input.categories); */
-
-  
-
-  const getItemProduct = () => {       
+  const getItemProduct = () => {
     dispatch(getProductById(id));
     // setInput(productEdit);
   };

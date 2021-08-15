@@ -6,8 +6,8 @@ import CardCart from './CardCart';
 import DeleteIcon from '@material-ui/icons/Delete';
 import Typography from '@material-ui/core/Typography';
 import IconButton from '@material-ui/core/IconButton';
-import {updateCart} from '../../Redux/actions/actions'
-import { deleteCart, sumProduct, resProduct } from './addCarts';
+import {updateCart, totalProductosCarrito} from '../../Redux/actions/actions'
+import { deleteCart, sumProduct, resProduct, sumaPrecioTotal, sumaCantidadTotal } from './utilsCarts';
 
 
 const useStyles = makeStyles(() => ({
@@ -38,52 +38,39 @@ const Cart = () => {
   },[dispatch, carts])
 
   function handleDeleteCart(id){
-    let delet = deleteCart(id)
-    const precios = delet.map(e =>  e.count);
-    var sumaProductos = 0;
-    for(let i = 0; i < precios.length; i++){
-      sumaProductos = sumaProductos + parseInt(precios[i]);
-    }
-    console.log("TOTAL", sumaProductos);
+    const delet = deleteCart(id)
+    const cantidadTotal = sumaCantidadTotal(delet);
+    //console.log("TOTAL", sumaProductos);
     dispatch(updateCart(delet))
+    dispatch(totalProductosCarrito(cantidadTotal))
   }
 
   function handleAdd(id){
-    let sum = sumProduct(id)
-    const precios = sum.map(e =>  e.count);
-    var sumaProductos = 0;
-    for(let i = 0; i < precios.length; i++){
-      sumaProductos = sumaProductos + parseInt(precios[i]);
-    }
-    console.log("TOTAL", sumaProductos);
+    const sum = sumProduct(id)
+    const cantidadTotal = sumaCantidadTotal(sum);
+    //console.log("TOTAL", sumaProductos);
     dispatch(updateCart(sum))
+    dispatch(totalProductosCarrito(cantidadTotal))
   }
 
   function handleRes(id){
-    let res = resProduct(id)
-    const precios = res.map(e =>  e.count);
-    var sumaProductos = 0;
-    for(let i = 0; i < precios.length; i++){
-      sumaProductos = sumaProductos + parseInt(precios[i]);
-    }
-    console.log("TOTAL", sumaProductos);
-    dispatch(updateCart(res))
+    const resta = resProduct(id)
+    const cantidadTotal = sumaCantidadTotal(resta);
+    //console.log("TOTAL", sumaProductos);
+    dispatch(updateCart(resta))
+    dispatch(totalProductosCarrito(cantidadTotal))
   }
 
   function deleteCompleteOrder(){
     localStorage.removeItem('order');
     dispatch(updateCart([]));
+    dispatch(totalProductosCarrito(0));
   }  
 
   const classes = useStyles();
 
-  if(carts.length > 0){
-    const precios = carts.map(e => e.price * e.count);
-    var precioTotal = 0;
-    for(let i = 0; i < precios.length; i++){
-      precioTotal = precioTotal + parseInt(precios[i]);
-    }
-  }
+  const precioTotal = sumaPrecioTotal(carts);
+   
 
   return (
     <div >
@@ -92,7 +79,7 @@ const Cart = () => {
         <Typography className={classes.color}>
           Falta alert de mensaje: Esto borra toda la orden CUIDADO CON EL PERRO, PERROOOO!!!!!
         </Typography>
-        <DeleteIcon />
+        <DeleteIcon className={classes.color}/>
       </IconButton>
       <Grid container  className={classes.root} spacing={2}>
           {

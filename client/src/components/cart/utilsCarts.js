@@ -1,24 +1,13 @@
-export const addCarts = (detail, token) => {
 
-  /*if(token){
+//AGREGA UN PRODUCTO AL CARRITO
+export const addCarts = (detail, band) => {
+
+  if(band){
     if(localStorage.getItem('order')){
       let object = JSON.parse(localStorage.getItem('order'));
-     
-      let order = object;
-      //console.log("PRODUCT", order)
-      order.push({id: detail._id, name: detail.name, 
-          image: detail.image, price: detail.price, 
-          description: detail.description, status:'creada'});
-      localStorage.removeItem('order');
-      return order;
-    }else {
-      let order = [{id: detail._id, name: detail.name, 
-        image: detail.image, price: detail.price, 
-        description: detail.description, status:'creada'}];
-      return order;
-      //console.log("PRODUCT2", order)
+      return object;
     }
-  }*/
+  }
   
   if(localStorage.getItem('order')){
     let object = JSON.parse(localStorage.getItem('order'));
@@ -61,6 +50,7 @@ export const addCarts = (detail, token) => {
   }
 }
 
+//BORRA O ELIMINA UN PRODUCTO DEL CARRITO
 export const deleteCart = (id) => {
 
   let object = JSON.parse(localStorage.getItem('order'));
@@ -69,6 +59,7 @@ export const deleteCart = (id) => {
   return delet;
 }
 
+//SUMA UNA UNIDAD MAS A UN PRODUCTO DEL CARRITO
 export const sumProduct = (id) => {
   let object = JSON.parse(localStorage.getItem('order'));
   let filtrado = object.filter(e => e.id === id);
@@ -89,6 +80,7 @@ export const sumProduct = (id) => {
   return order;
 }
 
+//RESTA UNA UNIDAD A UN PRODUCTO DEL CARRITO
 export const resProduct = (id) => {
   let object = JSON.parse(localStorage.getItem('order'));
   let filtrado = object.filter(e => e.id === id);
@@ -107,4 +99,55 @@ export const resProduct = (id) => {
   });
   localStorage.setItem('order', JSON.stringify(order));
   return order;
+}
+
+//USUARIO LOGUEADO: JUNTA SU CARRITO GUARDADO CON EL NUEVO EN EL LOCALSTORAGE
+export const mergeCart = (cart, orderBack) => {
+  if(cart.length > 0 && orderBack.length > 0){
+    let band = false;
+    while(cart.length > 0){
+      let element = cart.pop();
+      band = false;
+      var order = orderBack.map(e => {
+          if(e.id === element.id){
+            let cont = e.count;
+           return {id: e.id, name: e.name, 
+            image: e.image, price: e.price, count: cont + 1,
+            description: e.description, status: e.status}
+          }
+          band = true
+          return e;
+      })
+      if(band){order.push(element)}
+    }
+    return order;
+  } else {
+          if( orderBack.length > 0){
+            return orderBack 
+          } else {
+            return cart
+          }
+  }
+}
+
+//SUMA EL PRECIO DE TODOS LOS PRODUCTOS Y DEVUELVE EL TOTAL
+export const sumaPrecioTotal = (cart) => {
+  if(cart.length > 0){
+    const precios = cart.map(e => e.price * e.count);
+    var precioTotal = 0;
+    for(let i = 0; i < precios.length; i++){
+      precioTotal = precioTotal + parseInt(precios[i]);
+    }
+  }
+  return precioTotal;
+}
+
+//SUMA LA CANTIDAD DE TODOS LOS PRODUCTOS Y DEVUELVE EL TOTAL
+export const sumaCantidadTotal = (cart) => {
+  const precios = cart.map(e =>  e.count);
+    var suma = 0;
+    for(let i = 0; i < precios.length; i++){
+        suma = suma + parseInt(precios[i]);
+    }
+  return suma;
 }

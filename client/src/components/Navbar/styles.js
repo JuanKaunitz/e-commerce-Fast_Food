@@ -98,6 +98,11 @@ const useStyles = makeStyles(theme => ({
       },
       shiftTextRight: {
         marginLeft: drawerWidth,
+      },
+      totalCarrito:{
+        display:"flex",
+        flexDirection:"column"
+        
       }
       
 }));

@@ -14,7 +14,9 @@ import {
     UPDATE_ORDER_FINAL,
     EDIT_PRODUCT,
     TOTAL_CARRITO,
-    ALL_USERS
+    ALL_USERS,
+    GET_CLIENTS,
+
 } from '../constants'
 
 import dotenv from 'dotenv'
@@ -212,6 +214,13 @@ export const getProductById = (id) => async(dispatch)=>{
     }
 }
 
+
+export const totalProductosCarrito = (total) => (dispatch) => {
+    dispatch({
+        type: TOTAL_CARRITO,
+        payload: total
+    })
+} 
 //Acceder a los types de categories.
 export const getTypes = (tipos) => (dispatch) => {
     dispatch({
