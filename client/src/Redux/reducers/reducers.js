@@ -7,11 +7,13 @@ import {
   LOWER_PRICE,
   HIGHER_PRICE,
   CATEGORY_NAME,
+  LOADING,
   UPDATE_CART,
   LOGIN_CLIENT,
-  NEW_USER,
-  EDIT_PRODUCT,
-  GET_TYPES,
+  NEW_USER,  
+  GET_TYPES,  
+  ALL_USERS,
+  EDIT_PRODUCT
   /* ASC,
   DESC */
 } from "../constants";
@@ -24,8 +26,9 @@ const initialState = {
   createNewProduct: {},
   searchProducts: [],
   loading: false,
-  allCategories: [],
-  categoryName: "",
+  allCategories : [],
+  categoryName: '',
+  clients:[],
   client: {},
   order: [],
   clientToken: {},
@@ -125,7 +128,21 @@ const rootReducer = (state = initialState, action) => {
       return {
         ...state,
         types: action.payload,
-      };
+      };     
+
+    case LOADING: 
+    return {
+      ...state,
+      loading: action.payload
+    }      
+
+    case ALL_USERS:
+      return {
+        ...state,
+        order: action.payload
+      }   
+      
+     
 
     default:
       return state;

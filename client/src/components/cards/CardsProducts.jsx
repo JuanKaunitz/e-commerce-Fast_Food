@@ -16,7 +16,7 @@ const useStyles = makeStyles(() => ({
 }));
 
 export default function GridCardsProducts() {
-  const getAll = useSelector((state) => state.getProducts);
+  const getAll = useSelector((state) => state.allProducts);
   const { searchProducts, loading }= useSelector((state) => state);
   const [page, setPage] = useState(0);
 

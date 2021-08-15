@@ -30,7 +30,7 @@ const Form = (props) => {
     e.preventDefault();
     setInput(input);
     saveProduct();
-    props.history.push("/");
+    //props.history.push("/AdminPanel");
   };
 
   const handleInputChange = function (e) {

@@ -75,10 +75,10 @@ const Navbar = () => {
             <div className={classes.toolbarButtons}>
               <NavLink
                 className={classes.MuiButtonLabel}
-                to="/form"
+                to="/AdminPanel"
                 activeClassName="active"
               >
-                Form
+                Admin Panel
               </NavLink>
               <IconButton aria-label="add to shopping cart">
                 <NavLink

@@ -2,7 +2,6 @@ import React, { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Input } from "@material-ui/core";
 import {
-  getAllProducts,
   searchQueryProducts,
 } from "../../Redux/actions/actions";
 import styles from "./styles.module.css"
