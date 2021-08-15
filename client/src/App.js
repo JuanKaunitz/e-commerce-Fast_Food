@@ -13,6 +13,8 @@ import AdminPanel from "./components/UserAdmin/AdminPanel.jsx";
 import AdminProductDetail from "./components/UserAdmin/AdminProductDetail.jsx"
 import GetClients from "./components/UserAdmin/GetClients.jsx";
 import ClientEdit from "./components/UserAdmin/ClientEdit.jsx";
+import NewProduct from "./components/UserAdmin/NewProduct.jsx";
+import AdminCategories from "./components/UserAdmin/AdminCategories.jsx";
 import "./App.css";
 
 function App() {
@@ -32,6 +34,9 @@ function App() {
         <Route exact path="/admProdDetail/:id" component={AdminProductDetail} />  
         <Route exact path="/clients" component={GetClients} />   
         <Route exact path="/clientEdit/:id" component={ClientEdit} />    
+        <Route exact path="/newProduct" component={NewProduct} />
+        <Route exact path="/adminCategories" component={AdminCategories} />
+        
       </BrowserRouter>
     </div>
   );
