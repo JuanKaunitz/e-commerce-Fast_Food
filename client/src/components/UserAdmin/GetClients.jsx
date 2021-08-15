@@ -10,6 +10,7 @@ import DeleteIcon from '@material-ui/icons/Delete';
 import Typography from '@material-ui/core/Typography';
 import IconButton from '@material-ui/core/IconButton';
 import { Link } from 'react-router-dom';
+import './GetClients.css'
 
 
 
@@ -40,14 +41,24 @@ const clients = useSelector((state) => state.clients)
 
 useEffect(()=> {
   dispatch(allUsers())
-})
+}, [])
 
 const handleDeleteUser= () => {
   dispatch()
 }
 
   return (
-    <div>
+    <div className='list'>
+
+    <br></br> 
+    <br></br> 
+    <br></br> 
+    <br></br> 
+    <br></br>
+    <Link to='/adminPanel'> <button >Admin Panel</button></Link>
+    <Link to='/adminCategories'> <button >Categories Panel</button></Link>
+    <Link to='/newProduct'> <button >New Product</button></Link>
+    <h1 classname='list'>Clients list</h1>
       {
       clients? clients.map((e) => (
         <Grid item key={e._id} xs={12} >

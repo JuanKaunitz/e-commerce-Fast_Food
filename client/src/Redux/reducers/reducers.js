@@ -15,8 +15,7 @@ import {
   ALL_USERS,
   EDIT_PRODUCT,
   UPDATE_ORDER_FINAL,
-  TOTAL_CARRITO,
-  GET_CLIENTS,
+  TOTAL_CARRITO,  
   /* ASC,
   DESC */
 } from "../constants";
@@ -156,7 +155,7 @@ const rootReducer = (state = initialState, action) => {
     case ALL_USERS:
       return {
         ...state,
-        order: action.payload
+        clients: action.payload
       }   
       
      

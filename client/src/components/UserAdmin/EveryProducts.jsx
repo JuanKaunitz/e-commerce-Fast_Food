@@ -1,6 +1,6 @@
-import React/* , {useState, useEffect}  */ from 'react';
+import React , { useEffect }   from 'react';
 import { useSelector, useDispatch} from 'react-redux';
-import { deleteProduct } from "../../Redux/actions/actions";
+import { deleteProduct, getAllProducts } from "../../Redux/actions/actions";
 import CardAdmin from './CardAdmin';
 import Grid from "@material-ui/core/Grid";
 //import './EveryProducts.css'
@@ -9,6 +9,11 @@ export default function EveryProducts() {
     const dispatch = useDispatch(); 
     const getAll = useSelector((state) => state.allProducts);
     
+    useEffect(() => {  
+        dispatch(getAllProducts())
+      }, [getAll]);
+
+
 
     function handleDeleteProduct(id){
         dispatch(deleteProduct(id))

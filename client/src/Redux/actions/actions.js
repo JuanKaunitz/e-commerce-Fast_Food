@@ -14,9 +14,8 @@ import {
     UPDATE_ORDER_FINAL,
     EDIT_PRODUCT,
     TOTAL_CARRITO,
-    ALL_USERS,
-    GET_CLIENTS,
-
+    ALL_USERS,    
+    DELETE_CATEGORY,
 } from '../constants'
 
 import dotenv from 'dotenv'
@@ -125,6 +124,20 @@ export const getById = (id) => async (dispatch) => {
 
 };
 
+//Borrando una categoria.
+export const deleteCategory = (id) => async (dispatch) => {
+     console.log('ID DELETE',id) 
+    try {
+        const res = await axios.delete(`${URL}/food/api/products/${id}`);        
+        dispatch({
+            type: DELETE_PRODUCT,
+            payload: res.data
+        });
+    } catch (err) {
+        console.log(err)
+    }
+};
+
 // Ordenamiento ascendente y descendente.
 export const orderBy = (sort) => (dispatch) => {  
     dispatch({
@@ -176,7 +189,7 @@ export const updateOrderFinal = (order) => (dispatch) => {
 //Obtengo lista de cliebtes(register).
 export const allUsers = () => async (dispatch) => {
     try {
-        const res = await axios.get('http://localhost:5001/food/api/user');
+        const res = await axios.get(`${URL}/food/api/user`);
         console.log('ALL USER: ', res.data.users)
         dispatch({
            type: ALL_USERS,
