@@ -41,7 +41,7 @@ function App() {
         <Route exact path="/form" component={Form} />
         <Route exact path="/categories" component={Categories} />
         <Route exact path="/register" component={Register} />
-        <Route exact path="/formregister" component={FormNav} />        
+        {/* <Route exact path="/formregister" component={FormNav} />      /   */}
         <Route exact path="/adminPanel" component={AdminPanel} />
         <Route exact path="/admProdDetail/:id" component={AdminProductDetail} />  
         <Route exact path="/clients" component={GetClients} />   
