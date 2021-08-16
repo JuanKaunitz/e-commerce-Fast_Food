@@ -4,6 +4,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { getCategories, getTypes } from "../../Redux/actions/actions";
 import styles from "./styles.module.css";
 import { Link } from "react-router-dom";
+import FileDrop from "../Form/FileDrop";
 
 const NewProduct = (props) => {
   const dispatch = useDispatch();
@@ -15,15 +16,15 @@ const NewProduct = (props) => {
   }, [dispatch]);
 
   const [input, setInput] = useState({
-    name: "",    
+    name: "",
     identifier: "",
-    image: "",
     price: "",
     description: "",
     stock: true,
   });
   const saveProduct = () => {
     dispatch(createProduct(input));
+    console.log(input)
   };
 
   const handleSubmit = (e) => {
@@ -47,14 +48,23 @@ const NewProduct = (props) => {
 
   return (
     <div className={styles.form_content}>
-    <div>
-      <Link to='/adminPanel'> <button >Admin Panel</button></Link>
-      <Link to='/adminCategories'> <button >Categories Panel</button></Link>
-      <Link to='/clients'> <button >Clients Panel</button></Link>
-    </div>
+      <div>
+        <Link to="/adminPanel">
+          {" "}
+          <button>Admin Panel</button>
+        </Link>
+        <Link to="/adminCategories">
+          {" "}
+          <button>Categories Panel</button>
+        </Link>
+        <Link to="/clients">
+          {" "}
+          <button>Clients Panel</button>
+        </Link>
+      </div>
 
       <h1>Create your own product</h1>
-      
+
       <form onSubmit={handleSubmit}>
         <div className={styles.form_group}>
           <label>Name:</label>
@@ -66,17 +76,10 @@ const NewProduct = (props) => {
             value={input.name}
             required
           />
-        </div>      
-
-        <div className={styles.form_group}>
-          <label>Image:</label>
-          <input
-            className={styles.input_items}
-            type="text"
-            name="image"
-            onChange={handleInputChange}
-            value={input.image}
-            required
+        </div>
+        <div className="filedrop">
+          <FileDrop 
+          onChange = {handleInputChange}
           />
         </div>
 
