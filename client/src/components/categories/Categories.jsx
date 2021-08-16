@@ -29,8 +29,18 @@ const Categories = () => {
   const [filtro, setFiltro] = useState([]);
   const [filtro1, setFiltro1] = useState([]);
   
+  let filter1 = getAll.filter((product) => {
+    const categoryName1 = product.categories.map((category) => {
+      //console.log('CATEGORYNAME: ', categoryName)
+      return category.category.name;
+    });
+    //console.log('CATEGORYNAME1: ', categoryName1)
+    return categoryName1 == categoryName;
+    
+  });
+  setFiltro(filter1);
   
-  useEffect(() => {
+  /*useEffect(() => {
     let filter1 = getAll.filter((product) => {
       const categoryName1 = product.categories.map((category) => {
         //console.log('CATEGORYNAME: ', categoryName)
@@ -41,14 +51,13 @@ const Categories = () => {
       
     });
     setFiltro(filter1);
-    setFiltro1(filter1);
 
-  },[categoryName])
+  },[categoryName])*/
   
 
   useEffect(() => {
     if(type === "Types"){
-      return setFiltro(filtro1);
+      return setFiltro(filter1);
     }
     let tipos = getAll.filter(e => {
       let tipo = e.type;

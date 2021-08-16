@@ -51,6 +51,23 @@ export default function CardProduct({id, name, image,price, description}) {
   }
   
   function handleAddCart() {
+     /*if(client.token){
+      dispatch(orderUser(client.user._id)); //pido al back el carrito del usuario
+      const cart = addCarts(detail, true);
+      const orderBack = useSelector(state => state.orderBack);
+      const order = mergeCart(cart, orderBack);
+      const precioTotal = sumaPrecioTotal(order);
+      const totalProductos = sumaCantidadTotal(order);
+      localStorage.setItem('order', JSON.stringify(order));
+      dispatch(updateCart(order)); //actualizo el carrito de redux
+      dispatch(updateOrderFinal({
+          clientId: client.user._id,
+          token: client.token,
+          precioTotal: precioTotal,
+          totalProductos: totalProductos,
+          order: order,
+        })); //guardo la nueva orden del carrito
+    }*/
     const cart = addCarts(detail, false);
     const cantidadTotal = sumaCantidadTotal(cart);
     dispatch(updateCart(cart));
