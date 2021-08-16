@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "description": "backend appfastfood",
   "main": "index.js",
-  "scripts": {    
+  "scripts": {
     "start": "nodemon ./index",
     "test": " jest -w ./tests/**/*.spec.js"
   },
