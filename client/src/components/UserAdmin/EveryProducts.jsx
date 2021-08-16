@@ -11,7 +11,7 @@ export default function EveryProducts() {
     
     useEffect(() => {  
         dispatch(getAllProducts())
-      }, [getAll]);
+      }, [dispatch]);
 
 
 

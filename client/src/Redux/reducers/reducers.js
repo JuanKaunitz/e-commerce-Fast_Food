@@ -90,7 +90,7 @@ const rootReducer = (state = initialState, action) => {
       );
       return {
         ...state,
-        getProducts: [...res],
+        getProducts: res,
       };
 
     case HIGHER_PRICE:
@@ -99,7 +99,7 @@ const rootReducer = (state = initialState, action) => {
       );
       return {
         ...state,
-        getProducts: [...res1],
+        getProducts: res1,
       };
 
     case CATEGORY_NAME:
