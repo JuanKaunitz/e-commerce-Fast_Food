@@ -1,5 +1,5 @@
 import React, { useEffect } from "react";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch} from "react-redux";
 import "./Home.css";
 import Footer from "../Footer/Footer";
 import GridCardsProducts from "../cards/CardsProducts";
@@ -11,7 +11,7 @@ import Otters from "../Otters/Otters";
 
 function Home() {
   const dispatch = useDispatch();
-  const stateGlobal = useSelector((state) => state.getProducts);
+  // const stateGlobal = useSelector((state) => state.getProducts);
 
   useEffect(() => {
     dispatch(getAllProducts());

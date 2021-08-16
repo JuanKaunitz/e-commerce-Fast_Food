@@ -47,10 +47,6 @@ const Navbar = () => {
     dispatch(categoryName(name));
   }
 
-  function handleType (name){
-    //dispatch(typeName(name));
-  }
-
   return (
     <div>
       <div >

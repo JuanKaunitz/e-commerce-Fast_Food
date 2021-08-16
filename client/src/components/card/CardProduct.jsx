@@ -1,5 +1,5 @@
 import React from 'react';
-import {useSelector, useDispatch } from 'react-redux';
+import { useDispatch } from 'react-redux';
 import { makeStyles } from '@material-ui/core/styles';
 import Card from '@material-ui/core/Card';
 import CardHeader from '@material-ui/core/CardHeader';
@@ -9,7 +9,7 @@ import AddShoppingCartIcon from '@material-ui/icons/AddShoppingCart';
 import IconButton from '@material-ui/core/IconButton';
 import { Link } from 'react-router-dom';
 import {updateCart, totalProductosCarrito} from '../../Redux/actions/actions';
-import {addCarts, mergeCart, sumaPrecioTotal, sumaCantidadTotal}  from '../cart/utilsCarts.js';
+import {addCarts, sumaCantidadTotal}  from '../cart/utilsCarts.js';
 
 
 const useStyles = makeStyles((theme) => ({
@@ -38,7 +38,7 @@ const useStyles = makeStyles((theme) => ({
 export default function CardProduct({id, name, image,price, description}) {
 
   const dispatch = useDispatch();
-  const client = useSelector(state => state.client);
+  // const client = useSelector(state => state.client);
 
   const classes = useStyles();
 

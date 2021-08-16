@@ -46,7 +46,7 @@ const Form = () => {
     dispatch(getTypes(filtradoCategory[0].types));
   };
   
-  const [selectedFile, setSelectedFile] = useState(null);
+  // const [selectedFile, setSelectedFile] = useState(null);
 
 
 

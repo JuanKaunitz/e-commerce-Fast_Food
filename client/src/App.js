@@ -20,7 +20,7 @@ import NewProduct from "./components/UserAdmin/NewProduct.jsx";
 import AdminCategories from "./components/UserAdmin/AdminCategories.jsx";
 import AdminCategoryDetail from "./components/UserAdmin/AdminCategoryDetail.jsx";
 import NewCategory from "./components/UserAdmin/NewCategory.jsx";
-import EditProduct from "./components/editProduct/EditProduct.jsx";
+// import EditProduct from "./components/editProduct/EditProduct.jsx";
 import Checkout from "./components/payment/Checkout.js";
 // import CheckoutForm from "./components/payment/CheckoutForm.jsx";
 //styles
@@ -41,7 +41,6 @@ function App() {
         <Route exact path="/form" component={Form} />
         <Route exact path="/categories" component={Categories} />
         <Route exact path="/register" component={Register} />
-<<<<<<< HEAD
         <Route exact path="/formregister" component={FormNav} />        
         <Route exact path="/adminPanel" component={AdminPanel} />
         <Route exact path="/admProdDetail/:id" component={AdminProductDetail} />  
@@ -52,7 +51,6 @@ function App() {
         <Route exact path="/categoryDetail/:id" component={AdminCategoryDetail} />
         <Route exact path="/newCategory" component={NewCategory} />
         
-=======
         <Route
           path="/payment"
           render={() => (
@@ -62,7 +60,6 @@ function App() {
           )}
         />
         <Route exact path="/formregister" component={FormNav} />
->>>>>>> jc-dev
       </BrowserRouter>
     </div>
   );

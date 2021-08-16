@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect } from 'react';
 import { useDispatch } from 'react-redux';
 import { getAllProducts, getCategories } from "../../Redux/actions/actions";
 import { Link } from 'react-router-dom';

@@ -13,7 +13,7 @@ import HourglassEmptyIcon from '@material-ui/icons/HourglassEmpty';
 
 import {getById, updateCart, totalProductosCarrito} from '../../Redux/actions/actions';
 import {addCarts, sumaCantidadTotal}  from '../cart/utilsCarts.js';
-import { Link } from 'react-router-dom';
+// import { Link } from 'react-router-dom';
 
 
 const useStyles = makeStyles((theme) => ({

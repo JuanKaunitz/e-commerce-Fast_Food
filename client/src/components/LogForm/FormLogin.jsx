@@ -65,7 +65,7 @@ const FormLogin = () => {
             className={styles1.input1}
             type="email"
             name="email"
-            className={styles1.field}
+            // className={styles1.field}
             onChange={handleInputChange}
             value={input.email}
           />
@@ -77,7 +77,7 @@ const FormLogin = () => {
             className={styles1.input1}
             type="password"
             name="password"
-            className={styles1.field1}
+            // className={styles1.field1}
             onChange={handleInputChange}
             value={input.password}
           />
