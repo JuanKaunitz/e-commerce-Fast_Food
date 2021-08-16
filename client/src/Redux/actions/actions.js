@@ -18,6 +18,10 @@ import {
     DELETE_CATEGORY,    
     CREATE_CATEGORY,
     UPDATE_CATEGORY,
+    GET_CLIENTS,
+    HIGHER_PRICE,
+    LOWER_PRICE,
+
 } from '../constants'
 
 import dotenv from 'dotenv'
@@ -82,7 +86,7 @@ export const getById = (id) => async (dispatch) => {
 
  //Actualizando producto.
  export const getUpdate = (id, input) => async (dispatch) => {
-     console.log('UPDATE: ', input)
+     //console.log('UPDATE: ', input)
     try {        
         const res = await axios.put(`${URL}/food/api/products/${id}`, input) 
         //const res = await axios.put(`http://localhost:5001/food/api/${id}`);
@@ -98,7 +102,7 @@ export const getById = (id) => async (dispatch) => {
 
  //Borrando un producto.
  export const deleteProduct = (id) => async (dispatch) => {
-     console.log('ID DELETE',id)
+     //console.log('ID DELETE',id)
      try {
          const res = await axios.delete(`${URL}/food/api/products/${id}`);
          //const res = await axios.delete(`http://localhost:5001/food/api/${id}`);
@@ -172,9 +176,16 @@ export const deleteCategory = (id) => async (dispatch) => {
 
 // Ordenamiento ascendente y descendente.
 export const orderBy = (sort) => (dispatch) => {  
-    dispatch({
-       type: sort,        
-   })    
+    if(sort === "startLowerPrice"){
+        dispatch({
+            type: LOWER_PRICE,        
+        }) 
+    }
+    if(sort === "startHighestPrice"){
+        dispatch({
+           type: HIGHER_PRICE,        
+       })    
+    }
 };
 
 export const categoryName = (name) => (dispatch) => {  

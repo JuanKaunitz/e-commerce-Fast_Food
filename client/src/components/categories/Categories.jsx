@@ -27,9 +27,8 @@ const Categories = () => {
   const [page, setPage] = useState(0);
   const [type, setType] = useState(" ");
   const [filtro, setFiltro] = useState([]);
-  const [filtro1, setFiltro1] = useState([]);
   
-  let filter1 = getAll.filter((product) => {
+  const filter1 = getAll.filter((product) => {
     const categoryName1 = product.categories.map((category) => {
       //console.log('CATEGORYNAME: ', categoryName)
       return category.category.name;
@@ -38,22 +37,6 @@ const Categories = () => {
     return categoryName1 == categoryName;
     
   });
-  setFiltro(filter1);
-  
-  useEffect(() => {
-    let filter1 = getAll.filter((product) => {
-      const categoryName1 = product.categories.map((category) => {
-        //console.log('CATEGORYNAME: ', categoryName)
-        return category.category.name;
-      });
-      //console.log('CATEGORYNAME1: ', categoryName1)
-      return categoryName1 == categoryName;
-      
-    });
-    setFiltro(filter1);
-
-  },[categoryName])
-  
 
   useEffect(() => {
     if(type === "Types"){
@@ -61,7 +44,6 @@ const Categories = () => {
     }
     let tipos = getAll.filter(e => {
       let tipo = e.type;
-      //console.log("TIPO", tipo)
       if(tipo === undefined){ return }
       if(tipo.toLowerCase().includes(type.toLowerCase())){
         return e;
@@ -72,14 +54,11 @@ const Categories = () => {
 
   const categoriesTypes = categories.filter(e => {
     if(e.name === categoryName){
-      console.log(e.name)
-      console.log(e.types)
-      
       return e.types
     }
   });
+
   const types = categoriesTypes[0].types;
-  console.log(types)
 
   function handlePrev() {
     if (page > 0) {
@@ -118,8 +97,8 @@ const Categories = () => {
       <br></br>
       <Order />
       <Grid container className={classes.root} spacing={2}>
-        {filtro ? (
-          filtro.slice(page * 8, page * 8 + 8).map((product) => (
+        {filtro.length <= 0 ? (
+          filter1.slice(page * 8, page * 8 + 8).map((product) => (
             <Grid item key={product._id} xs={3}>
               <CardProduct
                 id={product._id}
@@ -130,8 +109,18 @@ const Categories = () => {
             </Grid>
           ))
         ) : (
-          <h2>loading</h2>
-        )}
+          filtro.slice(page * 8, page * 8 + 8).map((product) => (
+            <Grid item key={product._id} xs={3}>
+              <CardProduct
+                id={product._id}
+                name={product.name}
+                image={product.image}
+                price={product.price}
+              />
+            </Grid>
+          ))
+        )
+        }
       </Grid>
       <div className="paginado">
         <button value="prev" onClick={handlePrev} disabled={page <= 0}>
@@ -141,7 +130,7 @@ const Categories = () => {
         <button
           value="next"
           onClick={handleNext}
-          disabled={filtro.slice(page * 8, page * 8 + 8).length < 8}
+          disabled={filter1.slice(page * 8, page * 8 + 8).length < 8}
         >
           Next
         </button>
