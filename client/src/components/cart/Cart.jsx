@@ -61,7 +61,7 @@ const Cart = () => {
     dispatch(totalProductosCarrito(cantidadTotal))
   }
 
-  function deleteCompleteOrder(){
+  function deleteCompleteOrder(){    
     localStorage.removeItem('order');
     dispatch(updateCart([]));
     dispatch(totalProductosCarrito(0));
@@ -77,7 +77,7 @@ const Cart = () => {
       <h1 className={classes.color}>THIS IS YOUR CART</h1>
       <IconButton onClick={() => deleteCompleteOrder()}>
         <Typography className={classes.color}>
-          Falta alert de mensaje: Esto borra toda la orden CUIDADO CON EL PERRO, PERROOOO!!!!!
+          Be carefull, this button erase the entire cart: ==>>
         </Typography>
         <DeleteIcon className={classes.color}/>
       </IconButton>

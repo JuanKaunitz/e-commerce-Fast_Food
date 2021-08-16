@@ -29,7 +29,7 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 export default function CardAdmin({id, name, image,price,description,
-                                  deleteCart, }) {
+                                  deleteCategory, }) {
 
   const classes = useStyles();
 
@@ -58,10 +58,11 @@ export default function CardAdmin({id, name, image,price,description,
         </Typography>
       </div>
       <div>
-      <IconButton onClick={() => deleteCart(id)}>
+      <IconButton onClick={() => deleteCategory(id)}>
         <DeleteIcon />
       </IconButton>
-      <Link to={`/AdmProdDetail/${id}`}>Editar</Link>
+      
+      <Link to={`/admProdDetail/${id}`}>Editar</Link>
       </div>
     </Card>
   );

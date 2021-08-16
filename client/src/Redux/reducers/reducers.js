@@ -15,7 +15,9 @@ import {
   ALL_USERS,
   EDIT_PRODUCT,
   UPDATE_ORDER_FINAL,
-  TOTAL_CARRITO,  
+  TOTAL_CARRITO, 
+  GET_CATEGORY_BY_ID, 
+  UPDATE_CATEGORY,
   /* ASC,
   DESC */
 } from "../constants";
@@ -42,7 +44,8 @@ const initialState = {
     order: [],
   },
   createNewUser: {},
-  editProduct:{},
+  editProduct: {},
+  editCategory: {},
   totalCarrito: 0,
   types: [],
 };
@@ -133,6 +136,12 @@ const rootReducer = (state = initialState, action) => {
           ...state,
           editProduct:action.payload
         }
+
+        case GET_CATEGORY_BY_ID: 
+        return{
+          ...state,
+          editCategory:action.payload
+        }
       
       case TOTAL_CARRITO:
         return{
@@ -157,6 +166,12 @@ const rootReducer = (state = initialState, action) => {
         ...state,
         clients: action.payload
       }   
+
+    case UPDATE_CATEGORY:
+      return {
+        ...state,
+        allCategories: [...state.allCategories, action.payload]
+      }
       
      
 

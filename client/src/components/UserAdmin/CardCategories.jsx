@@ -6,7 +6,7 @@ import CardMedia from '@material-ui/core/CardMedia';
 import DeleteIcon from '@material-ui/icons/Delete';
 import Typography from '@material-ui/core/Typography';
 import IconButton from '@material-ui/core/IconButton';
-import { Link } from 'react-router-dom';
+import { Link } from 'react-router-dom'; 
 
 
 const useStyles = makeStyles((theme) => ({
@@ -28,8 +28,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-export default function CardAdmin({id, name, image,price,description,
-                                  deleteCart, }) {
+export default function CardCategories({ id, name, image, types, deleteCategory }) {    
 
   const classes = useStyles();
 
@@ -39,29 +38,26 @@ export default function CardAdmin({id, name, image,price,description,
         <CardMedia
           className={classes.cover}
           image={image}
-          title="Live from space album cover"
+          title="Our categories"
         />
       </div>
       <div>
         <CardContent className={classes.content}>
           <Typography component="h5" variant="h5">
             {name}
-          </Typography>
-          <Typography variant="subtitle1" color="textSecondary">
-            {description}
-          </Typography>
+          </Typography>         
         </CardContent>
       </div>
       <div className={classes.controls}>
         <Typography variant="subtitle1" color="textSecondary">
-         <h2>${price}</h2> 
+         {types} 
         </Typography>
       </div>
       <div>
-      <IconButton onClick={() => deleteCart(id)}>
+      <IconButton onClick={() => deleteCategory(id)}>
         <DeleteIcon />
       </IconButton>
-      <Link to={`/admCategoryDetail/${id}`}>Editar</Link>
+      <Link to={`/categoryDetail/${id}`}>Edit</Link>
       </div>
     </Card>
   );

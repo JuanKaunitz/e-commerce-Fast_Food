@@ -16,6 +16,7 @@ import ClientEdit from "./components/UserAdmin/ClientEdit.jsx";
 import NewProduct from "./components/UserAdmin/NewProduct.jsx";
 import AdminCategories from "./components/UserAdmin/AdminCategories.jsx";
 import AdminCategoryDetail from "./components/UserAdmin/AdminCategoryDetail.jsx";
+import NewCategory from "./components/UserAdmin/NewCategory.jsx";
 import "./App.css";
 
 function App() {
@@ -37,7 +38,8 @@ function App() {
         <Route exact path="/clientEdit/:id" component={ClientEdit} />    
         <Route exact path="/newProduct" component={NewProduct} />
         <Route exact path="/adminCategories" component={AdminCategories} />
-        <Route exact path="/admCategoryDetail" component={AdminCategoryDetail} />
+        <Route exact path="/categoryDetail/:id" component={AdminCategoryDetail} />
+        <Route exact path="/newCategory" component={NewCategory} />
         
       </BrowserRouter>
     </div>

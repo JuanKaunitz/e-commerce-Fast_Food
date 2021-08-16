@@ -15,7 +15,9 @@ import {
     EDIT_PRODUCT,
     TOTAL_CARRITO,
     ALL_USERS,    
-    DELETE_CATEGORY,
+    DELETE_CATEGORY,    
+    CREATE_CATEGORY,
+    UPDATE_CATEGORY,
 } from '../constants'
 
 import dotenv from 'dotenv'
@@ -124,13 +126,43 @@ export const getById = (id) => async (dispatch) => {
 
 };
 
+//Creando un producto.
+export const createCategory = (input) => async (dispatch) => {
+    try {
+        const category = await axios.post(`${URL}/food/api/category`,input);
+        console.log('CATEGORY: ', category.data.category)
+        dispatch({
+            type: CREATE_CATEGORY,
+            payload: category.data.data.category
+        });
+    } catch (err) {
+        console.log(err)
+    }
+ };
+
+export const getUpdateCategory = (id, input) => async (dispatch) => {
+    console.log('CATEGORIA ID:', id )
+    console.log('CATEGORIA input:', input )
+    try {
+        const res = await axios.put(`${URL}/food/api/category/${id}`, input);
+        console.log("RESPUESTA", res)
+        dispatch({
+            type: UPDATE_CATEGORY,
+            payload: res.data
+        });
+    } catch (err) {
+        console.log(err)
+    }
+
+};
+
 //Borrando una categoria.
 export const deleteCategory = (id) => async (dispatch) => {
      console.log('ID DELETE',id) 
     try {
-        const res = await axios.delete(`${URL}/food/api/products/${id}`);        
+        const res = await axios.delete(`${URL}/food/api/category/${id}`);        
         dispatch({
-            type: DELETE_PRODUCT,
+            type: DELETE_CATEGORY,
             payload: res.data
         });
     } catch (err) {
