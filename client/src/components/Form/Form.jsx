@@ -3,8 +3,9 @@ import { createProduct } from "../../Redux/actions/actions";
 import { useDispatch, useSelector } from "react-redux";
 import { getCategories, getTypes } from "../../Redux/actions/actions";
 import styles from "./styles.module.css";
+import FileDrop from "./FileDrop";
 
-const Form = (props) => {
+const Form = () => {
   const dispatch = useDispatch();
   const category = useSelector((state) => state.allCategories);
   const types = useSelector((state) => state.types);
@@ -13,11 +14,11 @@ const Form = (props) => {
     dispatch(getCategories());
   }, [dispatch]);
 
+  
   const [input, setInput] = useState({
     name: "",
     type: "",
     identifier: "",
-    image: "",
     price: "",
     description: "",
     stock: true,
@@ -25,25 +26,29 @@ const Form = (props) => {
   const saveProduct = () => {
     dispatch(createProduct(input));
   };
-
+  
   const handleSubmit = (e) => {
     e.preventDefault();
     setInput(input);
     saveProduct();
     //props.history.push("/AdminPanel");
   };
-
+  
   const handleInputChange = function (e) {
     setInput({
       ...input,
       [e.target.name]: e.target.value,
     });
   };
-
+  
   const handleInputCategory = function (e) {
     var filtradoCategory = category.filter((el) => el.name === e.target.value);
     dispatch(getTypes(filtradoCategory[0].types));
   };
+  
+  const [selectedFile, setSelectedFile] = useState(null);
+
+
 
   return (
     <div className={styles.form_content}>
@@ -73,18 +78,10 @@ const Form = (props) => {
           />
         </div>
 
-        <div className={styles.form_group}>
-          <label>Image:</label>
-          <input
-            className={styles.input_items}
-            type="url"
-            name="image"
-            onChange={handleInputChange}
-            value={input.image}
-            placeholder="Insert an URL image"
-            required
-          />
+        <div className = "filedrop">
+          <FileDrop />
         </div>
+
 
         <div className={styles.form_group}>
           <label>Price:</label>
