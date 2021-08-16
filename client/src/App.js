@@ -1,5 +1,8 @@
 import React from "react";
 import { BrowserRouter, Route } from "react-router-dom";
+import { Elements } from "@stripe/react-stripe-js";
+import { loadStripe } from "@stripe/stripe-js";
+//components
 import AboutUs from "./components/aboutUs/AboutUs.jsx";
 import Cart from "./components/cart/Cart.jsx";
 import Home from "./components/Home/Home.jsx";
@@ -17,7 +20,14 @@ import NewProduct from "./components/UserAdmin/NewProduct.jsx";
 import AdminCategories from "./components/UserAdmin/AdminCategories.jsx";
 import AdminCategoryDetail from "./components/UserAdmin/AdminCategoryDetail.jsx";
 import NewCategory from "./components/UserAdmin/NewCategory.jsx";
+import EditProduct from "./components/editProduct/EditProduct.jsx";
+import Checkout from "./components/payment/Checkout.js";
+// import CheckoutForm from "./components/payment/CheckoutForm.jsx";
+//styles
 import "./App.css";
+const KEY_STRIPE=process.env
+
+const stripePromise = loadStripe(`${KEY_STRIPE}`);
 
 function App() {
   return (
@@ -31,6 +41,7 @@ function App() {
         <Route exact path="/form" component={Form} />
         <Route exact path="/categories" component={Categories} />
         <Route exact path="/register" component={Register} />
+<<<<<<< HEAD
         <Route exact path="/formregister" component={FormNav} />        
         <Route exact path="/adminPanel" component={AdminPanel} />
         <Route exact path="/admProdDetail/:id" component={AdminProductDetail} />  
@@ -41,6 +52,17 @@ function App() {
         <Route exact path="/categoryDetail/:id" component={AdminCategoryDetail} />
         <Route exact path="/newCategory" component={NewCategory} />
         
+=======
+        <Route
+          path="/payment"
+          render={() => (
+            <Elements stripe={stripePromise}>
+              <Checkout />
+            </Elements>
+          )}
+        />
+        <Route exact path="/formregister" component={FormNav} />
+>>>>>>> jc-dev
       </BrowserRouter>
     </div>
   );
