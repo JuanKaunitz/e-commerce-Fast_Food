@@ -16,6 +16,8 @@ import {
     TOTAL_CARRITO,
     ALL_USERS,
     GET_CLIENTS,
+    HIGHER_PRICE,
+    LOWER_PRICE,
 
 } from '../constants'
 
@@ -127,9 +129,16 @@ export const getById = (id) => async (dispatch) => {
 
 // Ordenamiento ascendente y descendente.
 export const orderBy = (sort) => (dispatch) => {  
-    dispatch({
-       type: sort,        
-   })    
+    if(sort === "startLowerPrice"){
+        dispatch({
+            type: LOWER_PRICE,        
+        }) 
+    }
+    if(sort === "startHighestPrice"){
+        dispatch({
+           type: HIGHER_PRICE,        
+       })    
+    }
 };
 
 export const categoryName = (name) => (dispatch) => {  
