@@ -31,7 +31,8 @@ import axios from 'axios';
 // import { bindActionCreators } from 'redux';
 dotenv.config()
 
-const URL = process.env.REACT_APP_BACKEND_URL
+// const URL = process.env.REACT_APP_BACKEND_URL 
+const URL = 'http://localhost:5001';
 
 //Obteniendo todos las foods.
 export const getAllProducts = () => async (dispatch) => {
@@ -76,7 +77,7 @@ export const getById = (id) => async (dispatch) => {
  export const createProduct = (input) => async (dispatch) => {
      console.log('INPUT ACTION: ', input);
     try {
-        const product = await axios.post(`http://localhost:5001/food/api/products`,input);
+        const product = await axios.post(`${URL}/food/api/products`,input);
         console.log('PRODUCT: ', product);
         dispatch({
             type: CREATE_PRODUCT,
@@ -135,12 +136,14 @@ export const getById = (id) => async (dispatch) => {
 
 //Creando un producto.
 export const createCategory = (input) => async (dispatch) => {
+    console.log('LLEGA?O NOOOOOOOOO: ', input)
     try {
         const category = await axios.post(`${URL}/food/api/category`,input);
-        console.log('CATEGORY: ', category.data.category)
+        // const category = await axios.post(`${URL}/food/api/category`, input)
+        console.log('CATEGORY: ', category.data);
         dispatch({
             type: CREATE_CATEGORY,
-            payload: category.data.data.category
+            payload: category.data
         });
     } catch (err) {
         console.log(err)
@@ -235,7 +238,7 @@ export const updateOrderFinal = (order) => (dispatch) => {
 //Obtengo lista de cliebtes(register).
 export const allUsers = () => async (dispatch) => {
     try {
-        const res = await axios.get(`http://localhost:5001/food/api/user`);
+        const res = await axios.get(`${URL}/food/api/user`);
         console.log('ALL USER: ', res.data.users)
         dispatch({
            type: ALL_USERS,
