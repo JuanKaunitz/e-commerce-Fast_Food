@@ -1,5 +1,4 @@
 const Category = require('../models/Category');
-const Product = require('../models/Product');
 
 
 
@@ -18,7 +17,6 @@ exports.createNewCategory = async(req,res,next)=>{
 };
 
 exports.getAllCategories = async(req,res,next)=>{
-    // const products = await Product.find({});
     try {
       const categories = await Category.find({})
      

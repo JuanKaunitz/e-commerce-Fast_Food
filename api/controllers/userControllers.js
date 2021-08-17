@@ -70,7 +70,7 @@ exports.updateUser = async (req, res) => {
 //crear usuario
 exports.createUsers = async (req, res) => {
   if(req.file){
-    newUser.picture = req.file.filename;
+    newUser.image = req.file.filename;
   }
   const newUser = req.body;
 const {password}= req.body;
