@@ -165,7 +165,7 @@ const rootReducer = (state = initialState, action) => {
     case ALL_USERS:
       return {
         ...state,
-        clients: action.payload
+        clients:  action.payload
       }   
 
     case UPDATE_CATEGORY:
@@ -177,7 +177,7 @@ const rootReducer = (state = initialState, action) => {
      case CLIENT_UPDATE:
        return {
          ...state,
-         clients: [...state.clients, action.payload]
+         clients: action.payload
        }
 
     default:
