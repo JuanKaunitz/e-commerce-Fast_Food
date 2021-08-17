@@ -21,6 +21,7 @@ import {
     // GET_CLIENTS,
     HIGHER_PRICE,
     LOWER_PRICE,
+    CLIENT_UPDATE
 
 } from '../constants'
 
@@ -73,8 +74,10 @@ export const getById = (id) => async (dispatch) => {
 
  //Creando un producto.
  export const createProduct = (input) => async (dispatch) => {
+     console.log('INPUT ACTION: ', input);
     try {
-        const product = await axios.post(`${URL}/food/api/products`,input);
+        const product = await axios.post(`http://localhost:5001/food/api/products`,input);
+        console.log('PRODUCT: ', product);
         dispatch({
             type: CREATE_PRODUCT,
             payload: product.data.product
@@ -286,3 +289,16 @@ export const totalProductosCarrito = (total) => (dispatch) => {
     })
 }
 
+export const updateClient = (id, input) => async (dispatch) => {
+    try {
+        const res = await axios.put(`${URL}/food/api/user/:${id}`, input);
+        dispatch({
+            type: CLIENT_UPDATE,
+            payload: res.data
+
+        })
+
+    } catch(err) {
+        console.log(err)
+    }
+}

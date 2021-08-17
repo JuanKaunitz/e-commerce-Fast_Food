@@ -20,8 +20,8 @@ const useStyles = makeStyles((theme) => ({
   },
   cardContent: {
     backgroundColor:'rgb(240, 119, 6)',
-    width: '200px',
-    heigth: '200px',
+    maxWidth: '200px',
+    maxHeigth: '200px',
     boxShadow: '3px 4px 8px #0b0c0c1a',
 
   },
