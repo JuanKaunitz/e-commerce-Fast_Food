@@ -30,26 +30,26 @@ const Categories = () => {
   
   const filter1 = getAll.filter((product) => {
     const categoryName1 = product.categories?.map((category) => {
-      console.log( category)
+      console.log( category.category.name)
       return category.category.name;
     });
     console.log('CATEGORYNAME1: ', categoryName1)
-    return categoryName1 == categoryName;
+    return categoryName1.toString() === categoryName;
     
   });
 
   useEffect(() => {
-    if(type === "Types"){
-      return setFiltro(filter1);
-    }
+    // if(type === "Types"){
+    //   return setFiltro(filter1);
+    // }
     let tipos = getAll.filter(e => {
       let tipo = e.type;
-      if(tipo === undefined){ return }
+      if(tipo === undefined) return null; 
       if(tipo.toLowerCase().includes(type.toLowerCase())){
         return e;
       }
     });
-    setFiltro(tipos)
+    // setFiltro(tipos)
   },[type]);
 
   const categoriesTypes = categories.filter(e => {
