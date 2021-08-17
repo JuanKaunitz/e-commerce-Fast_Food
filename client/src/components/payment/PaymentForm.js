@@ -1,19 +1,27 @@
-import React from 'react';
-import Typography from '@material-ui/core/Typography';
-import Grid from '@material-ui/core/Grid';
-import TextField from '@material-ui/core/TextField';
-import FormControlLabel from '@material-ui/core/FormControlLabel';
-import Checkbox from '@material-ui/core/Checkbox';
+import React from "react";
+import Typography from "@material-ui/core/Typography";
+import Grid from "@material-ui/core/Grid";
+import TextField from "@material-ui/core/TextField";
+import { Button } from "@material-ui/core";
+import useStyles from "./styles";
 
-export default function PaymentForm() {
+export default function PaymentForm({ handleBack,handleNext }) {
+  const classes = useStyles();
+
   return (
-    <React.Fragment>
+    <form>
       <Typography variant="h6" gutterBottom>
         Metodo de Pago
       </Typography>
       <Grid container spacing={3}>
         <Grid item xs={12} md={6}>
-          <TextField required id="cardName" label="Name on card" fullWidth autoComplete="cc-name" />
+          <TextField
+            required
+            id="cardName"
+            label="Name on card"
+            fullWidth
+            autoComplete="cc-name"
+          />
         </Grid>
         <Grid item xs={12} md={6}>
           <TextField
@@ -25,7 +33,13 @@ export default function PaymentForm() {
           />
         </Grid>
         <Grid item xs={12} md={6}>
-          <TextField required id="expDate" label="Expiry date" fullWidth autoComplete="cc-exp" />
+          <TextField
+            required
+            id="expDate"
+            label="Expiry date"
+            fullWidth
+            autoComplete="cc-exp"
+          />
         </Grid>
         <Grid item xs={12} md={6}>
           <TextField
@@ -37,13 +51,20 @@ export default function PaymentForm() {
             autoComplete="cc-csc"
           />
         </Grid>
-        <Grid item xs={12}>
-          <FormControlLabel
-            control={<Checkbox color="secondary" name="saveCard" value="yes" />}
-            label="Remember credit card details for next time"
-          />
-        </Grid>
       </Grid>
-    </React.Fragment>
+      <div className={classes.buttons}>
+          <Button onClick={handleBack} className={classes.button}>
+            Back
+          </Button>
+          <Button
+            variant="contained"
+            color="primary"
+            onClick={handleNext}
+            className={classes.button}
+          >
+            Next
+          </Button>
+          </div>
+    </form>
   );
 }
