@@ -29,11 +29,11 @@ const Categories = () => {
   const [filtro, setFiltro] = useState([]);
   
   const filter1 = getAll.filter((product) => {
-    const categoryName1 = product.categories.map((category) => {
-      //console.log('CATEGORYNAME: ', categoryName)
+    const categoryName1 = product.categories?.map((category) => {
+      console.log( category)
       return category.category.name;
     });
-    //console.log('CATEGORYNAME1: ', categoryName1)
+    console.log('CATEGORYNAME1: ', categoryName1)
     return categoryName1 == categoryName;
     
   });

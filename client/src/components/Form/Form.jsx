@@ -18,11 +18,15 @@ const Form = () => {
   const [input, setInput] = useState({
     name: "",
     type: "",
+    image: '',
     identifier: "",
     price: "",
     description: "",
     stock: true,
+    categories: {}
   });
+
+
   const saveProduct = () => {
     dispatch(createProduct(input));
   };
@@ -46,9 +50,6 @@ const Form = () => {
     dispatch(getTypes(filtradoCategory[0].types));
   };
   
-  // const [selectedFile, setSelectedFile] = useState(null);
-
-
 
   return (
     <div className={styles.form_content}>
@@ -76,6 +77,17 @@ const Form = () => {
             value={input.type}
             required
           />
+        </div>
+
+        <div className = "img">
+          <label>Insert an URL for your image</label>
+          <input 
+          type="url"
+          name="image"
+          onChange={handleInputChange}
+          value={input.image}
+          />
+
         </div>
 
         <div className = "filedrop">

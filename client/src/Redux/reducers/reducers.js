@@ -18,6 +18,7 @@ import {
   TOTAL_CARRITO, 
   GET_CATEGORY_BY_ID, 
   UPDATE_CATEGORY,
+  CLIENT_UPDATE
   /* ASC,
   DESC */
 } from "../constants";
@@ -173,7 +174,11 @@ const rootReducer = (state = initialState, action) => {
         allCategories: [...state.allCategories, action.payload]
       }
       
-     
+     case CLIENT_UPDATE:
+       return {
+         ...state,
+         clients: [...state.clients, action.payload]
+       }
 
     default:
       return state;
