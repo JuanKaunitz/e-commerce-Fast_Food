@@ -16,7 +16,7 @@ const NewCategory = (props) => {
   const [input, setInput] = useState({
     name: "",    
     image: "",
-    types: [],    
+    types: "",    
   });
   const saveCategory = () => {
       console.log('INPUT: ', input)
