@@ -28,15 +28,9 @@ const ProductSchema = new Schema({
   available: {
     type: Boolean
   },
-  
-  categories: [
-    {
-      category: {
-        type: mongoose.Schema.Types.ObjectId,
-        ref: "Category",
-      },
+  categories: {
+    type: String,
     },
-  ],
 });
 
 module.exports = mongoose.model("Product", ProductSchema);

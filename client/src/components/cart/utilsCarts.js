@@ -132,6 +132,7 @@ export const mergeCart = (cart, orderBack) => {
 
 //SUMA EL PRECIO DE TODOS LOS PRODUCTOS Y DEVUELVE EL TOTAL
 export const sumaPrecioTotal = (cart) => {
+  if(cart === null){return 0}
   if(cart.length > 0){
     const precios = cart.map(e => e.price * e.count);
     var precioTotal = 0;
@@ -144,6 +145,7 @@ export const sumaPrecioTotal = (cart) => {
 
 //SUMA LA CANTIDAD DE TODOS LOS PRODUCTOS Y DEVUELVE EL TOTAL
 export const sumaCantidadTotal = (cart) => {
+  if(cart === null){return 0}
   const precios = cart.map(e =>  e.count);
     var suma = 0;
     for(let i = 0; i < precios.length; i++){

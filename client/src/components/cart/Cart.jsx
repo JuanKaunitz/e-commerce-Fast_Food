@@ -35,7 +35,7 @@ const Cart = (props) => {
   const carts = useSelector((state) => state.order);
   //const carts = JSON.parse(localStorage.getItem('order'))
   useEffect(() => {
-    if (carts.length <= 0) {
+    if (carts.length <= 0 ) {
       if (localStorage.getItem("order")) {
         let object = JSON.parse(localStorage.getItem("order"));
         dispatch(updateCart(object));
@@ -80,6 +80,7 @@ const Cart = (props) => {
   const setBuy = () => {
     props.history.push("/payment");
   };
+
   return (
     <div>
       <h1 className={classes.color}>THIS IS YOUR CART</h1>

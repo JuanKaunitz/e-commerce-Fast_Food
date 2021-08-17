@@ -30,8 +30,8 @@ import axios from 'axios';
 // import { bindActionCreators } from 'redux';
 dotenv.config()
 
-const URL = process.env.REACT_APP_BACKEND_URL
-
+//const URL = process.env.REACT_APP_BACKEND_URL
+const URL = "http://localhost:5001";
 //Obteniendo todos las foods.
 export const getAllProducts = () => async (dispatch) => {
    try {
@@ -89,7 +89,6 @@ export const getById = (id) => async (dispatch) => {
      //console.log('UPDATE: ', input)
     try {        
         const res = await axios.put(`${URL}/food/api/products/${id}`, input) 
-        //const res = await axios.put(`http://localhost:5001/food/api/${id}`);
         dispatch({
             type: UPDATE_PRODUCT,
             payload: res.data
@@ -105,7 +104,6 @@ export const getById = (id) => async (dispatch) => {
      //console.log('ID DELETE',id)
      try {
          const res = await axios.delete(`${URL}/food/api/products/${id}`);
-         //const res = await axios.delete(`http://localhost:5001/food/api/${id}`);
          dispatch({
              type: DELETE_PRODUCT,
              payload: res.data
@@ -132,12 +130,13 @@ export const getById = (id) => async (dispatch) => {
 
 //Creando un producto.
 export const createCategory = (input) => async (dispatch) => {
+    console.log("INPUT ACCION", input)
     try {
         const category = await axios.post(`${URL}/food/api/category`,input);
-        console.log('CATEGORY: ', category.data.category)
+        console.log('CATEGORY: ', category.data)
         dispatch({
             type: CREATE_CATEGORY,
-            payload: category.data.data.category
+            payload: category.data
         });
     } catch (err) {
         console.log(err)

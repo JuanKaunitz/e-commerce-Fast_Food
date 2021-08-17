@@ -28,21 +28,16 @@ const Categories = () => {
   const [type, setType] = useState(" ");
   const [filtro, setFiltro] = useState([]);
   
-  const filter1 = getAll.filter((product) => {
-    const categoryName1 = product.categories.map((category) => {
-      //console.log('CATEGORYNAME: ', categoryName)
-      return category.category.name;
-    });
-    //console.log('CATEGORYNAME1: ', categoryName1)
-    return categoryName1 == categoryName;
-    
-  });
+  const filter1 = getAll.filter((product) => 
+    product.categories.toLowerCase() === categoryName.toLowerCase());
+  console.log("FILTER1", filter1)
+
 
   useEffect(() => {
     if(type === "Types"){
       return setFiltro(filter1);
     }
-    let tipos = getAll.filter(e => {
+    let tipos = filter1.filter(e => {
       let tipo = e.type;
       if(tipo === undefined){ return }
       if(tipo.toLowerCase().includes(type.toLowerCase())){
@@ -84,7 +79,7 @@ const Categories = () => {
     <div>
       <div className={classes.color}>
         <h2 >filtro por tipo</h2>
-        <select onClick={e => setType(e.target.value)}>
+        <select onClick={(e) => setType(e.target.value)}>
           <option value="Types">Types</option>
           {
             types.map(j => (

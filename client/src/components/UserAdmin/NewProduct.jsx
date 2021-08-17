@@ -21,6 +21,8 @@ const NewProduct = (props) => {
     price: "",
     description: "",
     stock: true,
+    categories: "",
+    type: ""
   });
   const saveProduct = () => {
     dispatch(createProduct(input));
@@ -42,9 +44,12 @@ const NewProduct = (props) => {
   };
 
   const handleInputCategory = function (e) {
+    input.categories = e.target.value;
     var filtradoCategory = category.filter((el) => el.name === e.target.value);
     dispatch(getTypes(filtradoCategory[0].types));
   };
+
+  console.log("INPUT", input)
 
   return (
     <div className={styles.form_content}>
@@ -109,7 +114,7 @@ const NewProduct = (props) => {
         </div>
 
         <div className="filterName">Category</div>
-        <select className="boton" onChange={(e) => handleInputCategory(e)}>
+        <select className="boton" name="categories" onChange={handleInputCategory}>
           <option>Categories</option>
           {category &&
             category.map((t, i) => (
@@ -120,11 +125,11 @@ const NewProduct = (props) => {
         </select>
 
         <div className="filterName">Types</div>
-        <select className="boton">
+        <select className="boton" name="type" onChange={handleInputChange}>
           <option>TypesCategory</option>
           {types &&
             types.map((t, i) => (
-              <option key={i} value={t.name}>
+              <option key={i} value={t.name} >
                 {t.name}
               </option>
             ))}

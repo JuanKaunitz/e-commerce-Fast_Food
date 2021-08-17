@@ -16,16 +16,34 @@ const NewCategory = (props) => {
   const [input, setInput] = useState({
     name: "",    
     image: "",
-    types: "",    
+    types: [],    
   });
+
+  const [type, setType] = useState({
+    type1: '',
+    type2: '',
+    type3: '',
+  })
+
+  console.log("INPUT", input)
+  console.log("type", type)
+
   const saveCategory = () => {
       console.log('INPUT: ', input)
     dispatch(createCategory(input));
   };
 
+  function todosTypes(){
+    input.types.push({name: type.type1})
+    input.types.push({name: type.type2})
+    input.types.push({name: type.type3})
+  }
+
   const handleSubmit = (e) => {
     e.preventDefault();
-    setInput(input);
+    todosTypes()
+    console.log("INPUT", input)
+    //setInput(input);
     saveCategory();
     props.history.push("/adminCategories");
   };
@@ -37,12 +55,12 @@ const NewCategory = (props) => {
     });
   };
 
-  /* const handleTypeChange = function (e) {
-    setInput({
-      ...input,
-      types:[ ...input.types, e.target.value],
+  const handleTypeChange = function (e) {
+    setType({
+      ...type,
+      [e.target.name]: e.target.value,
     });
-  };   */
+  };  
 
   return (
     <div className={styles.form_content}>
@@ -80,14 +98,37 @@ const NewCategory = (props) => {
         </div>        
 
         <div className={styles.form_group}>
-          <label>Types:</label>
+          <label>Type1:</label>
           <input
             className={styles.input_items}
             type="text"
-            name="types"
+            name="type1"
             rows="5"
-            onChange={handleInputChange}
-            value={input.types.name}
+            onChange={handleTypeChange}
+            required
+          />
+        </div>
+
+        <div className={styles.form_group}>
+          <label>Type2:</label>
+          <input
+            className={styles.input_items}
+            type="text"
+            name="type2"
+            rows="5"
+            onChange={handleTypeChange}
+            required
+          />
+        </div>
+
+        <div className={styles.form_group}>
+          <label>Type3:</label>
+          <input
+            className={styles.input_items}
+            type="text"
+            name="type3"
+            rows="5"
+            onChange={handleTypeChange}
             required
           />
         </div> 

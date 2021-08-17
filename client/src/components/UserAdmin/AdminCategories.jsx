@@ -13,10 +13,11 @@ const categories = useSelector((state) => state.allCategories)
 
 useEffect(() => {    
     dispatch(getCategories());
-  }, [dispatch, categories]);
+  }, [dispatch]);
 
     function handleDeleteCategory(id){
         dispatch(deleteCategory(id))
+        window.location.reload();
     }
     return (
         <div className='list'>
