@@ -27,30 +27,23 @@ const Categories = () => {
   const [page, setPage] = useState(0);
   const [type, setType] = useState(" ");
   const [filtro, setFiltro] = useState([]);
+
+  console.log('CATEGORY-NAME', categoryName)
   
-  const filter1 = getAll.filter((product) => {
-    const categoryName1 = product.categories.map((category) => {
-      console.log('CATEGORYNAME: ', categoryName)
-      return category.category.name;
-    });
-    console.log('CATEGORYNAME1: ', categoryName1.toString())
-    return categoryName1.toString() === categoryName;
-    
-  });
+  const filter1 = getAll.filter((product) => product.category === categoryName); 
+  
+  console.log('filter1: ', filter1)
+  console.log('GET ALL: ', getAll);
 
   useEffect(() => {
-    if(type){
+    if(type === "Types"){
       return setFiltro(filter1);
-    }else{
-      let tipos = getAll.filter(e => {
-        let tipo = e.type;
-        // if(tipo === undefined)return null;
-      return tipo.toLowerCase().includes(type.toLowerCase())
-      });
-      setFiltro(tipos)
     }
+    let tipos = filter1.filter(e => e.type === type)
     
-  },[]);
+    console.log("TIPOS", tipos)
+    setFiltro(tipos)
+  },[type]);
 
   const categoriesTypes = categories.filter(e => {
     if(e.name === categoryName){
@@ -140,3 +133,5 @@ const Categories = () => {
 };
 
 export default Categories;
+
+
