@@ -8,27 +8,25 @@ export default function AdminCategoryDetail(props) {
   const classes = useStyles();
   const dispatch = useDispatch();
   const id = props.match.params.id;
-  const [input, setInput] = useState({
-    name: "",
-    types: [],    
-    image: "",     
-  });
-  
-  /* const getCategory = () => {
-    dispatch(getCategoryById(id));
-    // setInput(productEdit);
-  }; */
+  const array = useSelector(state => state.allCategories);
+  const selectedCategory = array.filter(e => e._id === id);
+  const typesFilter = selectedCategory[0].types;
 
-  /* useEffect(() => {
-    getCategory();
-  }, []); */
-  
-  const categoryEdit = useSelector((state) => state.editCategory);
+  const [input, setInput] = useState({
+    name: selectedCategory[0].name,
+    types: [],    
+    image: selectedCategory[0].image,     
+  });
+ 
+  //const categoryEdit = useSelector((state) => state.editCategory);
+
+ 
+   
   
   const handleSubmit = async (e) => {
        e.preventDefault();
-       dispatch(getUpdateCategory(id, input))      
-       props.history.push("/adminCategories");      
+       //dispatch(getUpdateCategory(id, input))      
+       //props.history.push("/adminCategories");      
   };
 
   const handleInputChange = function (e) {
@@ -37,6 +35,8 @@ export default function AdminCategoryDetail(props) {
       [e.target.name]: e.target.value,
     });
   };
+
+  console.log("INPUT", input)
 
   return (
     <div className={classes.form_content}>
@@ -54,31 +54,35 @@ export default function AdminCategoryDetail(props) {
               type="text"
               name="name"
               onChange={handleInputChange}
-              defaultValue={categoryEdit.name}
+              defaultValue={selectedCategory[0].name}
               required
             />
           </div>
 
-          <div className={classes.form_group}>
-            <label>Type:</label>
-            <input
-              className={classes.input_items}
-              type="text"
-              name="type"
-              onChange={handleInputChange}
-              defaultValue={categoryEdit.types}
-              required
-            />
-          </div>
+          {
+            selectedCategory && selectedCategory[0].types.map((type) => (
+              <div>
+                <input
+                  className={classes.input_items}
+                  type="text"
+                  name="type" 
+                  onChange={handleInputChange}
+                  defaultValue={type.name}
+                  required
+                />
+                </div>
+              ))
+          }
 
           <div className={classes.form_group}>
             <label>Image:</label>
-            <img
-              src={categoryEdit.image}
+            <input
+              
               alt={input.name}
               name="image"
               style={{width:200}}
-              defaultValue={input.image}
+              onChange={handleInputChange}
+              defaultValue={selectedCategory[0].image}
             />
           </div>
 

@@ -27,25 +27,9 @@ const Categories = () => {
   const [page, setPage] = useState(0);
   const [type, setType] = useState(" ");
   const [filtro, setFiltro] = useState([]);
-  
-  const filter1 = getAll.filter((product) => 
-    product.categories.toLowerCase() === categoryName.toLowerCase());
-  console.log("FILTER1", filter1)
 
 
-  useEffect(() => {
-    if(type === "Types"){
-      return setFiltro(filter1);
-    }
-    let tipos = filter1.filter(e => {
-      let tipo = e.type;
-      if(tipo === undefined){ return }
-      if(tipo.toLowerCase().includes(type.toLowerCase())){
-        return e;
-      }
-    });
-    setFiltro(tipos)
-  },[type]);
+  let filtrado = getAll.filter(e => e.category === categoryName);
 
   const categoriesTypes = categories.filter(e => {
     if(e.name === categoryName){
@@ -54,6 +38,18 @@ const Categories = () => {
   });
 
   const types = categoriesTypes[0].types;
+  console.log("FILTRADO", filtrado)
+
+  useEffect(() => {
+    if(type === "Types"){
+      return setFiltro(filtrado);
+    }
+    let tipos = filtrado.filter(e => e.type === type)
+    
+    console.log("TIPOS", tipos)
+    setFiltro(tipos)
+  },[type]);
+
 
   function handlePrev() {
     if (page > 0) {
@@ -93,7 +89,7 @@ const Categories = () => {
       <Order />
       <Grid container className={classes.root} spacing={2}>
         {filtro.length <= 0 ? (
-          filter1.slice(page * 8, page * 8 + 8).map((product) => (
+          filtrado.slice(page * 8, page * 8 + 8).map((product) => (
             <Grid item key={product._id} xs={3}>
               <CardProduct
                 id={product._id}
@@ -125,7 +121,7 @@ const Categories = () => {
         <button
           value="next"
           onClick={handleNext}
-          disabled={filter1.slice(page * 8, page * 8 + 8).length < 8}
+          disabled={filtrado.slice(page * 8, page * 8 + 8).length < 8}
         >
           Next
         </button>

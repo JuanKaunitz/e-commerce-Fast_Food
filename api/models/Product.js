@@ -28,7 +28,7 @@ const ProductSchema = new Schema({
   available: {
     type: Boolean
   },
-  categories: {
+  category: {
     type: String,
     },
 });
