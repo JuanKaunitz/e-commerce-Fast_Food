@@ -208,7 +208,7 @@ export const authUser =  (user) => async (dispatch) => {
         console.log('CLIENT: ', client)
         dispatch({
             type: LOGIN_CLIENT,
-            payload: client.data
+            payload: client.data.user
         })
 
     } catch (err) {

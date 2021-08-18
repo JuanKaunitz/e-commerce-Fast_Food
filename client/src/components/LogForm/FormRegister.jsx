@@ -56,6 +56,7 @@ const FormRegister = () => {
   const handleSubmit = (e) => {
     e.preventDefault();
     console.log(input);
+    
     dispatch(newUser(input));
     setInput({
       name: "",
@@ -76,11 +77,13 @@ const FormRegister = () => {
     setShowloginButton(true);
     setShowlogoutButton(false);
   };
+
   const onLoginSuccess = (res) => {
     console.log("Login Success:", res.profileObj);
     setShowloginButton(false);
     setShowlogoutButton(true);
   };
+  
   const onLoginFailure = (res) => {
     console.log("Login Failed:", res);
   };

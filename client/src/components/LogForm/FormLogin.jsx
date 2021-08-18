@@ -23,6 +23,8 @@ export function validate(input) {
   
 const FormLogin = () => {
   const dispatch = useDispatch();
+  //const client = useSe
+
   const [input, setInput] = useState({
     email: "",
     password: "",
@@ -52,6 +54,7 @@ const FormLogin = () => {
       email: "",
       password: "",
     });
+    //let object = JSON.parse(localStorage.getItem('order'));
   };
   
 
