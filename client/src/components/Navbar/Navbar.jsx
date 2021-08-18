@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import clsx from "clsx";
 import { NavLink } from "react-router-dom";
 import {
@@ -29,7 +29,7 @@ const Navbar = () => {
   const dispatch = useDispatch();
   const classes = useStyles();
   const theme = useTheme();
-  const [open, setOpen] = React.useState(false);
+  const [open, setOpen] = useState(false);
   const categories = useSelector((state) => state.allCategories);
   const totalCarrito = useSelector((state) => state.totalCarrito);
 
@@ -75,6 +75,8 @@ const Navbar = () => {
             </Button>
             <SerchBar />
             <div className={classes.toolbarButtons}>
+
+              
               <NavLink
                 className={classes.MuiButtonLabel}
                 to="/AdminPanel"
@@ -82,6 +84,11 @@ const Navbar = () => {
               >
                 Admin Panel
               </NavLink>
+
+              
+
+
+
               <IconButton aria-label="add to shopping cart">
                 <NavLink
                   className={classes.MuiButtonLabel}

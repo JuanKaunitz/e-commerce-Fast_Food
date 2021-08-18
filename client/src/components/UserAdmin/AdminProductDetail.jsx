@@ -45,7 +45,7 @@ export default function AdminProductDetail(props) {
 
   return (
     <div className={classes.form_content}>
-      <h1>Edita product</h1>
+      <h1>Edit product</h1>
 
       <Link to='/adminPanel'> <button >Admin Panel</button></Link>
       <Link to='/clients'> <button >Clients Panel</button></Link>
@@ -119,7 +119,7 @@ export default function AdminProductDetail(props) {
          </Link> 
         </form>
       ) : 
-        <p>cargando</p>
+        <p>Cargando...</p>
       }
     </div>
   );

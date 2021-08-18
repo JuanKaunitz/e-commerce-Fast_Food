@@ -62,6 +62,7 @@ const FormRegister = () => {
       email: "",
       password: "",
     });
+    window.location.replace("http://localhost:3000/register");
   };
   const responseGoogle = (response) => {
     console.log(response);
