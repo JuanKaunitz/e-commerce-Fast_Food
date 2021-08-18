@@ -31,7 +31,7 @@ const stripePromise = loadStripe(`${KEY_STRIPE}`);
 
 function App() {
   return (
-    <div className="App">
+    <div>
       <BrowserRouter>
         <Navbar />
         <Route exact path="/" component={Home} />

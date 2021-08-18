@@ -19,8 +19,8 @@ mongoose.connect(`${URL_CONNECTION}${DB}`, {
 //
 const server = express();
 //habilitar el parseo de los datos
-server.use(express.json());
 server.use(express.urlencoded({extended:true}));
+server.use(express.json());
 //habilitar el cors
 server.use(cors());
 //rutas de la server
