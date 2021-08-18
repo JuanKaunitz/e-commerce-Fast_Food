@@ -47,7 +47,7 @@ const NewProduct = (props) => {
     description: "",
     stock: true,
     categories: "",
-    type: "",
+    types: "",
   });
   const saveProduct = () => {
     dispatch(createProduct(input));
@@ -58,7 +58,7 @@ const NewProduct = (props) => {
     e.preventDefault();
     setInput(input);
     saveProduct();
-    // props.history.push("/AdminPanel");
+    props.history.push("/AdminPanel");
   };
 
   const handleInputChange = function (e) {
@@ -156,7 +156,7 @@ const NewProduct = (props) => {
         <div className="filterName">Category</div>
         <select
           className="boton"
-          onChange={handleInputCategory}
+          onChange={handleInputChange}
           name="categories"
         >
           <option>Categories</option>
@@ -171,8 +171,8 @@ const NewProduct = (props) => {
         <div className="filterName">Types</div>
         <select
           className="boton"
-          onChange={handleInputChange}
-          name="type"
+          onChange={(e) => handleInputCategory(e)}
+          name="types"
         >
           <option>TypesCategory</option>
           {types &&

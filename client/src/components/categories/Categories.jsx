@@ -25,7 +25,7 @@ const Categories = () => {
   const getAll = useSelector((state) => state.getProducts);
   const categories = useSelector((state) => state.allCategories);
   const [page, setPage] = useState(0);
-  const [type, setType] = useState(" ");
+  const [type, setType] = useState("");
   const [filtro, setFiltro] = useState([]);
 
   console.log('CATEGORY-NAME', categoryName)

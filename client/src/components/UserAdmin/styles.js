@@ -1,21 +1,28 @@
 import {makeStyles} from '@material-ui/core';
 
-const useStyles = makeStyles(()=>({
+const useStyles = makeStyles((theme)=>({
    form_content:{
     maxWidth:1024,
-    paddingLeft:80,
+    paddingLeft:40,
     margin:'auto',
-    marginTop:100,
-    height:800,
     backgroundColor:'#c7c9cc29',
     borderRadius:10,
     padding:5
     
    },
+   input_text:{
+    backgroundColor:'#ffff'
+  },
+   form: {
+    width: '100%', // Fix IE 11 issue.
+    marginTop: theme.spacing(1),
+    
+  },
     input_items:{
         cursor: 'pointer',
         width:'80%',
         fontSize: '25px',
+        backgroundColor: 'aliceblue',
         boxShadow: '3px 4px 8px #0864B11A',
         border: '1.5px solid #616060',
     },

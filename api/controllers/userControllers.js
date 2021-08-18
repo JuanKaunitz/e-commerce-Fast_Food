@@ -37,22 +37,18 @@ exports.uploadImage = async(req,res,next)=>{
 
 
 exports.getUsers = async (req, res) => {
-  const { limite = 10, desde = 0 } = req.query;
-  const query = { status: true };
+  // const { limite = 10, desde = 0 } = req.query;
+  // const query = { status: true };
 
   // const users = await User.find(query).skip(Number(desde)).limit(Number(limite));//esta forma tarda mas tiempo
   // const total = await User.countDocuments(query);
 
-  const [total, users] = await Promise.all([
-    User.countDocuments(query),
-    User.find().skip(Number(desde)).limit(Number(limite)),
-  ]);
-
-  res.json({
-    msg: "GET users API",
-    total,
-    users,
-  });
+  // const [total, users] = await Promise.all([
+  //   User.countDocuments(query),
+  //   User.find().skip(Number(desde)).limit(Number(limite)),
+  // ]);
+const users = await User.find({}).populate('order');
+  res.json(users);
 };
 //actualizar usuario
 exports.updateUser = async (req, res) => {
@@ -70,7 +66,7 @@ exports.updateUser = async (req, res) => {
 //crear usuario
 exports.createUsers = async (req, res) => {
   if(req.file){
-    newUser.picture = req.file.filename;
+    newUser.image = req.file.filename;
   }
   const newUser = req.body;
 const {password}= req.body;
