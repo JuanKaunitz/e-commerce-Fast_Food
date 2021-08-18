@@ -6,9 +6,9 @@ import { makeStyles } from '@material-ui/core/styles';
 import Card from '@material-ui/core/Card';
 import CardContent from '@material-ui/core/CardContent';
 import CardMedia from '@material-ui/core/CardMedia';
-import DeleteIcon from '@material-ui/icons/Delete';
+// import DeleteIcon from '@material-ui/icons/Delete';
 import Typography from '@material-ui/core/Typography';
-import IconButton from '@material-ui/core/IconButton';
+// import IconButton from '@material-ui/core/IconButton';
 import { Link } from 'react-router-dom';
 import './GetClients.css'
 
@@ -37,15 +37,16 @@ export default function GetClients() {
 const dispatch = useDispatch();
 const classes = useStyles()
 const clients = useSelector((state) => state.clients) 
-
+console.log('CLIENTS: ', clients);
 
 useEffect(()=> {
   dispatch(allUsers())
-}, [])
+}, [dispatch])
 
-const handleDeleteUser= () => {
-  dispatch()
-}
+
+// const handleDeleteUser= () => {
+//   dispatch()
+// }
 
   return (
     <div className='list'>
@@ -60,7 +61,7 @@ const handleDeleteUser= () => {
     <Link to='/newProduct'> <button >New Product</button></Link>
     <h1 classname='list'>Clients list</h1>
       {
-      clients? clients.map((e) => (
+      clients.length > 0 ? clients.map((e) => (
         <Grid item key={e._id} xs={12} >
           <Card className={classes.root}>
               <div>
@@ -96,16 +97,16 @@ const handleDeleteUser= () => {
                 </Typography>
               </div>
               <div>
-                <IconButton onClick={() => handleDeleteUser(e._id)}>
+                {/* <IconButton onClick={() => handleDeleteUser(e._id)}>
                   <DeleteIcon />
-                </IconButton>
+                </IconButton> */}
                 <Link to={`/clientEdit/${e._id}`}>Editar</Link>
               </div>
             
             </Card> 
         </Grid>))
         : 
-        <h4>Canot found...</h4>
+        <h4>Cannot found...</h4>
       }
     </div>
   )
