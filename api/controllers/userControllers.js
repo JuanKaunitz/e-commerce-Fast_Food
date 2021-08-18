@@ -37,7 +37,7 @@ exports.uploadImage = async(req,res,next)=>{
 
 
 exports.getUsers = async (req, res) => {
-  const { limite = 5, desde = 0 } = req.query;
+  const { limite = 10, desde = 0 } = req.query;
   const query = { status: true };
 
   // const users = await User.find(query).skip(Number(desde)).limit(Number(limite));//esta forma tarda mas tiempo

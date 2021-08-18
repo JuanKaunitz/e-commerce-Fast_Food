@@ -25,32 +25,26 @@ const Categories = () => {
   const getAll = useSelector((state) => state.getProducts);
   const categories = useSelector((state) => state.allCategories);
   const [page, setPage] = useState(0);
-  const [type, setType] = useState(" ");
+  const [type, setType] = useState("");
   const [filtro, setFiltro] = useState([]);
   
-  const filter1 = getAll.filter((product) => {
-    const categoryName1 = product.categories.map((category) => {
-      //console.log('CATEGORYNAME: ', categoryName)
-      return category.category.name;
-    });
-    //console.log('CATEGORYNAME1: ', categoryName1)
-    return categoryName1 == categoryName;
-    
+  const filter1 = getAll.map((product) => {
+    const categoryName1 = product.filter(p =>p.category === categoryName)
+    console.log(categoryName1)
   });
 
   useEffect(() => {
-    if(type === "Types"){
+    if(type.length < 0){
       return setFiltro(filter1);
+    }else{
+      let tipos = getAll.filter(e => {
+        let tipo = e.type;
+        return tipo.toLowerCase().includes(type.toLowerCase())
+      });
+      setFiltro(tipos)
     }
-    let tipos = getAll.filter(e => {
-      let tipo = e.type;
-      if(tipo === undefined){ return }
-      if(tipo.toLowerCase().includes(type.toLowerCase())){
-        return e;
-      }
-    });
-    setFiltro(tipos)
-  },[type]);
+    
+  },[]);
 
   const categoriesTypes = categories.filter(e => {
     if(e.name === categoryName){

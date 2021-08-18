@@ -21,6 +21,7 @@ import {
     // GET_CLIENTS,
     HIGHER_PRICE,
     LOWER_PRICE,
+    CLIENT_UPDATE
 
 } from '../constants'
 
@@ -30,7 +31,8 @@ import axios from 'axios';
 // import { bindActionCreators } from 'redux';
 dotenv.config()
 
-const URL = process.env.REACT_APP_BACKEND_URL
+// const URL = process.env.REACT_APP_BACKEND_URL 
+const URL = 'http://localhost:5001';
 
 //Obteniendo todos las foods.
 export const getAllProducts = () => async (dispatch) => {
@@ -73,8 +75,10 @@ export const getById = (id) => async (dispatch) => {
 
  //Creando un producto.
  export const createProduct = (input) => async (dispatch) => {
+     console.log('INPUT ACTION: ', input);
     try {
         const product = await axios.post(`${URL}/food/api/products`,input);
+        console.log('PRODUCT: ', product);
         dispatch({
             type: CREATE_PRODUCT,
             payload: product.data.product
@@ -132,12 +136,14 @@ export const getById = (id) => async (dispatch) => {
 
 //Creando un producto.
 export const createCategory = (input) => async (dispatch) => {
+    console.log('LLEGA?O NOOOOOOOOO: ', input)
     try {
         const category = await axios.post(`${URL}/food/api/category`,input);
-        console.log('CATEGORY: ', category.data.category)
+        // const category = await axios.post(`${URL}/food/api/category`, input)
+        console.log('CATEGORY: ', category.data);
         dispatch({
             type: CREATE_CATEGORY,
-            payload: category.data.data.category
+            payload: category.data
         });
     } catch (err) {
         console.log(err)
@@ -286,3 +292,16 @@ export const totalProductosCarrito = (total) => (dispatch) => {
     })
 }
 
+export const updateClient = (id, input) => async (dispatch) => {
+    try {
+        const res = await axios.put(`${URL}/food/api/user/:${id}`, input);
+        dispatch({
+            type: CLIENT_UPDATE,
+            payload: res.data
+
+        })
+
+    } catch(err) {
+        console.log(err)
+    }
+}

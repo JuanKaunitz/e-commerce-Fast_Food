@@ -69,6 +69,7 @@ const NewProduct = (props) => {
   };
 
   const handleInputCategory = function (e) {
+    input.categories = e.target.value;
     var filtradoCategory = category.filter((el) => el.name === e.target.value);
     dispatch(getTypes(filtradoCategory[0].types));
   };
@@ -161,7 +162,7 @@ const NewProduct = (props) => {
           <option>Categories</option>
           {category &&
             category.map((t, i) => (
-              <option key={i} value={t.name}>
+              <option key={i} value={t.name} >
                 {t.name}
               </option>
             ))}
