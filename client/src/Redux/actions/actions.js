@@ -261,11 +261,12 @@ export const orderFinal = (order) => async(dispatch) => {
 export const allUsers = () => async (dispatch) => {
     try {
         const res = await axios.get(`${URL}/food/api/user`);
-        console.log('ALL USER: ', res.data.users)
+        console.log('ALL USER: ', res.data)
         dispatch({
            type: ALL_USERS,
-           payload: res.data.users
+           payload: res.data
        });
+    
    } catch (err) {
     console.log(err)
   }
@@ -316,8 +317,9 @@ export const totalProductosCarrito = (total) => (dispatch) => {
 
 //Actualizacion de cliente.
 export const updateClient = (id, input) => async (dispatch) => {
+    console.log('ID E INPUT ', input);
     try {
-        const res = await axios.put(`${URL}/food/api/user/:${id}`, input);
+        const res = await axios.put(`${URL}/food/api/user/${id}`, input);
         dispatch({
             type: CLIENT_UPDATE,
             payload: res.data
