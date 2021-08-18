@@ -6,7 +6,12 @@ import CardCart from "./CardCart";
 import DeleteIcon from "@material-ui/icons/Delete";
 import Typography from "@material-ui/core/Typography";
 import IconButton from "@material-ui/core/IconButton";
-import { updateCart, totalProductosCarrito } from "../../Redux/actions/actions";
+import { updateCart,
+  totalProductosCarrito,
+  orderRedux, 
+  orderFinal,
+  updateOrderFinal,
+} from "../../Redux/actions/actions";
 import {
   deleteCart,
   sumProduct,
@@ -33,6 +38,7 @@ const Cart = (props) => {
   const dispatch = useDispatch();
 
   const carts = useSelector((state) => state.order);
+  const client = useSelector((state) => state.client);
   //const carts = JSON.parse(localStorage.getItem('order'))
   useEffect(() => {
     if (carts.length <= 0 ) {
@@ -43,12 +49,34 @@ const Cart = (props) => {
     }
   }, [dispatch, carts]);
 
+  function token(cart){
+    const precioTotal = sumaPrecioTotal(cart);
+    const cantidadTotal = sumaCantidadTotal(cart);
+      const order = {
+        clientId: client._id,
+        token: client.token,
+        precioTotal: precioTotal,
+        totalProductos: cantidadTotal,
+        order: cart,
+        status: "carrito",
+      }
+      dispatch(orderRedux(order));
+      if(client.order._id){
+        dispatch(updateOrderFinal(client.order._id, order))
+      }else{
+        dispatch(orderFinal(order))
+      }
+  }
+
   function handleDeleteCart(id) {
     const delet = deleteCart(id);
     const cantidadTotal = sumaCantidadTotal(delet);
     //console.log("TOTAL", sumaProductos);
     dispatch(updateCart(delet));
     dispatch(totalProductosCarrito(cantidadTotal));
+    if(client.token){
+     token(delet);
+    }
   }
 
   function handleAdd(id) {
@@ -57,6 +85,9 @@ const Cart = (props) => {
     //console.log("TOTAL", sumaProductos);
     dispatch(updateCart(sum));
     dispatch(totalProductosCarrito(cantidadTotal));
+    if(client.token){
+      token(sum);
+     }
   }
 
   function handleRes(id) {
@@ -65,12 +96,18 @@ const Cart = (props) => {
     //console.log("TOTAL", sumaProductos);
     dispatch(updateCart(resta));
     dispatch(totalProductosCarrito(cantidadTotal));
+    if(client.token){
+      token(resta);
+     }
   }
 
   function deleteCompleteOrder() {
     localStorage.removeItem("order");
     dispatch(updateCart([]));
     dispatch(totalProductosCarrito(0));
+    if(client.token){
+      //ver borrado de orden en el back
+     }
   }
 
   const classes = useStyles();

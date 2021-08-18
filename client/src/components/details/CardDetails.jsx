@@ -10,9 +10,15 @@ import Typography from '@material-ui/core/Typography';
 import FavoriteIcon from '@material-ui/icons/Favorite';
 import AddShoppingCartIcon from '@material-ui/icons/AddShoppingCart';
 import HourglassEmptyIcon from '@material-ui/icons/HourglassEmpty';
-
-import {getById, updateCart, totalProductosCarrito} from '../../Redux/actions/actions';
-import {addCarts, sumaCantidadTotal}  from '../cart/utilsCarts.js';
+import {
+  updateCart,
+  totalProductosCarrito,
+  orderRedux, 
+  orderFinal,
+  updateOrderFinal,
+  getById
+  } from '../../Redux/actions/actions';
+import {addCarts, sumaCantidadTotal, sumaPrecioTotal}  from '../cart/utilsCarts.js';
 // import { Link } from 'react-router-dom';
 
 
@@ -55,6 +61,7 @@ export default function CardDetails({match}) {
   const loading = useSelector(state => state.loading);
   const detail = useSelector(state => state.getDetail.product);
   const productId = useRef(match.params.id);
+  const client = useSelector(state => state.client);
   // console.log("ID ----", productId)
   
   useEffect(() => {
@@ -63,10 +70,27 @@ export default function CardDetails({match}) {
   
   //console.log("DETAIL", detail)
   function handleAddCart() {
-    const res = addCarts(detail);
-    const cantidadTotal = sumaCantidadTotal(res);
-    dispatch(updateCart(res))
-    dispatch(totalProductosCarrito(cantidadTotal))
+    const cart = addCarts(detail);
+    const cantidadTotal = sumaCantidadTotal(cart);
+    dispatch(updateCart(cart))
+    dispatch(totalProductosCarrito(cantidadTotal));
+    if(client.token){
+      const precioTotal = sumaPrecioTotal(cart);
+      const order = {
+        clientId: client._id,
+        token: client.token,
+        precioTotal: precioTotal,
+        totalProductos: cantidadTotal,
+        order: cart,
+        status: "carrito",
+      }
+      dispatch(orderRedux(order));
+      if(client.order._id){
+        dispatch(updateOrderFinal(client.order._id, order))
+      }else{
+        dispatch(orderFinal(order))
+      }
+    }
   }
   return (
      loading?

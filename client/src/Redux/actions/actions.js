@@ -261,10 +261,10 @@ export const orderFinal = (order) => async(dispatch) => {
 export const allUsers = () => async (dispatch) => {
     try {
         const res = await axios.get(`${URL}/food/api/user`);
-        console.log('ALL USER: ', res.data.users)
+        console.log('ALL USER: ', res.data)
         dispatch({
            type: ALL_USERS,
-           payload: res.data.users
+           payload: res.data
        });
    } catch (err) {
     console.log(err)
