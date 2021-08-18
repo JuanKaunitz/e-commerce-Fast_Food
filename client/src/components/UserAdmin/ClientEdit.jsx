@@ -10,12 +10,15 @@ const ClientEdit = (props) => {
     console.log('CLIENT EDIT PROFILE')
     const dispatch = useDispatch();
     const editClients = useSelector((state) => state.clients);
+    console.log('EDIT CLIENTS: ', editClients);
 
     const id = props.match.params.id;
 
     const filterClients = editClients.filter(c => c._id === id);
+    console.log('FILTER CLIENTS: ', filterClients); //Esto nos devuelve el seleccionado.
 
     const client = filterClients[0];
+    console.log('FILTER CLIENTS[0]', client);
      
 
     const roleHandler = (e) => {
@@ -23,13 +26,12 @@ const ClientEdit = (props) => {
     }
 
     const resetPassword = () => {
-        alert('Are you sure?')
-        client.password = ''
+        // alert('Are you sure?')
+        client.password = '.'
+        dispatch(updateClient(id, client))
     }
 
-    // useEffect(() => {
-    //   dispatch(u) 
-    // }, [])
+
 
     return (
         <div>
@@ -51,9 +53,9 @@ const ClientEdit = (props) => {
                 <option name = "ADMIN" value="ADMIN">Admin</option>
                 </select>
 
-             <button onClick={() => dispatch(updateClient())}>SAVE</button>   
             </form>
-            <button onClick={() => resetPassword()}>Reset your password</button>
+             <Link to="/adminPanel"><button onClick={() => dispatch(updateClient(id, client))}>SAVE</button></Link>   
+            <Link to="/adminPanel"><button onClick={() => resetPassword()}>Reset your password</button></Link>
         </div>
     )
 }
