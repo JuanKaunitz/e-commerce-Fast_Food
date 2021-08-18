@@ -1,4 +1,5 @@
-import React, { useSelector, useDispatch, useEffect} from 'react'
+import React, {useEffect} from 'react'
+import { useSelector, useDispatch } from "react-redux";
 import './ClientEdit.css'
 import { updateClient } from '../../Redux/actions/actions'
 import { Link } from 'react-router-dom'
@@ -7,8 +8,8 @@ import { Link } from 'react-router-dom'
 
 const ClientEdit = () => {
     console.log('CLIENT EDIT PROFILE')
-    // const dispatch = useDispatch();
-    // const upClient = useSelector((state) => state.clients);
+    const dispatch = useDispatch();
+    const editClient = useSelector((state) => state.clients);
 
 
     // useEffect(() => {

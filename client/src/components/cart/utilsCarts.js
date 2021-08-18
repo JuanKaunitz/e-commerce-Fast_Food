@@ -1,13 +1,6 @@
 
 //AGREGA UN PRODUCTO AL CARRITO
-export const addCarts = (detail, band) => {
-
-  if(band){
-    if(localStorage.getItem('order')){
-      let object = JSON.parse(localStorage.getItem('order'));
-      return object;
-    }
-  }
+export const addCarts = (detail) => {
   
   if(localStorage.getItem('order')){
     let object = JSON.parse(localStorage.getItem('order'));

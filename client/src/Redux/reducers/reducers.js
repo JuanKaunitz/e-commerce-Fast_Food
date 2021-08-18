@@ -14,7 +14,7 @@ import {
   GET_TYPES,  
   ALL_USERS,
   EDIT_PRODUCT,
-  UPDATE_ORDER_FINAL,
+  ORDER_REDUX,
   TOTAL_CARRITO, 
   GET_CATEGORY_BY_ID, 
   UPDATE_CATEGORY,
@@ -37,12 +37,13 @@ const initialState = {
   client: {},
   order: [],
   clientToken: {},
-  orderFinal: {
+  orderRedux: {
     clientId: "",
     token: "",
     precioTotal: "",
     totalProductos: "",
     order: [],
+    status:"",
   },
   createNewUser: {},
   editProduct: {},
@@ -121,10 +122,10 @@ const rootReducer = (state = initialState, action) => {
         order: action.payload,
       };
 
-      case UPDATE_ORDER_FINAL:
+      case ORDER_REDUX:
         return{
           ...state,
-          orderFinal: action.payload
+          orderRedux: action.payload
         }
 
       case NEW_USER:

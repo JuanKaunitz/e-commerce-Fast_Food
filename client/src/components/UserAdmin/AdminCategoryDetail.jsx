@@ -8,24 +8,15 @@ export default function AdminCategoryDetail(props) {
   const classes = useStyles();
   const dispatch = useDispatch();
   const id = props.match.params.id;
-  const array = useSelector(state => state.allCategories);
-  const selectedCategory = array.filter(e => e._id === id);
-  const typesFilter = selectedCategory[0].types;
+  const categoryEdit = useSelector((state) => state.editCategory);
+  const categories = useSelector((state) => state.allCategories);
 
   const [input, setInput] = useState({
     name: selectedCategory[0].name,
     types: [],    
     image: selectedCategory[0].image,     
   });
- 
-  //const categoryEdit = useSelector((state) => state.editCategory);
-
-  /* useEffect(() => {
-    getCategory();
-  }, []); */
   
-  const categoryEdit = useSelector((state) => state.editCategory);
-  const categories = useSelector((state) => state.allCategories);
 
   const selectedCategory = categories.filter(e => e._id === id);
   console.log('arrayFilter: ', selectedCategory);

@@ -94,7 +94,7 @@ export default function CardCart({
         </div>
 
         <div className={classes.btn_add}>
-          <div className={classes.btn_root} onClick={() => resProduct(id)}>
+          <div className={classes.btn_root} onClick={() => resProduct(id)} >
             <ExposureNeg1Icon />
           </div>
           <div>

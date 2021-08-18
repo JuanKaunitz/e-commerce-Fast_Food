@@ -11,7 +11,7 @@ import {
     LOGIN_CLIENT,
     NEW_USER,   
     GET_TYPES,
-    UPDATE_ORDER_FINAL,
+    ORDER_REDUX,
     EDIT_PRODUCT,
     TOTAL_CARRITO,
     ALL_USERS,    
@@ -132,7 +132,7 @@ export const getById = (id) => async (dispatch) => {
 
 };
 
-//Creando un producto.
+//Creando una categoria.
 export const createCategory = (input) => async (dispatch) => {
     console.log('LLEGA?O NOOOOOOOOO: ', input)
     try {
@@ -148,6 +148,7 @@ export const createCategory = (input) => async (dispatch) => {
     }
  };
 
+ //Actualizar categoria.
 export const getUpdateCategory = (id, input) => async (dispatch) => {
     console.log('CATEGORIA ID:', id )
     console.log('CATEGORIA input:', input )
@@ -192,6 +193,7 @@ export const orderBy = (sort) => (dispatch) => {
     }
 };
 
+
 export const categoryName = (name) => (dispatch) => {  
     dispatch({
         type: CATEGORY_NAME,
@@ -225,15 +227,37 @@ export const updateCart = (order) => (dispatch) => {
     
 }
 
-//ACTUALIZAR ORDEN FINAL DEL USUARIO LOGUEADO
-export const updateOrderFinal = (order) => (dispatch) => {
+//ACTUALIZAR ORDEN en redux
+export const orderRedux = (order) => (dispatch) => {
     dispatch({
-        type: UPDATE_ORDER_FINAL,
+        type: ORDER_REDUX,
         payload: order
     });
 }
 
-//Obtengo lista de cliebtes(register).
+//Actualizar orden en back.
+export const updateOrderFinal = (id,order) => async(dispatch) => {
+    try {
+        const res = await axios.put(`${URL}/food/api/order/${id}`, order);
+        console.log("ORDER ACTUALIZADA", res)
+       
+   } catch (err) {
+    console.log(err)
+  }
+}
+
+//Envio de orden nueva al back.
+export const orderFinal = (order) => async(dispatch) => {
+    try {
+        const res = await axios.get(`${URL}/food/api/order`, order);
+        console.log("ORDER", res)
+       
+   } catch (err) {
+    console.log(err)
+  }
+}
+
+//Obtengo lista de clientes(register).
 export const allUsers = () => async (dispatch) => {
     try {
         const res = await axios.get(`${URL}/food/api/user`);
@@ -290,6 +314,7 @@ export const totalProductosCarrito = (total) => (dispatch) => {
     })
 }
 
+//Actualizacion de cliente.
 export const updateClient = (id, input) => async (dispatch) => {
     try {
         const res = await axios.put(`${URL}/food/api/user/:${id}`, input);

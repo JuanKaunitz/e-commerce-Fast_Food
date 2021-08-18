@@ -52,13 +52,13 @@ const Categories = () => {
   });
 
   const types = categoriesTypes[0].types;
-  console.log("FILTRADO", filtrado)
+  //console.log("FILTRADO", filter1)
 
   useEffect(() => {
     if(type === "Types"){
-      return setFiltro(filtrado);
+      return setFiltro(filter1);
     }
-    let tipos = filtrado.filter(e => e.type === type)
+    let tipos = filter1.filter(e => e.type === type)
     
     console.log("TIPOS", tipos)
     setFiltro(tipos)
@@ -135,7 +135,7 @@ const Categories = () => {
         <button
           value="next"
           onClick={handleNext}
-          disabled={filtrado.slice(page * 8, page * 8 + 8).length < 8}
+          disabled={filter1.slice(page * 8, page * 8 + 8).length < 8}
         >
           Next
         </button>

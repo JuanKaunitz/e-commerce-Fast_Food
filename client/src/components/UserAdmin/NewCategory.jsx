@@ -8,12 +8,6 @@ import { Link } from "react-router-dom";
 const NewCategory = (props) => {
   const dispatch = useDispatch();  
 
-  const [type, setType] = useState({
-    type1: '',
-    type2: '',
-    type3:''
-  })
-
   useEffect(() => {
     dispatch(getCategories());
   }, [dispatch]);
