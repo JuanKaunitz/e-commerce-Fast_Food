@@ -29,8 +29,8 @@ const ProductSchema = new Schema({
     type: Boolean
   },
   category: {
-    type: String,
-    },
+    type: String 
+  },
 });
 
 module.exports = mongoose.model("Product", ProductSchema);

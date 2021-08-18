@@ -7,7 +7,12 @@ import { Link } from "react-router-dom";
 
 const NewCategory = (props) => {
   const dispatch = useDispatch();  
-  
+
+  const [type, setType] = useState({
+    type1: '',
+    type2: '',
+    type3:''
+  })
 
   useEffect(() => {
     dispatch(getCategories());
@@ -33,7 +38,7 @@ const NewCategory = (props) => {
     dispatch(createCategory(input));
   };
 
-  function todosTypes(){
+  const typesCategory = () => {
     input.types.push({name: type.type1})
     input.types.push({name: type.type2})
     input.types.push({name: type.type3})
@@ -41,12 +46,13 @@ const NewCategory = (props) => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    todosTypes()
-    console.log("INPUT", input)
-    //setInput(input);
+    typesCategory();
+    console.log('INPUT-SUBMIT: ', input)
+    setInput(input);
     saveCategory();
     props.history.push("/adminCategories");
   };
+  console.log('INPUT: ', input);
 
   const handleInputChange = function (e) {
     setInput({
@@ -55,12 +61,12 @@ const NewCategory = (props) => {
     });
   };
 
-  const handleTypeChange = function (e) {
-    setType({
-      ...type,
-      [e.target.name]: e.target.value,
-    });
-  };  
+   const handleTypeChange = function (e) {
+     setType({
+       ...type,
+       [e.target.name] : e.target.value
+     })      
+    };
 
   return (
     <div className={styles.form_content}>
@@ -93,24 +99,23 @@ const NewCategory = (props) => {
             name="image"
             onChange={handleInputChange}
             value={input.image}
-            required
           />
         </div>        
 
         <div className={styles.form_group}>
-          <label>Type1:</label>
+          <label>Type 1:</label>
           <input
             className={styles.input_items}
             type="text"
-            name="type1"
+            name = "type1"
             rows="5"
             onChange={handleTypeChange}
             required
           />
-        </div>
-
+        </div> 
+         
         <div className={styles.form_group}>
-          <label>Type2:</label>
+          <label>Type 2:</label>
           <input
             className={styles.input_items}
             type="text"
@@ -119,10 +124,10 @@ const NewCategory = (props) => {
             onChange={handleTypeChange}
             required
           />
-        </div>
+        </div> 
 
         <div className={styles.form_group}>
-          <label>Type3:</label>
+          <label>Type 3:</label>
           <input
             className={styles.input_items}
             type="text"

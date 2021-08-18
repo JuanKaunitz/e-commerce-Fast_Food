@@ -16,7 +16,7 @@ export default function AdminProductDetail(props) {
     price: "",
     description: "",
     stock: true,
-    categories: [],
+    categories: "",
   });
   
   const getItemProduct = () => {
@@ -45,7 +45,7 @@ export default function AdminProductDetail(props) {
 
   return (
     <div className={classes.form_content}>
-      <h1>Editar producto</h1>
+      <h1>Edita product</h1>
 
       <Link to='/adminPanel'> <button >Admin Panel</button></Link>
       <Link to='/clients'> <button >Clients Panel</button></Link>

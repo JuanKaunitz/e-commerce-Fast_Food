@@ -5,14 +5,39 @@ import { getCategories, getTypes } from "../../Redux/actions/actions";
 import styles from "./styles.module.css";
 import { Link } from "react-router-dom";
 import FileDrop from "../Form/FileDrop";
+import { makeStyles } from "@material-ui/core/styles";
+import { Button, TextField } from "@material-ui/core";
+
+const useStyles = makeStyles((theme) => ({
+  paper: {
+    marginTop: theme.spacing(2),
+    display: "flex",
+    flexDirection: "column",
+    alignItems: "center",
+  },
+
+  form: {
+    width: "100%", // Fix IE 11 issue.
+    marginTop: 5,
+  },
+
+  submit: {
+    margin: theme.spacing(3, 0, 2),
+  },
+  input_text: {
+    backgroundColor: "#ffff",
+  },
+}));
 
 const NewProduct = (props) => {
+  const classes = useStyles();
   const dispatch = useDispatch();
   const category = useSelector((state) => state.allCategories);
   const types = useSelector((state) => state.types);
 
   useEffect(() => {
     dispatch(getCategories());
+    // dispatch(getTypes())
   }, [dispatch]);
 
   const [input, setInput] = useState({
@@ -22,18 +47,18 @@ const NewProduct = (props) => {
     description: "",
     stock: true,
     categories: "",
-    type: ""
+    type: "",
   });
   const saveProduct = () => {
     dispatch(createProduct(input));
-    console.log(input)
+    console.log(input);
   };
 
   const handleSubmit = (e) => {
     e.preventDefault();
     setInput(input);
     saveProduct();
-    //props.history.push("/AdminPanel");
+    // props.history.push("/AdminPanel");
   };
 
   const handleInputChange = function (e) {
@@ -56,76 +81,101 @@ const NewProduct = (props) => {
       <div>
         <Link to="/adminPanel">
           {" "}
-          <button>Admin Panel</button>
+          <Button>Admin Panel</Button>
         </Link>
         <Link to="/adminCategories">
           {" "}
-          <button>Categories Panel</button>
+          <Button>Categories Panel</Button>
         </Link>
         <Link to="/clients">
           {" "}
-          <button>Clients Panel</button>
+          <Button>Clients Panel</Button>
         </Link>
       </div>
 
       <h1>Create your own product</h1>
 
-      <form onSubmit={handleSubmit}>
-        <div className={styles.form_group}>
+      <form onSubmit={handleSubmit} className={classes.form}>
+        <div>
           <label>Name:</label>
-          <input
-            className={styles.input_items}
+          <TextField
+            className={classes.input_text}
+            variant="outlined"
+            required
+            fullWidth
             type="text"
             name="name"
             onChange={handleInputChange}
             value={input.name}
-            required
           />
         </div>
         <div className="filedrop">
-          <FileDrop 
-          onChange = {handleInputChange}
+          {/* <FileDrop onChange={handleInputChange} /> */}
+          <label> Agregue una imagen:</label>
+          <TextField
+            className={classes.input_text}
+            variant="outlined"
+            margin="normal"
+            required
+            fullWidth
+            type="url"
+            name="image"
+            onChange={handleInputChange}
           />
         </div>
 
         <div className={styles.form_group}>
           <label>Price:</label>
-          <input
-            className={styles.input_items}
+          <TextField
+            className={classes.input_text}
+            variant="outlined"
+            margin="normal"
+            required
+            fullWidth
             type="text"
             name="price"
             onChange={handleInputChange}
             value={input.price}
-            required
           />
         </div>
 
         <div className={styles.form_group}>
           <label>Description:</label>
-          <textarea
-            className={styles.input_items}
+          <TextField
+            className={classes.input_text}
+            variant="outlined"
+            margin="normal"
+            required
+            fullWidth
             type="text"
             name="description"
             rows="5"
             onChange={handleInputChange}
             value={input.description}
-            required
           />
         </div>
 
         <div className="filterName">Category</div>
-        <select className="boton" name="categories" onChange={handleInputCategory}>
+        <select
+          className="boton"
+          onChange={handleInputCategory}
+          name="categories"
+        >
           <option>Categories</option>
           {category &&
             category.map((t, i) => (
-              <option key={i} value={t.name}>
+              <option key={i} value={t.name} >
                 {t.name}
               </option>
             ))}
         </select>
 
         <div className="filterName">Types</div>
-        <select className="boton" name="type" onChange={handleInputChange}>
+        <select
+          className="boton"
+          onChange={handleInputChange}
+          name="type"
+        >
           <option>TypesCategory</option>
           {types &&
             types.map((t, i) => (

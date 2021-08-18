@@ -7,7 +7,7 @@ import { getAllProducts, updateCart, totalProductosCarrito } from "../../Redux/a
 import Gallery from "../gallery/Gallery";
 import Order from "../order/Order";
 import Otters from "../Otters/Otters";
-import {sumaCantidadTotal} from '../cart/utilsCarts';
+import { sumaCantidadTotal } from "../cart/utilsCarts";
 
 
 function Home() {
@@ -24,7 +24,6 @@ function Home() {
       dispatch(updateCart(cart));
       dispatch(totalProductosCarrito(cantidadTotal));
     }
-    
   }, [dispatch]);
 
   return (

@@ -28,8 +28,22 @@ const Categories = () => {
   const [type, setType] = useState(" ");
   const [filtro, setFiltro] = useState([]);
 
+  console.log('CATEGORY-NAME', categoryName)
+  
+  const filter1 = getAll.filter((product) => product.category === categoryName); 
+  
+  console.log('filter1: ', filter1)
+  console.log('GET ALL: ', getAll);
 
-  let filtrado = getAll.filter(e => e.category === categoryName);
+  useEffect(() => {
+    if(type === "Types"){
+      return setFiltro(filter1);
+    }
+    let tipos = filter1.filter(e => e.type === type)
+    
+    console.log("TIPOS", tipos)
+    setFiltro(tipos)
+  },[type]);
 
   const categoriesTypes = categories.filter(e => {
     if(e.name === categoryName){
@@ -89,7 +103,7 @@ const Categories = () => {
       <Order />
       <Grid container className={classes.root} spacing={2}>
         {filtro.length <= 0 ? (
-          filtrado.slice(page * 8, page * 8 + 8).map((product) => (
+          filter1.slice(page * 8, page * 8 + 8).map((product) => (
             <Grid item key={product._id} xs={3}>
               <CardProduct
                 id={product._id}
@@ -131,3 +145,5 @@ const Categories = () => {
 };
 
 export default Categories;
+
+
