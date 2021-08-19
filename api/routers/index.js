@@ -6,6 +6,7 @@ const routerAuth = require('./routerAuth')
 const routerCategories = require('./routerCategories');
 const routerOrder = require('./routerOrder');
 const routerCheckout = require('./routerCheckout');
+const routerTypes = require('./routerTypes')
 const router = express.Router();
 
 module.exports = () => {
@@ -22,7 +23,9 @@ module.exports = () => {
   //pedidos
   router.use("/food/api/order", routerOrder);
   //compra 
-  router.use('/fod/api/checkout',routerCheckout);
+  router.use('/food/api/checkout',routerCheckout);
+  //tipos de categorias
+  router.use('/food/api/types',routerTypes);
   
 
   return router;

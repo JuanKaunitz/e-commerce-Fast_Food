@@ -3,13 +3,13 @@ const Schema = mongoose.Schema;
 
 const OrderSchema = new Schema({
   client: {
-    type: Schema.ObjectId,
-    ref: "Client",
+    type: mongoose.Schema.Types.ObjectId,
+    ref: "User",
   },
   order: [
     {
       product: {
-        type: Schema.ObjectId,
+        type: mongoose.Schema.Types.ObjectId,
         ref: "Product",
       },
       amount: Number,
@@ -25,5 +25,10 @@ const OrderSchema = new Schema({
     },
   },
 });
+
+OrderSchema.methods.toJSON = function() {
+  const { __v, ...Order  } = this.toObject();
+  return Order;
+}
 
 module.exports = mongoose.model("Order", OrderSchema);

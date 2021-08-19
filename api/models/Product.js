@@ -32,5 +32,9 @@ const ProductSchema = new Schema({
     type: String 
   },
 });
+ProductSchema.methods.toJSON = function() {
+  const { __v, ...Product  } = this.toObject();
+  return Product;
+}
 
 module.exports = mongoose.model("Product", ProductSchema);

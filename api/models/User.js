@@ -16,27 +16,25 @@ const UserSchema = new Schema({
     type: String,
     required: [true, "password is required"],
   },
-  status:{
-    type:Boolean,
-    default:true
+  status: {
+    type: Boolean,
+    default: true,
   },
   image: {
     type: String,
   },
-  google:{
-    type:Boolean,
-    default:false
+  google: {
+    type: Boolean,
+    default: false,
   },
   role: {
-    type:String,
-    default:'CLIENT'
+    type: String,
+    default: "CLIENT",
   },
-  order: [
-    {
-      type: mongoose.Schema.Types.ObjectId,
-      ref: "Order",
-    },
-  ],
+  order: {
+    type: mongoose.Schema.Types.ObjectId,
+    ref: "Order",
+  },
 });
 
 // Autenticar Usuarios
@@ -44,6 +42,10 @@ UserSchema.methods = {
   compararPassword: function (password) {
     return bcrypt.compareSync(password, this.password);
   },
+};
+UserSchema.methods.toJSON = function () {
+  const { __v,password, ...User } = this.toObject();
+  return User;
 };
 
 module.exports = mongoose.model("User", UserSchema);

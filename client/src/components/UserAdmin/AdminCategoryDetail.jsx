@@ -1,52 +1,45 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { getUpdateCategory} from "../../Redux/actions/actions"
-import useStyles from "./styles"; 
+import { getTypes, getUpdateCategory,createNewType } from "../../Redux/actions/actions";
+import useStyles from "./styles";
 import { Link } from "react-router-dom";
 
 export default function AdminCategoryDetail(props) {
+  const categoryEdit = useSelector((state) => state.editCategory);
+  const categories = useSelector((state) => state.allCategories);
+  const types = useSelector((state) => state.types);
+
   const classes = useStyles();
   const dispatch = useDispatch();
   const id = props.match.params.id;
-  const categoryEdit = useSelector((state) => state.editCategory);
-  const categories = useSelector((state) => state.allCategories);
-
-  const [input, setInput] = useState({
-    name: selectedCategory[0].name,
-    types: [],    
-    image: selectedCategory[0].image,     
-  });
-  
-
-  const selectedCategory = categories.filter(e => e._id === id);
-  console.log('arrayFilter: ', selectedCategory);
-  
   const [type, setType] = useState({
-    type1: '',
-    type2: '',
-    type3:''
-  })
+    name:''
+  });
+  const [input, setInput] = useState({
+    name: "",
+    image: "",
+  });
 
-  const typesCategory = () => {
-    input.types.push({name: type.type1})
-    input.types.push({name: type.type2})
-    input.types.push({name: type.type3})
-  }
+  
+
+  const selectedCategory = categories.filter((e) => e._id === id);
+  console.log("arrayFilter: ", selectedCategory);
+
 
   const handleSubmit = async (e) => {
-       e.preventDefault();
-       typesCategory();
-       setInput(input);
-       dispatch(getUpdateCategory(id, input))      
-       props.history.push("/adminCategories");      
+    e.preventDefault();
+    setInput(input);
+    dispatch(createNewType(type))
+    dispatch(getUpdateCategory(id, input));
+    props.history.push("/adminCategories");
   };
 
   const handleTypeChange = function (e) {
     setType({
       ...type,
-      [e.target.name] : e.target.value
-    })      
-   };
+      [e.target.name]: e.target.value,
+    });
+  };
 
   const handleInputChange = function (e) {
     setInput({
@@ -61,11 +54,20 @@ export default function AdminCategoryDetail(props) {
     <div className={classes.form_content}>
       <h1>Edit your product</h1>
 
-      <Link to='/adminPanel'> <button >Admin Panel</button></Link>
-      <Link to='/clients'> <button >Clients Panel</button></Link>
-      <Link to='/adminCategories'> <button >Categories Panel</button></Link>
+      <Link to="/adminPanel">
+        {" "}
+        <button>Admin Panel</button>
+      </Link>
+      <Link to="/clients">
+        {" "}
+        <button>Clients Panel</button>
+      </Link>
+      <Link to="/adminCategories">
+        {" "}
+        <button>Categories Panel</button>
+      </Link>
       {input.length !== 0 ? (
-        <form onSubmit={ handleSubmit }>
+        <form onSubmit={handleSubmit}>
           <div className={classes.form_group}>
             <label>Name:</label>
             <input
@@ -83,7 +85,7 @@ export default function AdminCategoryDetail(props) {
               src={categoryEdit.image}
               alt={input.name}
               name="image"
-              style={{width:200}}
+              style={{ width: 200 }}
               defaultValue={selectedCategory[0].image}
               onChange={handleInputChange}
             />
@@ -92,33 +94,23 @@ export default function AdminCategoryDetail(props) {
           <h4>Change your types!</h4>
 
           <div className={classes.form_group}>
-           {
-             selectedCategory && selectedCategory[0].types.map((type) => (
-             <div>
-               <input
-                 className={classes.input_items}
-                 type="text"
-                 name="type" 
-                 onChange={handleInputChange}
-                 defaultValue={type.name}
-                 required
-               />
-               </div>
-             ))
-           }
+            <input
+              className={classes.input_items}
+              type="text"
+              name='name'
+              value={type.name}
+              onChange={handleTypeChange}
+              required
+            />
           </div>
 
-
-         
           <button className={classes.btn_save} type="submit">
             Save
           </button>
-         
         </form>
-      ) : 
+      ) : (
         <p>cargando</p>
-      }
+      )}
     </div>
   );
-};
-
+}

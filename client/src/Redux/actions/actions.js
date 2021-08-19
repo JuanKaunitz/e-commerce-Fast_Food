@@ -18,6 +18,7 @@ import {
     DELETE_CATEGORY,    
     CREATE_CATEGORY,
     UPDATE_CATEGORY,
+    CREATE_TYPE,
     // GET_CLIENTS,
     HIGHER_PRICE,
     LOWER_PRICE,
@@ -90,7 +91,7 @@ export const getById = (id) => async (dispatch) => {
 
  //Actualizando producto.
  export const getUpdate = (id, input) => async (dispatch) => {
-     //console.log('UPDATE: ', input)
+     console.log('UPDATE: ', input)
     try {        
         const res = await axios.put(`${URL}/food/api/products/${id}`, input) 
         dispatch({
@@ -300,10 +301,11 @@ export const getProductById = (id) => async(dispatch)=>{
 }
 
 //Acceder a los types de categories.
-export const getTypes = (tipos) => (dispatch) => {
+export const getTypes = () => async(dispatch) => {
+    const types = await axios.get(`${URL}/food/api/types`);
     dispatch({
         type: GET_TYPES,
-        payload: tipos
+        payload: types.data
     });
 }
 
@@ -329,4 +331,14 @@ export const updateClient = (id, input) => async (dispatch) => {
     } catch(err) {
         console.log(err)
     }
+}
+
+//crear un type
+export const createNewType = (type) => async(dispatch)=>{
+    const types = await axios.post(`${URL}/food/api/types`,type);
+    console.log(types.data)
+    dispatch({
+        type: CREATE_TYPE,
+        payload: types.data
+    });
 }
