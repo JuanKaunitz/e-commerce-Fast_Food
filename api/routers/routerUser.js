@@ -8,6 +8,9 @@ const userControllers = require("../controllers/userControllers");
 const router = Router();
 //ruta verificada
 router.get("/", userControllers.getUsers);
+//usuario por su id
+router.get("/:id", userControllers.getUserById);
+
 //ruta verificada
 router.put(
   "/:id",

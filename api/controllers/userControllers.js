@@ -2,6 +2,7 @@ const User = require("../models/User");
 const bcrypt = require("bcrypt");
 const multer = require('multer');
 const shortid = require('shortid');
+const { populate } = require("../models/User");
 
 
 const configMulter = {
@@ -36,20 +37,28 @@ exports.uploadImage = async(req,res,next)=>{
 
 
 
-exports.getUsers = async (req, res) => {
-  // const { limite = 10, desde = 0 } = req.query;
-  // const query = { status: true };
+exports.getUsers = async (req, res,next) => {
 
-  // const users = await User.find(query).skip(Number(desde)).limit(Number(limite));//esta forma tarda mas tiempo
-  // const total = await User.countDocuments(query);
-
-  // const [total, users] = await Promise.all([
-  //   User.countDocuments(query),
-  //   User.find().skip(Number(desde)).limit(Number(limite)),
-  // ]);
-const users = await User.find({}).populate('order');
+  try {
+    const users = await User.find({});
   res.json(users);
+  } catch (error) {
+   res.status(400).json({
+     msg:'hubo un eror'
+   })
+   next();
+  }
+
 };
+//por id
+exports.getUserById = async(req,res,next)=>{
+  const user = await User.findById(req.params.id);
+  if (!user) {
+    res.status(400).json({ msg: "Ese Usuario no existe" });
+    return next();
+  }
+  res.json({ msg: "Usuario encontrado", user });
+}
 //actualizar usuario
 exports.updateUser = async (req, res) => {
   const { id } = req.params;
@@ -63,6 +72,8 @@ exports.updateUser = async (req, res) => {
   const user = await User.findByIdAndUpdate(id, rest);
   res.json({msg:'User Updated',user});
 };
+//user por id
+
 //crear usuario
 exports.createUsers = async (req, res) => {
   if(req.file){

@@ -16,5 +16,10 @@ types:[{
   
 }]
 })
+CategorySchema.methods.toJSON = function() {
+  const { __v, ...Category  } = this.toObject();
+  return Category;
+}
+
 
 module.exports = mongoose.model("Category", CategorySchema);
