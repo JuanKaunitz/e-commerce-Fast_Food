@@ -32,7 +32,7 @@ const useStyles = makeStyles(() => ({
     color: "white",
   },
 }));
-
+console.log("yoop")
 const Cart = (props) => {
   console.log(props)
   const dispatch = useDispatch();
