@@ -1,11 +1,13 @@
 import React, { useState } from "react";
 import { useDispatch } from "react-redux";
-import { newUser } from "../../Redux/actions/actions";
+import { newUser, createGoogleUser } from "../../Redux/actions/actions";
 import styles from "./styles.module.css";
 import { GoogleLogin, GoogleLogout } from "react-google-login";
 import { Link } from "react-router-dom";
 
-export function validate(input) {
+
+
+export function validate(input, password) {
   let errors = {};
   if (!input.email) {
     errors.email = "Email is required";
@@ -22,7 +24,9 @@ export function validate(input) {
   } else if (!/^[A-Za-z]+$/.test(input.name)) {
     errors.name = "Name must be a string!";
   }
-
+  // if(input.password !== password.password1) {
+  //   errors.password = "The password doesn´t much!";
+  // }
   return errors;
 }
 
@@ -35,10 +39,22 @@ const FormRegister = () => {
     password: "",
   });
 
+  // const [password, setPassword] = useState({
+  //   password1: ""
+  // })
+
+  // const handlePasswordChange = (e) => {
+  //   setPassword({
+  //     ...password,
+  //     password1: e.target.value
+  //   })
+  // }
+
   const [errors, setErrors] = useState({});
 
   const [showloginButton, setShowloginButton] = useState(true);
   const [showlogoutButton, setShowlogoutButton] = useState(false);
+
   const handleInputChange = function (e) {
     setInput({
       ...input,
@@ -66,7 +82,7 @@ const FormRegister = () => {
     window.location.replace("http://localhost:3000/register");
   };
   const responseGoogle = (response) => {
-    console.log(response);
+    console.log(response)
   };
 
   const logout = () => {
@@ -80,10 +96,17 @@ const FormRegister = () => {
 
   const onLoginSuccess = (res) => {
     console.log("Login Success:", res.profileObj);
+    // var data = sessionStorage.getItem('AJDLj6JUa8yxXrhHdWRHIV0S13cAbZ9_k9rC5aklrvRlpYPP7jPp6wEIETYsmTOID-ezNa3jSL7DbVDAYbBUtgF_saU50JRDwQ');
+    // console.log('DATA: ', data);
+    // var cache = sessionStorage.getItem('cachedValue')
+    // console.log(cache)
+    // var sesion = sessionStorage.setItem('key','value')
+    // console.log('SESSION: ', sesion);
+    dispatch(createGoogleUser(res.profileObj));
     setShowloginButton(false);
     setShowlogoutButton(true);
   };
-  
+
   const onLoginFailure = (res) => {
     console.log("Login Failed:", res);
   };
@@ -102,6 +125,7 @@ const FormRegister = () => {
             class={styles.field}
             onChange={handleInputChange}
             value={input.name}
+            required
           />
           {errors.name && <p className="danger">{errors.name}</p>}
         </div>
@@ -114,6 +138,7 @@ const FormRegister = () => {
             name="email"
             onChange={handleInputChange}
             value={input.email}
+            required
           />
           {errors.username && <p className="danger">{errors.email}</p>}
         </div>
@@ -126,9 +151,23 @@ const FormRegister = () => {
             class={styles.field2}
             onChange={handleInputChange}
             value={input.password}
+            required
           />
           {errors.password && <p className="danger">{errors.password}</p>}
         </div>
+
+        {/* <div>
+          <label className={styles.label}>Repite your password:</label>
+          <input
+            className={styles.input1}
+            type="password"
+            name="password1"
+            class={styles.field2}
+            onChange={handlePasswordChange}
+            value={password.password1}
+          />
+          {errors.password && <p className="danger">{errors.password}</p>}
+        </div> */}
         <div className="btn submit">
           <button className={styles.btnregister} type="submit" src="/">
             Submit
