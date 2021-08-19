@@ -37,17 +37,17 @@ const NewProduct = (props) => {
 
   useEffect(() => {
     dispatch(getCategories());
-    // dispatch(getTypes())
+     dispatch(getTypes())
   }, [dispatch]);
 
   const [input, setInput] = useState({
     name: "",
-    identifier: "",
+    identifier: 2,
     price: "",
     description: "",
-    stock: true,
+    stock: 200,
     categories: "",
-    types: "",
+    type: "",
   });
   const saveProduct = () => {
     dispatch(createProduct(input));
@@ -71,7 +71,7 @@ const NewProduct = (props) => {
   const handleInputCategory = function (e) {
     input.categories = e.target.value;
     var filtradoCategory = category.filter((el) => el.name === e.target.value);
-    dispatch(getTypes(filtradoCategory[0].types));
+    //dispatch(getTypes(filtradoCategory[0].types));
   };
 
   return (
@@ -171,10 +171,10 @@ const NewProduct = (props) => {
         <div className="filterName">Types</div>
         <select
           className="boton"
-          onChange={(e) => handleInputCategory(e)}
-          name="types"
+          onChange={handleInputChange}
+          name="type"
         >
-          <option>TypesCategory</option>
+          <option>--Types--</option>
           {types &&
             types.map((t, i) => (
               <option key={i} value={t.name}>

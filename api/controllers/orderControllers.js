@@ -22,7 +22,7 @@ exports.getAllOrder = async(req,res,next)=>{
     }
 };
 //orden por id
-exports.getOrderById = async(req,res)=>{
+exports.getOrderById = async(req,res,next)=>{
     const order = await Order.findById(req.params.id);
     if (!order) {
       res.status(400).json({ msg: "Esa orden no existe" });

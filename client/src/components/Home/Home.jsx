@@ -3,7 +3,7 @@ import { useDispatch} from "react-redux";
 import "./Home.css";
 import Footer from "../Footer/Footer";
 import GridCardsProducts from "../cards/CardsProducts";
-import { getAllProducts, updateCart, totalProductosCarrito } from "../../Redux/actions/actions";
+import { getAllProducts, updateCart, totalProductosCarrito, getTypes } from "../../Redux/actions/actions";
 import Gallery from "../gallery/Gallery";
 import Order from "../order/Order";
 import Otters from "../Otters/Otters";
@@ -16,6 +16,7 @@ function Home() {
 
   useEffect(() => {
     dispatch(getAllProducts());
+    dispatch(getTypes())
 const cart = JSON.parse(localStorage.getItem('order'));
     if(cart === null){
       dispatch(totalProductosCarrito(0));

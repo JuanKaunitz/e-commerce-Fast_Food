@@ -18,7 +18,9 @@ import {
   TOTAL_CARRITO, 
   GET_CATEGORY_BY_ID, 
   UPDATE_CATEGORY,
-  CLIENT_UPDATE
+  CLIENT_UPDATE,
+  UPDATE_PRODUCT,
+  CREATE_TYPE
   /* ASC,
   DESC */
 } from "../constants";
@@ -47,6 +49,8 @@ const initialState = {
   createNewUser: {},
   editProduct: {},
   editCategory: {},
+  updateProduct:{},
+
   totalCarrito: 0,
   types: [],
 };
@@ -179,7 +183,16 @@ const rootReducer = (state = initialState, action) => {
          ...state,
          clients: action.payload
        }
-
+case UPDATE_PRODUCT:
+  return{
+    ...state,
+    updateProduct: action.payload
+  }
+  case CREATE_TYPE:
+    return{
+      ...state,
+      types:[...state.types,action.payload]
+    }
     default:
       return state;
   }

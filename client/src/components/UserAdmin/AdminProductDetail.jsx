@@ -5,6 +5,7 @@ import useStyles from "./styles";
 import { Link } from "react-router-dom";
 
 export default function AdminProductDetail(props) {
+  const types = useSelector((state) => state.types);
   const classes = useStyles();
   const dispatch = useDispatch();
   const id = props.match.params.id;
@@ -30,18 +31,18 @@ export default function AdminProductDetail(props) {
   
   const productEdit = useSelector((state) => state.editProduct);
   
-  const handleSubmit = async (e) => {
-       e.preventDefault();
-       dispatch(getUpdate(id, input))      
-       props.history.push("/adminPanel");      
-  };
-
+  
   const handleInputChange = function (e) {
     setInput({
       ...input,
       [e.target.name]: e.target.value,
     });
   };
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    dispatch(getUpdate(id, input))      
+    props.history.push("/adminPanel");      
+};
 
   return (
     <div className={classes.form_content}>
@@ -51,7 +52,7 @@ export default function AdminProductDetail(props) {
       <Link to='/clients'> <button >Clients Panel</button></Link>
       <Link to='/adminCategories'> <button >Categories Panel</button></Link>
       {input.length !== 0 ? (
-        <form onSubmit={(e) => handleSubmit(e)}>
+        <form onSubmit={handleSubmit}>
           <div className={classes.form_group}>
             <label>Name:</label>
             <input
@@ -66,14 +67,21 @@ export default function AdminProductDetail(props) {
 
           <div className={classes.form_group}>
             <label>Type:</label>
-            <input
-              className={classes.input_items}
-              type="text"
-              name="type"
-              onChange={handleInputChange}
-              defaultValue={productEdit.type}
-              required
-            />
+         
+             <select
+          className="boton"
+          defaultValue={productEdit.type}
+          onChange={handleInputChange}
+          name="type"
+        >
+          <option>--Types--</option>
+          {types &&
+            types.map((t, i) => (
+              <option key={i} value={t.name}>
+                {t.name}
+              </option>
+            ))}
+        </select>
           </div>
 
           <div className={classes.form_group}>
@@ -112,11 +120,11 @@ export default function AdminProductDetail(props) {
             />
           </div>
 
-         <Link to='/adminPanel'>
+         
           <button className={classes.btn_save} type="submit">
-            Save
+            Actualizar
           </button>
-         </Link> 
+        
         </form>
       ) : 
         <p>cargando</p>
