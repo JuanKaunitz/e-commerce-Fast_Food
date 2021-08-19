@@ -10,17 +10,17 @@ import {
   LOADING,
   UPDATE_CART,
   LOGIN_CLIENT,
-  NEW_USER,  
-  GET_TYPES,  
+  NEW_USER,
+  GET_TYPES,
   ALL_USERS,
   EDIT_PRODUCT,
   ORDER_REDUX,
-  TOTAL_CARRITO, 
-  GET_CATEGORY_BY_ID, 
+  TOTAL_CARRITO,
+  GET_CATEGORY_BY_ID,
   UPDATE_CATEGORY,
   CLIENT_UPDATE,
   UPDATE_PRODUCT,
-  CREATE_TYPE
+  CREATE_TYPE,
   /* ASC,
   DESC */
 } from "../constants";
@@ -33,9 +33,9 @@ const initialState = {
   createNewProduct: {},
   searchProducts: [],
   loading: false,
-  allCategories : [],
-  categoryName: '',
-  clients:[],
+  allCategories: [],
+  categoryName: "",
+  clients: [],
   client: {},
   order: [],
   clientToken: {},
@@ -45,12 +45,12 @@ const initialState = {
     precioTotal: "",
     totalProductos: "",
     order: [],
-    status:"",
+    status: "",
   },
   createNewUser: {},
   editProduct: {},
   editCategory: {},
-  updateProduct:{},
+  updateProduct: {},
 
   totalCarrito: 0,
   types: [],
@@ -126,74 +126,74 @@ const rootReducer = (state = initialState, action) => {
         order: action.payload,
       };
 
-      case ORDER_REDUX:
-        return{
-          ...state,
-          orderRedux: action.payload
-        }
+    case ORDER_REDUX:
+      return {
+        ...state,
+        orderRedux: action.payload,
+      };
 
-      case NEW_USER:
-        return {
-          ...state,
-          createNewUser: action.payload
-        }
-      case EDIT_PRODUCT: 
-        return{
-          ...state,
-          editProduct:action.payload
-        }
+    case NEW_USER:
+      return {
+        ...state,
+        createNewUser: action.payload,
+      };
+    case EDIT_PRODUCT:
+      return {
+        ...state,
+        editProduct: action.payload,
+      };
 
-        case GET_CATEGORY_BY_ID: 
-        return{
-          ...state,
-          editCategory:action.payload
-        }
-      
-      case TOTAL_CARRITO:
-        return{
-          ...state,
-          totalCarrito: action.payload
-        }
+    case GET_CATEGORY_BY_ID:
+      return {
+        ...state,
+        editCategory: action.payload,
+      };
+
+    case TOTAL_CARRITO:
+      return {
+        ...state,
+        totalCarrito: action.payload,
+      };
 
     case GET_TYPES:
       return {
         ...state,
         types: action.payload,
-      };     
+      };
 
-    case LOADING: 
-    return {
-      ...state,
-      loading: action.payload
-    }      
+    case LOADING:
+      return {
+        ...state,
+        loading: action.payload,
+      };
 
     case ALL_USERS:
       return {
         ...state,
-        clients:  action.payload
-      }   
+        clients: action.payload,
+      };
 
     case UPDATE_CATEGORY:
       return {
         ...state,
-        allCategories: [...state.allCategories, action.payload]
-      }
-      
-     case CLIENT_UPDATE:
-       return {
-         ...state,
-         clients: action.payload
-       }
-case UPDATE_PRODUCT:
-  return{
-    ...state,
-    updateProduct: action.payload
-  }
-  case CREATE_TYPE:
-    return{
-      ...state,
-      types:[...state.types,action.payload]
-    }
+        allCategories: [...state.allCategories, action.payload],
+      };
+
+    case CLIENT_UPDATE:
+      return {
+        ...state,
+        clients: action.payload,
+      };
+    case UPDATE_PRODUCT:
+      return {
+        ...state,
+        updateProduct: action.payload,
+      };
+    case CREATE_TYPE:
+      return {
+        ...state,
+        types: [...state.types, action.payload],
+      };
     default:
       return state;
   }
