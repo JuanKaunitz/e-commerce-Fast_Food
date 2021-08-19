@@ -15,7 +15,7 @@ router.post('/', [
   router.post(
     "/google",
     [
-      check("id_token", "El id_token de google es necesario").not().isEmpty(),
+      // check("id_token", "El id_token de google es necesario").not().isEmpty(),
       validateInputs,
     ],
     authControllers.googleSignIn

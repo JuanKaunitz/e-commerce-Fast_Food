@@ -22,7 +22,8 @@ import {
     // GET_CLIENTS,
     HIGHER_PRICE,
     LOWER_PRICE,
-    CLIENT_UPDATE
+    CLIENT_UPDATE,
+    GOOGLE_LOGIN
 
 } from '../constants'
 
@@ -341,4 +342,19 @@ export const createNewType = (type) => async(dispatch)=>{
         type: CREATE_TYPE,
         payload: types.data
     });
+}
+
+//Enviar nuevo usuario registrado con google.
+
+export const createGoogleUser = (user) => async (dispatch) => {
+    try {
+    const res = await axios.post(`${URL}/food/api/auth-sesion/google`, user);
+    console.log('RES ', res);
+    dispatch({
+        type: GOOGLE_LOGIN,
+        payload: res.data
+    })
+    } catch(err) {
+        console.log(err)
+    }
 }
