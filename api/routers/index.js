@@ -26,7 +26,8 @@ module.exports = () => {
   router.use('/food/api/checkout',routerCheckout);
   //tipos de categorias
   router.use('/food/api/types',routerTypes);
-  
+  //mercadopago
+  router.use('/mercadopago', mercadopago);
 
   return router;
 };
