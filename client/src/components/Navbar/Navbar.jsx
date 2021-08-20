@@ -18,13 +18,12 @@ import ChevronRightIcon from "@material-ui/icons/ChevronRight";
 import HomeIcon from "@material-ui/icons/Home";
 import MenuIcon from "@material-ui/icons/Menu";
 import AddShoppingCartIcon from "@material-ui/icons/AddShoppingCart";
-import Typography from "@material-ui/core/Typography";
+import Typography from '@material-ui/core/Typography';
 import useStyles from "./styles";
 import SerchBar from "../serchbar/SerchBar";
-import FormLogout from "../LogForm/FormLogout";
 import { useLocation, Link } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
-import { categoryName } from "../../Redux/actions/actions";
+import { categoryName, changeStatus, updateClient } from "../../Redux/actions/actions";
 
 const Navbar = () => {
   const dispatch = useDispatch();
@@ -33,8 +32,12 @@ const Navbar = () => {
   const [open, setOpen] = useState(false);
   const categories = useSelector((state) => state.allCategories);
   const totalCarrito = useSelector((state) => state.totalCarrito);
-  const adminClient = useSelector((state) => state.client);
+  const adminClient = useSelector((state) => state.client)
   const haveToken = useSelector((state) => state.clientToken);
+  const id = adminClient._id;
+  console.log("USUARIOOO", adminClient)
+
+  const [input, setInput] = useState({ status: false });
 
   const location = useLocation();
 
@@ -50,9 +53,16 @@ const Navbar = () => {
     dispatch(categoryName(name));
   }
 
+  function handleLogout() {
+
+    const id = adminClient._id;
+    dispatch(changeStatus(id, input))
+
+  }
+
   return (
     <div>
-      <div>
+      <div >
         <AppBar className={classes.prueba}>
           <Toolbar>
             <IconButton
@@ -77,18 +87,24 @@ const Navbar = () => {
               </NavLink>
             </Button>
             <SerchBar />
-
-            
             <div className={classes.toolbarButtons}>
-              {adminClient?.role === "ADMIN" && adminClient.status === true ? (
-                <NavLink
-                  className={classes.MuiButtonLabel}
-                  to="/AdminPanel"
-                  activeClassName="active"
-                >
-                  Admin Panel
-                </NavLink>
-              ) : undefined }
+
+              {
+                adminClient.role === 'ADMIN' && adminClient.status === true ?
+
+                  <NavLink
+                    className={classes.MuiButtonLabel}
+                    to="/AdminPanel"
+                    activeClassName="active"
+                  >
+                    Admin Panel
+                  </NavLink>
+                  : null
+              }
+
+
+
+
 
               <IconButton aria-label="add to shopping cart">
                 <NavLink
@@ -101,27 +117,56 @@ const Navbar = () => {
                 </NavLink>
               </IconButton>
 
-              <Button color="inherit">
-                <NavLink
-                  className={classes.MuiButtonLabel}
-                  to="/register"
-                  activeClassName="active"
+
+
+
+
+
+
+
+              {adminClient.status === undefined ?
+                <Button color="inherit" >
+                  <NavLink
+                    className={classes.MuiButtonLabel}
+                    to="/register"
+                    activeClassName="active"
+                  >
+                    LOGIN
+                  </NavLink>
+                </Button>
+
+
+
+
+
+                : <Button color="inherit"
+                  onClick={handleLogout}
                 >
-                  {adminClient && adminClient.status === undefined ? (
-                    <Button color="inherit">
-                    <NavLink
-                      className={classes.MuiButtonLabel}
-                      to="/register"
-                      activeClassName="active"
-                    >
-                      LOGIN
-                    </NavLink>
-                  </Button>
-                  ) : (
-                   null
-                  )}
-                </NavLink>
-              </Button>
+                  <NavLink
+                    className={classes.MuiButtonLabel}
+                    to="/"
+                    activeClassName="active"
+                  >
+
+                    LOGIN
+
+                  </NavLink>
+
+                </Button>
+
+              }
+
+
+
+
+
+
+
+
+
+
+
+
 
               <Button color="inherit">
                 <NavLink
@@ -170,6 +215,8 @@ const Navbar = () => {
                   onClick={() => handlerCategory(e.name)}
                 />
               </Link>
+
+
             </ListItem>
           ))}
         </List>
@@ -177,5 +224,3 @@ const Navbar = () => {
     </div>
   );
 };
-
-export default Navbar;

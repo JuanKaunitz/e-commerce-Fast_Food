@@ -121,6 +121,7 @@ const rootReducer = (state = initialState, action) => {
       return {
         ...state,
         client: action.payload,
+        
       };
 
     case UPDATE_CART:
@@ -186,6 +187,7 @@ const rootReducer = (state = initialState, action) => {
       return {
         ...state,
         clients: action.payload,
+        
       };
     case UPDATE_PRODUCT:
       return {
@@ -204,10 +206,11 @@ const rootReducer = (state = initialState, action) => {
          googleUser: action.payload
        };
       case CLIENT_STATUS:
-        return {
+        return{
           ...state,
-          client: action.payload
-        } 
+          client:action.payload
+        }
+       
         
     default:
       return state;
