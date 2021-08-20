@@ -32,6 +32,8 @@ const Navbar = () => {
   const [open, setOpen] = useState(false);
   const categories = useSelector((state) => state.allCategories);
   const totalCarrito = useSelector((state) => state.totalCarrito);
+  const adminClient = useSelector((state) => state.client)
+  const haveToken = useSelector((state) => state.clientToken);
 
   const location = useLocation();
 
@@ -76,7 +78,9 @@ const Navbar = () => {
             <SerchBar />
             <div className={classes.toolbarButtons}>
 
-              
+              {
+                adminClient.role === 'ADMIN' && adminClient.status === true ?
+
               <NavLink
                 className={classes.MuiButtonLabel}
                 to="/AdminPanel"
@@ -84,6 +88,8 @@ const Navbar = () => {
               >
                 Admin Panel
               </NavLink>
+              : null
+              }
 
               
 
@@ -99,6 +105,11 @@ const Navbar = () => {
                   <AddShoppingCartIcon />
                 </NavLink>
               </IconButton>
+
+               {
+
+             adminClient.status === false ?
+
               <Button color="inherit">
                 <NavLink
                   className={classes.MuiButtonLabel}
@@ -108,6 +119,19 @@ const Navbar = () => {
                   LOGIN
                 </NavLink>
               </Button>
+              : 
+              <Button color="inherit">
+              <NavLink
+                className={classes.MuiButtonLabel}
+                to="/register"
+                activeClassName="active"
+              >
+                LOGOUT
+              </NavLink>
+            </Button>
+               }
+
+
               <Button color="inherit">
                 <NavLink
                   className={classes.MuiButtonLabel}
