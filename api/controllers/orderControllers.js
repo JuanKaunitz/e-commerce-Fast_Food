@@ -1,24 +1,37 @@
 const Order = require('../models/Order');
+const User = require('../models/User')
 
 //nueva orden
 exports.newOrder = async(req,res,next) =>{
-    try {
-        const order = new Order(req.body);
-        await order.save();
-        res.json({msg:'Se agrego un nuevo pedido',order});
-    } catch (error) {
-        console.log(error);
-        next();
-    }
+    
+        const {userId, order} = req.body;
+        const user = await User.findById(userId);
+        if(!order){
+            return res.status(400).json({msg:'no hay una order para crear'})
+        }
+        const newOrder = new Order({
+            order,
+            user: user._id
+        });
+        try {
+            const saveOrder = await newOrder.save()
+            user.order = user.order.concat(saveOrder._id);
+            await user.save()
+            res.json(saveOrder)
+        } catch (error) {
+            next(error)
+        }   
+       
 };
 //todas las ordenes
 exports.getAllOrder = async(req,res,next)=>{
     try {
-        const order = await Order.find({}).populate('client');
+        const order = await Order.find({}).populate('client',{
+            product:1
+        }).populate('order.product',{name:1,price:1});
         res.json(order);
     } catch (error) {
-        console.log(error);
-        next();
+        next(error);
     }
 };
 //orden por id

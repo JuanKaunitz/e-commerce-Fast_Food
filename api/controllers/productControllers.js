@@ -75,8 +75,7 @@ exports.getProductById = async(req,res,next)=>{
 exports.showProduct = async(req,res,next)=>{
   const product = await Product.findById(req.params.id);
   if(!product){
-      res.status(400).json({msg:'Ese producto no existe'});
-      return next();
+    return  res.status(400).json({msg:'Ese producto no existe'});
   }
   res.json({msg:'Producto encontrado',product})
 };
