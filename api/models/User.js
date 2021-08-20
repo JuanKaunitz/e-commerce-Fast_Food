@@ -31,10 +31,10 @@ const UserSchema = new Schema({
     type: String,
     default: "CLIENT",
   },
-  order: {
+  order: [{
     type: mongoose.Schema.Types.ObjectId,
     ref: "Order",
-  },
+  }],
 });
 
 // Autenticar Usuarios
