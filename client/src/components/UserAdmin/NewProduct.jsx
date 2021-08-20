@@ -6,7 +6,8 @@ import styles from "./styles.module.css";
 import { Link } from "react-router-dom";
 import FileDrop from "../Form/FileDrop";
 import { makeStyles } from "@material-ui/core/styles";
-import { Button, TextField } from "@material-ui/core";
+import { Button, IconButton, TextField } from "@material-ui/core";
+import Select from 'react-select'
 
 const useStyles = makeStyles((theme) => ({
   paper: {
@@ -27,6 +28,9 @@ const useStyles = makeStyles((theme) => ({
   input_text: {
     backgroundColor: "#ffff",
   },
+  select_tipes:{
+    color:'black'
+  }
 }));
 
 const NewProduct = (props) => {
@@ -47,11 +51,17 @@ const NewProduct = (props) => {
     description: "",
     stock: 200,
     categories: "",
-    type: "",
+    type:[]
   });
   const saveProduct = () => {
     dispatch(createProduct(input));
     console.log(input);
+  };
+  const handleInputChange = (e) =>{
+    setInput({
+      ...input,
+      [e.target.name]: e.target.value,
+    });
   };
 
   const handleSubmit = (e) => {
@@ -61,18 +71,12 @@ const NewProduct = (props) => {
     props.history.push("/AdminPanel");
   };
 
-  const handleInputChange = function (e) {
-    setInput({
-      ...input,
-      [e.target.name]: e.target.value,
-    });
-  };
-
-  const handleInputCategory = function (e) {
-    input.categories = e.target.value;
-    var filtradoCategory = category.filter((el) => el.name === e.target.value);
-    //dispatch(getTypes(filtradoCategory[0].types));
-  };
+  
+  // const handleInputCategory = function (e) {
+  //   input.categories = e.target.value;
+  //   var filtradoCategory = category.filter((el) => el.name === e.target.value);
+  //   //dispatch(getTypes(filtradoCategory[0].types));
+  // };
 
   console.log("INPUT", input)
 
@@ -184,6 +188,16 @@ const NewProduct = (props) => {
               </option>
             ))}
         </select>
+           {/* <Select 
+           className={classes.select_tipes}
+           options={types} 
+           isMulti={true}
+           onChange={handleInputChange}
+           name='type'
+           placeholder={'Seleccione un tipo'}
+           getOptionValue={(options)=> options._id}
+           getOptionLabel={(options)=> options.name}
+           /> */}
 
         <button className={styles.btn_save} type="submit">
           CREATE
