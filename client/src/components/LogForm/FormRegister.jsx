@@ -24,9 +24,9 @@ export function validate(input, password) {
   } else if (!/^[A-Za-z]+$/.test(input.name)) {
     errors.name = "Name must be a string!";
   }
-  // if(input.password !== password.password1) {
-  //   errors.password = "The password doesn´t much!";
-  // }
+  if(input.password !== input.password2) {
+    errors.password2 = "The password doesn´t match!";
+  }
   return errors;
 }
 
@@ -37,18 +37,10 @@ const FormRegister = () => {
     name: "",
     email: "",
     password: "",
+    password2: ""
   });
 
-  // const [password, setPassword] = useState({
-  //   password1: ""
-  // })
 
-  // const handlePasswordChange = (e) => {
-  //   setPassword({
-  //     ...password,
-  //     password1: e.target.value
-  //   })
-  // }
 
   const [errors, setErrors] = useState({});
 
@@ -156,18 +148,19 @@ const FormRegister = () => {
           {errors.password && <p className="danger">{errors.password}</p>}
         </div>
 
-        {/* <div>
-          <label className={styles.label}>Repite your password:</label>
+        <div>
+          <label className={styles.label}>Repite password:</label>
           <input
             className={styles.input1}
             type="password"
-            name="password1"
+            name="password2"
             class={styles.field2}
-            onChange={handlePasswordChange}
-            value={password.password1}
+            onChange={handleInputChange}
+            value={input.password2}
           />
-          {errors.password && <p className="danger">{errors.password}</p>}
-        </div> */}
+          {errors.password2 && <p className="danger">{errors.password2}</p>}
+        </div>
+
         <div className="btn submit">
           <button className={styles.btnregister} type="submit" src="/">
             Submit
