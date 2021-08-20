@@ -36,7 +36,9 @@ exports.uploadImage = async (req, res, next) => {
 
 exports.getUsers = async (req, res, next) => {
   try {
-    const users = await User.find({});
+    const users = await User.find({}).populate('order',{
+      order:1
+    }).populate('order.order.product',{name:1});
     res.json(users);
   } catch (error) {
     res.status(400).json({
