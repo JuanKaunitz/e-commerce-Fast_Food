@@ -21,7 +21,7 @@ types:[{
 })
 CategorySchema.methods.toJSON = function() {
   const { __v, ...Category  } = this.toObject();
-  return Category;
+  return Category; //quitar una prop en especifico que no necesito
 }
 
 
