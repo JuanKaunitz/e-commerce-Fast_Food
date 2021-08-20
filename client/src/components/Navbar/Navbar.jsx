@@ -18,9 +18,10 @@ import ChevronRightIcon from "@material-ui/icons/ChevronRight";
 import HomeIcon from "@material-ui/icons/Home";
 import MenuIcon from "@material-ui/icons/Menu";
 import AddShoppingCartIcon from "@material-ui/icons/AddShoppingCart";
-import Typography from '@material-ui/core/Typography';
+import Typography from "@material-ui/core/Typography";
 import useStyles from "./styles";
 import SerchBar from "../serchbar/SerchBar";
+import FormLogout from "../LogForm/FormLogout";
 import { useLocation, Link } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import { categoryName } from "../../Redux/actions/actions";
@@ -32,7 +33,7 @@ const Navbar = () => {
   const [open, setOpen] = useState(false);
   const categories = useSelector((state) => state.allCategories);
   const totalCarrito = useSelector((state) => state.totalCarrito);
-  const adminClient = useSelector((state) => state.client)
+  const adminClient = useSelector((state) => state.client);
   const haveToken = useSelector((state) => state.clientToken);
 
   const location = useLocation();
@@ -51,7 +52,7 @@ const Navbar = () => {
 
   return (
     <div>
-      <div >
+      <div>
         <AppBar className={classes.prueba}>
           <Toolbar>
             <IconButton
@@ -76,24 +77,18 @@ const Navbar = () => {
               </NavLink>
             </Button>
             <SerchBar />
+
+            
             <div className={classes.toolbarButtons}>
-
-              {
-                adminClient.role === 'ADMIN' && adminClient.status === true ?
-
-              <NavLink
-                className={classes.MuiButtonLabel}
-                to="/AdminPanel"
-                activeClassName="active"
-              >
-                Admin Panel
-              </NavLink>
-              : null
-              }
-
-              
-
-
+              {adminClient?.role === "ADMIN" && adminClient.status === true ? (
+                <NavLink
+                  className={classes.MuiButtonLabel}
+                  to="/AdminPanel"
+                  activeClassName="active"
+                >
+                  Admin Panel
+                </NavLink>
+              ) : undefined }
 
               <IconButton aria-label="add to shopping cart">
                 <NavLink
@@ -101,14 +96,10 @@ const Navbar = () => {
                   to="/cart"
                   activeClassName="active"
                 >
-                <Typography>{totalCarrito}</Typography>
+                  <Typography>{totalCarrito}</Typography>
                   <AddShoppingCartIcon />
                 </NavLink>
               </IconButton>
-
-               {
-
-             adminClient.status === false ?
 
               <Button color="inherit">
                 <NavLink
@@ -116,21 +107,21 @@ const Navbar = () => {
                   to="/register"
                   activeClassName="active"
                 >
-                  LOGIN
+                  {adminClient && adminClient.status === undefined ? (
+                    <Button color="inherit">
+                    <NavLink
+                      className={classes.MuiButtonLabel}
+                      to="/register"
+                      activeClassName="active"
+                    >
+                      LOGIN
+                    </NavLink>
+                  </Button>
+                  ) : (
+                   null
+                  )}
                 </NavLink>
               </Button>
-              : 
-              <Button color="inherit">
-              <NavLink
-                className={classes.MuiButtonLabel}
-                to="/register"
-                activeClassName="active"
-              >
-                LOGOUT
-              </NavLink>
-            </Button>
-               }
-
 
               <Button color="inherit">
                 <NavLink
@@ -179,8 +170,6 @@ const Navbar = () => {
                   onClick={() => handlerCategory(e.name)}
                 />
               </Link>
-             
-                
             </ListItem>
           ))}
         </List>

@@ -23,7 +23,9 @@ import {
     HIGHER_PRICE,
     LOWER_PRICE,
     CLIENT_UPDATE,
-    GOOGLE_LOGIN
+    GOOGLE_LOGIN,
+    CLIENT_STATUS,
+    CLEAN
 
 } from '../constants'
 
@@ -326,7 +328,6 @@ export const updateClient = (id, input) => async (dispatch) => {
         dispatch({
             type: CLIENT_UPDATE,
             payload: res.data
-
         })
 
     } catch(err) {
@@ -358,3 +359,27 @@ export const createGoogleUser = (user) => async (dispatch) => {
         console.log(err)
     }
 }
+
+
+export const changeStatus = (id, input) => async (dispatch) => {
+    console.log('INPUT ', input);
+    console.log('ID: ', id);
+    try {
+        const res = await axios.put(`${URL}/food/api/client/${id}`, input);
+        console.log('RES: ', res)
+        dispatch({
+            type: CLIENT_STATUS,
+            payload: res.data
+        })
+
+    } catch(err) {
+        console.log(err)
+    }
+}
+
+
+export const clean =()=>(dispatch)=>{
+
+    dispatch({type:CLEAN,payload:{}});
+    
+    }
