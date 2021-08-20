@@ -18,7 +18,7 @@ exports.createNewCategory = async(req,res,next)=>{
 
 exports.getAllCategories = async(req,res,next)=>{
     try {
-      const categories = await Category.find({})
+      const categories = await Category.find({}).populate('types',{name:1})
      
     //   //.populate('TypeCategory').exec((err, posts) => {
     //     console.log("Populated User " + posts);

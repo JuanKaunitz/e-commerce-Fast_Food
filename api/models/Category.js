@@ -11,8 +11,11 @@ image:{
 },
 
 types:[{
-
-    name:{type:String}   
+ types:{
+  type: mongoose.Schema.Types.ObjectId,
+  ref:'Types'
+ }
+    // name:{type:String}   
   
 }]
 })

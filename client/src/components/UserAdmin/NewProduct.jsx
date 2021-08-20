@@ -51,8 +51,10 @@ const NewProduct = (props) => {
     description: "",
     stock: 200,
     categories: "",
-    type:[]
+   type:''
   });
+ const {type} = input;
+
   const saveProduct = () => {
     dispatch(createProduct(input));
     console.log(input);
@@ -79,7 +81,18 @@ const NewProduct = (props) => {
   // };
 
   console.log("INPUT", input)
-
+const customTheme = (theme)=>{
+  return{
+    ...theme,
+    colors:{
+      ...theme.colors,
+      primary25:'orange',
+      primary:'green',
+      color:'black'
+    },
+    
+  }
+}
   return (
     <div className={styles.form_content}>
       <div>
@@ -175,7 +188,7 @@ const NewProduct = (props) => {
         </select>
 
         <div className="filterName">Types</div>
-        <select
+        {/* <select
           className="boton"
           onChange={handleInputChange}
           name="type"
@@ -187,17 +200,16 @@ const NewProduct = (props) => {
                 {t.name}
               </option>
             ))}
-        </select>
-           {/* <Select 
-           className={classes.select_tipes}
+        </select> */}
+           <Select 
+           theme={customTheme}
            options={types} 
            isMulti={true}
-           onChange={handleInputChange}
-           name='type'
+           onChange={input => setInput({ input })}
            placeholder={'Seleccione un tipo'}
-           getOptionValue={(options)=> options._id}
+           getOptionValue={(options)=> options.name}
            getOptionLabel={(options)=> options.name}
-           /> */}
+           />
 
         <button className={styles.btn_save} type="submit">
           CREATE
