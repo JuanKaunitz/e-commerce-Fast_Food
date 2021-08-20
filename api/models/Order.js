@@ -6,29 +6,20 @@ const OrderSchema = new Schema({
     type: mongoose.Schema.Types.ObjectId,
     ref: "User",
   },
-  order: [
-    {
-      product: {
-        type: mongoose.Schema.Types.ObjectId,
-        ref: "Product",
-      },
-      amount: Number,
-    },
-  ],
+  order: {
+    type: mongoose.Schema.Types.Mixed
+  },
   total: {
     type: Number,
   },
   status: {
     type: String,
-    enum: {
-      values: ["carrito", "creada", "procesando", "cancelado", "completada"],
-    },
   },
 });
 
-OrderSchema.methods.toJSON = function() {
-  const { __v, ...Order  } = this.toObject();
+OrderSchema.methods.toJSON = function () {
+  const { __v, ...Order } = this.toObject();
   return Order;
-}
+};
 
 module.exports = mongoose.model("Order", OrderSchema);
