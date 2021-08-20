@@ -8,19 +8,20 @@ import {
   HIGHER_PRICE,
   CATEGORY_NAME,
   LOADING,
-  UPDATE_CART,
   LOGIN_CLIENT,
   NEW_USER,
   GET_TYPES,
   ALL_USERS,
   EDIT_PRODUCT,
-  ORDER_REDUX,
-  TOTAL_CARRITO,
   GET_CATEGORY_BY_ID,
   UPDATE_CATEGORY,
   CLIENT_UPDATE,
   UPDATE_PRODUCT,
   CREATE_TYPE,
+  
+  UPDATE_CART,
+  ORDER_REDUX,
+  TOTAL_CARRITO,
   /* ASC,
   DESC */
 } from "../constants";
@@ -38,7 +39,7 @@ const initialState = {
   clients: [],
   client: {},
   order: [],
-  clientToken: {},
+  clientToken: "",
   orderRedux: {
     clientId: "",
     token: "",
@@ -117,7 +118,8 @@ const rootReducer = (state = initialState, action) => {
     case LOGIN_CLIENT:
       return {
         ...state,
-        client: action.payload,
+        client: action.payload.user,
+        clientToken: action.payload.token,
       };
 
     case UPDATE_CART:

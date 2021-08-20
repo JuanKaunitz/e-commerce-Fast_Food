@@ -10,14 +10,13 @@ import Typography from '@material-ui/core/Typography';
 import FavoriteIcon from '@material-ui/icons/Favorite';
 import AddShoppingCartIcon from '@material-ui/icons/AddShoppingCart';
 import HourglassEmptyIcon from '@material-ui/icons/HourglassEmpty';
-import {
-  updateCart,
+import {getById} from '../../Redux/actions/actions';
+import {updateCart,
   totalProductosCarrito,
   orderRedux, 
   orderFinal,
   updateOrderFinal,
-  getById
-  } from '../../Redux/actions/actions';
+} from '../../Redux/actions/actionsCartOrder';
 import {addCarts, sumaCantidadTotal, sumaPrecioTotal}  from '../cart/utilsCarts.js';
 // import { Link } from 'react-router-dom';
 

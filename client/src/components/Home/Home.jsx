@@ -3,7 +3,8 @@ import { useDispatch} from "react-redux";
 import "./Home.css";
 import Footer from "../Footer/Footer";
 import GridCardsProducts from "../cards/CardsProducts";
-import { getAllProducts, updateCart, totalProductosCarrito, getTypes } from "../../Redux/actions/actions";
+import { getAllProducts, getTypes } from "../../Redux/actions/actions";
+import {updateCart, totalProductosCarrito} from '../../Redux/actions/actionsCartOrder'
 import Gallery from "../gallery/Gallery";
 import Order from "../order/Order";
 import Otters from "../Otters/Otters";

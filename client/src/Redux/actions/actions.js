@@ -7,13 +7,10 @@ import {
     DELETE_PRODUCT,
     GET_CATEGORIES,
     CATEGORY_NAME,
-    UPDATE_CART,
     LOGIN_CLIENT,
     NEW_USER,   
     GET_TYPES,
-    ORDER_REDUX,
     EDIT_PRODUCT,
-    TOTAL_CARRITO,
     ALL_USERS,    
     DELETE_CATEGORY,    
     CREATE_CATEGORY,
@@ -22,7 +19,7 @@ import {
     // GET_CLIENTS,
     HIGHER_PRICE,
     LOWER_PRICE,
-    CLIENT_UPDATE
+    CLIENT_UPDATE,
 
 } from '../constants'
 
@@ -209,54 +206,13 @@ export const authUser =  (user) => async (dispatch) => {
         console.log('CLIENT: ', client)
         dispatch({
             type: LOGIN_CLIENT,
-            payload: client.data.user
+            payload: client.data
         })
 
     } catch (err) {
         console.log(err)
     }
 };  
-
-
-//ACTUALIZAR CARRITO DE CUALQUIER USUARIO
-export const updateCart = (order) => (dispatch) => {
-
-    dispatch({
-        type: UPDATE_CART,
-        payload: order
-    });
-    
-}
-
-//ACTUALIZAR ORDEN en redux
-export const orderRedux = (order) => (dispatch) => {
-    dispatch({
-        type: ORDER_REDUX,
-        payload: order
-    });
-}
-
-//Actualizar orden en back.
-export const updateOrderFinal = (id,order) => async(dispatch) => {
-    try {
-        const res = await axios.put(`${URL}/food/api/order/${id}`, order);
-        console.log("ORDER ACTUALIZADA", res)
-       
-   } catch (err) {
-    console.log(err)
-  }
-}
-
-//Envio de orden nueva al back.
-export const orderFinal = (order) => async(dispatch) => {
-    try {
-        const res = await axios.get(`${URL}/food/api/order`, order);
-        console.log("ORDER", res)
-       
-   } catch (err) {
-    console.log(err)
-  }
-}
 
 //Obtengo lista de clientes(register).
 export const allUsers = () => async (dispatch) => {
@@ -307,14 +263,6 @@ export const getTypes = () => async(dispatch) => {
         type: GET_TYPES,
         payload: types.data
     });
-}
-
-//SUMA TOTAL DE PRODUCTOS
-export const totalProductosCarrito = (total) => (dispatch) => {
-    dispatch({
-        type: TOTAL_CARRITO,
-        payload: total
-    })
 }
 
 //Actualizacion de cliente.

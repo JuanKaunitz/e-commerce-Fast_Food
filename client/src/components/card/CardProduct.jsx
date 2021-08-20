@@ -14,7 +14,7 @@ import {
   orderRedux, 
   orderFinal,
   updateOrderFinal
-  } from '../../Redux/actions/actions';
+  } from '../../Redux/actions/actionsCartOrder';
 import {addCarts, sumaCantidadTotal, sumaPrecioTotal}  from '../cart/utilsCarts.js';
 
 

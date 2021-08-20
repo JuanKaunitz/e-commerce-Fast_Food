@@ -11,7 +11,7 @@ import { updateCart,
   orderRedux, 
   orderFinal,
   updateOrderFinal,
-} from "../../Redux/actions/actions";
+} from "../../Redux/actions/actionsCartOrder";
 import {
   deleteCart,
   sumProduct,
@@ -32,7 +32,7 @@ const useStyles = makeStyles(() => ({
     color: "white",
   },
 }));
-console.log("yoop")
+//console.log("yoop")
 const Cart = (props) => {
   console.log(props)
   const dispatch = useDispatch();
