@@ -149,7 +149,7 @@ const FormRegister = () => {
         </div>
 
         <div>
-          <label className={styles.label}>Repite password:</label>
+          <label className={styles.label}>Repeat password:</label>
           <input
             className={styles.input1}
             type="password"
