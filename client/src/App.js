@@ -20,7 +20,7 @@ import NewProduct from "./components/UserAdmin/NewProduct.jsx";
 import AdminCategories from "./components/UserAdmin/AdminCategories.jsx";
 import AdminCategoryDetail from "./components/UserAdmin/AdminCategoryDetail.jsx";
 import NewCategory from "./components/UserAdmin/NewCategory.jsx";
-import Mercado from "./components/Checkout/index.jsx";
+import Mercado from "./components/Pasarela/index.jsx";
 // import EditProduct from "./components/editProduct/EditProduct.jsx";
 import Checkout from "./components/payment/Checkout.js";
 // import CheckoutForm from "./components/payment/CheckoutForm.jsx";

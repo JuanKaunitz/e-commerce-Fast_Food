@@ -1,6 +1,6 @@
 
 import React,{ useEffect, useState } from 'react'
-import Checkout from './checkoutMercado'
+import Checkout from './checkoutMercado.jsx'
 import axios from 'axios'
 
  export default function Mercado() {

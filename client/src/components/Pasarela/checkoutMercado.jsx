@@ -1,5 +1,5 @@
 import { useEffect} from 'react'
-import s from '../Checkout/styled.css';
+import s from './styled.css';
 
 export default function Comprar({ productos, data }){
  useEffect(()=>{

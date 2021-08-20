@@ -8,7 +8,7 @@ const routerOrder = require('./routerOrder');
 const routerCheckout = require('./routerCheckout');
 const routerTypes = require('./routerTypes')
 const router = express.Router();
-
+const mercadopago= require('./mercadopago')
 module.exports = () => {
   //Users endpoints para crear un ausuario para el sistema
   router.use("/food/api/user", routerUser);

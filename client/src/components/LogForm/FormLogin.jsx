@@ -1,6 +1,7 @@
 import React, { useState } from "react";
-import { useDispatch } from "react-redux";
-import { authUser } from "../../Redux/actions/actions";
+import { useDispatch, useSelector } from "react-redux";
+import { NavLink } from "react-router-dom";
+import { authUser, changeStatus, updateClient } from "../../Redux/actions/actions";
 import styles1 from "./styles1.module.css";
 
 
@@ -24,10 +25,12 @@ export function validate(input) {
 const FormLogin = () => {
   const dispatch = useDispatch();
   //const client = useSe
-
+  const adminClient = useSelector((state) => state.client)
+  const [estado, setEstado] = useState({status:true});
   const [input, setInput] = useState({
     email: "",
     password: "",
+   
   });
 
   const [errors, setErrors] = useState({});
@@ -48,8 +51,12 @@ const FormLogin = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    console.log(input);
+    
+
+  
+   
     dispatch(authUser(input));
+   
     setInput({
       email: "",
       password: "",
@@ -86,7 +93,9 @@ const FormLogin = () => {
           />
           {errors.password && <p className="danger">{errors.password}</p>}
         </div>
+     
         <input className={styles1.btnregister} type="submit" value="Submit" />
+      
       </form>
       
     </div>

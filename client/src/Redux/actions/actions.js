@@ -23,7 +23,9 @@ import {
     HIGHER_PRICE,
     LOWER_PRICE,
     CLIENT_UPDATE,
-    GOOGLE_LOGIN
+    GOOGLE_LOGIN,
+    CLIENT_STATUS
+   
 
 } from '../constants'
 
@@ -77,7 +79,7 @@ export const getById = (id) => async (dispatch) => {
 
  //Creando un producto.
  export const createProduct = (input) => async (dispatch) => {
-     console.log('INPUT ACTION: ', input);
+   
     try {
         const product = await axios.post(`${URL}/food/api/products`,input);
         console.log('PRODUCT: ', product);
@@ -92,7 +94,7 @@ export const getById = (id) => async (dispatch) => {
 
  //Actualizando producto.
  export const getUpdate = (id, input) => async (dispatch) => {
-     console.log('UPDATE: ', input)
+     
     try {        
         const res = await axios.put(`${URL}/food/api/products/${id}`, input) 
         dispatch({
@@ -107,7 +109,7 @@ export const getById = (id) => async (dispatch) => {
 
  //Borrando un producto.
  export const deleteProduct = (id) => async (dispatch) => {
-     //console.log('ID DELETE',id)
+    
      try {
          const res = await axios.delete(`${URL}/food/api/products/${id}`);
          dispatch({
@@ -136,11 +138,11 @@ export const getById = (id) => async (dispatch) => {
 
 //Creando una categoria.
 export const createCategory = (input) => async (dispatch) => {
-    console.log('LLEGA?O NOOOOOOOOO: ', input)
+   
     try {
         const category = await axios.post(`${URL}/food/api/category`,input);
         // const category = await axios.post(`${URL}/food/api/category`, input)
-        console.log('CATEGORY: ', category.data);
+     
         dispatch({
             type: CREATE_CATEGORY,
             payload: category.data
@@ -152,11 +154,10 @@ export const createCategory = (input) => async (dispatch) => {
 
  //Actualizar categoria.
 export const getUpdateCategory = (id, input) => async (dispatch) => {
-    console.log('CATEGORIA ID:', id )
-    console.log('CATEGORIA input:', input )
+
     try {
         const res = await axios.put(`${URL}/food/api/category/${id}`, input);
-        console.log("RESPUESTA", res)
+     
         dispatch({
             type: UPDATE_CATEGORY,
             payload: res.data
@@ -207,7 +208,10 @@ export const categoryName = (name) => (dispatch) => {
 export const authUser =  (user) => async (dispatch) => {
     try {
         const client = await axios.post(`${URL}/food/api/auth-sesion`, user);
-        console.log('CLIENT: ', client)
+        const prueba=client.data.user.status=true
+        // console.log("LA RES1",client)
+        // const res = await axios.put(`${URL}/food/api/user/${client.data.user._id}`, prueba);
+        // console.log("LA RES2",res)
         dispatch({
             type: LOGIN_CLIENT,
             payload: client.data.user
@@ -241,7 +245,7 @@ export const orderRedux = (order) => (dispatch) => {
 export const updateOrderFinal = (id,order) => async(dispatch) => {
     try {
         const res = await axios.put(`${URL}/food/api/order/${id}`, order);
-        console.log("ORDER ACTUALIZADA", res)
+      
        
    } catch (err) {
     console.log(err)
@@ -252,7 +256,7 @@ export const updateOrderFinal = (id,order) => async(dispatch) => {
 export const orderFinal = (order) => async(dispatch) => {
     try {
         const res = await axios.get(`${URL}/food/api/order`, order);
-        console.log("ORDER", res)
+  
        
    } catch (err) {
     console.log(err)
@@ -263,7 +267,7 @@ export const orderFinal = (order) => async(dispatch) => {
 export const allUsers = () => async (dispatch) => {
     try {
         const res = await axios.get(`${URL}/food/api/user`);
-        console.log('ALL USER: ', res.data)
+       
         dispatch({
            type: ALL_USERS,
            payload: res.data
@@ -278,7 +282,7 @@ export const allUsers = () => async (dispatch) => {
 export const newUser = (user) => async (dispatch) => {
     try {
         const res = await axios.post(`${URL}/food/api/user`, user);        
-        console.log('NEW USER: ', res.data)
+     
         dispatch({
            type: NEW_USER,
            payload: res.data
@@ -320,7 +324,7 @@ export const totalProductosCarrito = (total) => (dispatch) => {
 
 //Actualizacion de cliente.
 export const updateClient = (id, input) => async (dispatch) => {
-    console.log('ID E INPUT ', input);
+  
     try {
         const res = await axios.put(`${URL}/food/api/user/${id}`, input);
         dispatch({
@@ -337,7 +341,7 @@ export const updateClient = (id, input) => async (dispatch) => {
 //crear un type
 export const createNewType = (type) => async(dispatch)=>{
     const types = await axios.post(`${URL}/food/api/types`,type);
-    console.log(types.data)
+   
     dispatch({
         type: CREATE_TYPE,
         payload: types.data
@@ -349,7 +353,7 @@ export const createNewType = (type) => async(dispatch)=>{
 export const createGoogleUser = (user) => async (dispatch) => {
     try {
     const res = await axios.post(`${URL}/food/api/auth-sesion/google`, user);
-    console.log('RES ', res);
+   
     dispatch({
         type: GOOGLE_LOGIN,
         payload: res.data
@@ -358,3 +362,23 @@ export const createGoogleUser = (user) => async (dispatch) => {
         console.log(err)
     }
 }
+export const changeStatus = (id, input) => async (dispatch) => {
+
+    try {
+        const res = await axios.put(`${URL}/food/api/user/${id}`,input );
+   
+       
+        dispatch({
+            type:CLIENT_STATUS,
+            payload: res.data
+            
+        })
+
+    } catch(err) {
+        console.log(err)
+    }
+}
+
+
+
+    
