@@ -2,37 +2,41 @@ const Order = require("../models/Order");
 const User = require("../models/User");
 
 //nueva orden
-exports.newOrder = async (req, res, next) => {
-  console.log(req.body);
-  const order = req.body;
-  const { id, status } = req.body;
-  console.log("BODY", req.body);
-  const user = await User.findById(id);
-  console.log("USER ID", user);
-  if (!order) {
-    return res.status(400).json({ msg: "no hay una order para crear" });
-  }
-  let newOrder = new Order(order);
-  console.log("nueva orden", newOrder);
-  try {
-    await newOrder.save();
-    user.order = newOrder;
-    await user.save();
-    console.log(user);
-    res.json(newOrder);
-  } catch (error) {
-    next(error);
-  }
-};
+exports.newOrder = async(req,res,next) =>{
+    console.log(req.body)
+        const order = req.body;
+        const {id,status} = req.body;
+        console.log("BODY", req.body)
+        const user = await User.findById(id);
+        console.log("USER ID", user)
+        if(!order){
+            return res.status(400).json({msg:'no hay una order para crear'})
+        }
+        let newOrder = new Order(order);
+        console.log('nueva orden',newOrder)
+        try {
+             await newOrder.save()
+            user.order = newOrder;
+             await user.save()
+            console.log(user)
+            res.json(newOrder)
+        } catch (error) {
+            next(error)
+        }
+}   
+       
 //todas las ordenes
-exports.getAllOrder = async (req, res, next) => {
-  try {
-    const order = await Order.find({}).populate("order.product");
-    res.json(order);
-  } catch (error) {
-    next(error);
-  }
+exports.getAllOrder = async(req,res,next)=>{
+    try {
+        const order = await Order.find({}).populate('client',{
+            product:1
+        }).populate('order.product');
+        res.json(order);
+    } catch (error) {
+        next(error);
+    }
 };
+
 //orden por id
 exports.getOrderById = async (req, res, next) => {
   const order = await Order.findById(req.params.id);
@@ -42,6 +46,7 @@ exports.getOrderById = async (req, res, next) => {
   }
   res.json(order);
 };
+
 //actualizar una orden
 exports.updateOrder = async (req, res, next) => {
   try {

@@ -10,14 +10,13 @@ import Typography from '@material-ui/core/Typography';
 import FavoriteIcon from '@material-ui/icons/Favorite';
 import AddShoppingCartIcon from '@material-ui/icons/AddShoppingCart';
 import HourglassEmptyIcon from '@material-ui/icons/HourglassEmpty';
-import {
-  updateCart,
+import {getById} from '../../Redux/actions/actions';
+import {updateCart,
   totalProductosCarrito,
   orderRedux, 
   orderFinal,
   updateOrderFinal,
-  getById
-  } from '../../Redux/actions/actions';
+} from '../../Redux/actions/actions';
 import {addCarts, sumaCantidadTotal, sumaPrecioTotal}  from '../cart/utilsCarts.js';
 // import { Link } from 'react-router-dom';
 
@@ -62,6 +61,7 @@ export default function CardDetails({match}) {
   const detail = useSelector(state => state.getDetail.product);
   const productId = useRef(match.params.id);
   const client = useSelector(state => state.client);
+  const token = useSelector(state => state.clientToken);
   // console.log("ID ----", productId)
   
   useEffect(() => {
@@ -74,19 +74,20 @@ export default function CardDetails({match}) {
     const cantidadTotal = sumaCantidadTotal(cart);
     dispatch(updateCart(cart))
     dispatch(totalProductosCarrito(cantidadTotal));
-    if(client.token){
-      const precioTotal = sumaPrecioTotal(cart);
-      const order = {
-        clientId: client._id,
-        token: client.token,
-        precioTotal: precioTotal,
-        totalProductos: cantidadTotal,
-        order: cart,
-        status: "carrito",
-      }
+    if(token){
+      const idOrder = localStorage.getItem('idOrderUser');
+      const fecha = new Date();
+
+    const order = {
+      id: client._id,
+      token: token,
+      order: cart,
+      status: "carrito",
+      date: fecha.toUTCString(),
+    }
       dispatch(orderRedux(order));
-      if(client.order._id){
-        dispatch(updateOrderFinal(client.order._id, order))
+      if(idOrder){
+        dispatch(updateOrderFinal(idOrder, order))
       }else{
         dispatch(orderFinal(order))
       }
