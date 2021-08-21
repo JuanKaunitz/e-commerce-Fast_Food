@@ -50,12 +50,6 @@ useEffect(()=> {
 
   return (
     <div className='list'>
-
-    <br></br> 
-    <br></br> 
-    <br></br> 
-    <br></br> 
-    <br></br>
     <Link to='/adminPanel'> <button >Admin Panel</button></Link>
     <Link to='/adminCategories'> <button >Categories Panel</button></Link>
     <Link to='/newProduct'> <button >New Product</button></Link>

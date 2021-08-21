@@ -20,11 +20,8 @@ export default function AdminCategoryDetail(props) {
     image: "",
   });
 
-  
-
   const selectedCategory = categories.filter((e) => e._id === id);
   console.log("arrayFilter: ", selectedCategory);
-
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -54,18 +51,6 @@ export default function AdminCategoryDetail(props) {
     <div className={classes.form_content}>
       <h1>Edit your product</h1>
 
-      <Link to="/adminPanel">
-        {" "}
-        <button>Admin Panel</button>
-      </Link>
-      <Link to="/clients">
-        {" "}
-        <button>Clients Panel</button>
-      </Link>
-      <Link to="/adminCategories">
-        {" "}
-        <button>Categories Panel</button>
-      </Link>
       {input.length !== 0 ? (
         <form onSubmit={handleSubmit}>
           <div className={classes.form_group}>
