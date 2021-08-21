@@ -31,8 +31,8 @@ export function validate(input) {
   
 const FormLogin = () => {
   const dispatch = useDispatch();
-  const client = useSelector(state => state.client);
-  const orderUser = useSelector(state => state.orderUser);
+  /* const client = useSelector(state => state.client);
+  const orderUser = useSelector(state => state.orderUser); */
  
   const [input, setInput] = useState({
     email: "",

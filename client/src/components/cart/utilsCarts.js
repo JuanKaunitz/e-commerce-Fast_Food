@@ -96,6 +96,8 @@ export const resProduct = (id) => {
 
 //USUARIO LOGUEADO: JUNTA SU CARRITO GUARDADO CON EL NUEVO EN EL LOCALSTORAGE
 export const mergeCart = (cart, orderBack) => {
+  console.log("CART", cart)
+  console.log("BACK", orderBack)
   if(cart && orderBack){
     console.log("ENTRO MERGE")
     let band = false;

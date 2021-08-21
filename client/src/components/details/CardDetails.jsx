@@ -76,11 +76,15 @@ export default function CardDetails({match}) {
     dispatch(totalProductosCarrito(cantidadTotal));
     if(token){
       const idOrder = localStorage.getItem('idOrderUser');
-      const order = {
-        id: client._id,
-        order: cart,
-        status: "carrito",
-      }
+      const fecha = new Date();
+
+    const order = {
+      id: client._id,
+      token: token,
+      order: cart,
+      status: "carrito",
+      date: fecha.toUTCString(),
+    }
       dispatch(orderRedux(order));
       if(idOrder){
         dispatch(updateOrderFinal(idOrder, order))

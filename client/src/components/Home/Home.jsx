@@ -18,48 +18,57 @@ function Home() {
   const token = useSelector(state => state.clientToken);
   const band = useSelector(state => state.bandOrderUser);
   //localStorage.removeItem("order");
-
-  if(orderUser && token && band){
-    dispatch(bandOrderUser())
-    const orderFiltrado = orderUser.filter(e => e.status === "carrito");
-    console.log("orderFiltrado", orderFiltrado)
-    if(orderFiltrado.length > 0){
-      console.log("ENTRO ORDERGILTRADO.LENGTH")
-      const carrito = orderFiltrado[0]._id;
-      console.log("CARRITO", carrito);
-      localStorage.setItem('idOrderUser', carrito);
+  
+ // useEffect(() => {
+    if( orderUser.length > 0 && token && band){
+      dispatch(bandOrderUser())
+      const orderFiltrado = orderUser.filter(e => e.status === "carrito");
+      console.log("orderFiltrado", orderFiltrado)
+  
+      if(orderFiltrado.length > 0){
+        console.log("ENTRO ORDERGILTRADO.LENGTH")
+        const carrito = orderFiltrado[0]._id;
+        console.log("CARRITO", carrito);
+        localStorage.setItem('idOrderUser', carrito);
+      }
+      const idOrder = localStorage.getItem('idOrderUser');
+   
+      console.log("ID ORDER", idOrder)
+  
+      let object = JSON.parse(localStorage.getItem('order'));
+      console.log("CARRITO LOCALSTORAGE", object)
+      console.log("CARRITO BACK", orderFiltrado[0].order)
+      const cart = mergeCart(object, orderFiltrado[0].order);
+      console.log("MERGE", cart)
+      localStorage.setItem('order', JSON.stringify(cart));
+      const cantidadTotal = sumaCantidadTotal(cart);
+      dispatch(totalProductosCarrito(cantidadTotal))
+      dispatch(updateCart(cart));
+      const fecha = new Date();
+  
+      const order = {
+        id: client._id,
+        token: token,
+        order: cart,
+        status: "carrito",
+        date: fecha.toUTCString(),
+      }
+      console.log("ORDER PARA ENVIAR", order)
+      dispatch(orderRedux(order));
+      if(idOrder){
+        dispatch(updateOrderFinal(idOrder, order))
+      }else{
+        dispatch(orderFinal(order))
+      }
     }
-    const idOrder = localStorage.getItem('idOrderUser');
- 
-    console.log("ID ORDER", idOrder)
-    let object = JSON.parse(localStorage.getItem('order'));
-    console.log("CARRITO LOCALSTORAGE", object)
-    console.log("CARRITO BACK", orderUser.order)
-    const cart = mergeCart(object, orderUser.order);
-    console.log("MERGE", cart)
-    localStorage.setItem('order', JSON.stringify(cart));
-    const cantidadTotal = sumaCantidadTotal(cart);
-    dispatch(totalProductosCarrito(cantidadTotal))
-
-    const order = {
-      id: client._id,
-      token: token,
-      order: cart,
-      status: "carrito",
-    }
-    console.log("ORDER PARA ENVIAR", order)
-    dispatch(orderRedux(order));
-    if(idOrder){
-      dispatch(updateOrderFinal(idOrder, order))
-    }else{
-      dispatch(orderFinal(order))
-    }
-  }
+  //},[client])
+  
 
   useEffect(() => {
-    dispatch(getAllProducts());
-    dispatch(getTypes())
     dispatch(getUserById(client._id))
+      .then(dispatch(getAllProducts()))
+      .then(dispatch(getTypes()))
+    
     
     const cart = JSON.parse(localStorage.getItem('order'));
     if(cart === null){
