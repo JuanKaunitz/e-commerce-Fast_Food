@@ -3,8 +3,8 @@ import {useSelector, useDispatch} from "react-redux";
 import "./Home.css";
 import Footer from "../Footer/Footer";
 import GridCardsProducts from "../cards/CardsProducts";
-import { getAllProducts, updateCart, totalProductosCarrito, getTypes, authUser } from "../../Redux/actions/actions";
-import { bandOrderUser, getAllProducts, getTypes, getUserById, orderFinal, orderRedux, updateOrderFinal} from "../../Redux/actions/actions";
+import { getAllProducts, updateCart, totalProductosCarrito } from "../../Redux/actions/actions";
+import { bandOrderUser, getTypes, getUserById, orderFinal, orderRedux, updateOrderFinal} from "../../Redux/actions/actions";
 import Gallery from "../gallery/Gallery";
 import Order from "../order/Order";
 import Otters from "../Otters/Otters";
@@ -18,7 +18,7 @@ function Home() {
   const token = useSelector(state => state.clientToken);
   const band = useSelector(state => state.bandOrderUser);
   //localStorage.removeItem("order");
-  
+  console.log("ID", client)
  // useEffect(() => {
     if( orderUser.length > 0 && token && band){
       dispatch(bandOrderUser())

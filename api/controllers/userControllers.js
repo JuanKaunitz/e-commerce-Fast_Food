@@ -2,7 +2,6 @@ const User = require("../models/User");
 const bcrypt = require("bcrypt");
 const multer = require("multer");
 const shortid = require("shortid");
-const { populate } = require("../models/User");
 
 const configMulter = {
   storage: (fileStorage = multer.diskStorage({
@@ -47,6 +46,10 @@ exports.getUsers = async (req, res, next) => {
 };
 //por id
 exports.getUserById = async (req, res, next) => {
+  console.log(req.params.id)
+  if(!req.params.id ){
+   return res.status(400).json({msg:'id invalido'})
+  }
   const user = await User.findById(req.params.id).populate('order');
   if (!user) {
     res.status(300).json({ msg: "Ese Usuario no existe" ,user:'not found'});

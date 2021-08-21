@@ -1,10 +1,9 @@
 import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { NavLink } from "react-router-dom";
-import { authUser, changeStatus, updateClient } from "../../Redux/actions/actions";
+import { authUser, changeStatus, updateClient ,getUserById} from "../../Redux/actions/actions";
 import styles1 from "./styles1.module.css";
 import {sumaCantidadTotal, sumaPrecioTotal, mergeCart}  from '../cart/utilsCarts.js';
-import {authUser, getUserById} from "../../Redux/actions/actions.js";
 import { 
   updateCart,
   totalProductosCarrito,
