@@ -6,7 +6,7 @@ import { loadStripe } from "@stripe/stripe-js";
 import AboutUs from "./components/aboutUs/AboutUs.jsx";
 import Cart from "./components/cart/Cart.jsx";
 import Home from "./components/Home/Home.jsx";
-import Navbar from "./components/Navbar/Navbar.jsx";
+import { Navbar } from "./components/Navbar/Navbar.jsx";
 import Register from "./components/register/Register.jsx";
 import CardDetails from "./components/details/CardDetails.jsx";
 import Categories from "./components/categories/Categories.jsx";
@@ -22,6 +22,7 @@ import AdminCategoryDetail from "./components/UserAdmin/AdminCategoryDetail.jsx"
 import NewCategory from "./components/UserAdmin/NewCategory.jsx";
 import OrdersPanel from "./components/UserAdmin/OrdersPanel.jsx";
 import OrderEdit from "./components/UserAdmin/OrderEdit.jsx";
+import Mercado from "./components/Pasarela/index.jsx";
 // import EditProduct from "./components/editProduct/EditProduct.jsx";
 import Checkout from "./components/payment/Checkout.js";
 // import CheckoutForm from "./components/payment/CheckoutForm.jsx";
@@ -54,6 +55,7 @@ function App() {
         <Route exact path="/newCategory" component={NewCategory} />
         <Route exact path="/ordersPanel" component={OrdersPanel} />
         <Route exact path="/orderEdit" component={OrderEdit} />
+        <Route exact path="/mercadopago" component={Mercado} />
         <Route
           path="/payment"
           render={() => (
