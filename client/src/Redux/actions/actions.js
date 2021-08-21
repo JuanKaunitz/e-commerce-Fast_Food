@@ -330,7 +330,6 @@ export const updateClient = (id, input) => async (dispatch) => {
         dispatch({
             type: CLIENT_UPDATE,
             payload: res.data
-
         })
 
     } catch(err) {
