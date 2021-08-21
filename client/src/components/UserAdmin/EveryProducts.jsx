@@ -20,25 +20,21 @@ export default function EveryProducts() {
   return (
     <div className="list">
       <h1>Products List</h1>
-
-      <div className="list">
-        {getAll.map((e) => (
-          <Grid item key={e._id} xs={12}>
-            <CardAdmin
-              name={e.name}
-              id={e._id}
-              image={e.image}
-              price={e.price}
-              avalilable={e.available}
-              stock={e.stock}
-              type={e.type}
-              description={e.description}
-              identifier={e.identifier}
-              deleteCart={handleDeleteProduct}
-            />
-          </Grid>
-        ))}
-      </div>
+      {getAll.map((e) => (
+        <CardAdmin
+          key={e._id}
+          name={e.name}
+          id={e._id}
+          image={e.image}
+          price={e.price}
+          avalilable={e.available}
+          stock={e.stock}
+          type={e.type}
+          description={e.description}
+          identifier={e.identifier}
+          deleteCart={handleDeleteProduct}
+        />
+      ))}
     </div>
   );
 }

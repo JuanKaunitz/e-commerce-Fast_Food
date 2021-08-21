@@ -61,7 +61,7 @@ const FormLogin = () => {
   return (
     <div>
       <form className={styles1.form} onSubmit={handleSubmit}>
-        <text className={styles1.texto}>Formulario de Loggin</text>
+        <h2 className={styles1.texto}>Formulario de Loggin</h2>
         <div>
           <label className={styles1.label}>Email:</label>
           <input
