@@ -44,6 +44,7 @@ export default function AdminPanel() {
             <br></br>            
             <Link to='/clients'> <button >Clients Panel</button></Link>
             <Link to='/adminCategories'> <button >Categories Panel</button></Link>
+            <Link to='/ordersPanel'> <button >Orders Panel</button></Link>
             <Link to='/newProduct'> <button >New Product</button></Link>
             {/* <button onclick="location.href='/newProduct'" type="button">New Product</button> */}
            {/*  <div className="select">

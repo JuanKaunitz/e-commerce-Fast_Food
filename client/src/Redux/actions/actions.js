@@ -23,7 +23,9 @@ import {
     HIGHER_PRICE,
     LOWER_PRICE,
     CLIENT_UPDATE,
-    GOOGLE_LOGIN
+    GOOGLE_LOGIN,
+    ALL_ORDERS,
+    EDIT_ORDER
 
 } from '../constants'
 
@@ -258,6 +260,36 @@ export const orderFinal = (order) => async(dispatch) => {
     console.log(err)
   }
 }
+
+//Trae todas las ordenes
+
+export const getAllOrders = () => async (dispatch) => {
+    try {
+        const res = await axios.get(`${URL}/food/api/order`);
+        console.log('RES:' ,res.data)        
+        dispatch({
+           type: ALL_ORDERS,
+           payload: res.data
+       });
+    
+   } catch (err) {
+    console.log(err)
+  }
+};
+
+//get order by Id para editar
+export const deleteOrder = (id) => async(dispatch)=>{
+    try{
+        const product = await axios.get(`${URL}/food/api/order/${id}`);        
+        dispatch({
+            type:EDIT_ORDER,
+            payload:product.data.order
+        })
+    }catch(err){
+        console.log(err)
+    }
+}
+
 
 //Obtengo lista de clientes(register).
 export const allUsers = () => async (dispatch) => {
