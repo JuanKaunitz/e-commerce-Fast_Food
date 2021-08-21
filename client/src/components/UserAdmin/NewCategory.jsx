@@ -3,50 +3,48 @@ import { createCategory } from "../../Redux/actions/actions";
 import { useDispatch } from "react-redux";
 import { getCategories } from "../../Redux/actions/actions";
 import styles from "./styles.module.css";
-import { Link } from "react-router-dom";
+import Typography from '@material-ui/core/Typography';
+import { Button, TextField } from "@material-ui/core";
 
 const NewCategory = (props) => {
-  const dispatch = useDispatch();  
+  const dispatch = useDispatch();
 
   useEffect(() => {
     dispatch(getCategories());
   }, [dispatch]);
 
   const [input, setInput] = useState({
-    name: "",    
+    name: "",
     image: "",
-    types: [],    
+    types: [],
   });
 
   const [type, setType] = useState({
-    type1: '',
-    type2: '',
-    type3: '',
-  })
+    type1: "",
+    type2: "",
+    type3: "",
+  });
 
-  console.log("INPUT", input)
-  console.log("type", type)
 
   const saveCategory = () => {
-      console.log('INPUT: ', input)
+    console.log("INPUT: ", input);
     dispatch(createCategory(input));
   };
 
   const typesCategory = () => {
-    input.types.push({name: type.type1})
-    input.types.push({name: type.type2})
-    input.types.push({name: type.type3})
-  }
+    input.types.push({ name: type.type1 });
+    input.types.push({ name: type.type2 });
+    input.types.push({ name: type.type3 });
+  };
 
   const handleSubmit = (e) => {
     e.preventDefault();
     typesCategory();
-    console.log('INPUT-SUBMIT: ', input)
+    console.log("INPUT-SUBMIT: ", input);
     setInput(input);
     saveCategory();
     props.history.push("/adminCategories");
   };
-  console.log('INPUT: ', input);
 
   const handleInputChange = function (e) {
     setInput({
@@ -55,27 +53,23 @@ const NewCategory = (props) => {
     });
   };
 
-   const handleTypeChange = function (e) {
-     setType({
-       ...type,
-       [e.target.name] : e.target.value
-     })      
-    };
+  const handleTypeChange = function (e) {
+    setType({
+      ...type,
+      [e.target.name]: e.target.value,
+    });
+  };
 
   return (
     <div className={styles.form_content}>
-    <div>
-      <Link to='/adminPanel'> <button >Admin Panel</button></Link>
-      <Link to='/adminCategories'> <button >Categories Panel</button></Link>
-      <Link to='/clients'> <button >Clients Panel</button></Link>
-    </div>
+      <Typography variant="h4" component="h2">
+        Create a new category
+      </Typography>
 
-      <h1>Create a new category</h1>
-      
       <form onSubmit={handleSubmit}>
         <div className={styles.form_group}>
           <label>Name:</label>
-          <input
+          <TextField
             className={styles.input_items}
             type="text"
             name="name"
@@ -83,34 +77,34 @@ const NewCategory = (props) => {
             value={input.name}
             required
           />
-        </div>      
+        </div>
 
         <div className={styles.form_group}>
           <label>Image:</label>
-          <input
+          <TextField
             className={styles.input_items}
             type="text"
             name="image"
             onChange={handleInputChange}
             value={input.image}
           />
-        </div>        
+        </div>
 
         <div className={styles.form_group}>
           <label>Type 1:</label>
-          <input
+          <TextField
             className={styles.input_items}
             type="text"
-            name = "type1"
+            name="type1"
             rows="5"
             onChange={handleTypeChange}
             required
           />
-        </div> 
-         
+        </div>
+
         <div className={styles.form_group}>
           <label>Type 2:</label>
-          <input
+          <TextField
             className={styles.input_items}
             type="text"
             name="type2"
@@ -118,11 +112,11 @@ const NewCategory = (props) => {
             onChange={handleTypeChange}
             required
           />
-        </div> 
+        </div>
 
         <div className={styles.form_group}>
           <label>Type 3:</label>
-          <input
+          <TextField
             className={styles.input_items}
             type="text"
             name="type3"
@@ -130,11 +124,11 @@ const NewCategory = (props) => {
             onChange={handleTypeChange}
             required
           />
-        </div> 
+        </div>
 
-        <button className={styles.btn_save} type="submit">
+        <Button className={styles.btn_save} type="submit">
           CREATE
-        </button>
+        </Button>
       </form>
     </div>
   );

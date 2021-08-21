@@ -5,7 +5,7 @@ import { getCategories, getTypes } from "../../Redux/actions/actions";
 import styles from "./styles.module.css";
 import FileDrop from "../Form/FileDrop";
 import { makeStyles } from "@material-ui/core/styles";
-import { TextField } from "@material-ui/core";
+import { TextField, Typography } from "@material-ui/core";
 import Creatable from "react-select/creatable";
 
 const useStyles = makeStyles((theme) => ({
@@ -96,7 +96,7 @@ const NewProduct = (props) => {
 
   return (
     <div className={styles.form_content}>
-      <h1>Create your own product</h1>
+      <Typography variant="h4">Create your own product</Typography>
 
       <form onSubmit={handleSubmit} className={classes.form}>
         <div>
@@ -158,7 +158,7 @@ const NewProduct = (props) => {
           />
         </div>
 
-        <div className="filterName">Category</div>
+        <Typography className="filterName">Category</Typography>
         <select
           className="boton"
           onChange={handleInputChange}
@@ -173,7 +173,7 @@ const NewProduct = (props) => {
             ))}
         </select>
 
-        <div className="filterName">Types</div>
+        <Typography className="filterName">Types</Typography>
 
         <Creatable
           isClearable
