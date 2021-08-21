@@ -18,10 +18,12 @@ import {
   CLIENT_UPDATE,
   UPDATE_PRODUCT,
   CREATE_TYPE,
-  
+  GET_USER_BY_ID,
   UPDATE_CART,
   ORDER_REDUX,
   TOTAL_CARRITO,
+  BAND_ORDER_USER,
+  NEW_ORDER_USER,
   /* ASC,
   DESC */
 } from "../constants";
@@ -38,13 +40,10 @@ const initialState = {
   categoryName: "",
   clients: [],
   client: {},
-  order: [],
+  cart: [],
   clientToken: "",
   orderRedux: {
     clientId: "",
-    token: "",
-    precioTotal: "",
-    totalProductos: "",
     order: [],
     status: "",
   },
@@ -52,9 +51,10 @@ const initialState = {
   editProduct: {},
   editCategory: {},
   updateProduct: {},
-
+  orderUser:[],
   totalCarrito: 0,
   types: [],
+  bandOrderUser: true,
 };
 
 const rootReducer = (state = initialState, action) => {
@@ -125,7 +125,7 @@ const rootReducer = (state = initialState, action) => {
     case UPDATE_CART:
       return {
         ...state,
-        order: action.payload,
+        cart: action.payload,
       };
 
     case ORDER_REDUX:
@@ -133,6 +133,25 @@ const rootReducer = (state = initialState, action) => {
         ...state,
         orderRedux: action.payload,
       };
+    
+    case BAND_ORDER_USER:
+      return{
+        ...state,
+        bandOrderUser: false,
+      }
+
+    case NEW_ORDER_USER:
+      return{
+        ...state,
+        orderUser: [action.payload],
+        bandOrderUser: true,
+      }
+
+    case GET_USER_BY_ID:
+      return{
+        ...state,
+        orderUser: action.payload.user.order,
+      }
 
     case NEW_USER:
       return {

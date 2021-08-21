@@ -1,7 +1,15 @@
 import React, { useState } from "react";
-import { useDispatch } from "react-redux";
-import { authUser } from "../../Redux/actions/actions";
+import {useSelector, useDispatch } from "react-redux";
 import styles1 from "./styles1.module.css";
+import {sumaCantidadTotal, sumaPrecioTotal, mergeCart}  from '../cart/utilsCarts.js';
+import {authUser, getUserById} from "../../Redux/actions/actions.js";
+import { 
+  updateCart,
+  totalProductosCarrito,
+  orderRedux, 
+  orderFinal,
+  updateOrderFinal,
+} from '../../Redux/actions/actions';
 
 
 export function validate(input) {
@@ -23,8 +31,9 @@ export function validate(input) {
   
 const FormLogin = () => {
   const dispatch = useDispatch();
-  //const client = useSe
-
+  const client = useSelector(state => state.client);
+  const orderUser = useSelector(state => state.orderUser);
+ 
   const [input, setInput] = useState({
     email: "",
     password: "",
@@ -46,17 +55,18 @@ const FormLogin = () => {
     );
   };
 
-  const handleSubmit = (e) => {
+
+  const handleSubmit = async(e) => {
     e.preventDefault();
-    console.log(input);
+    console.log("INPUT",input);
     dispatch(authUser(input));
     setInput({
       email: "",
       password: "",
     });
-    //let object = JSON.parse(localStorage.getItem('order'));
+    
   };
-  
+
 
   return (
     <div>

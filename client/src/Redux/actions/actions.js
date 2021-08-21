@@ -20,7 +20,12 @@ import {
     HIGHER_PRICE,
     LOWER_PRICE,
     CLIENT_UPDATE,
-
+    UPDATE_CART,
+    TOTAL_CARRITO,
+    ORDER_REDUX,
+    GET_USER_BY_ID,
+    BAND_ORDER_USER,
+    NEW_ORDER_USER,
 } from '../constants'
 
 import dotenv from 'dotenv'
@@ -203,7 +208,7 @@ export const categoryName = (name) => (dispatch) => {
 export const authUser =  (user) => async (dispatch) => {
     try {
         const client = await axios.post(`${URL}/food/api/auth-sesion`, user);
-        console.log('CLIENT: ', client)
+        console.log('USUARIO LOGUEADO: ', client.data)
         dispatch({
             type: LOGIN_CLIENT,
             payload: client.data
@@ -243,6 +248,127 @@ export const newUser = (user) => async (dispatch) => {
   }
 };
 
+//Traer un usuario por ID
+export const getUserById = (id) => async(dispatch) => {
+    console.log("ID USUARIO PARA BUSCAR ORDEN", id)
+    try{
+        const res = await axios.get(`${URL}/food/api/user/${id}`);
+        console.log("USUARIO ENCONTRADO POR ID", res.data)
+        dispatch({
+            type: GET_USER_BY_ID,
+            payload: res.data
+        })
+    } catch(err){
+        console.log(err)
+    }
+}
+
+//ACTUALIZAR ORDEN en redux
+export const orderRedux = (order) => (dispatch) => {
+    dispatch({
+      type: ORDER_REDUX,
+      payload: order
+    });
+  }
+  
+  
+//SUMA TOTAL DE PRODUCTOS
+export const totalProductosCarrito = (total) => (dispatch) => {
+    dispatch({
+        type: TOTAL_CARRITO,
+        payload: total
+    })
+}
+
+
+//ACTUALIZAR CARRITO DE CUALQUIER USUARIO
+export const updateCart = (order) => (dispatch) => {
+
+    dispatch({
+        type: UPDATE_CART,
+        payload: order
+    });
+}
+
+export const bandOrderUser = () => (dispatch) => {
+
+    dispatch({
+        type: BAND_ORDER_USER,
+    });
+}
+
+//Actualizar orden en back.
+export const updateOrderFinal = (id,order) => async(dispatch) => {
+        console.log("ORDEN PARA ACTUALIZAR", order)
+    try {
+        const res = await axios.put(`${URL}/food/api/order/${id}`, order);
+        console.log("ORDEN ACTUALIZACION", res)
+        
+    } catch (err) {
+    console.log(err)
+    }
+}
+  
+  
+  //Envio de orden nueva al back.
+  export const orderFinal = (order) => async(dispatch) => {
+    console.log("ORDEN PÀRA CREAR", order)
+    try {
+        const res = await axios.post(`${URL}/food/api/order`, order);
+        console.log("ORDEN CREADA", res.data)
+        dispatch({
+            type: NEW_ORDER_USER,
+            payload: res.data,
+        });
+   } catch (err) {
+    console.log(err)
+  }
+  }
+  
+  //Borrar una order
+export const deleteOrden = (id) => async (dispatch) => {
+    console.log('ID DELETE',id) 
+    try {
+        const res = await axios.delete(`${URL}/food/api/order/${id}`); 
+        console.log('BORRADO DE ORDEN',res.data)        
+        dispatch({
+            
+        });
+    } catch (err) {
+        console.log(err)
+    }
+};
+
+//Buscar una orden  por ID
+export const getOrderById = (id) => async(dispatch) => {
+    console.log('GET BY ID',id) 
+    try {
+        const res = await axios.get(`${URL}/food/api/order/${id}`)
+        console.log('ORDER POR ID',res.data)        
+        dispatch({
+            
+        });
+    } catch (error) {
+        
+    }
+}
+  
+//Todas las ordenes.
+export const getOrder = () => async(dispatch) => {
+    try {
+        const res = await axios.get(`${URL}/food/api/order`);
+        console.log("GET ORDER", res.data)
+        /* dispatch({
+            type: GET_ORDER,
+            payload: res.data
+        }); */
+        
+    } catch (err) {
+    console.log(err)
+    }
+}
+
+
 //recuperar el producto de la api para edicion
 export const getProductById = (id) => async(dispatch)=>{
     try{
@@ -265,6 +391,7 @@ export const getTypes = () => async(dispatch) => {
     });
 }
 
+
 //Actualizacion de cliente.
 export const updateClient = (id, input) => async (dispatch) => {
     console.log('ID E INPUT ', input);
@@ -281,6 +408,7 @@ export const updateClient = (id, input) => async (dispatch) => {
     }
 }
 
+
 //crear un type
 export const createNewType = (type) => async(dispatch)=>{
     const types = await axios.post(`${URL}/food/api/types`,type);
@@ -290,3 +418,4 @@ export const createNewType = (type) => async(dispatch)=>{
         payload: types.data
     });
 }
+

@@ -16,7 +16,7 @@ import {updateCart,
   orderRedux, 
   orderFinal,
   updateOrderFinal,
-} from '../../Redux/actions/actionsCartOrder';
+} from '../../Redux/actions/actions';
 import {addCarts, sumaCantidadTotal, sumaPrecioTotal}  from '../cart/utilsCarts.js';
 // import { Link } from 'react-router-dom';
 
@@ -61,6 +61,7 @@ export default function CardDetails({match}) {
   const detail = useSelector(state => state.getDetail.product);
   const productId = useRef(match.params.id);
   const client = useSelector(state => state.client);
+  const token = useSelector(state => state.clientToken);
   // console.log("ID ----", productId)
   
   useEffect(() => {
@@ -73,19 +74,16 @@ export default function CardDetails({match}) {
     const cantidadTotal = sumaCantidadTotal(cart);
     dispatch(updateCart(cart))
     dispatch(totalProductosCarrito(cantidadTotal));
-    if(client.token){
-      const precioTotal = sumaPrecioTotal(cart);
+    if(token){
+      const idOrder = localStorage.getItem('idOrderUser');
       const order = {
-        clientId: client._id,
-        token: client.token,
-        precioTotal: precioTotal,
-        totalProductos: cantidadTotal,
+        id: client._id,
         order: cart,
         status: "carrito",
       }
       dispatch(orderRedux(order));
-      if(client.order._id){
-        dispatch(updateOrderFinal(client.order._id, order))
+      if(idOrder){
+        dispatch(updateOrderFinal(idOrder, order))
       }else{
         dispatch(orderFinal(order))
       }

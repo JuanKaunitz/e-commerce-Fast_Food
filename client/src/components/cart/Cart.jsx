@@ -11,7 +11,8 @@ import { updateCart,
   orderRedux, 
   orderFinal,
   updateOrderFinal,
-} from "../../Redux/actions/actionsCartOrder";
+  deleteOrden
+} from "../../Redux/actions/actions";
 import {
   deleteCart,
   sumProduct,
@@ -37,9 +38,10 @@ const Cart = (props) => {
   console.log(props)
   const dispatch = useDispatch();
 
-  const carts = useSelector((state) => state.order);
+  const carts = useSelector((state) => state.cart);
   const client = useSelector((state) => state.client);
-  //const carts = JSON.parse(localStorage.getItem('order'))
+  const token = useSelector(state => state.clientToken);
+
   useEffect(() => {
     if (carts.length <= 0 ) {
       if (localStorage.getItem("order")) {
@@ -49,23 +51,19 @@ const Cart = (props) => {
     }
   }, [dispatch, carts]);
 
-  function token(cart){
-    const precioTotal = sumaPrecioTotal(cart);
-    const cantidadTotal = sumaCantidadTotal(cart);
-      const order = {
-        clientId: client._id,
-        token: client.token,
-        precioTotal: precioTotal,
-        totalProductos: cantidadTotal,
-        order: cart,
-        status: "carrito",
-      }
-      dispatch(orderRedux(order));
-      if(client.order._id){
-        dispatch(updateOrderFinal(client.order._id, order))
-      }else{
-        dispatch(orderFinal(order))
-      }
+  function cartBack(cart){
+    const idOrder = localStorage.getItem('idOrderUser');
+    const order = {
+      id: client._id,
+      order: cart,
+      status: "carrito",
+    }
+    dispatch(orderRedux(order));
+    if(idOrder){
+      dispatch(updateOrderFinal(idOrder, order))
+    }else{
+      dispatch(orderFinal(order))
+    }
   }
 
   function handleDeleteCart(id) {
@@ -74,8 +72,8 @@ const Cart = (props) => {
     //console.log("TOTAL", sumaProductos);
     dispatch(updateCart(delet));
     dispatch(totalProductosCarrito(cantidadTotal));
-    if(client.token){
-     token(delet);
+    if(token){
+     cartBack(delet);
     }
   }
 
@@ -85,8 +83,8 @@ const Cart = (props) => {
     //console.log("TOTAL", sumaProductos);
     dispatch(updateCart(sum));
     dispatch(totalProductosCarrito(cantidadTotal));
-    if(client.token){
-      token(sum);
+    if(token){
+      cartBack(sum);
      }
   }
 
@@ -96,8 +94,8 @@ const Cart = (props) => {
     //console.log("TOTAL", sumaProductos);
     dispatch(updateCart(resta));
     dispatch(totalProductosCarrito(cantidadTotal));
-    if(client.token){
-      token(resta);
+    if(token){
+      cartBack(resta);
      }
   }
 
@@ -105,8 +103,10 @@ const Cart = (props) => {
     localStorage.removeItem("order");
     dispatch(updateCart([]));
     dispatch(totalProductosCarrito(0));
-    if(client.token){
-      //ver borrado de orden en el back
+    if(token){
+      const idOrder = localStorage.getItem('idOrderUser');
+      localStorage.removeItem("idOrderUser");
+      dispatch(deleteOrden(idOrder))
      }
   }
 

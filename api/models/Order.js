@@ -6,15 +6,9 @@ const OrderSchema = new Schema({
     type: mongoose.Schema.Types.ObjectId,
     ref: "User",
   },
-  order: [
-    {
-      product: {
-        type: mongoose.Schema.Types.ObjectId,
-        ref: "Product",
-      },
-      amount: Number,
-    },
-  ],
+  order: {
+    type: mongoose.Schema.Types.Mixed
+  },
   total: {
     type: Number,
   },
