@@ -3,8 +3,8 @@ import {useSelector, useDispatch} from "react-redux";
 import "./Home.css";
 import Footer from "../Footer/Footer";
 import GridCardsProducts from "../cards/CardsProducts";
-import { getAllProducts, updateCart, totalProductosCarrito, getTypes, authUser } from "../../Redux/actions/actions";
-import { bandOrderUser, getAllProducts, getTypes, getUserById, orderFinal, orderRedux, updateOrderFinal} from "../../Redux/actions/actions";
+import { getAllProducts, updateCart, totalProductosCarrito, getTypes,
+  bandOrderUser, getUserById, orderFinal, orderRedux, updateOrderFinal} from "../../Redux/actions/actions";
 import Gallery from "../gallery/Gallery";
 import Order from "../order/Order";
 import Otters from "../Otters/Otters";
