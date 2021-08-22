@@ -3,22 +3,22 @@ const User = require("../models/User");
 
 //nueva orden
 exports.newOrder = async(req,res,next) =>{
-    console.log(req.body)
+   // console.log(req.body)
         const order = req.body;
         const {id,status} = req.body;
-        console.log("BODY", req.body)
+       //console.log("BODY", req.body)
         const user = await User.findById(id);
-        console.log("USER ID", user)
+        //console.log("USER ID", user)
         if(!order){
             return res.status(400).json({msg:'no hay una order para crear'})
         }
         let newOrder = new Order(order);
-        console.log('nueva orden',newOrder)
+        //console.log('nueva orden',newOrder)
         try {
              await newOrder.save()
-            user.order = newOrder;
+            user.order = user.order.concat(newOrder);
              await user.save()
-            console.log(user)
+            //console.log(user)
             res.json(newOrder)
         } catch (error) {
             next(error)
@@ -40,6 +40,7 @@ exports.getAllOrder = async(req,res,next)=>{
 //orden por id
 exports.getOrderById = async (req, res, next) => {
   const order = await Order.findById(req.params.id);
+  //console.log("order id", order)
   if (!order) {
     res.status(400).json({ msg: "Esa orden no existe" });
     return next();
@@ -56,7 +57,8 @@ exports.updateOrder = async (req, res, next) => {
       {
         new: true,
       }
-    );
+      );
+      console.log("ORDER ", order);
     res.json(order);
   } catch (error) {
     console.log(error);
