@@ -3,15 +3,14 @@ import { createProduct } from "../../Redux/actions/actions";
 import { useDispatch, useSelector } from "react-redux";
 import { getCategories, getTypes } from "../../Redux/actions/actions";
 import styles from "./styles.module.css";
-import { Link } from "react-router-dom";
 import FileDrop from "../Form/FileDrop";
 import { makeStyles } from "@material-ui/core/styles";
-import { Button, IconButton, TextField } from "@material-ui/core";
-import Select from 'react-select'
+import { TextField, Typography } from "@material-ui/core";
+import Creatable from "react-select/creatable";
 
 const useStyles = makeStyles((theme) => ({
   paper: {
-    marginTop: theme.spacing(2),
+    // marginTop: theme.spacing(2),
     display: "flex",
     flexDirection: "column",
     alignItems: "center",
@@ -28,9 +27,9 @@ const useStyles = makeStyles((theme) => ({
   input_text: {
     backgroundColor: "#ffff",
   },
-  select_tipes:{
-    color:'black'
-  }
+  select_types: {
+    color: "black",
+  },
 }));
 
 const NewProduct = (props) => {
@@ -38,12 +37,16 @@ const NewProduct = (props) => {
   const dispatch = useDispatch();
   const category = useSelector((state) => state.allCategories);
   const types = useSelector((state) => state.types);
-
+  const [roleValue, setRoleValue] = useState("");
   useEffect(() => {
     dispatch(getCategories());
-     dispatch(getTypes())
+    dispatch(getTypes());
   }, [dispatch]);
-
+  const roles = [
+    { label: "Ternera", value: 1 },
+    { label: "veggie", value: 2 },
+    { label: "Pollo", value: 3 },
+  ];
   const [input, setInput] = useState({
     name: "",
     identifier: 2,
@@ -51,66 +54,49 @@ const NewProduct = (props) => {
     description: "",
     stock: 200,
     categories: "",
-   type:''
+    type: "",
   });
- const {type} = input;
 
   const saveProduct = () => {
     dispatch(createProduct(input));
-    console.log(input);
   };
-  const handleInputChange = (e) =>{
+  const handleInputChange = (e) => {
     setInput({
       ...input,
       [e.target.name]: e.target.value,
     });
   };
-
   const handleSubmit = (e) => {
+    input.type = roleValue;
     e.preventDefault();
     setInput(input);
     saveProduct();
     props.history.push("/AdminPanel");
   };
 
-  
-  // const handleInputCategory = function (e) {
-  //   input.categories = e.target.value;
-  //   var filtradoCategory = category.filter((el) => el.name === e.target.value);
-  //   //dispatch(getTypes(filtradoCategory[0].types));
-  // };
+  const handleSelect = (field, value) => {
+    switch (field) {
+      case "roles":
+        setRoleValue(value);
+        break;
+      default:
+        break;
+    }
+  };
 
-  console.log("INPUT", input)
-const customTheme = (theme)=>{
-  return{
-    ...theme,
-    colors:{
-      ...theme.colors,
-      primary25:'orange',
-      primary:'green',
-      color:'black'
-    },
-    
-  }
-}
+  const customStyles = {
+    option: (provided, state) => ({
+      ...provided,
+      borderBottom: "1px dotted pink",
+      color: state.isSelected ? "red" : "black",
+      padding: 15,
+      fontSize: 20,
+    }),
+  };
+
   return (
     <div className={styles.form_content}>
-      <div>
-        <Link to="/adminPanel">
-          {" "}
-          <Button>Admin Panel</Button>
-        </Link>
-        <Link to="/adminCategories">
-          {" "}
-          <Button>Categories Panel</Button>
-        </Link>
-        <Link to="/clients">
-          {" "}
-          <Button>Clients Panel</Button>
-        </Link>
-      </div>
-
-      <h1>Create your own product</h1>
+      <Typography variant="h4">Create your own product</Typography>
 
       <form onSubmit={handleSubmit} className={classes.form}>
         <div>
@@ -172,7 +158,7 @@ const customTheme = (theme)=>{
           />
         </div>
 
-        <div className="filterName">Category</div>
+        <Typography className="filterName">Category</Typography>
         <select
           className="boton"
           onChange={handleInputChange}
@@ -181,36 +167,23 @@ const customTheme = (theme)=>{
           <option>Categories</option>
           {category &&
             category.map((t, i) => (
-              <option key={i} value={t.name} >
+              <option key={i} value={t.name}>
                 {t.name}
               </option>
             ))}
         </select>
 
-        <div className="filterName">Types</div>
-        {/* <select
-          className="boton"
-          onChange={handleInputChange}
-          name="type"
-        >
-          <option>--Types--</option>
-          {types &&
-            types.map((t, i) => (
-              <option key={i} value={t.name} >
-                {t.name}
-              </option>
-            ))}
-        </select> */}
-           <Select 
-           theme={customTheme}
-           options={types} 
-           isMulti={true}
-           onChange={input => setInput({ input })}
-           placeholder={'Seleccione un tipo'}
-           getOptionValue={(options)=> options.name}
-           getOptionLabel={(options)=> options.name}
-           />
+        <Typography className="filterName">Types</Typography>
 
+        <Creatable
+          isClearable
+          isMulti
+          onChange={(value) => handleSelect("roles", value)}
+          options={roles}
+          styles={customStyles}
+          value={roleValue}
+          placeholder={"Seleccione un tipo"}
+        />
         <button className={styles.btn_save} type="submit">
           CREATE
         </button>
