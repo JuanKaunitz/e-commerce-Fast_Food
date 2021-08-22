@@ -11,14 +11,17 @@ image:{
 },
 
 types:[{
-
-    name:{type:String}   
+ types:{
+  type: mongoose.Schema.Types.ObjectId,
+  ref:'Types'
+ }
+    // name:{type:String}   
   
 }]
 })
 CategorySchema.methods.toJSON = function() {
   const { __v, ...Category  } = this.toObject();
-  return Category;
+  return Category; //quitar una prop en especifico que no necesito
 }
 
 

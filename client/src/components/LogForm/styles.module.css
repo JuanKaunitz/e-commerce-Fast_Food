@@ -73,3 +73,7 @@
 .field2 {
   margin-right: 20px;
 }
+
+.danger {
+  color: rgb(231, 14, 14)
+}

@@ -19,7 +19,7 @@ import { Grid } from "@material-ui/core";
 import ChevronRightIcon from "@material-ui/icons/ChevronRight";
 import HomeIcon from "@material-ui/icons/Home";
 import MenuIcon from "@material-ui/icons/Menu";
-import SupervisorAccountSharpIcon from '@material-ui/icons/SupervisorAccountSharp';
+import SupervisorAccountSharpIcon from "@material-ui/icons/SupervisorAccountSharp";
 import AddShoppingCartIcon from "@material-ui/icons/AddShoppingCart";
 import Badge from "@material-ui/core/Badge";
 import SerchBar from "../serchbar/SerchBar";
@@ -42,15 +42,15 @@ const useStyles = makeStyles((theme) => ({
       display: "block",
     },
   },
-  home:{
+  home: {
     color: "#f7ba33",
-    width: '100px',
-    height: '40px',
+    width: "100px",
+    height: "40px",
   },
   root: {
     background: "#f7ba33",
     borderRadius: 3,
-    width: '10px',
+    width: "10px",
     height: 40,
     border: 0,
     color: "white",
@@ -72,11 +72,11 @@ const useStyles = makeStyles((theme) => ({
       width: "auto",
     },
   },
-  carrito:{
-    color:'#f7ba33'
+  carrito: {
+    color: "#f7ba33",
   },
-  button:{
-    color:'#f7ba33'
+  button: {
+    color: "#f7ba33",
   },
   grid: {
     justifyContent: "strech",
@@ -137,14 +137,16 @@ const useStyles = makeStyles((theme) => ({
     },
   },
 }));
-
-const Navbar = () => {
+export const Navbar = () => {
   const dispatch = useDispatch();
   const classes = useStyles();
   const theme = useTheme();
   const [open, setOpen] = useState(false);
   const categories = useSelector((state) => state.allCategories);
   const totalCarrito = useSelector((state) => state.totalCarrito);
+  const adminClient = useSelector((state) => state.client);
+
+  const [input, setInput] = useState({ status: false });
 
   const location = useLocation();
 
@@ -158,6 +160,14 @@ const Navbar = () => {
 
   function handlerCategory(name) {
     dispatch(categoryName(name));
+  }
+
+  function handleLogout() {
+    const id = adminClient._id;
+    dispatch(changeStatus(id, input));
+    localStorage.removeItem("order");
+    dispatch(totalProductosCarrito(0));
+    dispatch(updateCart([]));
   }
 
   return (
@@ -176,10 +186,10 @@ const Navbar = () => {
                 <MenuIcon />
               </Button>
               <Grid />
-              <Link to="/" >
-              <HomeIcon className={classes.home}  />
+              <Link to="/">
+                <HomeIcon className={classes.home} />
               </Link>
-              <Button  className={classes.button} href="/aboutUs">
+              <Button className={classes.button} href="/aboutUs">
                 About Us
               </Button>
               <SerchBar className={classes.searchbar} />
@@ -188,9 +198,9 @@ const Navbar = () => {
           <Grid item lg={6} md={6} xs={12}>
             <div className={classes.link}>
               <IconButton color="inherit">
-              <Link to="/AdminPanel">
-              <SupervisorAccountSharpIcon  className={classes.button}/>
-              </Link>
+                <Link to="/AdminPanel">
+                  <SupervisorAccountSharpIcon className={classes.button} />
+                </Link>
               </IconButton>
               <IconButton
                 style={{ fontSize: 40 }}
@@ -255,5 +265,3 @@ const Navbar = () => {
     </div>
   );
 };
-
-export default Navbar;

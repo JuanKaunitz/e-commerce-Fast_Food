@@ -27,23 +27,8 @@ const Categories = () => {
   const [page, setPage] = useState(0);
   const [type, setType] = useState("");
   const [filtro, setFiltro] = useState([]);
-
-  console.log('CATEGORY-NAME', categoryName)
   
   const filter1 = getAll.filter((product) => product.category === categoryName); 
-  
-  console.log('filter1: ', filter1)
-  console.log('GET ALL: ', getAll);
-
-  useEffect(() => {
-    if(type === "Types"){
-      return setFiltro(filter1);
-    }
-    let tipos = filter1.filter(e => e.type === type)
-    
-    console.log("TIPOS", tipos)
-    setFiltro(tipos)
-  },[type]);
 
   const categoriesTypes = categories.filter(e => {
     if(e.name === categoryName){
@@ -52,15 +37,13 @@ const Categories = () => {
   });
 
   const types = categoriesTypes[0].types;
-  //console.log("FILTRADO", filter1)
 
   useEffect(() => {
     if(type === "Types"){
-      return setFiltro(filter1);
+      return setFiltro([]);
     }
+
     let tipos = filter1.filter(e => e.type === type)
-    
-    console.log("TIPOS", tipos)
     setFiltro(tipos)
   },[type]);
 
@@ -94,7 +77,6 @@ const Categories = () => {
           {
             types.map(j => (
                 <option value={j.name}>{j.name}</option>
-
             ))
           }
         </select>
@@ -136,9 +118,10 @@ const Categories = () => {
         <button
           value="next"
           onClick={handleNext}
-          disabled={filter1.slice(page * 8, page * 8 + 8).length < 8}
+          disabled={filtro.length < 0 ? filter1.slice(page * 8, page * 8 + 8).length < 8
+          : filtro.slice(page * 8, page * 8 + 8).length < 8}
         >
-          Next
+        Next
         </button>
       </div>
     </div>

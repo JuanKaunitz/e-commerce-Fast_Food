@@ -8,19 +8,24 @@ import {
   HIGHER_PRICE,
   CATEGORY_NAME,
   LOADING,
-  UPDATE_CART,
   LOGIN_CLIENT,
   NEW_USER,
   GET_TYPES,
   ALL_USERS,
   EDIT_PRODUCT,
-  ORDER_REDUX,
-  TOTAL_CARRITO,
   GET_CATEGORY_BY_ID,
   UPDATE_CATEGORY,
   CLIENT_UPDATE,
   UPDATE_PRODUCT,
   CREATE_TYPE,
+  GOOGLE_LOGIN,
+  CLIENT_STATUS,
+  GET_USER_BY_ID,
+  UPDATE_CART,
+  ORDER_REDUX,
+  TOTAL_CARRITO,
+  BAND_ORDER_USER,
+  NEW_ORDER_USER,
   /* ASC,
   DESC */
 } from "../constants";
@@ -37,13 +42,10 @@ const initialState = {
   categoryName: "",
   clients: [],
   client: {},
-  order: [],
-  clientToken: {},
+  cart: [],
+  clientToken: "",
   orderRedux: {
     clientId: "",
-    token: "",
-    precioTotal: "",
-    totalProductos: "",
     order: [],
     status: "",
   },
@@ -51,9 +53,11 @@ const initialState = {
   editProduct: {},
   editCategory: {},
   updateProduct: {},
-
+  orderUser:[],
   totalCarrito: 0,
   types: [],
+  googleUser: {},
+  bandOrderUser: true,
 };
 
 const rootReducer = (state = initialState, action) => {
@@ -117,13 +121,14 @@ const rootReducer = (state = initialState, action) => {
     case LOGIN_CLIENT:
       return {
         ...state,
-        client: action.payload,
+        client: action.payload.user,
+        clientToken: action.payload.token,
       };
 
     case UPDATE_CART:
       return {
         ...state,
-        order: action.payload,
+        cart: action.payload,
       };
 
     case ORDER_REDUX:
@@ -131,6 +136,25 @@ const rootReducer = (state = initialState, action) => {
         ...state,
         orderRedux: action.payload,
       };
+    
+    case BAND_ORDER_USER:
+      return{
+        ...state,
+        bandOrderUser: false,
+      }
+
+    case NEW_ORDER_USER:
+      return{
+        ...state,
+        orderUser: [action.payload],
+        bandOrderUser: true,
+      }
+
+    case GET_USER_BY_ID:
+      return{
+        ...state,
+        orderUser: action.payload.user.order,
+      }
 
     case NEW_USER:
       return {
@@ -183,6 +207,7 @@ const rootReducer = (state = initialState, action) => {
       return {
         ...state,
         clients: action.payload,
+        
       };
     case UPDATE_PRODUCT:
       return {
@@ -194,6 +219,19 @@ const rootReducer = (state = initialState, action) => {
         ...state,
         types: [...state.types, action.payload],
       };
+
+     case GOOGLE_LOGIN:
+       return {
+         ...state,
+         googleUser: action.payload
+       };
+      case CLIENT_STATUS:
+        return{
+          ...state,
+          client:action.payload
+        }
+       
+        
     default:
       return state;
   }

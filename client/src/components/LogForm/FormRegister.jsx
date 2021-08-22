@@ -1,11 +1,13 @@
 import React, { useState } from "react";
 import { useDispatch } from "react-redux";
-import { newUser } from "../../Redux/actions/actions";
+import { newUser, createGoogleUser } from "../../Redux/actions/actions";
 import styles from "./styles.module.css";
 import { GoogleLogin, GoogleLogout } from "react-google-login";
 import { Link } from "react-router-dom";
 
-export function validate(input) {
+
+
+export function validate(input, password) {
   let errors = {};
   if (!input.email) {
     errors.email = "Email is required";
@@ -22,7 +24,9 @@ export function validate(input) {
   } else if (!/^[A-Za-z]+$/.test(input.name)) {
     errors.name = "Name must be a string!";
   }
-
+  if(input.password !== input.password2) {
+    errors.password2 = "The password doesn´t match!";
+  }
   return errors;
 }
 
@@ -33,12 +37,16 @@ const FormRegister = () => {
     name: "",
     email: "",
     password: "",
+    password2: ""
   });
+
+
 
   const [errors, setErrors] = useState({});
 
   const [showloginButton, setShowloginButton] = useState(true);
   const [showlogoutButton, setShowlogoutButton] = useState(false);
+
   const handleInputChange = function (e) {
     setInput({
       ...input,
@@ -66,7 +74,7 @@ const FormRegister = () => {
     window.location.replace("http://localhost:3000/register");
   };
   const responseGoogle = (response) => {
-    console.log(response);
+    console.log(response)
   };
 
   const logout = () => {
@@ -80,10 +88,17 @@ const FormRegister = () => {
 
   const onLoginSuccess = (res) => {
     console.log("Login Success:", res.profileObj);
+    // var data = sessionStorage.getItem('AJDLj6JUa8yxXrhHdWRHIV0S13cAbZ9_k9rC5aklrvRlpYPP7jPp6wEIETYsmTOID-ezNa3jSL7DbVDAYbBUtgF_saU50JRDwQ');
+    // console.log('DATA: ', data);
+    // var cache = sessionStorage.getItem('cachedValue')
+    // console.log(cache)
+    // var sesion = sessionStorage.setItem('key','value')
+    // console.log('SESSION: ', sesion);
+    dispatch(createGoogleUser(res.profileObj));
     setShowloginButton(false);
     setShowlogoutButton(true);
   };
-  
+
   const onLoginFailure = (res) => {
     console.log("Login Failed:", res);
   };
@@ -102,6 +117,7 @@ const FormRegister = () => {
             class={styles.field}
             onChange={handleInputChange}
             value={input.name}
+            required
           />
           {errors.name && <p className="danger">{errors.name}</p>}
         </div>
@@ -114,6 +130,7 @@ const FormRegister = () => {
             name="email"
             onChange={handleInputChange}
             value={input.email}
+            required
           />
           {errors.username && <p className="danger">{errors.email}</p>}
         </div>
@@ -126,9 +143,24 @@ const FormRegister = () => {
             class={styles.field2}
             onChange={handleInputChange}
             value={input.password}
+            required
           />
           {errors.password && <p className="danger">{errors.password}</p>}
         </div>
+
+        <div>
+          <label className={styles.label}>Repeat password:</label>
+          <input
+            className={styles.input1}
+            type="password"
+            name="password2"
+            class={styles.field2}
+            onChange={handleInputChange}
+            value={input.password2}
+          />
+          {errors.password2 && <p className="danger">{errors.password2}</p>}
+        </div>
+
         <div className="btn submit">
           <button className={styles.btnregister} type="submit" src="/">
             Submit
