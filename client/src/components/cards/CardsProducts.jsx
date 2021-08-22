@@ -1,42 +1,53 @@
-import React, {useState} from 'react';
-import {useSelector} from 'react-redux';
-import { makeStyles } from '@material-ui/core/styles';
-import Grid from '@material-ui/core/Grid';
-import CardProduct from '../card/CardProduct';
-import './CardsProducts.css';
-
-
+import React, { useState } from "react";
+import { useSelector } from "react-redux";
+import { makeStyles } from "@material-ui/core/styles";
+import Grid from "@material-ui/core/Grid";
+import CardProduct from "../card/CardProduct";
+import "./CardsProducts.css";
 const useStyles = makeStyles(() => ({
-  root: {
-    margin:'auto',
-    height:'auto',
-    maxWidth:1024
+  paginado:{
+    display: 'grid',
+    alignItems: 'center',
+    justifyContent: 'center',
+    gridTemplateColumns: '50px 20px 50px',
   },
-  
+  pagina:{
+    backgroundColor: 'white',
+    display: 'grid',
+    alignItems: 'center',
+    justifyContent: 'center',
+  }
+
 }));
 
 export default function GridCardsProducts() {
   const getAll = useSelector((state) => state.allProducts);
-  const { searchProducts, loading }= useSelector((state) => state);
+  const { searchProducts, loading } = useSelector((state) => state);
   const [page, setPage] = useState(0);
+  const classes = useStyles();
 
-  function handlePrev(){
-    if(page > 0){return setPage(page - 1)}
+  function handlePrev() {
+    if (page > 0) {
+      return setPage(page - 1);
+    }
     return setPage(0);
   }
 
-  function handleNext(){
+  function handleNext() {
     let array = getAll;
-    if(loading){
+    if (loading) {
       setPage(0);
-      array = searchProducts
+      array = searchProducts;
     }
     let pageMax = Math.ceil(array.length / 8 - 1);
-    if(pageMax < 0){return setPage(0)}
-    if(page < pageMax){ return setPage(page + 1)}
+    if (pageMax < 0) {
+      return setPage(0);
+    }
+    if (page < pageMax) {
+      return setPage(page + 1);
+    }
     return setPage(pageMax);
   }
-  const classes = useStyles();
   return (
     <div >
       <Grid container  className={classes.root} spacing={2}>

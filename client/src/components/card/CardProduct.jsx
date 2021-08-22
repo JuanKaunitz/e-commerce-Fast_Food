@@ -7,6 +7,7 @@ import CardMedia from '@material-ui/core/CardMedia';
 import CardActions from '@material-ui/core/CardActions';
 import AddShoppingCartIcon from '@material-ui/icons/AddShoppingCart';
 import IconButton from '@material-ui/core/IconButton';
+import Grid from "@material-ui/core/Grid";
 import { Link } from 'react-router-dom';
 import {
   updateCart,
@@ -19,24 +20,46 @@ import {addCarts, sumaCantidadTotal, sumaPrecioTotal}  from '../cart/utilsCarts.
 
 
 const useStyles = makeStyles((theme) => ({
+  root:{
+    marginLeft:'50px',
+  },
+  cardactions:{
+  alignItems:'center',
+  marginLeft:'10px',
+  textAlign:'center',
+  },
   media: {
-    height: '35px',
-    width:200,
+    height: '20px',
+    width:'100%',
     paddingTop: '50%', // 16:9
   },
   cardContent: {
-    backgroundColor:'rgb(240, 119, 6)',
-    maxWidth: '200px',
-    maxHeigth: '200px',
-    boxShadow: '3px 4px 8px #0b0c0c1a',
+    backgroundColor:'#845411',
+    height:'300px',
+    width:'250px',
+    textAlign:'center',
+    borderRadius:'0.8rem',
+ 
 
   },
   headerTitle: {
-    color:'black',
+    color:'white',
     textDecoration:'none',
+    fonts: 'Roboto',
   },
   color:{
-    color:"white"
+    color:"white",
+    textAlign:'center',
+    marginLeft:'50px',
+    position:'center',
+    
+  },
+  color1:{
+    color:"orange",
+    textAlign:'center',
+    marginLeft:'50px',
+    position:'center',
+    
   }
   
 }));
@@ -81,6 +104,8 @@ export default function CardProduct({id, name, image,price, description}) {
   }
 
   return (
+    <Grid cointaner >
+      <Grid item lg={12} md={12} xs={12}>
     <Card className={classes.cardContent} >
       <Link to={`/detail/${id}`} className={classes.headerTitle}>
         <CardHeader  title={name}/>
@@ -89,13 +114,14 @@ export default function CardProduct({id, name, image,price, description}) {
           image={image}
         />
       </Link>
-      <CardActions disableSpacing>
+      <CardActions className={classes.cardactions} disableSpacing>
         <h2 className={classes.color}>$ {price}</h2>
       <IconButton onClick={() => handleAddCart()}>
-        <AddShoppingCartIcon className={classes.color} />
+        <AddShoppingCartIcon className={classes.color1} />
       </IconButton>
       </CardActions>
     </Card>
-    
+    </Grid>
+    </Grid> 
   );
 }

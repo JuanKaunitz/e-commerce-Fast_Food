@@ -1,5 +1,6 @@
 .content {
-    display: flex;
+    background-color:white;
+    padding: 100px;
     flex-direction: column;
     align-items: center;
 }
