@@ -402,6 +402,7 @@ export const updateClient = (id, input) => async (dispatch) => {
   
     try {
         const res = await axios.put(`${URL}/food/api/user/${id}`, input);
+        console.log("usuario actualizado", res.data)
         dispatch({
             type: CLIENT_UPDATE,
             payload: res.data

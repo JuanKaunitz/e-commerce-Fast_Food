@@ -55,11 +55,11 @@ export const deleteCart = (id) => {
 //SUMA UNA UNIDAD MAS A UN PRODUCTO DEL CARRITO
 export const sumProduct = (id) => {
   let object = JSON.parse(localStorage.getItem('order'));
+  console.log("LOCALSTORAGE",object)
   let filtrado = object.filter(e => e.id === id);
   var prueba = filtrado[0];
-  console.log("FILTRADO", filtrado)
+  console.log("FILTRADO", prueba)
   
-  console.log("ENTRO EN INDEX")
   let order = object.map((e) => {
     if(e.id === id){
       let cont = e.count;
@@ -98,13 +98,14 @@ export const resProduct = (id) => {
 export const mergeCart = (cart, orderBack) => {
   console.log("CART", cart)
   console.log("BACK", orderBack)
-  if(cart && orderBack){
+  if((cart !== undefined && cart.length > 0 ) && orderBack.length > 0){
     console.log("ENTRO MERGE")
+    var carritoback = orderBack[0].order;
     var band = false;
     while(cart.length > 0){
       let element = cart.pop();
       band = false;
-      var order = orderBack.map(e => {
+      var order = carritoback.map(e => {
           if(e.id === element.id){
             let cont = e.count;
            return {id: e.id, name: e.name, 
@@ -118,15 +119,15 @@ export const mergeCart = (cart, orderBack) => {
     }
     return order;
   }
-  if( orderBack){
+  if( orderBack.length > 0){
     console.log("ENTRO back")
-    return orderBack 
+    return orderBack[0].order
   }
-  if(cart){
+  if(cart !== undefined && cart.length > 0){
     console.log("ENTRO cart")
     return cart
   }     
-  
+  return [];
 }
 
 //SUMA EL PRECIO DE TODOS LOS PRODUCTOS Y DEVUELVE EL TOTAL
