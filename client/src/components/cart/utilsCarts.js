@@ -100,7 +100,7 @@ export const mergeCart = (cart, orderBack) => {
   console.log("BACK", orderBack)
   if(cart && orderBack){
     console.log("ENTRO MERGE")
-    let band = false;
+    var band = false;
     while(cart.length > 0){
       let element = cart.pop();
       band = false;

@@ -15,7 +15,7 @@ import {
   orderFinal,
   updateOrderFinal
   } from '../../Redux/actions/actions';
-import {addCarts, sumaCantidadTotal, sumaPrecioTotal}  from '../cart/utilsCarts.js';
+import {addCarts, sumaCantidadTotal}  from '../cart/utilsCarts.js';
 
 
 const useStyles = makeStyles((theme) => ({
@@ -46,7 +46,6 @@ export default function CardProduct({id, name, image,price, description}) {
   const dispatch = useDispatch();
   const client = useSelector(state => state.client);
   const token = useSelector(state => state.clientToken);
-  const orderUser = useSelector(state => state.orderUser);
 
   const classes = useStyles();
 

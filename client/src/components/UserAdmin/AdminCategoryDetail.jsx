@@ -1,13 +1,13 @@
-import React, { useState, useEffect } from "react";
+import React, { useState} from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { getTypes, getUpdateCategory,createNewType } from "../../Redux/actions/actions";
+import { getUpdateCategory,createNewType } from "../../Redux/actions/actions";
 import useStyles from "./styles";
 import { Link } from "react-router-dom";
 
 export default function AdminCategoryDetail(props) {
   const categoryEdit = useSelector((state) => state.editCategory);
   const categories = useSelector((state) => state.allCategories);
-  const types = useSelector((state) => state.types);
+  //const types = useSelector((state) => state.types);
 
   const classes = useStyles();
   const dispatch = useDispatch();

@@ -17,7 +17,7 @@ import {updateCart,
   orderFinal,
   updateOrderFinal,
 } from '../../Redux/actions/actions';
-import {addCarts, sumaCantidadTotal, sumaPrecioTotal}  from '../cart/utilsCarts.js';
+import {addCarts, sumaCantidadTotal}  from '../cart/utilsCarts.js';
 // import { Link } from 'react-router-dom';
 
 

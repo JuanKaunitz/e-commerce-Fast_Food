@@ -35,7 +35,7 @@ const useStyles = makeStyles(() => ({
 }));
 //console.log("yoop")
 const Cart = (props) => {
-  console.log(props)
+  //console.log(props)
   const dispatch = useDispatch();
 
   const carts = useSelector((state) => state.cart);
@@ -49,7 +49,8 @@ const Cart = (props) => {
         dispatch(updateCart(object));
       }
     }
-  }, [dispatch, carts]);
+    // eslint-disable-next-line
+  }, [dispatch]);
 
   function cartBack(cart){
     const idOrder = localStorage.getItem('idOrderUser');

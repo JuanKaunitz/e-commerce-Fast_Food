@@ -4,9 +4,9 @@ import { useDispatch, useSelector } from "react-redux";
 import { getCategories, getTypes } from "../../Redux/actions/actions";
 import styles from "./styles.module.css";
 import { Link } from "react-router-dom";
-import FileDrop from "../Form/FileDrop";
+//import FileDrop from "../Form/FileDrop";
 import { makeStyles } from "@material-ui/core/styles";
-import { Button, IconButton, TextField } from "@material-ui/core";
+import { Button,/*  IconButton, */ TextField } from "@material-ui/core";
 import Select from 'react-select'
 
 const useStyles = makeStyles((theme) => ({
@@ -53,7 +53,7 @@ const NewProduct = (props) => {
     categories: "",
    type:''
   });
- const {type} = input;
+ //const {type} = input;
 
   const saveProduct = () => {
     dispatch(createProduct(input));

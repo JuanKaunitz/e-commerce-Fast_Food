@@ -19,7 +19,7 @@ function Home() {
   const band = useSelector(state => state.bandOrderUser);
   //localStorage.removeItem("order");
   
- // useEffect(() => {
+
     if( orderUser.length > 0 && token && band){
       dispatch(bandOrderUser())
       const orderFiltrado = orderUser.filter(e => e.status === "carrito");
@@ -61,13 +61,13 @@ function Home() {
         dispatch(orderFinal(order))
       }
     }
-  //},[client])
-  
 
   useEffect(() => {
-    dispatch(getUserById(client._id))
-      .then(dispatch(getAllProducts()))
-      .then(dispatch(getTypes()))
+    //console.log(client._id)
+    if(client._id && band){dispatch(getUserById(client._id))}
+    
+    dispatch(getAllProducts())
+    dispatch(getTypes())
     
     
     const cart = JSON.parse(localStorage.getItem('order'));
@@ -78,6 +78,7 @@ function Home() {
       dispatch(updateCart(cart));
       dispatch(totalProductosCarrito(cantidadTotal));
     }
+    // eslint-disable-next-line
   }, [dispatch]);
 
   return (
