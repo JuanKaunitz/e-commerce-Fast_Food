@@ -144,6 +144,12 @@ const rootReducer = (state = initialState, action) => {
         bandOrderUser: false,
       }
 
+    case "DELETE_ORDEN":
+      return{
+        ...state,
+        orderUser: action.payload
+      }
+
     case NEW_ORDER_USER:
       localStorage.setItem('idOrderUser', action.payload._id);
       return{
@@ -229,7 +235,9 @@ const rootReducer = (state = initialState, action) => {
       case CLIENT_STATUS:
         return{
           ...state,
-          client:action.payload
+          clientToken: "",
+          client: {},
+          orderUser:[],
         }
        
         

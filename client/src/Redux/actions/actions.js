@@ -304,10 +304,10 @@ export const bandOrderUser = () => (dispatch) => {
 
 //Actualizar orden en back.
 export const updateOrderFinal = (id,order) => async(dispatch) => {
-        console.log("ORDEN PARA ACTUALIZAR", order)
+        //console.log("ORDEN PARA ACTUALIZAR", order)
     try {
         const res = await axios.put(`${URL}/food/api/order/${id}`, order);
-        console.log("ORDEN ACTUALIZACION", res)
+        //console.log("ORDEN ACTUALIZACION", res)
         
     } catch (err) {
     console.log(err)
@@ -317,10 +317,10 @@ export const updateOrderFinal = (id,order) => async(dispatch) => {
   
   //Envio de orden nueva al back.
   export const orderFinal = (order) => async(dispatch) => {
-    console.log("ORDEN PÀRA CREAR", order)
+    //console.log("ORDEN PÀRA CREAR", order)
     try {
         const res = await axios.post(`${URL}/food/api/order`, order);
-        console.log("ORDEN CREADA", res.data)
+        //console.log("ORDEN CREADA", res.data)
         dispatch({
             type: NEW_ORDER_USER,
             payload: res.data,
@@ -331,13 +331,14 @@ export const updateOrderFinal = (id,order) => async(dispatch) => {
   }
   
   //Borrar una order
-export const deleteOrden = (id) => async (dispatch) => {
-    console.log('ID DELETE',id) 
+export const deleteOrden = (id, borrado) => async (dispatch) => {
+    //console.log('ID DELETE',id) 
     try {
         const res = await axios.delete(`${URL}/food/api/order/${id}`); 
-        console.log('BORRADO DE ORDEN',res.data)        
+        //console.log('BORRADO DE ORDEN',res.data)        
         dispatch({
-            
+            type: "DELETE_ORDEN",
+            payload: borrado
         });
     } catch (err) {
         console.log(err)
@@ -346,10 +347,10 @@ export const deleteOrden = (id) => async (dispatch) => {
 
 //Buscar una orden  por ID
 export const getOrderById = (id) => async(dispatch) => {
-    console.log('GET BY ID',id) 
+    //console.log('GET BY ID',id) 
     try {
         const res = await axios.get(`${URL}/food/api/order/${id}`)
-        console.log('ORDER POR ID',res.data)        
+        //console.log('ORDER POR ID',res.data)        
         dispatch({
             
         });
@@ -442,11 +443,11 @@ export const changeStatus = (id, input) => async (dispatch) => {
 
     try {
         const res = await axios.put(`${URL}/food/api/user/${id}`,input );
-   
+            console.log("respuesta loguot", res.data)
        
         dispatch({
             type:CLIENT_STATUS,
-            payload: res.data
+            
             
         })
 

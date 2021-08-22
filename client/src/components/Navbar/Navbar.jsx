@@ -65,7 +65,7 @@ export const Navbar = () => {
       const fecha = new Date();
       const order = {
         order: orderCarrito,
-        status: "creada",
+        status: "carrito",
         date: fecha.toUTCString(),
       }
       console.log("order para logau", order)
@@ -115,7 +115,7 @@ export const Navbar = () => {
             </Button>
             <SerchBar />
             <div className={classes.toolbarButtons}>
-              {adminClient.role === "ADMIN" && token ? (
+              {token && adminClient.role === "ADMIN" ? (
                 <NavLink
                   className={classes.MuiButtonLabel}
                   to="/AdminPanel"
@@ -136,7 +136,7 @@ export const Navbar = () => {
                 </NavLink>
               </IconButton>
 
-              {adminClient.status === undefined ? (
+              {!token? (
                 <Button color="inherit">
                   <NavLink
                     className={classes.MuiButtonLabel}

@@ -76,9 +76,6 @@ export default function CardProduct({
   const [counter, setCounter] = useState(0);
   const client = useSelector(state => state.client);
   const token = useSelector(state => state.clientToken);
-  const orderUser = useSelector(state => state.orderUser);
-  const carts = useSelector((state) => state.order);
-  const items = useSelector((state) => state.totalCarrito);
 
 
   function cartBack(cart){
@@ -109,17 +106,6 @@ export default function CardProduct({
     stock: stock
   };
 
-
-  function handleRes(id) {
-    /* setCounter(counter - 1);
-    const resta = resProduct(id);
-    const cantidadTotal = sumaCantidadTotal(resta);
-    dispatch(updateCart(resta));
-    dispatch(totalProductosCarrito(cantidadTotal));
-    if (token) {
-      cartBack(resta);
-    } */
-  }
 
   const handleNext = () => {
     setIsFlipped(!isFlipped);
@@ -183,7 +169,9 @@ export default function CardProduct({
               {name}
             </Typography>
             <Divider />
-            <CardMedia className={classes.media} image={image} title={name} />
+            <Typography className={classes.pos} color="textSecondary">
+             Descrition: {description}
+            </Typography>
            
             <Typography className={classes.pos} color="textSecondary">
              Precio: ${price}
@@ -193,13 +181,6 @@ export default function CardProduct({
               variant="contained"
               aria-label="contained primary button group"
             >
-              <Button onClick={() => handleRes(id)} color="secondary">
-                --
-              </Button>
-              <TextField
-                variant="outlined"
-                value={counter}
-              />
               <Button onClick={() => handleAddCart()} color="primary">
                 +
               </Button>

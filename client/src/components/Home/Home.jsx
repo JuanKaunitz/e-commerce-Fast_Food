@@ -18,36 +18,32 @@ function Home() {
   const token = useSelector(state => state.clientToken);
   const band = useSelector(state => state.bandOrderUser);
   //localStorage.removeItem("order");
-  
-  console.log("token home", token)
-  console.log("orderuser", orderUser)
-  console.log("band", band)
 
     if(client && orderUser.length > 0 && token && band){
       dispatch(bandOrderUser())
       const orderFiltrado = orderUser.filter(e => e.status === "carrito");
-      console.log("orderFiltrado", orderFiltrado)
+      //console.log("orderFiltrado", orderFiltrado)
   
       if(orderFiltrado.length > 0){
-        console.log("ENTRO ORDERGILTRADO.LENGTH")
+        //console.log("ENTRO ORDERGILTRADO.LENGTH")
         const idOrderCarrito = orderFiltrado[0]._id;
-        console.log("CARRITO", idOrderCarrito);
+        //console.log("CARRITO", idOrderCarrito);
         localStorage.setItem('idOrderUser', idOrderCarrito);
       }
       
       if(localStorage.getItem('idOrderUser')){
        var idOrder = localStorage.getItem('idOrderUser');
-        console.log("ID ORDER", idOrder)
+        //console.log("ID ORDER", idOrder)
       }
      
       if(JSON.parse(localStorage.getItem('order'))){
         var object = JSON.parse(localStorage.getItem('order'));
-        console.log("CARRITO LOCALSTORAGE", object)
+        //console.log("CARRITO LOCALSTORAGE", object)
       }
 
-      console.log("CARRITO BACK", orderFiltrado)
+      //console.log("CARRITO BACK", orderFiltrado)
       const cart = mergeCart(object, orderFiltrado);
-      console.log("MERGE", cart)
+      //console.log("MERGE", cart)
       localStorage.setItem('order', JSON.stringify(cart));
       const cantidadTotal = sumaCantidadTotal(cart);
       dispatch(totalProductosCarrito(cantidadTotal))
@@ -61,7 +57,7 @@ function Home() {
         status: "carrito",
         date: fecha.toUTCString(),
       }
-      console.log("ORDER PARA ENVIAR", order)
+      //console.log("ORDER PARA ENVIAR", order)
       dispatch(orderRedux(order));
       if(idOrder){
         dispatch(updateOrderFinal(idOrder, order))
@@ -71,7 +67,7 @@ function Home() {
     }
 
   useEffect(() => {
-    console.log("use efect id client",client._id)
+    //console.log("use efect id client",client._id)
     if(client._id && band){dispatch(getUserById(client._id))}
     //dispatch(allUsers())
     dispatch(getAllProducts())
