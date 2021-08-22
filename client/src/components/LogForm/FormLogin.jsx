@@ -1,6 +1,5 @@
 import React, { useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
-import { NavLink } from "react-router-dom";
+import { useDispatch } from "react-redux";
 import { authUser } from "../../Redux/actions/actions";
 import styles1 from "./styles1.module.css";
 
@@ -23,8 +22,8 @@ export function validate(input) {
 
 const FormLogin = () => {
   const dispatch = useDispatch();
-  const adminClient = useSelector((state) => state.client);
-  const [estado, setEstado] = useState({ status: true });
+  /* const adminClient = useSelector((state) => state.client);
+  const [estado, setEstado] = useState({ status: true }); */
   
 
   const [input, setInput] = useState({
