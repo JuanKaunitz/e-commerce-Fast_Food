@@ -18,7 +18,7 @@ function Home() {
   const token = useSelector(state => state.clientToken);
   const band = useSelector(state => state.bandOrderUser);
   //localStorage.removeItem("order");
-  
+  console.log("ID", client)
  // useEffect(() => {
     if( orderUser.length > 0 && token && band){
       dispatch(bandOrderUser())

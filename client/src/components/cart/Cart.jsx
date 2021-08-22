@@ -49,7 +49,7 @@ const Cart = (props) => {
         dispatch(updateCart(object));
       }
     }
-  }, [dispatch, carts]);
+  }, [dispatch]);
 
   function cartBack(cart){
     const idOrder = localStorage.getItem('idOrderUser');

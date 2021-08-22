@@ -6,9 +6,7 @@ import { makeStyles } from '@material-ui/core/styles';
 import Card from '@material-ui/core/Card';
 import CardContent from '@material-ui/core/CardContent';
 import CardMedia from '@material-ui/core/CardMedia';
-// import DeleteIcon from '@material-ui/icons/Delete';
 import Typography from '@material-ui/core/Typography';
-// import IconButton from '@material-ui/core/IconButton';
 import { Link } from 'react-router-dom';
 import './GetClients.css'
 
@@ -37,74 +35,57 @@ export default function GetClients() {
 const dispatch = useDispatch();
 const classes = useStyles()
 const clients = useSelector((state) => state.clients) 
-console.log('CLIENTS: ', clients);
 
 useEffect(()=> {
   dispatch(allUsers())
 }, [dispatch])
 
 
-// const handleDeleteUser= () => {
-//   dispatch()
-// }
-
   return (
     <div className='list'>
-
-    <br></br> 
-    <br></br> 
-    <br></br> 
-    <br></br> 
-    <br></br>
-    <Link to='/adminPanel'> <button >Admin Panel</button></Link>
-    <Link to='/adminCategories'> <button >Categories Panel</button></Link>
-    <Link to='/newProduct'> <button >New Product</button></Link>
+    
     <h1 classname='list'>Clients list</h1>
       {
       clients.length > 0 ? clients.map((e) => (
-        <Grid item key={e._id} xs={12} >
-          <Card className={classes.root}>
+          <Card key={e._id} className={classes.root}>
               <div>
                 <CardMedia
                   className={classes.cover}
-                  image={e.image}
-                  title="Live from space album cover"
+                  image={e.image? e.image : 'imagen'}
                 />
               </div>
               <div>
                 <CardContent className={classes.content}>
-                  <Typography component="h5" variant="h5">
+                  <Typography  variant="h5" component="h2">
                     {e.name}
                   </Typography>
-                  <Typography variant="subtitle1" color="textSecondary">
+                  <Typography  color="textSecondary" component="h2">
                     {e.email}
                   </Typography>
                 </CardContent>
               </div>
               <div className={classes.controls}>
-                <Typography variant="subtitle1" color="textSecondary">
+                <Typography color="textSecondary" component="h2">
                 {e.google} 
                 </Typography>
               </div>
               <div className={classes.controls}>
-                <Typography variant="subtitle1" color="textSecondary">
+                <Typography color="textSecondary" component="h2">
                 {e.status} 
                 </Typography>
               </div>
               <div className={classes.controls}>
-                <Typography variant="subtitle1" color="textSecondary">
+                <Typography color="textSecondary" component="h2">
                 {e.role} 
                 </Typography>
               </div>
               <div>
-                {/* <IconButton onClick={() => handleDeleteUser(e._id)}>
-                  <DeleteIcon />
-                </IconButton> */}
+            
                 <Link to={`/clientEdit/${e._id}`}>Editar</Link>
               </div>
             
             </Card> 
-        </Grid>))
+        ))
         : 
         <h4>Cannot found...</h4>
       }

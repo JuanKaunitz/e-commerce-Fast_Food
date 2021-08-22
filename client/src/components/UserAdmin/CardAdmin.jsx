@@ -39,14 +39,11 @@ export default function CardAdmin({
 
   return (
     <Card className={classes.root}>
-      <div>
         <CardMedia
           className={classes.cover}
           image={image}
           title="Live from space album cover"
         />
-      </div>
-      <div>
         <CardContent className={classes.content}>
           <Typography component="h5" variant="h5">
             {name}
@@ -55,19 +52,16 @@ export default function CardAdmin({
             {description}
           </Typography>
         </CardContent>
-      </div>
       <div className={classes.controls}>
         <Typography variant="subtitle1" color="textSecondary">
           <span>${price}</span>
         </Typography>
       </div>
-      <div>
         <IconButton onClick={() => deleteCart(id)}>
           <DeleteIcon />
         </IconButton>
 
         <Link to={`/admProdDetail/${id}`}>Editar</Link>
-      </div>
     </Card>
   );
 }
