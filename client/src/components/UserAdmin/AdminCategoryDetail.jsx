@@ -1,13 +1,13 @@
 import React, { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { getTypes, getUpdateCategory,createNewType } from "../../Redux/actions/actions";
+import {  getUpdateCategory,createNewType } from "../../Redux/actions/actions";
+import { Button, Typography } from "@material-ui/core";
 import useStyles from "./styles";
-import { Link } from "react-router-dom";
 
 export default function AdminCategoryDetail(props) {
   const categoryEdit = useSelector((state) => state.editCategory);
   const categories = useSelector((state) => state.allCategories);
-  const types = useSelector((state) => state.types);
+  //const types = useSelector((state) => state.types);
 
   const classes = useStyles();
   const dispatch = useDispatch();
@@ -20,11 +20,7 @@ export default function AdminCategoryDetail(props) {
     image: "",
   });
 
-  
-
   const selectedCategory = categories.filter((e) => e._id === id);
-  console.log("arrayFilter: ", selectedCategory);
-
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -48,28 +44,17 @@ export default function AdminCategoryDetail(props) {
     });
   };
 
-  console.log("INPUT", input)
 
   return (
     <div className={classes.form_content}>
-      <h1>Edit your product</h1>
+      <Typography variant="h2" >
+      Edit your product
+      </Typography>
 
-      <Link to="/adminPanel">
-        {" "}
-        <button>Admin Panel</button>
-      </Link>
-      <Link to="/clients">
-        {" "}
-        <button>Clients Panel</button>
-      </Link>
-      <Link to="/adminCategories">
-        {" "}
-        <button>Categories Panel</button>
-      </Link>
       {input.length !== 0 ? (
         <form onSubmit={handleSubmit}>
           <div className={classes.form_group}>
-            <label>Name:</label>
+            <Typography>Name:</Typography>
             <input
               className={classes.input_items}
               type="text"
@@ -80,7 +65,7 @@ export default function AdminCategoryDetail(props) {
             />
           </div>
           <div className={classes.form_group}>
-            <label>Image:</label>
+            <Typography>Image:</Typography>
             <input
               src={categoryEdit.image}
               alt={input.name}
@@ -91,7 +76,7 @@ export default function AdminCategoryDetail(props) {
             />
           </div>
 
-          <h4>Change your types!</h4>
+          <Typography>Change your types!</Typography>
 
           <div className={classes.form_group}>
             <input
@@ -104,9 +89,9 @@ export default function AdminCategoryDetail(props) {
             />
           </div>
 
-          <button className={classes.btn_save} type="submit">
+          <Button className={classes.btn_save} color='primary' type="submit">
             Save
-          </button>
+          </Button>
         </form>
       ) : (
         <p>cargando</p>

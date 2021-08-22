@@ -127,6 +127,7 @@ const rootReducer = (state = initialState, action) => {
         ...state,
         client: action.payload.user,
         clientToken: action.payload.token,
+        bandOrderUser: true,
       };
 
     case UPDATE_CART:
@@ -148,10 +149,10 @@ const rootReducer = (state = initialState, action) => {
       }
 
     case NEW_ORDER_USER:
+      localStorage.setItem('idOrderUser', action.payload._id);
       return{
         ...state,
-        orderUser: [action.payload],
-        bandOrderUser: true,
+        orderUser: state.orderUser.concat(action.payload)
       }
 
     case GET_USER_BY_ID:

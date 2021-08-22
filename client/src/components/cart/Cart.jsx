@@ -35,7 +35,7 @@ const useStyles = makeStyles(() => ({
 }));
 //console.log("yoop")
 const Cart = (props) => {
-  console.log(props)
+  //console.log(props)
   const dispatch = useDispatch();
 
   const carts = useSelector((state) => state.cart);
@@ -49,7 +49,8 @@ const Cart = (props) => {
         dispatch(updateCart(object));
       }
     }
-  }, [dispatch, carts]);
+    // eslint-disable-next-line
+  }, [dispatch]);
 
   function cartBack(cart){
     const idOrder = localStorage.getItem('idOrderUser');
@@ -134,7 +135,7 @@ const Cart = (props) => {
       <Grid container className={classes.root} spacing={2}>
         {carts
           ? carts.map((e) => (
-              <Grid item key={e.CardCartid} xs={12}>
+              <Grid item key={e.id} xs={12}>
                 <CardCart
                   id={e.id}
                   name={e.name}

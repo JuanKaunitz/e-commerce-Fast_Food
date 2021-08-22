@@ -26,8 +26,10 @@ import { useSelector, useDispatch } from "react-redux";
 import {
   categoryName,
   changeStatus,
+  orderRedux,
   totalProductosCarrito,
-  updateCart
+  updateCart,
+  updateOrderFinal
 } from "../../Redux/actions/actions";
 
 export const Navbar = () => {
@@ -38,6 +40,7 @@ export const Navbar = () => {
   const categories = useSelector((state) => state.allCategories);
   const totalCarrito = useSelector((state) => state.totalCarrito);
   const adminClient = useSelector((state) => state.client);
+  const token = useSelector((state) => state.clientToken);
 
   const [input, setInput] = useState({ status: false });
 
@@ -56,9 +59,30 @@ export const Navbar = () => {
   }
 
   function handleLogout() {
+    if(localStorage.getItem('idOrderUser') && JSON.parse(localStorage.getItem('order'))){
+      const idOrder = localStorage.getItem('idOrderUser');
+      const orderCarrito = JSON.parse(localStorage.getItem('order'));
+      const fecha = new Date();
+      const order = {
+        order: orderCarrito,
+        status: "creada",
+        date: fecha.toUTCString(),
+      }
+      console.log("order para logau", order)
+      dispatch(updateOrderFinal(idOrder, order))
+    }
+
     const id = adminClient._id;
     dispatch(changeStatus(id, input));
-    localStorage.removeItem("order"); 
+    localStorage.removeItem("order");
+    localStorage.removeItem("idOrderUser");
+    dispatch(orderRedux({
+      id: "",
+      token: "",
+      order: [],
+      status: "",
+      date: "",
+    }));
     dispatch(totalProductosCarrito(0));
     dispatch(updateCart([]));
    }
@@ -91,7 +115,7 @@ export const Navbar = () => {
             </Button>
             <SerchBar />
             <div className={classes.toolbarButtons}>
-              {adminClient.role === "ADMIN" && adminClient.status === true ? (
+              {adminClient.role === "ADMIN" && token ? (
                 <NavLink
                   className={classes.MuiButtonLabel}
                   to="/AdminPanel"
