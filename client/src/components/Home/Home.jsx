@@ -3,8 +3,8 @@ import {useSelector, useDispatch} from "react-redux";
 import "./Home.css";
 import Footer from "../Footer/Footer";
 import GridCardsProducts from "../cards/CardsProducts";
-import { getAllProducts, updateCart, totalProductosCarrito, getTypes,
-  bandOrderUser, getUserById, orderFinal, orderRedux, updateOrderFinal,allUsers} from "../../Redux/actions/actions";
+import { getAllProducts, updateCart, totalProductosCarrito, getTypes, bandOrderUser,  getUserById, orderFinal, orderRedux, updateOrderFinal, allUsers } from "../../Redux/actions/actions";
+import {} from "../../Redux/actions/actions";
 import Gallery from "../gallery/Gallery";
 import Order from "../order/Order";
 import Otters from "../Otters/Otters";
@@ -69,7 +69,7 @@ function Home() {
   useEffect(() => {
     //console.log("use efect id client",client._id)
     if(client._id && band){dispatch(getUserById(client._id))}
-    //dispatch(allUsers())
+    dispatch(allUsers())
     dispatch(getAllProducts())
     dispatch(getTypes())
     

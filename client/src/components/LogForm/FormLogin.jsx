@@ -1,7 +1,8 @@
 import React, { useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
-import { authUser} from "../../Redux/actions/actions";
+import { useDispatch } from "react-redux";
+import { authUser } from "../../Redux/actions/actions";
 import styles1 from "./styles1.module.css";
+import { useHistory } from "react-router-dom";
 
 
 export function validate(input) {
@@ -22,8 +23,9 @@ export function validate(input) {
 
 const FormLogin = () => {
   const dispatch = useDispatch();
-  const adminClient = useSelector((state) => state.client);
-  const [estado, setEstado] = useState({ status: true });
+  const history = useHistory();
+  /* const adminClient = useSelector((state) => state.client);
+  const [estado, setEstado] = useState({ status: true }); */
   
 
   const [input, setInput] = useState({
@@ -56,6 +58,8 @@ const FormLogin = () => {
       email: "",
       password: "",
     });
+
+    history.push('/')
   };
 
   return (

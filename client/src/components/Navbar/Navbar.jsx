@@ -29,8 +29,11 @@ import {
   orderRedux,
   totalProductosCarrito,
   updateCart,
-  updateOrderFinal
+  updateOrderFinal,
+  clearToken,
+  getCategories
 } from "../../Redux/actions/actions";
+import { useHistory } from "react-router-dom";
 
 export const Navbar = () => {
   const dispatch = useDispatch();
@@ -41,6 +44,7 @@ export const Navbar = () => {
   const totalCarrito = useSelector((state) => state.totalCarrito);
   const adminClient = useSelector((state) => state.client);
   const token = useSelector((state) => state.clientToken);
+  
 
   const [input, setInput] = useState({ status: false });
 
@@ -68,8 +72,9 @@ export const Navbar = () => {
         status: "carrito",
         date: fecha.toUTCString(),
       }
-      console.log("order para logau", order)
+      console.log("order para logout", order)
       dispatch(updateOrderFinal(idOrder, order))
+
     }
 
     const id = adminClient._id;
@@ -84,7 +89,7 @@ export const Navbar = () => {
       date: "",
     }));
     dispatch(totalProductosCarrito(0));
-    dispatch(updateCart([]));
+    dispatch(updateCart([]));    
    }
 
   return (
@@ -196,7 +201,7 @@ export const Navbar = () => {
         <Divider />
         <List>
           {" "}
-          {categories.map((e) => (
+          {categories?.map((e) => (
             <ListItem button key={e.name}>
               {/* <ListItemIcon></ListItemIcon> */}
               <Link to="/categories">
