@@ -28,6 +28,7 @@ import {
   TOTAL_CARRITO,
   BAND_ORDER_USER,
   NEW_ORDER_USER,
+  CLEAR_TOKEN,
   /* ASC,
   DESC */
 } from "../constants";
@@ -247,6 +248,11 @@ const rootReducer = (state = initialState, action) => {
           ...state,
           client:action.payload
         }; 
+
+      case CLEAR_TOKEN:
+        return {
+          clientToken: ''
+        };
        
         
     default:

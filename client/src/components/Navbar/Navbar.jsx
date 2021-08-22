@@ -29,8 +29,11 @@ import {
   orderRedux,
   totalProductosCarrito,
   updateCart,
-  updateOrderFinal
+  updateOrderFinal,
+  clearToken,
+  getCategories
 } from "../../Redux/actions/actions";
+import { useHistory } from "react-router-dom";
 
 export const Navbar = () => {
   const dispatch = useDispatch();
@@ -41,6 +44,7 @@ export const Navbar = () => {
   const totalCarrito = useSelector((state) => state.totalCarrito);
   const adminClient = useSelector((state) => state.client);
   const token = useSelector((state) => state.clientToken);
+  
 
   const [input, setInput] = useState({ status: false });
 
@@ -65,11 +69,12 @@ export const Navbar = () => {
       const fecha = new Date();
       const order = {
         order: orderCarrito,
-        status: "creada",
+        status: "carrito",
         date: fecha.toUTCString(),
       }
-      console.log("order para logau", order)
+      console.log("order para logout", order)
       dispatch(updateOrderFinal(idOrder, order))
+
     }
 
     const id = adminClient._id;
@@ -85,6 +90,9 @@ export const Navbar = () => {
     }));
     dispatch(totalProductosCarrito(0));
     dispatch(updateCart([]));
+    dispatch(clearToken());
+    //dispatch(getCategories())
+    
    }
 
   return (
@@ -115,7 +123,7 @@ export const Navbar = () => {
             </Button>
             <SerchBar />
             <div className={classes.toolbarButtons}>
-              {adminClient.role === "ADMIN" && token ? (
+              { token && adminClient.role === "ADMIN"  ? (
                 <NavLink
                   className={classes.MuiButtonLabel}
                   to="/AdminPanel"
@@ -136,7 +144,7 @@ export const Navbar = () => {
                 </NavLink>
               </IconButton>
 
-              {adminClient.status === undefined ? (
+              { token === '' ? (
                 <Button color="inherit">
                   <NavLink
                     className={classes.MuiButtonLabel}
@@ -196,7 +204,7 @@ export const Navbar = () => {
         <Divider />
         <List>
           {" "}
-          {categories.map((e) => (
+          {categories?.map((e) => (
             <ListItem button key={e.name}>
               {/* <ListItemIcon></ListItemIcon> */}
               <Link to="/categories">

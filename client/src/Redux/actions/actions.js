@@ -30,6 +30,7 @@ import {
     GET_USER_BY_ID,
     BAND_ORDER_USER,
     NEW_ORDER_USER,
+    CLEAR_TOKEN,
 } from '../constants'
 
 import dotenv from 'dotenv'
@@ -459,5 +460,11 @@ export const changeStatus = (id, input) => async (dispatch) => {
 }
 
 
+export const clearToken = () => (dispatch) => {
+    dispatch({
+        type: CLEAR_TOKEN,
+    })
 
+    
+}
     

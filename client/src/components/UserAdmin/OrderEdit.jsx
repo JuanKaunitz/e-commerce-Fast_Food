@@ -10,6 +10,8 @@ import CardMedia from "@material-ui/core/CardMedia";
 import Typography from "@material-ui/core/Typography";
 //import IconButton from "@material-ui/core/IconButton";
 import { Link } from "react-router-dom";
+import { useHistory } from 'react-router-dom';
+
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -37,6 +39,7 @@ const OrderEdit = (props) => {
     //console.log('ORDER EDIT PROFILE')
     const dispatch = useDispatch();
     const editOrders = useSelector((state) => state.clients);
+    const history = useHistory();
     //console.log('EDIT CLIENTS: ', editOrders);
 
     const id = props.match.params.id;
@@ -70,6 +73,7 @@ const OrderEdit = (props) => {
      const statusHandler = (e) => {
       
         client.status = e.target.value;
+       // console.log('STATUSHANDLER ', client.status)
         
     }  
      const updateStatus = (e) => {
@@ -77,7 +81,9 @@ const OrderEdit = (props) => {
          const updateOrder = {            
             status: client.status,            
           }
+         // console.log('UPDATE ORDER ', updateOrder)
          dispatch(updateOrderFinal(id, updateOrder ))
+         history.push('/ordersPanel')
      }
  
    /*  const resetPassword = () => {
@@ -145,7 +151,7 @@ const OrderEdit = (props) => {
                 </div>               
             </Card>
 
-            <form>
+            <form onSubmit={ updateStatus }>
                 <label>Change status</label>
                 <select onClick={(e) => statusHandler(e)}>                    
                     <option name = "carrito" value="carrito">Carrito</option>
@@ -154,7 +160,7 @@ const OrderEdit = (props) => {
                     <option name = "cancelado" value="cancelado">Cancelado</option>
                     <option name = "completada" value="completada">Completada</option>
                 </select>
-                <button onClick={() => updateStatus()}></button>
+                <button type='submit'></button>
             </form>
             {/*  <Link to="/adminPanel"><button onClick={() => dispatch(updateClient(id, client))}>SAVE</button></Link>   
             <Link to="/adminPanel"><button onClick={() => resetPassword()}>Reset your password</button></Link> */}
