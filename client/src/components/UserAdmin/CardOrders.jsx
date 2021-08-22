@@ -52,14 +52,14 @@ export default function CardOrders({
       </div>
       <div>
         <CardContent className={classes.content}>
-        <Typography component="h5" variant="h5">
-            <h4>Op: {orderId} </h4>
+          <Typography component="h5" variant="h5">
+            <Link to={`/orderEdit/${orderId}`}><h4>Op: {orderId} </h4></Link>  
           </Typography>
           <Typography variant="subtitle1" color="textSecondary">
-           Status: {status} 
+            Status: {status} 
           </Typography>
           <Typography variant="subtitle1" color="textSecondary">
-            Total: {total}
+              Total: {total}
           </Typography>
         </CardContent>
       </div>

@@ -1,6 +1,6 @@
 import React , { useEffect, useState }   from 'react';
 import { useSelector, useDispatch} from 'react-redux';
-import { deleteOrder, getAllOrders } from "../../Redux/actions/actions";
+import {/*  deleteOrder */ getOrder } from "../../Redux/actions/actions";
 import CardOrders from './CardOrders';
 import Grid from "@material-ui/core/Grid"; 
 
@@ -11,7 +11,7 @@ const GetOrders = () => {
     const [products, setProducts] = useState([])
 
     useEffect(() => { 
-        dispatch(getAllOrders())
+        dispatch(getOrder())
       }, [dispatch]);
 
     useEffect(() => {
@@ -26,9 +26,9 @@ const GetOrders = () => {
     console.log(getAll)
     const options = ['...','carrito', 'creada', 'procesando', 'cancelado', 'completada']
 
-    function handleDeleteOrder(id){
+    /* function handleDeleteOrder(id){
         dispatch(deleteOrder(id))
-    } 
+    }  */
     return (
         <div>
             <div className='list'>  
@@ -50,7 +50,7 @@ const GetOrders = () => {
                   orderId={ e._id} 
                   status={e.status}                  
                   total={e.total}                       
-                deleteOrder={handleDeleteOrder}   />
+                /* deleteOrder={handleDeleteOrder} */   />
                 </Grid>
                 )
                 :
@@ -60,7 +60,7 @@ const GetOrders = () => {
                   orderId={ e._id} 
                   status={e.status}                  
                   total={e.total}                       
-                deleteOrder={handleDeleteOrder}   />
+                /* deleteOrder={handleDeleteOrder}  */  />
                 </Grid>
                 )
             } 

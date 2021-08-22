@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react';
 import { useDispatch } from 'react-redux';
-import { getAllProducts, getCategories } from "../../Redux/actions/actions";
+import { allUsers, getAllProducts, getCategories } from "../../Redux/actions/actions";
 import { Link } from 'react-router-dom';
 //import Form from '../Form/Form';
 //import UpdateProd from './UpdateProd';
@@ -18,6 +18,7 @@ export default function AdminPanel() {
     useEffect(() => {
         dispatch(getAllProducts());
         dispatch(getCategories());
+        dispatch(allUsers())
       }, [dispatch]);
 
     /* function goBack() {

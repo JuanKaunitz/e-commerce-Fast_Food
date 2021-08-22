@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { NavLink } from "react-router-dom";
-import { authUser, changeStatus, updateClient } from "../../Redux/actions/actions";
+import { authUser } from "../../Redux/actions/actions";
 import styles1 from "./styles1.module.css";
 
 
@@ -27,6 +27,9 @@ const FormLogin = () => {
   //const client = useSe
   const adminClient = useSelector((state) => state.client)
   const [estado, setEstado] = useState({status:true});
+  /* const client = useSelector(state => state.client);
+  const orderUser = useSelector(state => state.orderUser); */
+ 
   const [input, setInput] = useState({
     email: "",
     password: "",
@@ -49,21 +52,19 @@ const FormLogin = () => {
     );
   };
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    
 
-  
-   
+  const handleSubmit = async(e) => {
+    e.preventDefault();
+    console.log("INPUT",input);
     dispatch(authUser(input));
    
     setInput({
       email: "",
       password: "",
     });
-    //let object = JSON.parse(localStorage.getItem('order'));
+    
   };
-  
+
 
   return (
     <div>

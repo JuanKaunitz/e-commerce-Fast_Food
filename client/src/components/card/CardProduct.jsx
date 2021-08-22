@@ -45,6 +45,8 @@ export default function CardProduct({id, name, image,price, description}) {
 
   const dispatch = useDispatch();
   const client = useSelector(state => state.client);
+  const token = useSelector(state => state.clientToken);
+  const orderUser = useSelector(state => state.orderUser);
 
   const classes = useStyles();
 
@@ -61,19 +63,20 @@ export default function CardProduct({id, name, image,price, description}) {
     const cantidadTotal = sumaCantidadTotal(cart);
     dispatch(updateCart(cart));
     dispatch(totalProductosCarrito(cantidadTotal))
-    if(client.token){
-      const precioTotal = sumaPrecioTotal(cart);
+    if(token){
+      const idOrder = localStorage.getItem('idOrderUser');
+      const fecha = new Date();
+
       const order = {
-        clientId: client._id,
-        token: client.token,
-        precioTotal: precioTotal,
-        totalProductos: cantidadTotal,
+        id: client._id,
+        token: token,
         order: cart,
         status: "carrito",
+        date: fecha.toUTCString(),
       }
       dispatch(orderRedux(order));
-      if(client.order._id){
-        dispatch(updateOrderFinal(client.order._id, order))
+      if(idOrder){
+        dispatch(updateOrderFinal(idOrder, order))
       }else{
         dispatch(orderFinal(order))
       }

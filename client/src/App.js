@@ -54,7 +54,7 @@ function App() {
         <Route exact path="/categoryDetail/:id" component={AdminCategoryDetail} />
         <Route exact path="/newCategory" component={NewCategory} />
         <Route exact path="/ordersPanel" component={OrdersPanel} />
-        <Route exact path="/orderEdit" component={OrderEdit} />
+        <Route exact path="/orderEdit/:id" component={OrderEdit} />
         <Route exact path="/mercadopago" component={Mercado} />
         <Route
           path="/payment"
