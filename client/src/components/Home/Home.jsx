@@ -20,6 +20,8 @@ function Home() {
   //localStorage.removeItem("order");
   
 
+  console.log("ID", client)
+ // useEffect(() => {
     if( orderUser.length > 0 && token && band){
       dispatch(bandOrderUser())
       const orderFiltrado = orderUser.filter(e => e.status === "carrito");
