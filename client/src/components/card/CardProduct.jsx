@@ -1,13 +1,9 @@
-import React, { useState,useEffect } from "react";
+import React, { useState, useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { makeStyles } from "@material-ui/core/styles";
 import Card from "@material-ui/core/Card";
-import CardHeader from "@material-ui/core/CardHeader";
 import CardMedia from "@material-ui/core/CardMedia";
-import CardActions from "@material-ui/core/CardActions";
 import AddShoppingCartIcon from "@material-ui/icons/AddShoppingCart";
-import IconButton from "@material-ui/core/IconButton";
-import { Link } from "react-router-dom";
 import {
   updateCart,
   totalProductosCarrito,
@@ -21,11 +17,12 @@ import {
   resProduct,
   sumaCantidadTotal,
   sumaPrecioTotal,
-  sumProduct,
 } from "../cart/utilsCarts.js";
 ////aparte
 import CardContent from "@material-ui/core/CardContent";
 import Typography from "@material-ui/core/Typography";
+import { createTheme } from "@material-ui/core/styles";
+import { ThemeProvider } from "@material-ui/styles";
 import {
   ButtonGroup,
   CardActionArea,
@@ -34,19 +31,26 @@ import {
 } from "@material-ui/core";
 import Button from "@material-ui/core/Button";
 import ReactCardFlip from "react-card-flip";
-import AddIcon from "@material-ui/icons/Add";
 import ArrowBackIcon from "@material-ui/icons/ArrowBack";
 
-const useStyles = makeStyles((theme) => ({
+const theme = createTheme({
+  palette: {
+    primary: {
+      main: "#4caf50",
+    },
+  },
+});
+
+const useStyles = makeStyles(() => ({
   media: {
-    height: "35px",
-    width: 200,
+    width: 'auto',
+    height:100,
     paddingTop: "50%", // 16:9
   },
   cardContent: {
-    backgroundColor: "rgb(240, 119, 6)",
-    maxWidth: "200px",
-    maxHeigth: "200px",
+    
+    maxWidth: "250px",
+    maxHeigth: 200,
     boxShadow: "3px 4px 8px #0b0c0c1a",
   },
   headerTitle: {
@@ -67,14 +71,14 @@ export default function CardProduct({
   stock,
 }) {
   const [isFlipped, setIsFlipped] = useState(false);
-  const [counter ,setCounter] = useState(0)
+  const [counter, setCounter] = useState(0);
   const dispatch = useDispatch();
   const classes = useStyles();
   const carts = useSelector((state) => state.order);
   const client = useSelector((state) => state.client);
-  const items = useSelector(state => state.totalCarrito)
+  const items = useSelector((state) => state.totalCarrito);
   useEffect(() => {
-    if (carts.length <= 0 ) {
+    if (carts.length <= 0) {
       if (localStorage.getItem("order")) {
         let object = JSON.parse(localStorage.getItem("order"));
         dispatch(updateCart(object));
@@ -82,23 +86,23 @@ export default function CardProduct({
     }
   }, [dispatch]);
 
-  function token(cart){
+  function token(cart) {
     const precioTotal = sumaPrecioTotal(cart);
     const cantidadTotal = sumaCantidadTotal(cart);
-      const order = {
-        clientId: client._id,
-        token: client.token,
-        precioTotal: precioTotal,
-        totalProductos: cantidadTotal,
-        order: cart,
-        status: "carrito",
-      }
-      dispatch(orderRedux(order));
-      if(client.order._id){
-        dispatch(updateOrderFinal(client.order._id, order))
-      }else{
-        dispatch(orderFinal(order))
-      }
+    const order = {
+      clientId: client._id,
+      token: client.token,
+      precioTotal: precioTotal,
+      totalProductos: cantidadTotal,
+      order: cart,
+      status: "carrito",
+    };
+    dispatch(orderRedux(order));
+    if (client.order._id) {
+      dispatch(updateOrderFinal(client.order._id, order));
+    } else {
+      dispatch(orderFinal(order));
+    }
   }
   const detail = {
     _id: id,
@@ -108,33 +112,32 @@ export default function CardProduct({
     description: description,
   };
 
-
   function handleDeleteCart(id) {
     const delet = deleteCart(id);
     const cantidadTotal = sumaCantidadTotal(delet);
     dispatch(updateCart(delet));
     dispatch(totalProductosCarrito(cantidadTotal));
-    if(client.token){
-     token(delet);
+    if (client.token) {
+      token(delet);
     }
   }
 
   function handleRes(id) {
-    setCounter(counter -1)
+    setCounter(counter - 1);
     const resta = resProduct(id);
     const cantidadTotal = sumaCantidadTotal(resta);
     dispatch(updateCart(resta));
     dispatch(totalProductosCarrito(cantidadTotal));
-    if(client.token){
+    if (client.token) {
       token(resta);
-     }
+    }
   }
   const handleNext = () => {
     setIsFlipped(!isFlipped);
   };
 
   function handleAddCart() {
-    setCounter(counter +1)
+    setCounter(counter + 1);
     const cart = addCarts(detail);
     const cantidadTotal = sumaCantidadTotal(cart);
     dispatch(updateCart(cart));
@@ -161,74 +164,75 @@ export default function CardProduct({
   //--flippcard--//
 
   return (
-    <ReactCardFlip isFlipped={isFlipped} flipDirection="horizontal">
-      <Card className={classes.root}>
-        <CardActionArea>
-          <CardMedia className={classes.media} image={image} title={name} />
+    <ThemeProvider theme={theme}>
+      <ReactCardFlip isFlipped={isFlipped} flipDirection="horizontal">
+        <Card className={classes.root}>
+          <CardActionArea>
+            <CardMedia className={classes.media} image={image} title={name} />
+            <CardContent className={classes.cardContent}>
+              <Typography
+                className={classes.title}
+                color="textSecondary"
+                gutterBottom
+              >
+                {name}
+              </Typography>
+              <Divider />
+              <Typography
+                variant="body2"
+                component="p"
+                className={classes.sub_title}
+              >
+               Precio: ${price}
+              </Typography>
+              <Button
+                variant="contained"
+                color="secondary"
+                onClick={handleNext}
+              >
+                <AddShoppingCartIcon className={classes.color} />
+              </Button>
+            </CardContent>
+          </CardActionArea>
+        </Card>
+        {/* frontal */}
+        <Card className={classes.root}>
           <CardContent>
+          <Button onClick={handleNext} variant="contained" color="primary">
+                <ArrowBackIcon />
+              </Button>
             <Typography
-              className={classes.title}
+              className={classes.sub}
               color="textSecondary"
               gutterBottom
             >
               {name}
             </Typography>
             <Divider />
-            <Typography
-              variant="body2"
-              component="p"
-              className={classes.sub_title}
-            >
-              {price}
-            </Typography>
+            <CardMedia className={classes.media} image={image} title={name} />
+           
             <Typography className={classes.pos} color="textSecondary">
-              En Stock:{stock}
+             Precio: ${price}
             </Typography>
-            <Typography>Disponible</Typography>
-          <Button variant="contained" color="primary" onClick={handleNext}>
-            <AddShoppingCartIcon className={classes.color} />
-          </Button>
+            <ButtonGroup
+              size="small"
+              variant="contained"
+              aria-label="contained primary button group"
+            >
+              <Button onClick={() => handleRes(id)} color="secondary">
+                --
+              </Button>
+              <TextField
+                variant="outlined"
+                value={counter}
+              />
+              <Button onClick={() => handleAddCart()} color="primary">
+                +
+              </Button>
+            </ButtonGroup>
           </CardContent>
-        </CardActionArea>
-      </Card>
-
-      <Card className={classes.root}>
-        <CardContent>
-          <Typography
-            className={classes.sub}
-            color="textSecondary"
-            gutterBottom
-          >
-            {price}
-            <Button onClick={handleNext} variant="contained" color="primary">
-              <ArrowBackIcon />
-            </Button>
-          </Typography>
-
-          <Divider />
-          <Typography variant="body2" component="p">
-            {name}
-          </Typography>
-          <Typography className={classes.pos} color="textSecondary">
-            En Stock:{stock}
-          </Typography>
-          <ButtonGroup
-            size="small"
-            variant="contained"
-            color="primary"
-            aria-label="contained primary button group"
-          >
-            <Button onClick={() => handleRes(id)}>--</Button>
-            <TextField
-              id="outlined-number"
-              variant="outlined"
-              type="number"
-              value={counter}
-            />
-            <Button onClick={() => handleAddCart()}>+</Button>
-          </ButtonGroup>
-        </CardContent>
-      </Card>
-    </ReactCardFlip>
+        </Card>
+      </ReactCardFlip>
+    </ThemeProvider>
   );
 }

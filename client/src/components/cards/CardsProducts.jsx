@@ -93,7 +93,6 @@ export default function GridCardsProducts() {
           </Button>
           <TextField
             className="input_text"
-            id="outlined-number"
             variant="outlined"
             value={page + 1}
           />

@@ -47,7 +47,7 @@ const Cart = (props) => {
         dispatch(updateCart(object));
       }
     }
-  }, [dispatch, carts]);
+  }, [dispatch]);
 
   function token(cart){
     const precioTotal = sumaPrecioTotal(cart);
