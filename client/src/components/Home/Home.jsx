@@ -5,6 +5,7 @@ import Footer from "../Footer/Footer";
 import GridCardsProducts from "../cards/CardsProducts";
 import { getAllProducts, updateCart, totalProductosCarrito } from "../../Redux/actions/actions";
 import { bandOrderUser, getTypes, getUserById, orderFinal, orderRedux, updateOrderFinal} from "../../Redux/actions/actions";
+import {} from "../../Redux/actions/actions";
 import Gallery from "../gallery/Gallery";
 import Order from "../order/Order";
 import Otters from "../Otters/Otters";
