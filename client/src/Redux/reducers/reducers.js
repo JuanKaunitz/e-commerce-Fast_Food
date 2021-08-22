@@ -19,7 +19,9 @@ import {
   UPDATE_PRODUCT,
   CREATE_TYPE,
   GOOGLE_LOGIN,
-  CLIENT_STATUS,
+  ALL_ORDERS,
+  EDIT_ORDER,
+  CLIENT_STATUS,  
   GET_USER_BY_ID,
   UPDATE_CART,
   ORDER_REDUX,
@@ -56,7 +58,9 @@ const initialState = {
   orderUser:[],
   totalCarrito: 0,
   types: [],
-  googleUser: {},
+  googleUser: {}, 
+  allOrders: [],
+  editOrder: {}, 
   bandOrderUser: true,
 };
 
@@ -225,11 +229,23 @@ const rootReducer = (state = initialState, action) => {
          ...state,
          googleUser: action.payload
        };
+
+       case ALL_ORDERS:
+        return {
+          ...state,
+          allOrders: action.payload,
+        };
+
+        case EDIT_ORDER:
+      return {
+        ...state,
+        editOrder: action.payload,
+      };
       case CLIENT_STATUS:
         return{
           ...state,
           client:action.payload
-        }
+        }; 
        
         
     default:

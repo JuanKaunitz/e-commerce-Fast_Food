@@ -21,7 +21,9 @@ import {
     LOWER_PRICE,
     CLIENT_UPDATE,
     GOOGLE_LOGIN,
-    CLIENT_STATUS,
+    ALL_ORDERS,
+    EDIT_ORDER,
+    CLIENT_STATUS,    
     UPDATE_CART,
     TOTAL_CARRITO,
     ORDER_REDUX,
@@ -302,6 +304,7 @@ export const bandOrderUser = () => (dispatch) => {
     });
 }
 
+
 //Actualizar orden en back.
 export const updateOrderFinal = (id,order) => async(dispatch) => {
         console.log("ORDEN PARA ACTUALIZAR", order)
@@ -363,10 +366,10 @@ export const getOrder = () => async(dispatch) => {
     try {
         const res = await axios.get(`${URL}/food/api/order`);
         console.log("GET ORDER", res.data)
-        /* dispatch({
-            type: GET_ORDER,
+        dispatch({
+            type: ALL_ORDERS,
             payload: res.data
-        }); */
+        });
         
     } catch (err) {
     console.log(err)

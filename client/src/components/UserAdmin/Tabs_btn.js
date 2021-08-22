@@ -7,6 +7,7 @@ import EveryProducts from './EveryProducts'
 import NewProduct from './NewProduct'
 import NewCategory from './NewCategory'
 import AdminCategories from './AdminCategories'
+import OrdersPanel from './OrdersPanel'
 
 function TabPanel(props) {
   const { children, value, index, ...other } = props;
@@ -61,6 +62,9 @@ export default function SimpleTabs({ value, setvalue }) {
         </TabPanel>
         <TabPanel value={value} index={4}>
           <AdminCategories />
+        </TabPanel>
+        <TabPanel value={value} index={5}>
+          <OrdersPanel />
         </TabPanel>
     </div>
   );
