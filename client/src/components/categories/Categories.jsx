@@ -49,6 +49,7 @@ const Categories = () => {
 
     let tipos = filter1.filter(e => e.type === type)
     setFiltro(tipos)
+    // eslint-disable-next-line
   },[type]);
 
 

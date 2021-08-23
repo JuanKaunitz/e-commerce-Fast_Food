@@ -7,6 +7,7 @@ const routerCategories = require('./routerCategories');
 const routerOrder = require('./routerOrder');
 const routerCheckout = require('./routerCheckout');
 const routerTypes = require('./routerTypes')
+const routerEmails = require('./routerEmails');
 const router = express.Router();
 const mercadopago= require('./mercadopago')
 module.exports = () => {
@@ -28,6 +29,7 @@ module.exports = () => {
   router.use('/food/api/types',routerTypes);
   //mercadopago
   // router.use('/mercadopago', mercadopago);
+  router.use('/food/api/send-email', routerEmails);
 
   return router;
 };

@@ -27,6 +27,7 @@ export default function AdminProductDetail(props) {
 
   useEffect(() => {
     getItemProduct();
+    // eslint-disable-next-line
   }, []);
   
   const productEdit = useSelector((state) => state.editProduct);
@@ -62,6 +63,7 @@ export default function AdminProductDetail(props) {
               onChange={handleInputChange}
               defaultValue={productEdit.name}
               required
+              value={input.name}
             />
           </div>
 

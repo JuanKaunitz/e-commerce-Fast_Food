@@ -6,8 +6,12 @@ import TabsBtn from "./Tabs_btn";
 import { getAllProducts, getCategories } from "../../Redux/actions/actions";
 import { makeStyles } from "@material-ui/core/styles";
 import "./AdminPanel.css";
+<<<<<<< HEAD
 import { Grid } from "@material-ui/core";
 
+=======
+import { allUsers } from "../../Redux/actions/actions";
+>>>>>>> Dev
 
 
 const useStyles = makeStyles((theme) => ({
@@ -20,11 +24,12 @@ const useStyles = makeStyles((theme) => ({
   
 export default function AdminPanel() {
   const dispatch = useDispatch();
-  const classes = useStyles();
-  useEffect(() => {
-    dispatch(getAllProducts());
-    dispatch(getCategories());
-  }, [dispatch]);
+  const classes = useStyles(); 
+    useEffect(() => {
+        dispatch(getAllProducts());
+        dispatch(getCategories());
+        dispatch(allUsers())
+      }, [dispatch]);
 
   function a11yProps(index) {
     return {
@@ -34,6 +39,7 @@ export default function AdminPanel() {
   }
 
   const [value, setValue] = useState(0);
+
 
   const handleChange = (event, newValue) => {
     setValue(newValue);
@@ -51,11 +57,12 @@ export default function AdminPanel() {
         onChange={handleChange}
         aria-label="simple tabs example"
       >
-        <Tab label="Panel de Productos" {...a11yProps(0)} />
-        <Tab label="Panel de Clientes" {...a11yProps(1)} />
-        <Tab label="Nueva Categoria" {...a11yProps(2)} />
-        <Tab label="Nuevo Producto" {...a11yProps(3)} />
-        <Tab label="Panel de Categorias" {...a11yProps(4)} />
+        <Tab label="Products Panel" {...a11yProps(0)} />
+        <Tab label="Clients Panel" {...a11yProps(1)} />
+        <Tab label="New Categoria" {...a11yProps(2)} />
+        <Tab label="New Product" {...a11yProps(3)} />
+        <Tab label="Categories Panel" {...a11yProps(4)} />
+        <Tab label='Orders Panel' {...a11yProps(5)} />
       </Tabs>
       <TabsBtn  value={value} setValue={setValue} />
     </div>

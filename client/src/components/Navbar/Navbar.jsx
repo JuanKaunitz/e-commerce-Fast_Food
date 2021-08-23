@@ -28,8 +28,12 @@ import { useSelector, useDispatch } from "react-redux";
 import {
   categoryName,
   changeStatus,
+  orderRedux,
   totalProductosCarrito,
-  updateCart
+  updateCart,
+  updateOrderFinal,
+  clearToken,
+  getCategories
 } from "../../Redux/actions/actions";
 const useStyles = makeStyles((theme) => ({
   grow: {
@@ -150,6 +154,8 @@ export const Navbar = () => {
   const categories = useSelector((state) => state.allCategories);
   const totalCarrito = useSelector((state) => state.totalCarrito);
   const adminClient = useSelector((state) => state.client);
+  const token = useSelector((state) => state.clientToken);
+  
 
   const [input, setInput] = useState({ status: false });
 
@@ -168,12 +174,34 @@ export const Navbar = () => {
   }
 
   function handleLogout() {
+    if(localStorage.getItem('idOrderUser') && JSON.parse(localStorage.getItem('order'))){
+      const idOrder = localStorage.getItem('idOrderUser');
+      const orderCarrito = JSON.parse(localStorage.getItem('order'));
+      const fecha = new Date();
+      const order = {
+        order: orderCarrito,
+        status: "carrito",
+        date: fecha.toUTCString(),
+      }
+      console.log("order para logout", order)
+      dispatch(updateOrderFinal(idOrder, order))
+
+    }
+
     const id = adminClient._id;
     dispatch(changeStatus(id, input));
     localStorage.removeItem("order");
+    localStorage.removeItem("idOrderUser");
+    dispatch(orderRedux({
+      id: "",
+      token: "",
+      order: [],
+      status: "",
+      date: "",
+    }));
     dispatch(totalProductosCarrito(0));
-    dispatch(updateCart([]));
-  }
+    dispatch(updateCart([]));    
+   }
 
   return (
     <div className={classes.row}>
