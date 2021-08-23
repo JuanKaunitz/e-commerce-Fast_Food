@@ -5,10 +5,6 @@ import styles from "./styles.module.css";
 import { GoogleLogin, GoogleLogout } from "react-google-login";
 import { Link } from "react-router-dom";
 
-
-
-
-
 export function validate(input) {
   let errors = {};
   if (!input.email) {
@@ -18,8 +14,10 @@ export function validate(input) {
   }
   if (!input.password) {
     errors.password = "Password is required";
-  } else if (!/(?=.*[0-9])/.test(input.password)) {
+  } else if (!/(?=.*[0-9])/.test(input.password)) { 
     errors.password = "Password is invalid";
+  } else if(!/^(?=\w*\d)(?=\w*[A-Z])(?=\w*[a-z])\S{8,16}$/.test(input.password)) {
+    errors.password = "Password requires 8-16 digits, at least one digit and one upper case."
   }
   if (!input.name) {
     errors.name = "Name is required";
@@ -43,7 +41,6 @@ const FormRegister = () => {
   });
   
   
-
   
   const [errors, setErrors] = useState({});
   
@@ -66,7 +63,6 @@ const FormRegister = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    console.log(input);
     dispatch(newUser(input));
     setInput({
       name: "",
@@ -82,7 +78,6 @@ const FormRegister = () => {
   const logout = () => {
     alert("usted esta saliendo de su cuenta");
     console.clear();
-    // sessionStorage.removeItem(clave)
     sessionStorage.clear();
     setShowloginButton(true);
     setShowlogoutButton(false);
@@ -90,12 +85,6 @@ const FormRegister = () => {
 
   const onLoginSuccess = (res) => {
     console.log("Login Success:", res.profileObj);
-    // var data = sessionStorage.getItem('AJDLj6JUa8yxXrhHdWRHIV0S13cAbZ9_k9rC5aklrvRlpYPP7jPp6wEIETYsmTOID-ezNa3jSL7DbVDAYbBUtgF_saU50JRDwQ');
-    // console.log('DATA: ', data);
-    // var cache = sessionStorage.getItem('cachedValue')
-    // console.log(cache)
-    // var sesion = sessionStorage.setItem('key','value')
-    // console.log('SESSION: ', sesion);
     dispatch(createGoogleUser(res.profileObj));
     setShowloginButton(false);
     setShowlogoutButton(true);

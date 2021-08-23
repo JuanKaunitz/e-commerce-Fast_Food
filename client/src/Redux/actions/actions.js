@@ -82,13 +82,13 @@ export const getById = (id) => async (dispatch) => {
 
  //Creando un producto.
  export const createProduct = (input) => async (dispatch) => {
-   
+   console.log('INPUT: ', input);
     try {
-        const product = await axios.post(`${URL}/food/api/products`,input);
-        console.log('PRODUCT: ', product);
+        const res = await axios.post(`${URL}/food/api/products`, input);
+        console.log('RES: ', res);
         dispatch({
             type: CREATE_PRODUCT,
-            payload: product.data.product
+            payload: res.data.product
         });
     } catch (err) {
         console.log(err)

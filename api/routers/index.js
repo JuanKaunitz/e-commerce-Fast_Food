@@ -10,7 +10,6 @@ const routerTypes = require('./routerTypes')
 const routerEmails = require('./routerEmails');
 const router = express.Router();
 const mercadopago= require('./mercadopago')
-const routerEmails = require('./routerEmails');
 module.exports = () => {
   //Users endpoints para crear un ausuario para el sistema
   router.use("/food/api/user", routerUser);
