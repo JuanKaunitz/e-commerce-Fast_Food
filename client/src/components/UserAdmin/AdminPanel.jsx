@@ -1,64 +1,63 @@
-import React, { useEffect } from 'react';
-import { useDispatch } from 'react-redux';
+import React, { useEffect, useState } from "react";
+import { useDispatch } from "react-redux";
+import Tabs from "@material-ui/core/Tabs";
+import Tab from "@material-ui/core/Tab";
+import TabsBtn from "./Tabs_btn";
 import { getAllProducts, getCategories } from "../../Redux/actions/actions";
-import { Link } from 'react-router-dom';
-//import Form from '../Form/Form';
-//import UpdateProd from './UpdateProd';
-import './AdminPanel.css';
-//import Drawer2 from './Drawer';
-import EveryProducts from './EveryProducts';
-//import DeleteProducts from './DeleteProducts';
+import { makeStyles } from "@material-ui/core/styles";
+import "./AdminPanel.css";
+import { allUsers } from "../../Redux/actions/actions";
 
+
+const useStyles = makeStyles((theme) => ({
+    root: {
+      flexGrow: 1,
+      backgroundColor: '#a18722',
+      padding: 0,
+    },
+  }));
+  
 export default function AdminPanel() {
-    const dispatch = useDispatch(); 
-    //const [reset, setReset] = useState([])
-    //const categorias = useSelector((state) => state.allCategories)
-    //const categorias = useSelector((state) => state.getAllProducts)
-
+  const dispatch = useDispatch();
+  const classes = useStyles(); 
     useEffect(() => {
         dispatch(getAllProducts());
         dispatch(getCategories());
+        dispatch(allUsers())
       }, [dispatch]);
 
-    /* function goBack() {
-        dispatch(clearSearch(reset));       
-    }   */
+  function a11yProps(index) {
+    return {
+      id: `simple-tab-${index}`,
+      "aria-controls": `simple-tabpanel-${index}`,
+    };
+  }
 
-    /* function edit(value){
-      <NavLink to={value}>
-      </NavLink>
-    } */
-    
-    return (
-        <div className='list'>
-            <br></br>
-            <br></br>
-            <br></br>
-            <br></br>
-            <br></br>
-            <br></br>
-            <br></br>
+  const [value, setValue] = useState(0);
 
-            <h1 className='list'>Welcome to the your admin panel </h1>
-            <br></br>
-            <br></br>            
-            <Link to='/clients'> <button >Clients Panel</button></Link>
-            <Link to='/adminCategories'> <button >Categories Panel</button></Link>
-            <Link to='/newProduct'> <button >New Product</button></Link>
-            {/* <button onclick="location.href='/newProduct'" type="button">New Product</button> */}
-           {/*  <div className="select">
-                {<label className="order">Drawer: </label>}
-                <select onClick={(e) => edit(e.target.value)} >
-                    <option value=" "> </option>
-                    <option value="/newProduct">New Product</option> 
-                    <option value="/admProdDetail/:id">Edit Product</option>
-                    <option value="/editCategories">Categories</option>
-                    <option value="/editClient">Clients </option>                    
-                </select>
-            </div> */}
-            
-            <EveryProducts/>
-        </div>
-    )
-    
+
+  const handleChange = (event, newValue) => {
+    setValue(newValue);
+  };
+  return (
+    <div className="list">
+     
+      <h1 className="list">Welcome to the your admin panel </h1>
+   
+      <Tabs
+      className={classes.root}
+        value={value}
+        onChange={handleChange}
+        aria-label="simple tabs example"
+      >
+        <Tab label="Products Panel" {...a11yProps(0)} />
+        <Tab label="Clients Panel" {...a11yProps(1)} />
+        <Tab label="New Categoria" {...a11yProps(2)} />
+        <Tab label="New Product" {...a11yProps(3)} />
+        <Tab label="Categories Panel" {...a11yProps(4)} />
+        <Tab label='Orders Panel' {...a11yProps(5)} />
+      </Tabs>
+      <TabsBtn  value={value} setValue={setValue} />
+    </div>
+  );
 }

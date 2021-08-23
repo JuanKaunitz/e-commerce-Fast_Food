@@ -27,41 +27,62 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-export default function CardAdmin({
-  id,
-  name,
-  image,
-  price,
-  description,
-  deleteCart,
+export default function CardOrders({
+  // id,
+  orderId, 
+  status, 
+  total, 
+  /* price,
+  amount,  
+  total,
+  status,
+  deleteCart, */
 }) {
+  console.log(orderId, status, total)
   const classes = useStyles();
 
   return (
     <Card className={classes.root}>
+      <div>
         <CardMedia
           className={classes.cover}
-          image={image}
-          title="Live from space album cover"
+         /* {orderId} */
+          title="Order"
         />
+      </div>
+      <div>
         <CardContent className={classes.content}>
           <Typography component="h5" variant="h5">
-            {name}
+            <Link to={`/orderEdit/${orderId}`}><h4>Op: {orderId} </h4></Link>  
           </Typography>
           <Typography variant="subtitle1" color="textSecondary">
-            {description}
+            Status: {status} 
+          </Typography>
+          <Typography variant="subtitle1" color="textSecondary">
+              Total: {total}
           </Typography>
         </CardContent>
-      <div className={classes.controls}>
+      </div>
+      {/* <div className={classes.controls}>
         <Typography variant="subtitle1" color="textSecondary">
           <span>${price}</span>
         </Typography>
       </div>
+      <div className={classes.controls}>
+        <Typography variant="subtitle1" color="textSecondary">
+          <span>${total}</span>
+        </Typography>
+      </div>
+      <Typography variant="subtitle1" color="textSecondary">
+            {status}
+          </Typography>
+      <div>
         <IconButton onClick={() => deleteCart(id)}>
           <DeleteIcon />
         </IconButton>
-
-        <Link to={`/admProdDetail/${id}`}>Editar</Link>
+ 
+        <Link to={`/admProdDetail/${orderId}`}>Editar</Link>
+      </div> */}
     </Card>
   );
 }

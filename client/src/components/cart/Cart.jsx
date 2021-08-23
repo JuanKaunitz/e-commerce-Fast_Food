@@ -11,6 +11,7 @@ import { updateCart,
   orderRedux, 
   orderFinal,
   updateOrderFinal,
+  deleteOrden
 } from "../../Redux/actions/actions";
 import {
   deleteCart,
@@ -32,14 +33,16 @@ const useStyles = makeStyles(() => ({
     color: "white",
   },
 }));
-
+//console.log("yoop")
 const Cart = (props) => {
-  console.log(props)
+  //console.log(props)
   const dispatch = useDispatch();
 
-  const carts = useSelector((state) => state.order);
+  const carts = useSelector((state) => state.cart);
   const client = useSelector((state) => state.client);
-  //const carts = JSON.parse(localStorage.getItem('order'))
+  const token = useSelector(state => state.clientToken);
+  const orderUser = useSelector(state => state.orderUser);
+
   useEffect(() => {
     if (carts.length <= 0 ) {
       if (localStorage.getItem("order")) {
@@ -47,25 +50,26 @@ const Cart = (props) => {
         dispatch(updateCart(object));
       }
     }
-  }, [dispatch, carts]);
+    // eslint-disable-next-line
+  }, [dispatch]);
 
-  function token(cart){
-    const precioTotal = sumaPrecioTotal(cart);
-    const cantidadTotal = sumaCantidadTotal(cart);
-      const order = {
-        clientId: client._id,
-        token: client.token,
-        precioTotal: precioTotal,
-        totalProductos: cantidadTotal,
-        order: cart,
-        status: "carrito",
-      }
-      dispatch(orderRedux(order));
-      if(client.order._id){
-        dispatch(updateOrderFinal(client.order._id, order))
-      }else{
-        dispatch(orderFinal(order))
-      }
+  function cartBack(cart){
+    const idOrder = localStorage.getItem('idOrderUser');
+    const fecha = new Date();
+
+    const order = {
+      id: client._id,
+      token: token,
+      order: cart,
+      status: "carrito",
+      date: fecha.toUTCString(),
+    }
+    dispatch(orderRedux(order));
+    if(idOrder){
+      dispatch(updateOrderFinal(idOrder, order))
+    }else{
+      dispatch(orderFinal(order))
+    }
   }
 
   function handleDeleteCart(id) {
@@ -74,8 +78,8 @@ const Cart = (props) => {
     //console.log("TOTAL", sumaProductos);
     dispatch(updateCart(delet));
     dispatch(totalProductosCarrito(cantidadTotal));
-    if(client.token){
-     token(delet);
+    if(token){
+     cartBack(delet);
     }
   }
 
@@ -85,8 +89,8 @@ const Cart = (props) => {
     //console.log("TOTAL", sumaProductos);
     dispatch(updateCart(sum));
     dispatch(totalProductosCarrito(cantidadTotal));
-    if(client.token){
-      token(sum);
+    if(token){
+      cartBack(sum);
      }
   }
 
@@ -96,8 +100,8 @@ const Cart = (props) => {
     //console.log("TOTAL", sumaProductos);
     dispatch(updateCart(resta));
     dispatch(totalProductosCarrito(cantidadTotal));
-    if(client.token){
-      token(resta);
+    if(token){
+      cartBack(resta);
      }
   }
 
@@ -105,8 +109,11 @@ const Cart = (props) => {
     localStorage.removeItem("order");
     dispatch(updateCart([]));
     dispatch(totalProductosCarrito(0));
-    if(client.token){
-      //ver borrado de orden en el back
+    if(token){
+      const idOrder = localStorage.getItem('idOrderUser');
+      localStorage.removeItem("idOrderUser");
+      const borrado = orderUser.filter(e => e._id !== idOrder) 
+      dispatch(deleteOrden(idOrder, borrado))
      }
   }
 
@@ -130,7 +137,7 @@ const Cart = (props) => {
       <Grid container className={classes.root} spacing={2}>
         {carts
           ? carts.map((e) => (
-              <Grid item key={e.CardCartid} xs={12}>
+              <Grid item key={e.id} xs={12}>
                 <CardCart
                   id={e.id}
                   name={e.name}

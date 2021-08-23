@@ -26,9 +26,14 @@ import { useSelector, useDispatch } from "react-redux";
 import {
   categoryName,
   changeStatus,
+  orderRedux,
   totalProductosCarrito,
-  updateCart
+  updateCart,
+  updateOrderFinal,
+  clearToken,
+  getCategories
 } from "../../Redux/actions/actions";
+import { useHistory } from "react-router-dom";
 
 export const Navbar = () => {
   const dispatch = useDispatch();
@@ -38,6 +43,8 @@ export const Navbar = () => {
   const categories = useSelector((state) => state.allCategories);
   const totalCarrito = useSelector((state) => state.totalCarrito);
   const adminClient = useSelector((state) => state.client);
+  const token = useSelector((state) => state.clientToken);
+  
 
   const [input, setInput] = useState({ status: false });
 
@@ -56,11 +63,33 @@ export const Navbar = () => {
   }
 
   function handleLogout() {
+    if(localStorage.getItem('idOrderUser') && JSON.parse(localStorage.getItem('order'))){
+      const idOrder = localStorage.getItem('idOrderUser');
+      const orderCarrito = JSON.parse(localStorage.getItem('order'));
+      const fecha = new Date();
+      const order = {
+        order: orderCarrito,
+        status: "carrito",
+        date: fecha.toUTCString(),
+      }
+      console.log("order para logout", order)
+      dispatch(updateOrderFinal(idOrder, order))
+
+    }
+
     const id = adminClient._id;
     dispatch(changeStatus(id, input));
-    localStorage.removeItem("order"); 
+    localStorage.removeItem("order");
+    localStorage.removeItem("idOrderUser");
+    dispatch(orderRedux({
+      id: "",
+      token: "",
+      order: [],
+      status: "",
+      date: "",
+    }));
     dispatch(totalProductosCarrito(0));
-    dispatch(updateCart([]));
+    dispatch(updateCart([]));    
    }
 
   return (
@@ -91,7 +120,7 @@ export const Navbar = () => {
             </Button>
             <SerchBar />
             <div className={classes.toolbarButtons}>
-              {adminClient.role === "ADMIN" && adminClient.status === true ? (
+              {token && adminClient.role === "ADMIN" ? (
                 <NavLink
                   className={classes.MuiButtonLabel}
                   to="/AdminPanel"
@@ -112,7 +141,7 @@ export const Navbar = () => {
                 </NavLink>
               </IconButton>
 
-              {adminClient.status === undefined ? (
+              {!token? (
                 <Button color="inherit">
                   <NavLink
                     className={classes.MuiButtonLabel}
@@ -172,7 +201,7 @@ export const Navbar = () => {
         <Divider />
         <List>
           {" "}
-          {categories.map((e) => (
+          {categories?.map((e) => (
             <ListItem button key={e.name}>
               {/* <ListItemIcon></ListItemIcon> */}
               <Link to="/categories">

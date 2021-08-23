@@ -1,8 +1,9 @@
 import React, { useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
-import { NavLink } from "react-router-dom";
-import { authUser, changeStatus, updateClient, sendEmail } from "../../Redux/actions/actions";
+import { useDispatch } from "react-redux";
+//import { NavLink } from "react-router-dom";
+import { authUser } from "../../Redux/actions/actions";
 import styles1 from "./styles1.module.css";
+import { useHistory } from "react-router-dom";
 
 
 export function validate(input) {
@@ -21,16 +22,16 @@ export function validate(input) {
   return errors;
 }
 
-  
 const FormLogin = () => {
   const dispatch = useDispatch();
-  //const client = useSe
-  const adminClient = useSelector((state) => state.client)
-  const [estado, setEstado] = useState({status:true});
+  const history = useHistory();
+  /* const adminClient = useSelector((state) => state.client);
+  const [estado, setEstado] = useState({ status: true }); */
+  
+
   const [input, setInput] = useState({
     email: "",
     password: "",
-   
   });
 
   const [errors, setErrors] = useState({});
@@ -49,30 +50,29 @@ const FormLogin = () => {
     );
   };
 
-  const handleSubmit = (e) => {
-    e.preventDefault(); 
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    console.log("INPUT", input);
     dispatch(authUser(input));
-    dispatch(sendEmail(input));
-   
-    //let object = JSON.parse(localStorage.getItem('order'));
+
+    setInput({
+      email: "",
+      password: "",
+    });
+
+    history.push('/')
   };
-  
-  // setInput({
-  //   email: "",
-  //   password: "",
-  // });
 
   return (
     <div>
       <form className={styles1.form} onSubmit={handleSubmit}>
-        <text className={styles1.texto}>Formulario de Loggin</text>
+        <h2 className={styles1.texto}>Formulario de Loggin</h2>
         <div>
           <label className={styles1.label}>Email:</label>
           <input
             className={styles1.input1}
             type="email"
             name="email"
-            // className={styles1.field}
             onChange={handleInputChange}
             value={input.email}
           />
@@ -90,14 +90,11 @@ const FormLogin = () => {
           />
           {errors.password && <p className="danger">{errors.password}</p>}
         </div>
-     
+
         <input className={styles1.btnregister} type="submit" value="Submit" />
-      
       </form>
-      
     </div>
   );
 };
 
 export default FormLogin;
-

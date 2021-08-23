@@ -14,42 +14,39 @@ const Form = () => {
     dispatch(getCategories());
   }, [dispatch]);
 
-  
   const [input, setInput] = useState({
     name: "",
     type: "",
-    image: '',
+    image: "",
     identifier: "",
     price: "",
     description: "",
     stock: true,
-    categories: {}
+    categories: {},
   });
-
 
   const saveProduct = () => {
     dispatch(createProduct(input));
   };
-  
+
   const handleSubmit = (e) => {
     e.preventDefault();
     setInput(input);
     saveProduct();
     //props.history.push("/AdminPanel");
   };
-  
+
   const handleInputChange = function (e) {
     setInput({
       ...input,
       [e.target.name]: e.target.value,
     });
   };
-  
+console.log(input)
   const handleInputCategory = function (e) {
     var filtradoCategory = category.filter((el) => el.name === e.target.value);
     dispatch(getTypes(filtradoCategory[0].types));
   };
-  
 
   return (
     <div className={styles.form_content}>
@@ -78,22 +75,25 @@ const Form = () => {
             required
           />
         </div>
-
-        <div className = "img">
+{/* 
+        <div className="img">
           <label>Insert an URL for your image</label>
-          <input 
-          type="url"
-          name="image"
-          onChange={handleInputChange}
-          value={input.image}
+          <input
+            type="url"
+            name="image"
+            onChange={handleInputChange}
+            value={input.image}
           />
+        </div> */}
 
+        <div className="filedrop">
+        <label>Insert an URL for your drop</label>
+          <FileDrop
+            name="image"
+            onChange={handleInputChange}
+            value={input.image}
+          />
         </div>
-
-        <div className = "filedrop">
-          <FileDrop />
-        </div>
-
 
         <div className={styles.form_group}>
           <label>Price:</label>

@@ -20,6 +20,8 @@ import NewProduct from "./components/UserAdmin/NewProduct.jsx";
 import AdminCategories from "./components/UserAdmin/AdminCategories.jsx";
 import AdminCategoryDetail from "./components/UserAdmin/AdminCategoryDetail.jsx";
 import NewCategory from "./components/UserAdmin/NewCategory.jsx";
+import OrdersPanel from "./components/UserAdmin/OrdersPanel.jsx";
+import OrderEdit from "./components/UserAdmin/OrderEdit.jsx";
 import Mercado from "./components/Pasarela/index.jsx";
 // import EditProduct from "./components/editProduct/EditProduct.jsx";
 import Checkout from "./components/payment/Checkout.js";
@@ -51,6 +53,8 @@ function App() {
         <Route exact path="/adminCategories" component={AdminCategories} />
         <Route exact path="/categoryDetail/:id" component={AdminCategoryDetail} />
         <Route exact path="/newCategory" component={NewCategory} />
+        <Route exact path="/ordersPanel" component={OrdersPanel} />
+        <Route exact path="/orderEdit/:id" component={OrderEdit} />
         <Route exact path="/mercadopago" component={Mercado} />
         <Route
           path="/payment"

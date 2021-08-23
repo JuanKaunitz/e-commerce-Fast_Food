@@ -21,22 +21,15 @@ const AdminCategories = () => {
 
   return (
     <div className="list">
-      <br></br>
-      <br></br>
-      <br></br>
-      <br></br>
-      <br></br>
+      
       <h1 className="list">Panel de Categorias</h1>
       <Link to="/adminPanel">
-        {" "}
         <button>Admin Panel</button>
       </Link>
       <Link to="/clients">
-        {" "}
         <button>Clients Panel</button>
       </Link>
       <Link to="/newCategory">
-        {" "}
         <button>New Category</button>
       </Link>
 
