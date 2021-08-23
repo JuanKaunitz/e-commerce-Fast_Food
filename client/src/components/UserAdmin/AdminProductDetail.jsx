@@ -27,6 +27,7 @@ export default function AdminProductDetail(props) {
 
   useEffect(() => {
     getItemProduct();
+    // eslint-disable-next-line
   }, []);
   
   const productEdit = useSelector((state) => state.editProduct);

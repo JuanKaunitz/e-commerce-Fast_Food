@@ -75,67 +75,38 @@ export default function CardProduct({
   const [isFlipped, setIsFlipped] = useState(false);
   const [counter, setCounter] = useState(0);
   const client = useSelector(state => state.client);
-  // const token = useSelector(state => state.clientToken);
-  const orderUser = useSelector(state => state.orderUser);
-  const carts = useSelector((state) => state.order);
-  // const client = useSelector((state) => state.client);
-  const items = useSelector((state) => state.totalCarrito);
+  const token = useSelector(state => state.clientToken);
 
-  useEffect(() => {
-    if (carts?.length <= 0) {
-      if (localStorage.getItem("order")) {
-        let object = JSON.parse(localStorage.getItem("order"));
-        dispatch(updateCart(object));
-      }
-    }
-  }, [dispatch]);
 
-  function token(cart) {
-    const precioTotal = sumaPrecioTotal(cart);
-    const cantidadTotal = sumaCantidadTotal(cart);
+  function cartBack(cart){
+    const idOrder = localStorage.getItem('idOrderUser');
+    const fecha = new Date();
+
     const order = {
-      clientId: client._id,
-      token: client.token,
-      precioTotal: precioTotal,
-      totalProductos: cantidadTotal,
+      id: client._id,
+      token: token,
       order: cart,
       status: "carrito",
-    };
+      date: fecha.toUTCString(),
+    }
     dispatch(orderRedux(order));
-    if (client.order._id) {
-      dispatch(updateOrderFinal(client.order._id, order));
-    } else {
-      dispatch(orderFinal(order));
+    if(idOrder){
+      dispatch(updateOrderFinal(idOrder, order))
+    }else{
+      dispatch(orderFinal(order))
     }
   }
+
   const detail = {
     _id: id,
     name: name,
     image: image,
     price: price,
     description: description,
+    stock: stock
   };
 
-  function handleDeleteCart(id) {
-    const delet = deleteCart(id);
-    const cantidadTotal = sumaCantidadTotal(delet);
-    dispatch(updateCart(delet));
-    dispatch(totalProductosCarrito(cantidadTotal));
-    if (client.token) {
-      token(delet);
-    }
-  }
 
-  function handleRes(id) {
-    setCounter(counter - 1);
-    const resta = resProduct(id);
-    const cantidadTotal = sumaCantidadTotal(resta);
-    dispatch(updateCart(resta));
-    dispatch(totalProductosCarrito(cantidadTotal));
-    if (client.token) {
-      token(resta);
-    }
-  }
   const handleNext = () => {
     setIsFlipped(!isFlipped);
   };
@@ -146,32 +117,9 @@ export default function CardProduct({
     const cantidadTotal = sumaCantidadTotal(cart);
     dispatch(updateCart(cart));
     dispatch(totalProductosCarrito(cantidadTotal))
-    if(client.token){
-      const idOrder = localStorage.getItem('idOrderUser');
-      const fecha = new Date();
-      const precioTotal = sumaPrecioTotal(cart);
-      const order = {
-        id: client._id,
-        token: token,
-        order: cart,
-        status: "carrito",
-        date: fecha.toUTCString(),
-      }
-    if (client.token) {
-      dispatch(orderRedux(order));
-      if(idOrder){
-        dispatch(updateOrderFinal(idOrder, order))
-      }else{
-        dispatch(orderFinal(order))
-      };
-      dispatch(orderRedux(order));
-      if (client.order._id) {
-        dispatch(updateOrderFinal(client.order._id, order));
-      } else {
-        dispatch(orderFinal(order));
-      }
+    if(token){
+      cartBack(cart)
     }
-  }
   }
   //--flippcard--//
 
@@ -221,7 +169,9 @@ export default function CardProduct({
               {name}
             </Typography>
             <Divider />
-            <CardMedia className={classes.media} image={image} title={name} />
+            <Typography className={classes.pos} color="textSecondary">
+             Descrition: {description}
+            </Typography>
            
             <Typography className={classes.pos} color="textSecondary">
              Precio: ${price}
@@ -232,13 +182,6 @@ export default function CardProduct({
               aria-label="contained primary button group"
               component='div'
             >
-              <Button onClick={() => handleRes(id)} color="secondary">
-                --
-              </Button>
-              <TextField
-                variant="outlined"
-                value={counter}
-              />
               <Button onClick={() => handleAddCart()} color="primary">
                 +
               </Button>

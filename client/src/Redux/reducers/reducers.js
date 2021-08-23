@@ -19,13 +19,16 @@ import {
   UPDATE_PRODUCT,
   CREATE_TYPE,
   GOOGLE_LOGIN,
-  CLIENT_STATUS,
+  ALL_ORDERS,
+  EDIT_ORDER,
+  CLIENT_STATUS,  
   GET_USER_BY_ID,
   UPDATE_CART,
   ORDER_REDUX,
   TOTAL_CARRITO,
   BAND_ORDER_USER,
   NEW_ORDER_USER,
+  CLEAR_TOKEN,
   /* ASC,
   DESC */
 } from "../constants";
@@ -56,7 +59,9 @@ const initialState = {
   orderUser:[],
   totalCarrito: 0,
   types: [],
-  googleUser: {},
+  googleUser: {}, 
+  allOrders: [],
+  editOrder: {}, 
   bandOrderUser: true,
 };
 
@@ -123,6 +128,7 @@ const rootReducer = (state = initialState, action) => {
         ...state,
         client: action.payload.user,
         clientToken: action.payload.token,
+        bandOrderUser: true,
       };
 
     case UPDATE_CART:
@@ -143,11 +149,17 @@ const rootReducer = (state = initialState, action) => {
         bandOrderUser: false,
       }
 
-    case NEW_ORDER_USER:
+    case "DELETE_ORDEN":
       return{
         ...state,
-        orderUser: [action.payload],
-        bandOrderUser: true,
+        orderUser: action.payload
+      }
+
+    case NEW_ORDER_USER:
+      localStorage.setItem('idOrderUser', action.payload._id);
+      return{
+        ...state,
+        orderUser: state.orderUser.concat(action.payload)
       }
 
     case GET_USER_BY_ID:
@@ -225,10 +237,24 @@ const rootReducer = (state = initialState, action) => {
          ...state,
          googleUser: action.payload
        };
+
+       case ALL_ORDERS:
+        return {
+          ...state,
+          allOrders: action.payload,
+        };
+
+        case EDIT_ORDER:
+      return {
+        ...state,
+        editOrder: action.payload,
+      };
       case CLIENT_STATUS:
         return{
           ...state,
-          client:action.payload
+          clientToken: "",
+          client: {},
+          orderUser:[],
         }
        
         
