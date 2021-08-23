@@ -29,11 +29,9 @@ import {
   orderRedux,
   totalProductosCarrito,
   updateCart,
-  updateOrderFinal,
-  clearToken,
-  getCategories
+  updateOrderFinal,  
 } from "../../Redux/actions/actions";
-import { useHistory } from "react-router-dom";
+
 
 export const Navbar = () => {
   const dispatch = useDispatch();
@@ -89,10 +87,7 @@ export const Navbar = () => {
       date: "",
     }));
     dispatch(totalProductosCarrito(0));
-    dispatch(updateCart([]));
-    dispatch(clearToken());
-    //dispatch(getCategories())
-    
+    dispatch(updateCart([]));    
    }
 
   return (
@@ -123,7 +118,7 @@ export const Navbar = () => {
             </Button>
             <SerchBar />
             <div className={classes.toolbarButtons}>
-              { token && adminClient.role === "ADMIN"  ? (
+              {token && adminClient.role === "ADMIN" ? (
                 <NavLink
                   className={classes.MuiButtonLabel}
                   to="/AdminPanel"
@@ -144,7 +139,7 @@ export const Navbar = () => {
                 </NavLink>
               </IconButton>
 
-              { token === '' ? (
+              {!token? (
                 <Button color="inherit">
                   <NavLink
                     className={classes.MuiButtonLabel}

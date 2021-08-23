@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { makeStyles } from "@material-ui/core/styles";
 import Card from "@material-ui/core/Card";
@@ -12,11 +12,8 @@ import {
   updateOrderFinal,
 } from "../../Redux/actions/actions";
 import {
-  addCarts,
-  deleteCart,
-  resProduct,
-  sumaCantidadTotal,
-  sumaPrecioTotal,
+  addCarts,  
+  sumaCantidadTotal,  
 } from "../cart/utilsCarts.js";
 ////aparte
 import CardContent from "@material-ui/core/CardContent";
@@ -27,8 +24,7 @@ import {
   ButtonGroup,
   CardActionArea,
   Divider,
-  TextField,
-  Box
+  TextField, 
 } from "@material-ui/core";
 import Button from "@material-ui/core/Button";
 import ReactCardFlip from "react-card-flip";
@@ -77,9 +73,6 @@ export default function CardProduct({
   const [counter, setCounter] = useState(0);
   const client = useSelector(state => state.client);
   const token = useSelector(state => state.clientToken);
-  const orderUser = useSelector(state => state.orderUser);
-  const carts = useSelector((state) => state.order);
-  const items = useSelector((state) => state.totalCarrito);
 
 
   function cartBack(cart){
@@ -110,17 +103,6 @@ export default function CardProduct({
     stock: stock
   };
 
-
-  function handleRes(id) {
-    /* setCounter(counter - 1);
-    const resta = resProduct(id);
-    const cantidadTotal = sumaCantidadTotal(resta);
-    dispatch(updateCart(resta));
-    dispatch(totalProductosCarrito(cantidadTotal));
-    if (token) {
-      cartBack(resta);
-    } */
-  }
 
   const handleNext = () => {
     setIsFlipped(!isFlipped);
@@ -184,7 +166,9 @@ export default function CardProduct({
               {name}
             </Typography>
             <Divider />
-            <CardMedia className={classes.media} image={image} title={name} />
+            <Typography className={classes.pos} color="textSecondary">
+             Descrition: {description}
+            </Typography>
            
             <Typography className={classes.pos} color="textSecondary">
              Precio: ${price}
@@ -193,11 +177,8 @@ export default function CardProduct({
                 size="small"
                 variant="contained"
                 aria-label="contained primary button group"
-                >
-              <Box>
-              <Button onClick={() => handleRes(id)} color="secondary">
-                --
-              </Button>
+                >              
+             
               <TextField
                 variant="outlined"
                 value={counter}
@@ -205,7 +186,7 @@ export default function CardProduct({
               <Button onClick={() => handleAddCart()} color="primary">
                 +
               </Button>
-            </Box>
+           
             </ButtonGroup>
           </CardContent>
         </Card>

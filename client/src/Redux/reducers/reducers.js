@@ -27,8 +27,7 @@ import {
   ORDER_REDUX,
   TOTAL_CARRITO,
   BAND_ORDER_USER,
-  NEW_ORDER_USER,
-  CLEAR_TOKEN,
+  NEW_ORDER_USER,  
   /* ASC,
   DESC */
 } from "../constants";
@@ -149,6 +148,12 @@ const rootReducer = (state = initialState, action) => {
         bandOrderUser: false,
       }
 
+    case "DELETE_ORDEN":
+      return{
+        ...state,
+        orderUser: action.payload
+      }
+
     case NEW_ORDER_USER:
       localStorage.setItem('idOrderUser', action.payload._id);
       return{
@@ -246,13 +251,10 @@ const rootReducer = (state = initialState, action) => {
       case CLIENT_STATUS:
         return{
           ...state,
-          client:action.payload
-        }; 
-
-      case CLEAR_TOKEN:
-        return {
-          clientToken: ''
-        };
+          clientToken: "",
+          client: {},
+          orderUser:[],
+        }
        
         
     default:

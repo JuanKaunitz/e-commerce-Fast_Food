@@ -41,6 +41,7 @@ const Cart = (props) => {
   const carts = useSelector((state) => state.cart);
   const client = useSelector((state) => state.client);
   const token = useSelector(state => state.clientToken);
+  const orderUser = useSelector(state => state.orderUser);
 
   useEffect(() => {
     if (carts.length <= 0 ) {
@@ -111,7 +112,8 @@ const Cart = (props) => {
     if(token){
       const idOrder = localStorage.getItem('idOrderUser');
       localStorage.removeItem("idOrderUser");
-      dispatch(deleteOrden(idOrder))
+      const borrado = orderUser.filter(e => e._id !== idOrder) 
+      dispatch(deleteOrden(idOrder, borrado))
      }
   }
 
