@@ -7,7 +7,9 @@ import { Link } from "react-router-dom";
 
 
 
-export function validate(input, password) {
+
+
+export function validate(input) {
   let errors = {};
   if (!input.email) {
     errors.email = "Email is required";
@@ -32,27 +34,28 @@ export function validate(input, password) {
 
 const FormRegister = () => {
   const dispatch = useDispatch();
-
+  
   const [input, setInput] = useState({
     name: "",
     email: "",
     password: "",
     password2: ""
   });
+  
+  
 
-
-
+  
   const [errors, setErrors] = useState({});
-
+  
   const [showloginButton, setShowloginButton] = useState(true);
   const [showlogoutButton, setShowlogoutButton] = useState(false);
-
+  
   const handleInputChange = function (e) {
     setInput({
       ...input,
       [e.target.name]: e.target.value,
     });
-
+    
     setErrors(
       validate({
         ...input,
@@ -64,7 +67,6 @@ const FormRegister = () => {
   const handleSubmit = (e) => {
     e.preventDefault();
     console.log(input);
-    
     dispatch(newUser(input));
     setInput({
       name: "",

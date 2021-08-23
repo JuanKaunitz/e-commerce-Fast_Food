@@ -3,6 +3,7 @@ const bcrypt = require("bcrypt");
 const multer = require("multer");
 const shortid = require("shortid");
 const { populate } = require("../models/User");
+const emailer = require('../mail/emailer');
 
 const configMulter = {
   storage: (fileStorage = multer.diskStorage({
@@ -77,6 +78,7 @@ exports.createUsers = async (req, res) => {
   const newUser = req.body;
   const { password } = req.body;
   const user = new User(newUser);
+  
 
   //encriptar contraseña del
   const salt = bcrypt.genSaltSync();

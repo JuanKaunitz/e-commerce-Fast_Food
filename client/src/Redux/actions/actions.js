@@ -24,7 +24,8 @@ import {
     LOWER_PRICE,
     CLIENT_UPDATE,
     GOOGLE_LOGIN,
-    CLIENT_STATUS
+    CLIENT_STATUS,
+    SEND_EMAIL
    
 
 } from '../constants'
@@ -207,11 +208,7 @@ export const categoryName = (name) => (dispatch) => {
 //Autenticación de usuario.  
 export const authUser =  (user) => async (dispatch) => {
     try {
-        const client = await axios.post(`${URL}/food/api/auth-sesion`, user);
-        const prueba=client.data.user.status=true
-        // console.log("LA RES1",client)
-        // const res = await axios.put(`${URL}/food/api/user/${client.data.user._id}`, prueba);
-        // console.log("LA RES2",res)
+        const client = await axios.post(`${URL}/food/api/auth-sesion`, user)
         dispatch({
             type: LOGIN_CLIENT,
             payload: client.data.user
@@ -377,6 +374,18 @@ export const changeStatus = (id, input) => async (dispatch) => {
         console.log(err)
     }
 }
+
+export const sendEmail = (input) => async (dispatch) => {
+    try {
+      const res = await axios.post(`${URL}/food/api/send-email`, input)
+      dispatch({
+          type: SEND_EMAIL,
+          payload: res.data
+      })
+    } catch(err) {
+        console.log(err)
+    }
+} 
 
 
 
