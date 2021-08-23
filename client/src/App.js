@@ -11,7 +11,7 @@ import Register from "./components/register/Register.jsx";
 import CardDetails from "./components/details/CardDetails.jsx";
 import Categories from "./components/categories/Categories.jsx";
 import Form from "./components/Form/Form.jsx";
-import FormNav from "./components/LogForm/FormNav.jsx";
+import FormNav from "./components/login/FormNav.jsx";
 import AdminPanel from "./components/UserAdmin/AdminPanel.jsx";
 import AdminProductDetail from "./components/UserAdmin/AdminProductDetail.jsx"
 import GetClients from "./components/UserAdmin/GetClients.jsx";
@@ -23,11 +23,11 @@ import NewCategory from "./components/UserAdmin/NewCategory.jsx";
 import OrdersPanel from "./components/UserAdmin/OrdersPanel.jsx";
 import OrderEdit from "./components/UserAdmin/OrderEdit.jsx";
 import Mercado from "./components/Pasarela/index.jsx";
-// import EditProduct from "./components/editProduct/EditProduct.jsx";
 import Checkout from "./components/payment/Checkout.js";
 // import CheckoutForm from "./components/payment/CheckoutForm.jsx";
 //styles
 import "./App.css";
+import Password from "./components/resetpassword/Password.js";
 const KEY_STRIPE=process.env
 
 const stripePromise = loadStripe(`${KEY_STRIPE}`);
@@ -44,7 +44,7 @@ function App() {
         <Route exact path="/form" component={Form} />
         <Route exact path="/categories" component={Categories} />
         <Route exact path="/register" component={Register} />
-        {/* <Route exact path="/formregister" component={FormNav} />      /   */}
+        <Route exact path="/reset-password" component={Password} />      /  
         <Route exact path="/adminPanel" component={AdminPanel} />
         <Route exact path="/admProdDetail/:id" component={AdminProductDetail} />  
         <Route exact path="/clients" component={GetClients} />   

@@ -35,6 +35,14 @@ const UserSchema = new Schema({
     type: mongoose.Schema.Types.ObjectId,
     ref: "Order",
   }],
+  token:{
+    type:String
+  },
+  expireToken:{
+    type:Date
+  }
+  
+
 });
 
 // Autenticar Usuarios

@@ -3,7 +3,7 @@ import { useDispatch } from "react-redux";
 //import { NavLink } from "react-router-dom";
 import { authUser } from "../../Redux/actions/actions";
 import styles1 from "./styles1.module.css";
-import { useHistory } from "react-router-dom";
+import { Link, useHistory } from "react-router-dom";
 
 
 export function validate(input) {
@@ -92,6 +92,7 @@ const FormLogin = () => {
         </div>
 
         <input className={styles1.btnregister} type="submit" value="Submit" />
+      <Link to='/reset-password'>Olvide mi contraseña</Link>
       </form>
     </div>
   );

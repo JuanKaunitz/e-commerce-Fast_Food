@@ -28,6 +28,7 @@ import {
   TOTAL_CARRITO,
   BAND_ORDER_USER,
   NEW_ORDER_USER,
+  RESET_PASSWORD,
   CLEAR_TOKEN,
   /* ASC,
   DESC */
@@ -63,6 +64,8 @@ const initialState = {
   allOrders: [],
   editOrder: {}, 
   bandOrderUser: true,
+  resetPassword:{}
+
 };
 
 const rootReducer = (state = initialState, action) => {
@@ -257,7 +260,11 @@ const rootReducer = (state = initialState, action) => {
           orderUser:[],
         }
        
-        
+        case RESET_PASSWORD:
+          return{
+            ...state,
+            resetPassword:action.payload
+          }
     default:
       return state;
   }
