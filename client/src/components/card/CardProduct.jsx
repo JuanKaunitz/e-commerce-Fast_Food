@@ -28,6 +28,7 @@ import {
   CardActionArea,
   Divider,
   TextField,
+  Box
 } from "@material-ui/core";
 import Button from "@material-ui/core/Button";
 import ReactCardFlip from "react-card-flip";
@@ -189,10 +190,11 @@ export default function CardProduct({
              Precio: ${price}
             </Typography>
             <ButtonGroup
-              size="small"
-              variant="contained"
-              aria-label="contained primary button group"
-            >
+                size="small"
+                variant="contained"
+                aria-label="contained primary button group"
+                >
+              <Box>
               <Button onClick={() => handleRes(id)} color="secondary">
                 --
               </Button>
@@ -203,6 +205,7 @@ export default function CardProduct({
               <Button onClick={() => handleAddCart()} color="primary">
                 +
               </Button>
+            </Box>
             </ButtonGroup>
           </CardContent>
         </Card>
