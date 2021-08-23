@@ -80,6 +80,7 @@ exports.createUsers = async (req, res) => {
   const newUser = req.body;
   const { password } = req.body;
   const user = new User(newUser);
+
   
 
   //encriptar contraseña del
