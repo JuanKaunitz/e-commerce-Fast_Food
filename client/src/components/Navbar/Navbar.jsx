@@ -25,7 +25,12 @@ import Badge from "@material-ui/core/Badge";
 import SerchBar from "../serchbar/SerchBar";
 import { useLocation, Link } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
-import { categoryName } from "../../Redux/actions/actions";
+import {
+  categoryName,
+  changeStatus,
+  totalProductosCarrito,
+  updateCart
+} from "../../Redux/actions/actions";
 const useStyles = makeStyles((theme) => ({
   grow: {
     flexGrow: 1,
@@ -43,12 +48,12 @@ const useStyles = makeStyles((theme) => ({
     },
   },
   home: {
-    color: "#f7ba33",
+    color: "orange",
     width: "100px",
     height: "40px",
   },
   root: {
-    background: "#f7ba33",
+    background: "black",
     borderRadius: 3,
     width: "10px",
     height: 40,
@@ -73,10 +78,10 @@ const useStyles = makeStyles((theme) => ({
     },
   },
   carrito: {
-    color: "#f7ba33",
+    color: "orange",
   },
   button: {
-    color: "#f7ba33",
+    color: "orange",
   },
   grid: {
     justifyContent: "strech",
@@ -91,7 +96,7 @@ const useStyles = makeStyles((theme) => ({
     width: "auto",
     position: "auto",
     justifyContent: "strech",
-    backgroundColor: "#54075b",
+    backgroundColor: "black",
     display: "flex",
     alignItems: "center",
     // margin:'auto',
@@ -172,9 +177,9 @@ export const Navbar = () => {
 
   return (
     <div className={classes.row}>
-      <AppBar position="fixed" style={{ backgroundColor: "#54075b" }}>
-        <Grid container>
-          <Grid item lg={6} md={6} xs={12}>
+      <AppBar position="fixed" style={{ backgroundColor: "black" }}>
+        <Grid container direction="row">
+          <Grid items lg={8} xl={4} md={8} xs={10}>
             <Toolbar>
               <Button
                 font-family="sans-serif"
@@ -195,7 +200,7 @@ export const Navbar = () => {
               <SerchBar className={classes.searchbar} />
             </Toolbar>
           </Grid>
-          <Grid item lg={6} md={6} xs={12}>
+          <Grid item lg={4} xl={8} md={6} xs={10}>
             <div className={classes.link}>
               <IconButton color="inherit">
                 <Link to="/AdminPanel">

@@ -8,6 +8,7 @@ import Order from "../order/Order";
 
 const useStyles = makeStyles((theme) => ({
   root: {
+    color:'black',
     marginLeft: 80,
     marginTop:20,
     width:'80%',
@@ -16,6 +17,9 @@ const useStyles = makeStyles((theme) => ({
   color:{
     color:"white",
     marginTop:"100px"
+  },
+  button:{
+    backgroundColor:'black',
   }
 
 }));
@@ -110,11 +114,11 @@ const Categories = () => {
         )
         }
       </Grid>
-      <div className="paginado">
-        <button value="prev" onClick={handlePrev} disabled={page <= 0}>
+      <div >
+        <button className={classes.button} value="prev" onClick={handlePrev} disabled={page <= 0}>
           Prev
         </button>
-        <p className="pagina"> {page + 1} </p>
+        <p > {page + 1} </p>
         <button
           value="next"
           onClick={handleNext}

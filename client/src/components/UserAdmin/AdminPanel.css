@@ -1,7 +1,7 @@
 *.list  {
-  color: white,
+  color: rgb(17, 3, 3),
 }
-.tabs{
-background-color: aquamarine;
+.root{
+background-color: black;
 
 }

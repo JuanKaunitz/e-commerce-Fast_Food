@@ -12,6 +12,10 @@ const useStyles = makeStyles(() => ({
     height: "auto",
     maxWidth: 1024,
   },
+  input_text:{
+    color:'black'
+  }
+
 }));
 
 export default function GridCardsProducts() {
@@ -64,7 +68,7 @@ export default function GridCardsProducts() {
             <h4>Product not found!</h4>
           )
         ) : (
-          getAll.slice(page * 8, page * 8 + 8).map((product) => (
+          getAll.slice(page * 12, page * 12 + 12).map((product) => (
             <Grid item key={product._id} xs={3}>
               <CardProduct
                 id={product._id}
@@ -80,7 +84,7 @@ export default function GridCardsProducts() {
         )}
       </Grid>
       <div className="pagina">
-        <ButtonGroup size="small" variant="contained" color="primary">
+        <ButtonGroup size="small" variant="contained"  >
           <Button
             variant="contained"
             color="primary"

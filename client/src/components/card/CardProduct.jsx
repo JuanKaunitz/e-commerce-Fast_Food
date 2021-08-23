@@ -45,21 +45,37 @@ const useStyles = makeStyles(() => ({
   media: {
     width: 'auto',
     height:100,
-    paddingTop: "50%", // 16:9
+    paddingTop: "10%", // 16:9
+    backgroundColor:'black'
   },
   cardContent: {
-    
-    maxWidth: "250px",
+    maxWidth: "black",
+    backgroundColor:'black',
     maxHeigth: 200,
     boxShadow: "3px 4px 8px #0b0c0c1a",
   },
   headerTitle: {
-    color: "black",
+    color: "white",
     textDecoration: "none",
   },
-  color: {
-    color: "white",
+  title:{
+    color:'white',
+    textAlign:'center'
   },
+  button:{
+    backgroundColor:'orange'
+  },
+  color: {
+    color: "black",
+  },
+  root:{
+    color:'white',
+    textAlign:'center'
+
+  },
+  cointanedSecondary: {
+    backgroundColor:"black"
+  }
 }));
 
 export default function CardProduct({
@@ -198,6 +214,7 @@ export default function CardProduct({
                Precio: ${price}
               </Typography>
               <Button
+                className={classes.button}
                 variant="contained"
                 color="secondary"
                 onClick={handleNext}
@@ -210,7 +227,7 @@ export default function CardProduct({
         {/* frontal */}
         <Card className={classes.root}>
           <CardContent>
-          <Button onClick={handleNext} variant="contained" color="primary">
+          <Button onClick={handleNext} variant="contained" className={classes.button}>
                 <ArrowBackIcon />
               </Button>
             <Typography
@@ -238,7 +255,7 @@ export default function CardProduct({
                 variant="outlined"
                 value={counter}
               />
-              <Button onClick={() => handleAddCart()} color="primary">
+              <Button onClick={() => handleAddCart()} className={classes.button}>
                 +
               </Button>
             </ButtonGroup>

@@ -1,46 +1,57 @@
-
+  
 import React from 'react';
-import {NavLink} from 'react-router-dom';
-import Style from './Footer.module.css';
-import { makeStyles } from "@material-ui/core/styles";
+import Typography from '@material-ui/core/Typography';
+import { makeStyles } from '@material-ui/core/styles';
+import Container from '@material-ui/core/Container';
+import Link from '@material-ui/core/Link';
 import { Grid } from "@material-ui/core";
-import {Button} from "@material-ui/core";
+
 
 const useStyles = makeStyles((theme) => ({
-    container: {
-        
-        display: 'flex',
-        justifyContent: 'center',
-        backgroundColor: '#54075b',
-        width: '100%',
-        height: '10vh',
-        alignItems: 'center',
-        borderStyle: 'solid 1px', 
-        color:'#f7ba33'
-    },
-    about: {
-    padding: '20px',
-    font: 'Roboto Condensed', 
-    fontSize: '16px',
-    color:'#f7ba33'
-    },
-    comida:{
-    padding: '5px',
-    font: 'Roboto Condensed', 
-    fontSize: '16px',
-    color:'#f7ba33'
-    }
-}));
-function Footer(){
-    const classes = useStyles();
-    return(
-        <div className={classes.container}>   
-        
-        <h3 className={classes.fast}>© 2021 FAST FOOD</h3>
-            <h3><NavLink className={classes.comida} to='/' >FAVOURITE FOOD</NavLink></h3>
-            <h3><NavLink className={classes.about} to='/aboutUs' >ABOUT US</NavLink></h3>
-        </div>
-    )
-}
+  root: {
+    display: 'flex',
+    flexDirection: 'row',
+    minHeight: '20vh',
+    color:'white'
+  },
+  main: {
+    marginTop: theme.spacing(8),
+    marginBottom: theme.spacing(2),
+  },
+  footer: {
+    padding: theme.spacing(3, 2),
+    textAlign:'center',
+    marginTop: 'auto',
+    backgroundColor:'black',
+    color:'white'
+  },
+  color: {
+    color:'orange'
 
-export default Footer;
+  }
+
+}));
+
+export default function StickyFooter() {
+  const classes = useStyles();
+
+  return (
+    <Grid cointainer>
+    <Grid items lg={12} md={12} xs={12}>
+    <div className={classes.root}>
+      <footer className={classes.footer}>
+        <Container maxWidth="xs">
+        <Typography variant="body2" className={classes.color}>
+      {'Copyright © '}
+      <Link color="inherit" href="/">
+        App FastFood
+        </Link>
+    </Typography>
+          <Typography variant="body1">Design By Group 10 from Henry</Typography>
+        </Container>
+      </footer>
+    </div>
+    </Grid>
+    </Grid>
+  );
+}

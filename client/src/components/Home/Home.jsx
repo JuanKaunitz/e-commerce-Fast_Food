@@ -1,79 +1,99 @@
 import React, { useEffect } from "react";
-import {useSelector, useDispatch} from "react-redux";
-import "./Home.css";
+import { useSelector, useDispatch } from "react-redux";
 import Footer from "../Footer/Footer";
 import GridCardsProducts from "../cards/CardsProducts";
-import { getAllProducts, updateCart, totalProductosCarrito } from "../../Redux/actions/actions";
-import { bandOrderUser, getTypes, getUserById, orderFinal, orderRedux, updateOrderFinal} from "../../Redux/actions/actions";
+import {
+  getAllProducts,
+  updateCart,
+  totalProductosCarrito,
+} from "../../Redux/actions/actions";
+import {
+  bandOrderUser,
+  getTypes,
+  getUserById,
+  orderFinal,
+  orderRedux,
+  updateOrderFinal,
+} from "../../Redux/actions/actions";
 import Gallery from "../gallery/Gallery";
 import Order from "../order/Order";
 import Otters from "../Otters/Otters";
 import { mergeCart, sumaCantidadTotal } from "../cart/utilsCarts";
+import { Grid } from "@material-ui/core";
+import Maps from "../Map/Maps";
+import { makeStyles } from "@material-ui/core/styles";
 
+
+const useStyles = makeStyles((theme) => ({
+  container: {
+    backgroundColor:'white',
+    padding: '100px',
+    alignItems: 'center',
+  },
+}));
 
 function Home() {
   const dispatch = useDispatch();
-  const client = useSelector(state => state.client);
-  const orderUser = useSelector(state => state.orderUser);
-  const token = useSelector(state => state.clientToken);
-  const band = useSelector(state => state.bandOrderUser);
+  const classes = useStyles();
+  const client = useSelector((state) => state.client);
+  const orderUser = useSelector((state) => state.orderUser);
+  const token = useSelector((state) => state.clientToken);
+  const band = useSelector((state) => state.bandOrderUser);
   //localStorage.removeItem("order");
-  console.log("ID", client)
- // useEffect(() => {
-    if( orderUser.length > 0 && token && band){
-      dispatch(bandOrderUser())
-      const orderFiltrado = orderUser.filter(e => e.status === "carrito");
-      console.log("orderFiltrado", orderFiltrado)
-  
-      if(orderFiltrado.length > 0){
-        console.log("ENTRO ORDERGILTRADO.LENGTH")
-        const carrito = orderFiltrado[0]._id;
-        console.log("CARRITO", carrito);
-        localStorage.setItem('idOrderUser', carrito);
-      }
-      const idOrder = localStorage.getItem('idOrderUser');
-   
-      console.log("ID ORDER", idOrder)
-  
-      let object = JSON.parse(localStorage.getItem('order'));
-      console.log("CARRITO LOCALSTORAGE", object)
-      console.log("CARRITO BACK", orderFiltrado[0].order)
-      const cart = mergeCart(object, orderFiltrado[0].order);
-      console.log("MERGE", cart)
-      localStorage.setItem('order', JSON.stringify(cart));
-      const cantidadTotal = sumaCantidadTotal(cart);
-      dispatch(totalProductosCarrito(cantidadTotal))
-      dispatch(updateCart(cart));
-      const fecha = new Date();
-  
-      const order = {
-        id: client._id,
-        token: token,
-        order: cart,
-        status: "carrito",
-        date: fecha.toUTCString(),
-      }
-      console.log("ORDER PARA ENVIAR", order)
-      dispatch(orderRedux(order));
-      if(idOrder){
-        dispatch(updateOrderFinal(idOrder, order))
-      }else{
-        dispatch(orderFinal(order))
-      }
+  console.log("ID", client);
+  // useEffect(() => {
+  if (orderUser.length > 0 && token && band) {
+    dispatch(bandOrderUser());
+    const orderFiltrado = orderUser.filter((e) => e.status === "carrito");
+    console.log("orderFiltrado", orderFiltrado);
+
+    if (orderFiltrado.length > 0) {
+      console.log("ENTRO ORDERGILTRADO.LENGTH");
+      const carrito = orderFiltrado[0]._id;
+      console.log("CARRITO", carrito);
+      localStorage.setItem("idOrderUser", carrito);
     }
+    const idOrder = localStorage.getItem("idOrderUser");
+
+    console.log("ID ORDER", idOrder);
+
+    let object = JSON.parse(localStorage.getItem("order"));
+    console.log("CARRITO LOCALSTORAGE", object);
+    console.log("CARRITO BACK", orderFiltrado[0].order);
+    const cart = mergeCart(object, orderFiltrado[0].order);
+    console.log("MERGE", cart);
+    localStorage.setItem("order", JSON.stringify(cart));
+    const cantidadTotal = sumaCantidadTotal(cart);
+    dispatch(totalProductosCarrito(cantidadTotal));
+    dispatch(updateCart(cart));
+    const fecha = new Date();
+
+    const order = {
+      id: client._id,
+      token: token,
+      order: cart,
+      status: "carrito",
+      date: fecha.toUTCString(),
+    };
+    console.log("ORDER PARA ENVIAR", order);
+    dispatch(orderRedux(order));
+    if (idOrder) {
+      dispatch(updateOrderFinal(idOrder, order));
+    } else {
+      dispatch(orderFinal(order));
+    }
+  }
   //},[client])
-  
 
   useEffect(() => {
     dispatch(getUserById(client._id))
       .then(dispatch(getAllProducts()))
-      .then(dispatch(getTypes()))
-    
-    
-    const cart = JSON.parse(localStorage.getItem('order'));
-    if(cart === null){
+      .then(dispatch(getTypes()));
+
+    const cart = JSON.parse(localStorage.getItem("order"));
+    if (cart === null) {
       dispatch(totalProductosCarrito(0));
-    }else{
+    } else {
       const cantidadTotal = sumaCantidadTotal(cart);
       dispatch(updateCart(cart));
       dispatch(totalProductosCarrito(cantidadTotal));
@@ -81,13 +101,19 @@ function Home() {
   }, [dispatch]);
 
   return (
-    <div className="content">
-      <Gallery />
-      <Otters />
-      <Order />
-      <GridCardsProducts />
-      <Footer />
-    </div>
+    <Grid cointainer>
+      <Grid item lg={12} xl={12} md={8} xs={12} >
+      <div className={classes.container}> 
+        <Gallery />
+        <Otters />
+        <Order />
+        <GridCardsProducts />
+        {/* <Maps /> */}
+        <Footer />
+        </div>
+        </Grid>
+    </Grid>
   );
 }
+
 export default Home;
