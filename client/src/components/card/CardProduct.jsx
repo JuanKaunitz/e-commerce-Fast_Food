@@ -230,6 +230,7 @@ export default function CardProduct({
               size="small"
               variant="contained"
               aria-label="contained primary button group"
+              component='div'
             >
               <Button onClick={() => handleRes(id)} color="secondary">
                 --
