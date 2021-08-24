@@ -30,6 +30,8 @@ import {
     GET_USER_BY_ID,
     BAND_ORDER_USER,
     NEW_ORDER_USER,
+    RESET_PASSWORD,
+    NEW_PASSWORD
 } from '../constants'
 
 import dotenv from 'dotenv'
@@ -460,3 +462,21 @@ export const changeStatus = (id, input) => async (dispatch) => {
 }
 
     
+export const resetPassword= (email)=> async(dispatch)=>{
+    const sendEmail = await axios.post(`${URL}/food/api/auth-sesion/reset-password`,{email});
+    console.log(sendEmail)
+    dispatch({
+        type:RESET_PASSWORD,
+        payload:sendEmail
+    })
+};
+
+export const newPassword = (token,password) => async(dispatch) =>{
+    console.log(token,password)
+    const resp = await axios.post(`${URL}/food/api/auth-sesion/reset-password/${token}`,{password});
+    console.log(resp)
+    dispatch({
+        type:NEW_PASSWORD,
+        payload:resp
+    })
+}
