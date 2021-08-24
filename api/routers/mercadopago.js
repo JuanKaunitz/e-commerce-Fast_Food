@@ -20,25 +20,14 @@ server.get ('/:id',async(req,res,next) =>{
     res.status(400).json({ msg: "Esa orden no existe" });
     return next();
   }
-
   console.log("ORDEN BACK" ,carrito)
   //res.json(order);
 
-
-
-
-
   const items_ml = carrito.order.map(i =>({
-
-
-  title:i.name,
-  unit_price : parseInt(i.price),
-  quantity : i.count
-
-
+      title:i.name,
+      unit_price : parseInt(i.price),
+      quantity : i.count
   })) 
-
-
 
  //Crea un objeto de preferencia 
 
@@ -46,9 +35,7 @@ server.get ('/:id',async(req,res,next) =>{
   items : items_ml,
   external_reference : `${req.params.id}`, //algo que identifique la orden
   payment_methods:{
-
       excluded_payment_types:[ //metodo de pago excluido
-
           {
               id:'atm'
           }
@@ -81,9 +68,9 @@ server.get ('/:id',async(req,res,next) =>{
 
 
   //Ruta que recibe la información del pago
-server.get("/pagos", (req, res)=>{
+server.get("/pagos", async(req, res)=>{
       console.info("EN LA RUTA PAGOS ", req)
-      const payment_id= req.query.payment_id
+     /*  const payment_id= req.query.payment_id
       console.log("PAYMENT ID", payment_id)
       const payment_status= req.query.status
       console.log("PAYMENT STATUS", payment_status)
@@ -92,26 +79,24 @@ server.get("/pagos", (req, res)=>{
       const merchant_order_id= req.query.merchant_order_id;
       console.log("MERCHANT ORDER ID ", merchant_order_id)
       
-      return res.redirect("http://localhost:3000")
+      
       //Aquí edito el status de mi orden
-     /*  Order.findById(external_reference)
-      .then((order) => {
-        // order.payment_id= payment_id
-        order.status= payment_status
-        // order.merchant_order_id = merchant_order_id
-        order.status = "completado"
-        console.info('Salvando order')
-        order.save()
-        .then((_) => {
-          console.info('redirect success')
+      let statusOrder = await Order.findById(external_reference);
+      console.log("ORDER A CAMBIAR", statusOrder)
+      statusOrder.status = payment_status;
+      
+      console.info('STATUS',statusOrder.status )
+        //order.save()
+       
+        console.info('redirect success')
         
-          return res.redirect("http://localhost:3000")
-        })
-        .catch((err) =>{
+        return res.redirect("http://localhost:3000") */
+      
+        /* .catch((err) =>{
           console.error('error al salvar', err)
           return res.redirect(`http://localhost:3000/?error=${err}&where=al+salvar`)
         })
-      })
+     
       .catch(err =>{
         console.error('error al buscar', err)
         return res.redirect(`http://localhost:3000/?error=${err}&where=al+buscar`)
@@ -123,7 +108,7 @@ server.get("/pagos", (req, res)=>{
   
   
    //Busco información de una orden de pago
-  /*  server.get("/pagos/:id", (req, res)=>{
+   server.get("/pagos/:id", (req, res)=>{
      const mp = new mercadopago(ACCESS_TOKEN)
      const id = req.params.id
      console.info("Buscando el id", id)
@@ -138,6 +123,6 @@ server.get("/pagos", (req, res)=>{
          error: err
     })
   })
-}) */
+})
   
 module.exports = server;

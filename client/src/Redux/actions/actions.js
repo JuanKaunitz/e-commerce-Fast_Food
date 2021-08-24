@@ -231,7 +231,7 @@ export const authUser =  (user) => async (dispatch) => {
 export const allUsers = () => async (dispatch) => {
     try {
         const res = await axios.get(`${URL}/food/api/user`);
-        //console.log('ALL USER: ', res.data)
+        console.log('ALL USER: ', res.data)
         dispatch({
            type: ALL_USERS,
            payload: res.data
