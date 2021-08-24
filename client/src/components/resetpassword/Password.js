@@ -43,7 +43,6 @@ dispatch(resetPassword(email))
 }
   return (
     <Container component="main" maxWidth="xs">
-     
         <div className={classes.paper}>
         <Typography component="h1" variant="h5">
           Coloque el Email registrado

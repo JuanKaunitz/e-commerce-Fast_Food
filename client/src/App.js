@@ -28,6 +28,7 @@ import Checkout from "./components/payment/Checkout.js";
 //styles
 import "./App.css";
 import Password from "./components/resetpassword/Password.js";
+import NewPassword from "./components/resetpassword/NewPassword.js";
 const KEY_STRIPE=process.env
 
 const stripePromise = loadStripe(`${KEY_STRIPE}`);
@@ -44,7 +45,8 @@ function App() {
         <Route exact path="/form" component={Form} />
         <Route exact path="/categories" component={Categories} />
         <Route exact path="/register" component={Register} />
-        <Route exact path="/reset-password" component={Password} />      /  
+        <Route exact path="/reset-password" component={Password} /> 
+        <Route exact path = "/newPassword" component = {NewPassword} />
         <Route exact path="/adminPanel" component={AdminPanel} />
         <Route exact path="/admProdDetail/:id" component={AdminProductDetail} />  
         <Route exact path="/clients" component={GetClients} />   

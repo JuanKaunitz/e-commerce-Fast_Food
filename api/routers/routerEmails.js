@@ -29,7 +29,7 @@ const sendMail = async() =>{
                 type:"OAuth2",
                 user:"jczord23@gmail.com",
                 clientId:CLIENT_ID,
-                clientSecret: CLIENT_SECRET,
+                clientSecret:CLIENT_SECRET,
                 refreshToken:REFRESH_TOKEN,
                 accessToken:TOKEN
             },

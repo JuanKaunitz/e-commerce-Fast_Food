@@ -4,7 +4,7 @@ import TextField from "@material-ui/core/TextField";
 import Typography from "@material-ui/core/Typography";
 import { makeStyles } from "@material-ui/core/styles";
 import { useDispatch } from "react-redux";
-import {resetPassword} from "../../Redux/actions/actions"
+import {newPassword} from "../../Redux/actions/actions"
 
 
 const useStyles = makeStyles((theme) => ({
@@ -30,24 +30,51 @@ const useStyles = makeStyles((theme) => ({
   }));
 const NewPassword = () => {
     const classes = useStyles();
-    const dispatch = useDispatch()
-    const [password,setPassword]= useState('')
+    const dispatch = useDispatch();
+    const [data,setData]= useState({
+        email:'',
+        password:''
+    });
+const handleChange = (e )=>{
+    setData({
+        ...data,
+        [e.target.name]: e.target.value
+    })
+}
+
+    const handleSubmit = (e) =>{
+        console.log(data)
+        e.preventDefault();
+        dispatch(newPassword(data))
+    }
+
     return (
         <div className={classes.paper}>
         <Typography component="h1" variant="h5">
           Coloque su nueva contraseña
         </Typography>
-        <form className={classes.form} noValidate >
-          <TextField
+        <form className={classes.form} noValidate onSubmit={handleSubmit} >
+            <TextField
             variant="outlined"
             margin="normal"
             required
             fullWidth
-            label="Email Address"
-            name="password"
-            value={password}
-            autoComplete="email"
+            label="Email"
+            onChange={handleChange}
+            name="email"
+            value={data.email}
             autoFocus
+          />
+          <TextField
+            variant="outlined"
+            margin="normal"
+            type='password'
+            required
+            fullWidth
+            label="New Password"
+            onChange={handleChange}
+            name="password"
+            value={data.password}
           />
           <Button
             type="submit"

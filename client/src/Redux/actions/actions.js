@@ -30,7 +30,8 @@ import {
     GET_USER_BY_ID,
     BAND_ORDER_USER,
     NEW_ORDER_USER,
-    RESET_PASSWORD
+    RESET_PASSWORD,
+    NEW_PASSWORD
 } from '../constants'
 
 import dotenv from 'dotenv'
@@ -212,10 +213,7 @@ export const categoryName = (name) => (dispatch) => {
 export const authUser =  (user) => async (dispatch) => {
     try {
         const client = await axios.post(`${URL}/food/api/auth-sesion`, user);
-        //const prueba=client.data.user.status=true
-        // console.log("LA RES1",client)
-        // const res = await axios.put(`${URL}/food/api/user/${client.data.user._id}`, prueba);
-        // console.log("LA RES2",res)
+       
         console.log('USUARIO LOGUEADO: ', client.data)
         dispatch({
             type: LOGIN_CLIENT,
@@ -468,3 +466,12 @@ export const resetPassword= (email)=> async(dispatch)=>{
     })
 };
 
+export const newPassword = (data) => async(dispatch) =>{
+    console.log(data)
+    const resp = await axios.post(`${URL}/food/api/auth-sesion/newPassword`,data);
+    console.log(resp)
+    dispatch({
+        type:NEW_PASSWORD,
+        payload:resp
+    })
+}

@@ -64,7 +64,7 @@ export default function GridCardsProducts() {
             <h4>Product not found!</h4>
           )
         ) : (
-          getAll.slice(page * 8, page * 8 + 8).map((product) => (
+          getAll?.slice(page * 8, page * 8 + 8).map((product) => (
             <Grid item key={product._id} xs={3}>
               <CardProduct
                 id={product._id}
@@ -102,7 +102,7 @@ export default function GridCardsProducts() {
             value="next"
             onClick={handleNext}
             disabled={
-              searchProducts.length > 0
+              searchProducts?.length > 0
                 ? searchProducts?.slice(page * 8, page * 8 + 8).length < 8
                 : getAll.slice(page * 8, page * 8 + 8).length < 8
             }

@@ -52,7 +52,6 @@ const FormLogin = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    console.log("INPUT", input);
     dispatch(authUser(input));
 
     setInput({

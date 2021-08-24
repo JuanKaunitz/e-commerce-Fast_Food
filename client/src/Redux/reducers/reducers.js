@@ -29,6 +29,7 @@ import {
   BAND_ORDER_USER,
   NEW_ORDER_USER,
   RESET_PASSWORD,
+  NEW_PASSWORD,
   CLEAR_TOKEN,
   /* ASC,
   DESC */
@@ -265,6 +266,10 @@ const rootReducer = (state = initialState, action) => {
             ...state,
             resetPassword:action.payload
           }
+          case NEW_PASSWORD:
+            return{
+              resetPassword: action.payload
+            }
     default:
       return state;
   }
