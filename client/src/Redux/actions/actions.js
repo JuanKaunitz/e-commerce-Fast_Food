@@ -30,6 +30,7 @@ import {
     GET_USER_BY_ID,
     BAND_ORDER_USER,
     NEW_ORDER_USER,
+    MERCADOPAGO,
 } from '../constants'
 
 import dotenv from 'dotenv'
@@ -230,7 +231,7 @@ export const authUser =  (user) => async (dispatch) => {
 export const allUsers = () => async (dispatch) => {
     try {
         const res = await axios.get(`${URL}/food/api/user`);
-        console.log('ALL USER: ', res.data)
+        //console.log('ALL USER: ', res.data)
         dispatch({
            type: ALL_USERS,
            payload: res.data
@@ -456,6 +457,20 @@ export const changeStatus = (id, input) => async (dispatch) => {
 
     } catch(err) {
         console.log(err)
+    }
+}
+
+export const mercadopago = (id) => async (dispatch) =>{
+    console.log("ID order", id)
+    try {
+        const res = await axios.get(`${URL}/food/api/mercadopago/${id}`)
+        console.log("RESPUESTA MERCADOPAGO", res.data)
+        dispatch({
+            type: MERCADOPAGO,
+            payload: res.data
+        })
+    } catch (error) {
+        
     }
 }
 

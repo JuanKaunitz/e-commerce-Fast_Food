@@ -63,6 +63,7 @@ export default function AdminProductDetail(props) {
               onChange={handleInputChange}
               defaultValue={productEdit.name}
               required
+              value={input.name}
             />
           </div>
 

@@ -170,7 +170,7 @@ export default function CardProduct({
             </Typography>
             <Divider />
             <Typography className={classes.pos} color="textSecondary">
-             Descrition: {description}
+             Description: {description}
             </Typography>
            
             <Typography className={classes.pos} color="textSecondary">
@@ -180,6 +180,7 @@ export default function CardProduct({
               size="small"
               variant="contained"
               aria-label="contained primary button group"
+              component='div'
             >
               <Button onClick={() => handleAddCart()} color="primary">
                 +

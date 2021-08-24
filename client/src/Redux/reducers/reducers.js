@@ -29,6 +29,7 @@ import {
   BAND_ORDER_USER,
   NEW_ORDER_USER,
   CLEAR_TOKEN,
+  MERCADOPAGO,
   /* ASC,
   DESC */
 } from "../constants";
@@ -63,6 +64,7 @@ const initialState = {
   allOrders: [],
   editOrder: {}, 
   bandOrderUser: true,
+  idMercadopago: {},
 };
 
 const rootReducer = (state = initialState, action) => {
@@ -135,6 +137,7 @@ const rootReducer = (state = initialState, action) => {
       return {
         ...state,
         cart: action.payload,
+        idMercadopago: {},
       };
 
     case ORDER_REDUX:
@@ -256,6 +259,12 @@ const rootReducer = (state = initialState, action) => {
           client: {},
           orderUser:[],
         }
+    
+    case MERCADOPAGO:
+      return{
+        ...state,
+        idMercadopago: action.payload
+      }
        
         
     default:

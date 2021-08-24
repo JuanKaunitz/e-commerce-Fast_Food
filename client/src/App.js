@@ -7,11 +7,11 @@ import AboutUs from "./components/aboutUs/AboutUs.jsx";
 import Cart from "./components/cart/Cart.jsx";
 import Home from "./components/Home/Home.jsx";
 import { Navbar } from "./components/Navbar/Navbar.jsx";
-import Register from "./components/register/Register.jsx";
+import FormLogin from "./components/LogForm/FormLogin";
 import CardDetails from "./components/details/CardDetails.jsx";
 import Categories from "./components/categories/Categories.jsx";
 import Form from "./components/Form/Form.jsx";
-import FormNav from "./components/LogForm/FormNav.jsx";
+import Register from "./components/LogForm/FormRegister";
 import AdminPanel from "./components/UserAdmin/AdminPanel.jsx";
 import AdminProductDetail from "./components/UserAdmin/AdminProductDetail.jsx"
 import GetClients from "./components/UserAdmin/GetClients.jsx";
@@ -23,6 +23,7 @@ import NewCategory from "./components/UserAdmin/NewCategory.jsx";
 import OrdersPanel from "./components/UserAdmin/OrdersPanel.jsx";
 import OrderEdit from "./components/UserAdmin/OrderEdit.jsx";
 import Mercado from "./components/Pasarela/index.jsx";
+import Shipping from './components/Pasarela/Shipping';
 // import EditProduct from "./components/editProduct/EditProduct.jsx";
 import Checkout from "./components/payment/Checkout.js";
 // import CheckoutForm from "./components/payment/CheckoutForm.jsx";
@@ -43,8 +44,7 @@ function App() {
         <Route path="/detail/:id" exact component={CardDetails} />        
         <Route exact path="/form" component={Form} />
         <Route exact path="/categories" component={Categories} />
-        <Route exact path="/register" component={Register} />
-        {/* <Route exact path="/formregister" component={FormNav} />      /   */}
+        <Route exact path="/login" component={FormLogin} />
         <Route exact path="/adminPanel" component={AdminPanel} />
         <Route exact path="/admProdDetail/:id" component={AdminProductDetail} />  
         <Route exact path="/clients" component={GetClients} />   
@@ -56,6 +56,7 @@ function App() {
         <Route exact path="/ordersPanel" component={OrdersPanel} />
         <Route exact path="/orderEdit/:id" component={OrderEdit} />
         <Route exact path="/mercadopago" component={Mercado} />
+        <Route exact path="/shipping" component={Shipping} />
         <Route
           path="/payment"
           render={() => (
@@ -64,7 +65,7 @@ function App() {
             </Elements>
           )}
         />
-        <Route exact path="/formregister" component={FormNav} />
+        <Route exact path="/register" component={Register} />
       </BrowserRouter>
     </div>
   );

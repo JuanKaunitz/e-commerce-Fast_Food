@@ -1,5 +1,5 @@
 import React,{ useEffect, useState } from 'react'
-import Checkout from './checkoutMercado.jsx'
+import Checkout from '../Pasarela/checkoutMercado';
 import axios from 'axios'
 
  export default function Mercado() {
