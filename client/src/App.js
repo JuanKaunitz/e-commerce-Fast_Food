@@ -23,6 +23,7 @@ import NewCategory from "./components/UserAdmin/NewCategory.jsx";
 import OrdersPanel from "./components/UserAdmin/OrdersPanel.jsx";
 import OrderEdit from "./components/UserAdmin/OrderEdit.jsx";
 import Mercado from "./components/Pasarela/index.jsx";
+import MyAcount from "./components/Navbar/MyAcount.jsx";
 // import EditProduct from "./components/editProduct/EditProduct.jsx";
 import Checkout from "./components/payment/Checkout.js";
 // import CheckoutForm from "./components/payment/CheckoutForm.jsx";
@@ -65,6 +66,7 @@ function App() {
           )}
         />
         <Route exact path="/formregister" component={FormNav} />
+        <Route exact path="/myAcount" component={MyAcount} />
       </BrowserRouter>
     </div>
   );

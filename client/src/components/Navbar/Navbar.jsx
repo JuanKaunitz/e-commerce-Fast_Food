@@ -21,6 +21,7 @@ import AddShoppingCartIcon from "@material-ui/icons/AddShoppingCart";
 import Typography from "@material-ui/core/Typography";
 import useStyles from "./styles";
 import SerchBar from "../serchbar/SerchBar";
+import Profile from "./Profile";
 import { useLocation, Link } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import {
@@ -150,16 +151,10 @@ export const Navbar = () => {
                   </NavLink>
                 </Button>
               ) : (
-                <Button color="inherit" onClick={handleLogout}>
-                  <NavLink
-                    className={classes.MuiButtonLabel}
-                    to="/"
-                    activeClassName="active"
-                  >
-                    LOGOUT
-                  </NavLink>
-                </Button>
+                <Profile handleLogout={handleLogout}/>
+               
               )}
+               
 
               <Button color="inherit">
                 <NavLink
