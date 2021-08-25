@@ -20,7 +20,7 @@ const useStyles = makeStyles((theme) => ({
 
   form: {
     width: "100%", // Fix IE 11 issue.
-    marginTop: 5,
+    marginTop: 1,
     backgroundColor: "#ffff"
   },
 
@@ -86,7 +86,7 @@ const NewProduct = (props) => {
     e.preventDefault();
     setInput(input);
     saveProduct();
-    // window.location.replace("http://localhost:3000/AdminPanel");
+    window.location.replace("http://localhost:3000/AdminPanel");
   };
 
 

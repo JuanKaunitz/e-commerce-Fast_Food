@@ -1,13 +1,11 @@
 .form_content{
     align-items: center;
     justify-content:center;
-    margin:0;
+    margin-top: 20px;
     margin-left: auto;
     margin-right: auto;
     padding: 60px;
     max-width: 400px;
-    /* max-height:450px; */
-    /* background-color: rgb(228, 130, 3); */
     background-color: #ffff;
     color:rgb(246, 245, 245);
     border-radius: 10px;

@@ -21,7 +21,7 @@ import {
   GOOGLE_LOGIN,
   ALL_ORDERS,
   EDIT_ORDER,
-  CLIENT_STATUS,  
+  CLIENT_STATUS,
   GET_USER_BY_ID,
   UPDATE_CART,
   ORDER_REDUX,
@@ -29,6 +29,8 @@ import {
   BAND_ORDER_USER,
   NEW_ORDER_USER,
   CLEAR_TOKEN,
+  RESET_PASSWORD,
+  NEW_PASSWORD,
   /* ASC,
   DESC */
 } from "../constants";
@@ -56,13 +58,14 @@ const initialState = {
   editProduct: {},
   editCategory: {},
   updateProduct: {},
-  orderUser:[],
+  orderUser: [],
   totalCarrito: 0,
   types: [],
-  googleUser: {}, 
+  googleUser: {},
   allOrders: [],
-  editOrder: {}, 
+  editOrder: {},
   bandOrderUser: true,
+  resetPassword: {},
 };
 
 const rootReducer = (state = initialState, action) => {
@@ -142,31 +145,31 @@ const rootReducer = (state = initialState, action) => {
         ...state,
         orderRedux: action.payload,
       };
-    
+
     case BAND_ORDER_USER:
-      return{
+      return {
         ...state,
         bandOrderUser: false,
-      }
+      };
 
     case "DELETE_ORDEN":
-      return{
+      return {
         ...state,
-        orderUser: action.payload
-      }
+        orderUser: action.payload,
+      };
 
     case NEW_ORDER_USER:
-      localStorage.setItem('idOrderUser', action.payload._id);
-      return{
+      localStorage.setItem("idOrderUser", action.payload._id);
+      return {
         ...state,
-        orderUser: state.orderUser.concat(action.payload)
-      }
+        orderUser: state.orderUser.concat(action.payload),
+      };
 
     case GET_USER_BY_ID:
-      return{
+      return {
         ...state,
         orderUser: action.payload.user.order,
-      }
+      };
 
     case NEW_USER:
       return {
@@ -219,7 +222,6 @@ const rootReducer = (state = initialState, action) => {
       return {
         ...state,
         clients: action.payload,
-        
       };
     case UPDATE_PRODUCT:
       return {
@@ -232,32 +234,40 @@ const rootReducer = (state = initialState, action) => {
         types: [...state.types, action.payload],
       };
 
-     case GOOGLE_LOGIN:
-       return {
-         ...state,
-         googleUser: action.payload
-       };
+    case GOOGLE_LOGIN:
+      return {
+        ...state,
+        googleUser: action.payload,
+      };
 
-       case ALL_ORDERS:
-        return {
-          ...state,
-          allOrders: action.payload,
-        };
+    case ALL_ORDERS:
+      return {
+        ...state,
+        allOrders: action.payload,
+      };
 
-        case EDIT_ORDER:
+    case EDIT_ORDER:
       return {
         ...state,
         editOrder: action.payload,
       };
-      case CLIENT_STATUS:
-        return{
-          ...state,
-          clientToken: "",
-          client: {},
-          orderUser:[],
-        }
-       
-        
+    case CLIENT_STATUS:
+      return {
+        ...state,
+        clientToken: "",
+        client: {},
+        orderUser: [],
+      };
+    case RESET_PASSWORD:
+      return {
+        ...state,
+        resetPassword: action.payload,
+      };
+    case NEW_PASSWORD:
+      return {
+        resetPassword: action.payload,
+      };
+
     default:
       return state;
   }
