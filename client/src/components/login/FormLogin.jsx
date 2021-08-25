@@ -12,13 +12,10 @@ import LockOutlinedIcon from '@material-ui/icons/LockOutlined';
 import Typography from '@material-ui/core/Typography';
 import { makeStyles } from '@material-ui/core/styles';
 import Container from '@material-ui/core/Container';
-<<<<<<< HEAD:client/src/components/LogForm/FormLogin.jsx
 import { useHistory } from "react-router";
 import Swal from 'sweetalert2'
 import withReactContent from 'sweetalert2-react-content'
-=======
-import {useHistory} from 'react-router-dom'
->>>>>>> 421933bc2048a601a1c334f47618a87204cbe224:client/src/components/login/FormLogin.jsx
+
 
 
 export function validate(input) {
@@ -61,11 +58,8 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 export default function FormularioLogin() {
-<<<<<<< HEAD:client/src/components/LogForm/FormLogin.jsx
-  const dispatch = useDispatch();  
-=======
   const dispatch = useDispatch(); 
->>>>>>> 421933bc2048a601a1c334f47618a87204cbe224:client/src/components/login/FormLogin.jsx
+
   const history = useHistory();
   const [input, setInput] = useState({
     email: "",
@@ -115,12 +109,8 @@ export default function FormularioLogin() {
       email: "",
       password: "",
      });
-<<<<<<< HEAD:client/src/components/LogForm/FormLogin.jsx
      history.push("/");
-=======
-    history.push('/')
->>>>>>> 421933bc2048a601a1c334f47618a87204cbe224:client/src/components/login/FormLogin.jsx
-  };
+
 
   const classes = useStyles();
 
