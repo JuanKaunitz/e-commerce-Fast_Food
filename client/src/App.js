@@ -46,7 +46,7 @@ function App() {
         <Route exact path="/categories" component={Categories} />
         <Route exact path="/register" component={Register} />
         <Route exact path="/reset-password" component={Password} /> 
-        <Route exact path = "/newPassword" component = {NewPassword} />
+        <Route exact path = "/reset-password/:token" component = {NewPassword} />
         <Route exact path="/adminPanel" component={AdminPanel} />
         <Route exact path="/admProdDetail/:id" component={AdminProductDetail} />  
         <Route exact path="/clients" component={GetClients} />   

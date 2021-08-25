@@ -3,7 +3,7 @@ const crypto = require('crypto');
 const { generateJWT } = require("../helpers/generate-jwt");
 const nodemailer = require("nodemailer");
 const {google} = require('googleapis');
-const {CLIENT_ID,CLIENT_SECRET,CLIENT_URI,REFRESH_TOKEN} = process.env;
+const {CLIENT_ID,CLIENT_SECRET,CLIENT_URI,REFRESH_TOKEN,USER_EMIAL} = process.env;
 const User = require("../models/User");
 
 exports.authLogin = async (req, res) => {
@@ -61,8 +61,8 @@ exports.resetPassword= async(req,res,next) =>{
     user.expireToken = Date.now() + 3600000;
     //guardar el user
     await user.save();
-    // const resetUrl = `http://${req.headers.host}/reset-password/${user.token}`;
-    const resetUrl = `http://localhost:3000/newPassword`;
+    const resetUrl = `http://localhost:3000/reset-password/${user.token}`;
+    // const resetUrl = `http://localhost:3000/newPassword`;
 
 
 
@@ -86,12 +86,15 @@ const sendMail = async() =>{
             service:"gmail",
             auth:{
                 type:"OAuth2",
-                user:"jczord23@gmail.com",
+                user:USER_EMIAL,
                 clientId:CLIENT_ID,
                 clientSecret: CLIENT_SECRET,
                 refreshToken:REFRESH_TOKEN,
                 accessToken:TOKEN
             },
+            tls: {
+              rejectUnauthorized: false
+          }
         });
         const mailOptions ={
             from:"Pagina Web NodeMailer <ecommercefastfood@gmail.com>",
@@ -109,7 +112,8 @@ const sendMail = async() =>{
 
 sendMail()
 .then(result => res.json({
-  msg:'Enviado'
+  msg:'Enviado',
+  user
 }))
 .catch(error => console.log(error.message))
 
@@ -142,11 +146,10 @@ exports.reestablecerPassword = async(req,res,next) =>{
 
 exports.saveNewPassword = async(req,res,next) =>{
   const user = await User.findOne({
-    // toke:req.params.token,
-    email:req.body.email
-    // expireToken:{
-    //   $gt:Date.now()
-    // }
+    token:req.params.token,
+    expireToken:{
+      $gt:Date.now()
+    }
   });
   if(!user){
     res.status(401).json({
@@ -155,10 +158,13 @@ exports.saveNewPassword = async(req,res,next) =>{
     next();
   }
 
-  console.log(user)
   user.password = req.body.password;
+   //encriptar contraseña del
+   const salt = bcrypt.genSaltSync();
+   user.password = bcrypt.hashSync(user.password, salt);
   user.token = undefined;
   user.expireToken = undefined;
+  console.log(user)
   await user.save();
   res.json({
     msg:'Password Modificado Correctamente',

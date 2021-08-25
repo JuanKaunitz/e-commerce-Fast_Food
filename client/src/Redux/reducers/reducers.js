@@ -65,8 +65,8 @@ const initialState = {
   allOrders: [],
   editOrder: {}, 
   bandOrderUser: true,
-  resetPassword:{}
-
+  resetPassword:{},
+  newPassword:{}
 };
 
 const rootReducer = (state = initialState, action) => {
@@ -268,7 +268,7 @@ const rootReducer = (state = initialState, action) => {
           }
           case NEW_PASSWORD:
             return{
-              resetPassword: action.payload
+              newPassword: action.payload
             }
     default:
       return state;

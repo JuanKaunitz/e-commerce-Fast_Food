@@ -4,9 +4,8 @@ import TextField from "@material-ui/core/TextField";
 import Typography from "@material-ui/core/Typography";
 import { makeStyles } from "@material-ui/core/styles";
 import Container from "@material-ui/core/Container";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 import {resetPassword} from "../../Redux/actions/actions"
-import NewPassword from "./NewPassword";
 
 const useStyles = makeStyles((theme) => ({
   paper: {
@@ -33,7 +32,7 @@ const useStyles = makeStyles((theme) => ({
 const Password = () => {
   const classes = useStyles();
   const dispatch = useDispatch()
-  const newPassword =useSelector(state => state.resetPassword);
+  
 const [email,setEmail] = useState('');
 
 const handleSumit = (e)=>{

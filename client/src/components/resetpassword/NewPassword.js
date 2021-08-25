@@ -28,24 +28,18 @@ const useStyles = makeStyles((theme) => ({
       margin: theme.spacing(3, 0, 2),
     },
   }));
-const NewPassword = () => {
+const NewPassword = (props) => {
     const classes = useStyles();
     const dispatch = useDispatch();
-    const [data,setData]= useState({
-        email:'',
-        password:''
-    });
-const handleChange = (e )=>{
-    setData({
-        ...data,
-        [e.target.name]: e.target.value
-    })
-}
+  const token = props.match.params.token;
+  console.log(token)
+  const [password,setPassword]= useState();
+  console.log(password)
+
 
     const handleSubmit = (e) =>{
-        console.log(data)
         e.preventDefault();
-        dispatch(newPassword(data))
+        dispatch(newPassword(token,password))
     }
 
     return (
@@ -54,17 +48,7 @@ const handleChange = (e )=>{
           Coloque su nueva contraseña
         </Typography>
         <form className={classes.form} noValidate onSubmit={handleSubmit} >
-            <TextField
-            variant="outlined"
-            margin="normal"
-            required
-            fullWidth
-            label="Email"
-            onChange={handleChange}
-            name="email"
-            value={data.email}
-            autoFocus
-          />
+       
           <TextField
             variant="outlined"
             margin="normal"
@@ -72,9 +56,9 @@ const handleChange = (e )=>{
             required
             fullWidth
             label="New Password"
-            onChange={handleChange}
+            onChange={(e)=>setPassword(e.target.value)}
             name="password"
-            value={data.password}
+            value={password}
           />
           <Button
             type="submit"

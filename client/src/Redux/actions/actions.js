@@ -466,9 +466,9 @@ export const resetPassword= (email)=> async(dispatch)=>{
     })
 };
 
-export const newPassword = (data) => async(dispatch) =>{
-    console.log(data)
-    const resp = await axios.post(`${URL}/food/api/auth-sesion/newPassword`,data);
+export const newPassword = (token,password) => async(dispatch) =>{
+    console.log(token,password)
+    const resp = await axios.post(`${URL}/food/api/auth-sesion/reset-password/${token}`,{password});
     console.log(resp)
     dispatch({
         type:NEW_PASSWORD,
