@@ -86,7 +86,7 @@ const NewProduct = (props) => {
     e.preventDefault();
     setInput(input);
     saveProduct();
-    window.location.replace("http://localhost:3000/AdminPanel");
+    // props.history.push("/AdminPanel");
   };
 
 

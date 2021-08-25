@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { makeStyles } from "@material-ui/core/styles";
 import Card from "@material-ui/core/Card";
@@ -12,11 +12,8 @@ import {
   updateOrderFinal,
 } from "../../Redux/actions/actions";
 import {
-  addCarts,
-  deleteCart,
-  resProduct,
-  sumaCantidadTotal,
-  sumaPrecioTotal,
+  addCarts,  
+  sumaCantidadTotal,  
 } from "../cart/utilsCarts.js";
 ////aparte
 import CardContent from "@material-ui/core/CardContent";
@@ -26,8 +23,7 @@ import { ThemeProvider } from "@material-ui/styles";
 import {
   ButtonGroup,
   CardActionArea,
-  Divider,
-  TextField,
+  Divider,  
 } from "@material-ui/core";
 import Button from "@material-ui/core/Button";
 import ReactCardFlip from "react-card-flip";
@@ -185,6 +181,7 @@ export default function CardProduct({
               <Button onClick={() => handleAddCart()} color="primary">
                 +
               </Button>
+           
             </ButtonGroup>
           </CardContent>
         </Card>

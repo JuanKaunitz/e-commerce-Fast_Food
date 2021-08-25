@@ -13,7 +13,7 @@ const mercadopago= require('./mercadopago')
 module.exports = () => {
   //Users endpoints para crear un ausuario para el sistema
   router.use("/food/api/user", routerUser);
-  //auth endpoints users
+  //auth endpoints Auth
   router.use("/food/api/auth-sesion", routerAuth);
   //productos
   router.use("/food/api/products", routerProducts);

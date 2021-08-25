@@ -22,7 +22,7 @@ import {
     CLIENT_UPDATE,
     GOOGLE_LOGIN,
     ALL_ORDERS,
-    EDIT_ORDER,
+    //EDIT_ORDER,
     CLIENT_STATUS,    
     UPDATE_CART,
     TOTAL_CARRITO,
@@ -214,10 +214,7 @@ export const categoryName = (name) => (dispatch) => {
 export const authUser =  (user) => async (dispatch) => {
     try {
         const client = await axios.post(`${URL}/food/api/auth-sesion`, user);
-        //const prueba=client.data.user.status=true
-        // console.log("LA RES1",client)
-        // const res = await axios.put(`${URL}/food/api/user/${client.data.user._id}`, prueba);
-        // console.log("LA RES2",res)
+       
         console.log('USUARIO LOGUEADO: ', client.data)
         dispatch({
             type: LOGIN_CLIENT,
@@ -312,7 +309,7 @@ export const bandOrderUser = () => (dispatch) => {
 export const updateOrderFinal = (id,order) => async(dispatch) => {
         //console.log("ORDEN PARA ACTUALIZAR", order)
     try {
-        const res = await axios.put(`${URL}/food/api/order/${id}`, order);
+       /*  const res = */ await axios.put(`${URL}/food/api/order/${id}`, order);
         //console.log("ORDEN ACTUALIZACION", res)
         
     } catch (err) {
@@ -340,7 +337,7 @@ export const updateOrderFinal = (id,order) => async(dispatch) => {
 export const deleteOrden = (id, borrado) => async (dispatch) => {
     //console.log('ID DELETE',id) 
     try {
-        const res = await axios.delete(`${URL}/food/api/order/${id}`); 
+       /*  const res = */ await axios.delete(`${URL}/food/api/order/${id}`); 
         //console.log('BORRADO DE ORDEN',res.data)        
         dispatch({
             type: "DELETE_ORDEN",
@@ -355,7 +352,7 @@ export const deleteOrden = (id, borrado) => async (dispatch) => {
 export const getOrderById = (id) => async(dispatch) => {
     //console.log('GET BY ID',id) 
     try {
-        const res = await axios.get(`${URL}/food/api/order/${id}`)
+       /*  const res = */ await axios.get(`${URL}/food/api/order/${id}`)
         //console.log('ORDER POR ID',res.data)        
         dispatch({
             
@@ -452,9 +449,7 @@ export const changeStatus = (id, input) => async (dispatch) => {
             console.log("respuesta loguot", res.data)
        
         dispatch({
-            type:CLIENT_STATUS,
-            
-            
+            type:CLIENT_STATUS,  
         })
 
     } catch(err) {

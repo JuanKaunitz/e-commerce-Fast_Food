@@ -24,6 +24,16 @@ export default function Shipping() {
       <br></br>
       <br></br>
       <br></br>
+      <br></br>
+      <br></br>
+      <br></br>
+      <br></br>
+      <br></br>
+      <br></br>
+      <br></br>
+      <br></br>
+      <br></br>
+      <br></br>
 
 				<div className='rounded'>
 					<h2>How would you like to get your order?</h2>
