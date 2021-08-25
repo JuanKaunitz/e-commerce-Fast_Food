@@ -67,9 +67,7 @@ const useStyles = makeStyles((theme) => ({
   homeIcon: {
     marginRight: theme.spacing(2),
   },
-  toolbarButtons: {
-    marginLeft: "auto",
-  },
+ 
   search: {
     position: "relative",
     borderRadius: theme.shape.borderRadius,

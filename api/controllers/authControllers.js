@@ -157,7 +157,6 @@ exports.saveNewPassword = async(req,res,next) =>{
     });
     next();
   }
- console.log(req)
   user.password = req.body.password;
    //encriptar contraseña del
    const salt = bcrypt.genSaltSync();
@@ -167,7 +166,7 @@ exports.saveNewPassword = async(req,res,next) =>{
   console.log(user)
   await user.save();
   res.json({
-    msg:'Password Modificado Correctamente',
+    msg:'Password Modificado Correctamente Dirijase a la pagina principal',
     user
   })
 }

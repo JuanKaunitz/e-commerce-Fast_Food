@@ -15,9 +15,9 @@ router.get("/:id", userControllers.getUserById);
 router.put(
   "/:id",
   [
-    check("id", "No es un ID valido").isMongoId(),
+    // check("id", "No es un ID valido").isMongoId(),
     // check("role").custom((role) => validateRole(role)),
-    check("id").custom((id) => validateId(id)),
+    // check("id").custom((id) => validateId(id)),
     validateInputs,
   ],
   userControllers.updateUser

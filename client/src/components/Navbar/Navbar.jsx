@@ -23,6 +23,7 @@ import SupervisorAccountSharpIcon from "@material-ui/icons/SupervisorAccountShar
 import AddShoppingCartIcon from "@material-ui/icons/AddShoppingCart";
 import Badge from "@material-ui/core/Badge";
 import SerchBar from "../serchbar/SerchBar";
+import Profile from "./Profile";
 import { useLocation, Link } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import {
@@ -32,8 +33,6 @@ import {
   totalProductosCarrito,
   updateCart,
   updateOrderFinal,
-  clearToken,
-  getCategories
 } from "../../Redux/actions/actions";
 const useStyles = makeStyles((theme) => ({
   grow: {
@@ -155,7 +154,6 @@ export const Navbar = () => {
   const totalCarrito = useSelector((state) => state.totalCarrito);
   const adminClient = useSelector((state) => state.client);
   const token = useSelector((state) => state.clientToken);
-  
 
   const [input, setInput] = useState({ status: false });
 
@@ -174,84 +172,119 @@ export const Navbar = () => {
   }
 
   function handleLogout() {
-    if(localStorage.getItem('idOrderUser') && JSON.parse(localStorage.getItem('order'))){
-      const idOrder = localStorage.getItem('idOrderUser');
-      const orderCarrito = JSON.parse(localStorage.getItem('order'));
+    if (
+      localStorage.getItem("idOrderUser") &&
+      JSON.parse(localStorage.getItem("order"))
+    ) {
+      const idOrder = localStorage.getItem("idOrderUser");
+      const orderCarrito = JSON.parse(localStorage.getItem("order"));
       const fecha = new Date();
       const order = {
         order: orderCarrito,
         status: "carrito",
         date: fecha.toUTCString(),
-      }
-      console.log("order para logout", order)
-      dispatch(updateOrderFinal(idOrder, order))
-
+      };
+      console.log("order para logout", order);
+      dispatch(updateOrderFinal(idOrder, order));
     }
 
     const id = adminClient._id;
     dispatch(changeStatus(id, input));
     localStorage.removeItem("order");
     localStorage.removeItem("idOrderUser");
-    dispatch(orderRedux({
-      id: "",
-      token: "",
-      order: [],
-      status: "",
-      date: "",
-    }));
+    dispatch(
+      orderRedux({
+        id: "",
+        token: "",
+        order: [],
+        status: "",
+        date: "",
+      })
+    );
     dispatch(totalProductosCarrito(0));
-    dispatch(updateCart([]));    
-   }
+    dispatch(updateCart([]));
+  }
 
   return (
     <div className={classes.row}>
       <AppBar position="fixed" style={{ backgroundColor: "black" }}>
         <Grid container direction="row">
           <Grid items lg={8} xl={4} md={8} xs={10}>
-            <Toolbar>
-              <Button
-                font-family="sans-serif"
-                aria-label="open drawer"
-                onClick={handleDrawerOpen}
-                edge="start"
-                className={clsx(classes.root)}
-              >
-                <MenuIcon />
-              </Button>
-              <Grid />
-              <Link to="/">
-                <HomeIcon className={classes.home} />
-              </Link>
-              <Button className={classes.button} href="/aboutUs">
-                About Us
-              </Button>
-              <SerchBar className={classes.searchbar} />
-            </Toolbar>
-          </Grid>
-          <Grid item lg={4} xl={8} md={6} xs={10}>
-            <div className={classes.link}>
-              <IconButton color="inherit">
-                <Link to="/AdminPanel">
-                  <SupervisorAccountSharpIcon className={classes.button} />
-                </Link>
-              </IconButton>
-              <IconButton
-                style={{ fontSize: 40 }}
-                aria-label="carrito"
-                backgroundColor="white"
-              >
-                <Link to="/cart">
-                  {" "}
-                  <Badge badgeContent={totalCarrito} color="secondary">
-                    <AddShoppingCartIcon className={classes.carrito} />
-                  </Badge>
-                </Link>
-              </IconButton>
-              <Button className={classes.button} href="/register">
-                Login
-              </Button>
-              <Button className={classes.button} href="/formregister">
-                Register
+            <Toolbar></Toolbar>
+            <Button
+              font-family="sans-serif"
+              aria-label="open drawer"
+              onClick={handleDrawerOpen}
+              edge="start"
+              className={clsx(classes.root)}
+            >
+              <MenuIcon />
+            </Button>
+            <Grid />
+            <Link to="/">
+              <HomeIcon className={classes.home} />
+            </Link>
+            <Button className={classes.button} href="/aboutUs">
+              About Us
+            </Button>
+            <SerchBar />
+            <div className={classes.toolbarButtons}>
+              {token && adminClient.role === "ADMIN" ? (
+                <NavLink
+                  className={classes.MuiButtonLabel}
+                  to="/AdminPanel"
+                  activeClassName="active"
+                >
+                  Admin Panel
+                </NavLink>
+              ) : null}
+
+              {totalCarrito > 0 ? (
+                <IconButton aria-label="add to shopping cart">
+                  <NavLink
+                    className={classes.MuiButtonLabel}
+                    to="/cart"
+                    activeClassName="active"
+                  >
+                    <Typography>{totalCarrito}</Typography>
+                    <AddShoppingCartIcon />
+                  </NavLink>
+                </IconButton>
+              ) : (
+                <IconButton aria-label="add to shopping cart">
+                  <NavLink
+                    className={classes.MuiButtonLabel}
+                    to="/"
+                    activeClassName="active"
+                  >
+                    <Typography>{totalCarrito}</Typography>
+                    <AddShoppingCartIcon />
+                  </NavLink>
+                </IconButton>
+              )}
+
+              {!token ? (
+                <Button color="inherit">
+                  <NavLink
+                    className={classes.MuiButtonLabel}
+                    to="/login"
+                    activeClassName="active"
+                  >
+                    LOGIN
+                  </NavLink>
+                </Button>
+              ) : (
+                <Profile handleLogout={handleLogout} />
+              )}
+
+              <Button color="inherit">
+                <NavLink
+                  className={classes.MuiButtonLabel}
+                  to="/register"
+                  activeClassName="active"
+                >
+                  REGISTER
+                </NavLink>
               </Button>
             </div>
           </Grid>

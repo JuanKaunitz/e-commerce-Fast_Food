@@ -67,12 +67,11 @@ function Home() {
   
       const order = {
         id: client._id,
-        token: token,
         order: cart,
         status: "carrito",
         date: fecha.toUTCString(),
       }
-      //console.log("ORDER PARA ENVIAR", order)
+      console.log("ORDER PARA ENVIAR", order)
       dispatch(orderRedux(order));
       if(idOrder){
         dispatch(updateOrderFinal(idOrder, order))

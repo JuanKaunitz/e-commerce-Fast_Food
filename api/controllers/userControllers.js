@@ -44,9 +44,9 @@ exports.getUsers = async (req, res, next) => {
     next();
   }
 };
-//por id
+//user por id
 exports.getUserById = async (req, res, next) => {
-  console.log(req.params.id)
+  //console.log(req.params.id)
   if(!req.params.id ){
    return res.status(400).json({msg:'id invalido'})
   }
@@ -59,18 +59,32 @@ exports.getUserById = async (req, res, next) => {
 };
 //actualizar usuario
 exports.updateUser = async (req, res) => {
-  const { id } = req.params;
-  const { _id, password, ...rest } = req.body;
-  //validar contra la base de datos
-  if (password) {
-    //encriptar contraseña del
-    const salt = bcrypt.genSaltSync();
-    rest.password = bcrypt.hashSync(password, salt);
+  // const { id } = req.params;
+  // const {  ...rest } = req.body;
+  try {
+    let user = await User.findOneAndUpdate(
+      { _id: req.params.id },
+      req.body,
+      {
+        new: true,
+      }
+    );
+    res.json({ msg: "User Updated", user });
+  } catch (error) {
+    console.log(error);
+    res.status(301).json({msg:'Nose puedo actualizar el usuario'});
+    next()
   }
-  const user = await User.findByIdAndUpdate(id, rest);
-  res.json({ msg: "User Updated", user });
+ 
+  //validar contra la base de datos
+  // if (password) {
+  //   //encriptar contraseña del
+  //   const salt = bcrypt.genSaltSync();
+  //   rest.password = bcrypt.hashSync(password, salt);
+  // }
+  
+ 
 };
-//user por id
 
 //crear usuario
 exports.createUsers = async (req, res) => {

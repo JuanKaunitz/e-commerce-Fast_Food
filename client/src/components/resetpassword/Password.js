@@ -1,11 +1,11 @@
-import React, { useState } from "react";
+import React,{useState} from "react";
 import Button from "@material-ui/core/Button";
 import TextField from "@material-ui/core/TextField";
 import Typography from "@material-ui/core/Typography";
 import { makeStyles } from "@material-ui/core/styles";
 import Container from "@material-ui/core/Container";
 import { useDispatch } from "react-redux";
-import { resetPassword } from "../../Redux/actions/actions";
+import {resetPassword} from "../../Redux/actions/actions"
 
 const useStyles = makeStyles((theme) => ({
   paper: {
@@ -31,16 +31,18 @@ const useStyles = makeStyles((theme) => ({
 
 const Password = () => {
   const classes = useStyles();
-  const dispatch = useDispatch();
-  const [email, setEmail] = useState("");
+  const dispatch = useDispatch()
+  
+const [email,setEmail] = useState('');
 
-  const handleSumit = (e) => {
-    e.preventDefault();
-    dispatch(resetPassword(email));
-  };
+const handleSumit = (e)=>{
+    e.preventDefault()
+dispatch(resetPassword(email))
+
+}
   return (
     <Container component="main" maxWidth="xs">
-      <div className={classes.paper}>
+        <div className={classes.paper}>
         <Typography component="h1" variant="h5">
           Coloque el Email registrado
         </Typography>
@@ -52,7 +54,7 @@ const Password = () => {
             fullWidth
             label="Email Address"
             name="email"
-            onChange={(e) => setEmail(e.target.value)}
+            onChange = {(e)=>setEmail(e.target.value)}
             value={email}
             autoComplete="email"
             autoFocus
@@ -68,6 +70,8 @@ const Password = () => {
           </Button>
         </form>
       </div>
+               
+    
     </Container>
   );
 };
