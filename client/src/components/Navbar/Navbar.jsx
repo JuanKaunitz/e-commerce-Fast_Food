@@ -21,6 +21,7 @@ import AddShoppingCartIcon from "@material-ui/icons/AddShoppingCart";
 import Typography from "@material-ui/core/Typography";
 import useStyles from "./styles";
 import SerchBar from "../serchbar/SerchBar";
+import Profile from "./Profile";
 import { useLocation, Link } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import {
@@ -29,11 +30,9 @@ import {
   orderRedux,
   totalProductosCarrito,
   updateCart,
-  updateOrderFinal,
-  clearToken,
-  getCategories
+  updateOrderFinal,  
 } from "../../Redux/actions/actions";
-import { useHistory } from "react-router-dom";
+
 
 export const Navbar = () => {
   const dispatch = useDispatch();
@@ -130,43 +129,51 @@ export const Navbar = () => {
                 </NavLink>
               ) : null}
 
-              <IconButton aria-label="add to shopping cart">
-                <NavLink
-                  className={classes.MuiButtonLabel}
-                  to="/cart"
-                  activeClassName="active"
-                >
-                  <Typography>{totalCarrito}</Typography>
-                  <AddShoppingCartIcon />
-                </NavLink>
-              </IconButton>
+                {
+                  totalCarrito > 0?
+                  <IconButton aria-label="add to shopping cart">
+                    <NavLink
+                      className={classes.MuiButtonLabel}
+                      to="/cart"
+                      activeClassName="active"
+                    >
+                      <Typography>{totalCarrito}</Typography>
+                      <AddShoppingCartIcon />
+                    </NavLink>
+                  </IconButton>
+                : 
+                  <IconButton aria-label="add to shopping cart">
+                    <NavLink
+                      className={classes.MuiButtonLabel}
+                      to="/"
+                      activeClassName="active"
+                    >
+                      <Typography>{totalCarrito}</Typography>
+                      <AddShoppingCartIcon />
+                    </NavLink>
+                </IconButton>
+                }
 
               {!token? (
                 <Button color="inherit">
                   <NavLink
                     className={classes.MuiButtonLabel}
-                    to="/register"
+                    to="/login"
                     activeClassName="active"
                   >
                     LOGIN
                   </NavLink>
                 </Button>
               ) : (
-                <Button color="inherit" onClick={handleLogout}>
-                  <NavLink
-                    className={classes.MuiButtonLabel}
-                    to="/"
-                    activeClassName="active"
-                  >
-                    LOGOUT
-                  </NavLink>
-                </Button>
+                <Profile handleLogout={handleLogout}/>
+               
               )}
+               
 
               <Button color="inherit">
                 <NavLink
                   className={classes.MuiButtonLabel}
-                  to="/formregister"
+                  to="/register"
                   activeClassName="active"
                 >
                   REGISTER

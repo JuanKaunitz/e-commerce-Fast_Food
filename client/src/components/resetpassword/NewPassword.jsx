@@ -3,7 +3,7 @@ import Button from "@material-ui/core/Button";
 import TextField from "@material-ui/core/TextField";
 import Typography from "@material-ui/core/Typography";
 import { makeStyles } from "@material-ui/core/styles";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 import {newPassword} from "../../Redux/actions/actions"
 
 
@@ -33,7 +33,7 @@ const NewPassword = (props) => {
     const dispatch = useDispatch();
   const token = props.match.params.token;
   console.log(token)
-  const messages = useSelector(state => state.newPassword);
+  // const messages = useSelector(state => state.newPassword);
 
   const [password,setPassword]= useState();
   console.log(password)

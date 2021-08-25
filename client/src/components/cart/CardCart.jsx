@@ -6,8 +6,8 @@ import CardMedia from "@material-ui/core/CardMedia";
 import DeleteIcon from "@material-ui/icons/Delete";
 import Typography from "@material-ui/core/Typography";
 import IconButton from "@material-ui/core/IconButton";
-import ExposureNeg1Icon from "@material-ui/icons/ExposureNeg1";
-import ExposurePlus1Icon from "@material-ui/icons/ExposurePlus1";
+import Button from "@material-ui/core/Button";
+import {ButtonGroup} from "@material-ui/core";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -37,7 +37,7 @@ const useStyles = makeStyles((theme) => ({
   btn_add: {
     display: "flex",
     alignItems: "center",
-    backgroundColor: "bisque",
+    
     height: 40,
     width: 110,
     borderRadius: 0,
@@ -94,15 +94,39 @@ export default function CardCart({
         </div>
 
         <div className={classes.btn_add}>
-          <div className={classes.btn_root} onClick={() => resProduct(id)} >
-            <ExposureNeg1Icon />
-          </div>
+          <ButtonGroup
+              size="small"
+              variant="contained"
+              aria-label="contained primary button group"
+              component='div'
+            >
+          {
+            count <=1?
+            <Button onClick={() => deleteCart(id)} color="primary">            
+              <DeleteIcon />            
+            </Button>
+              
+          :  <Button onClick={() => resProduct(id)} color="primary">
+                -
+             </Button>
+          }
+          </ButtonGroup>
           <div>
             <h3>{count}</h3>
           </div>
-          <div className={classes.btn_root} onClick={() => addProduct(id)}>
+          <ButtonGroup
+              size="small"
+              variant="contained"
+              aria-label="contained primary button group"
+              component='div'
+            >
+              <Button onClick={() => addProduct(id)} color="primary">
+                +
+              </Button>
+            </ButtonGroup>
+          {/* <div className={classes.btn_root} onClick={() => addProduct(id)}>
             <ExposurePlus1Icon />
-          </div>
+          </div> */}
         </div>
       </div>
       <div className={classes.controls}>

@@ -14,10 +14,6 @@ import LockOutlinedIcon from '@material-ui/icons/LockOutlined';
 import Typography from '@material-ui/core/Typography';
 import { makeStyles } from '@material-ui/core/styles';
 import Container from '@material-ui/core/Container';
-import { useHistory } from "react-router-dom";
-import NewPassword from "../resetpassword/NewPassword";
-import Password from "../resetpassword/Password";
-
 
 
 export function validate(input) {
@@ -60,8 +56,7 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 export default function FormularioLogin() {
-  const dispatch = useDispatch();
-  const history = useHistory();
+  const dispatch = useDispatch();  
   const [input, setInput] = useState({
     email: "",
     password: "",
@@ -92,10 +87,9 @@ export default function FormularioLogin() {
       email: "",
       password: "",
      });
-    history.push('/')
-};
+    //history.push('/')
+  };
 
-  
   const classes = useStyles();
 
   return (

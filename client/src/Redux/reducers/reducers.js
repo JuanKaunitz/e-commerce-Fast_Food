@@ -27,10 +27,11 @@ import {
   ORDER_REDUX,
   TOTAL_CARRITO,
   BAND_ORDER_USER,
-  NEW_ORDER_USER,
+  NEW_ORDER_USER,    
+  //CLEAR_TOKEN,
   RESET_PASSWORD,
   NEW_PASSWORD,
-  CLEAR_TOKEN,
+  MERCADOPAGO,
   /* ASC,
   DESC */
 } from "../constants";
@@ -65,8 +66,8 @@ const initialState = {
   allOrders: [],
   editOrder: {},
   bandOrderUser: true,
-  resetPassword:{},
-  newPassword:{}
+  resetPassword: {},
+  idMercadopago: {},
 };
 
 const rootReducer = (state = initialState, action) => {
@@ -139,6 +140,7 @@ const rootReducer = (state = initialState, action) => {
       return {
         ...state,
         cart: action.payload,
+        idMercadopago: {},
       };
 
     case ORDER_REDUX:
@@ -252,23 +254,32 @@ const rootReducer = (state = initialState, action) => {
         ...state,
         editOrder: action.payload,
       };
-      case CLIENT_STATUS:
-        return{
-          ...state,
-          clientToken: "",
-          client: {},
-          orderUser:[],
-        }
+    case CLIENT_STATUS:
+      return {
+        ...state,
+        clientToken: "",
+        client: {},
+        orderUser: [],
+      };
+
+    case RESET_PASSWORD:
+      return {
+        ...state,
+        resetPassword: action.payload,
+      };
+      
+    case NEW_PASSWORD:
+      return {
+        resetPassword: action.payload,
+      };
+    
+    case MERCADOPAGO:
+      return{
+        ...state,
+        idMercadopago: action.payload
+      }
        
-        case RESET_PASSWORD:
-          return{
-            ...state,
-            resetPassword:action.payload
-          }
-          case NEW_PASSWORD:
-            return{
-              newPassword: action.payload
-            }
+        
     default:
       return state;
   }
