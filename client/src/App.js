@@ -12,7 +12,7 @@ import Categories from "./components/categories/Categories.jsx";
 import Form from "./components/Form/Form.jsx";
 import NewPassword from "./components/resetpassword/NewPassword.jsx";
 import Password from "./components/resetpassword/Password.jsx";
-import FormNav from "./components/LogForm/FormNav.jsx";
+import FormNav from "./components/login/FormNav.jsx";
 import AdminPanel from "./components/UserAdmin/AdminPanel.jsx";
 import AdminProductDetail from "./components/UserAdmin/AdminProductDetail.jsx"
 import GetClients from "./components/UserAdmin/GetClients.jsx";

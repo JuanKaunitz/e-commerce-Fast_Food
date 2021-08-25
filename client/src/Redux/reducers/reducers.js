@@ -31,8 +31,6 @@ import {
   RESET_PASSWORD,
   NEW_PASSWORD,
   CLEAR_TOKEN,
-  RESET_PASSWORD,
-  NEW_PASSWORD,
   /* ASC,
   DESC */
 } from "../constants";

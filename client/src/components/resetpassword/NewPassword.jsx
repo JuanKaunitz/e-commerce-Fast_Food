@@ -33,6 +33,8 @@ const NewPassword = (props) => {
     const dispatch = useDispatch();
   const token = props.match.params.token;
   console.log(token)
+  const messages = useSelector(state => state.newPassword);
+
   const [password,setPassword]= useState();
   console.log(password)
 

@@ -156,7 +156,7 @@ export default function FormularioLogin() {
         </form>
         <Grid container>
               <Grid item xs>
-                <Link href="/resetPassword" variant="body2">
+                <Link href="/reset-password" variant="body2">
                   Forgot password?
                 </Link>
               </Grid>
