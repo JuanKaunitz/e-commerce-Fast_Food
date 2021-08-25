@@ -15,6 +15,7 @@ const UserSchema = new Schema({
   password: {
     type: String,
     required: [true, "password is required"],
+    trim:true
   },
   status: {
     type: Boolean,
@@ -35,6 +36,14 @@ const UserSchema = new Schema({
     type: mongoose.Schema.Types.ObjectId,
     ref: "Order",
   }],
+  token:{
+    type:String
+  },
+  expireToken:{
+    type:Date
+  }
+  
+
 });
 
 // Autenticar Usuarios

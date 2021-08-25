@@ -2,7 +2,7 @@ const express = require("express");
 const router = express.Router();
 const nodemailer = require("nodemailer");
 const {google} = require('googleapis');
-const {CLIENT_ID,CLIENT_SECRET,CLIENT_URI,REFRESH_TOKEN} = process.env;
+const {CLIENT_ID,CLIENT_SECRET,CLIENT_URI,REFRESH_TOKEN,USER_EMIAL} = process.env;
 
 router.post("/", async (req, res) => {
   const { name, email } = req.body;
@@ -27,7 +27,7 @@ const sendMail = async() =>{
             service:"gmail",
             auth:{
                 type:"OAuth2",
-                user:"jczord23@gmail.com",
+                user:USER_EMIAL,
                 clientId:CLIENT_ID,
                 clientSecret:CLIENT_SECRET,
                 refreshToken:REFRESH_TOKEN,
@@ -38,7 +38,7 @@ const sendMail = async() =>{
             }
         });
         const mailOptions ={
-            from:"Pagina Web NodeMailer <Ecommercefastfood@gmail.com>",
+            from:"Pagina Web NodeMailer <ecommercefastfood@gmail.com>",
             to:`${email}`,
             subject:"Nodemailer FastFood-Ecommece",
             html:contentHTML

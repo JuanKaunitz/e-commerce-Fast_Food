@@ -6,13 +6,12 @@ import AboutUs from "./components/aboutUs/AboutUs.jsx";
 import Cart from "./components/cart/Cart.jsx";
 import Home from "./components/Home/Home.jsx";
 import { Navbar } from "./components/Navbar/Navbar.jsx";
-import FormLogin from "./components/LogForm/FormLogin";
-import Register from './components/LogForm/FormRegister';
+import FormLogin from "./components/login/FormLogin";
+import Register from './components/login/FormRegister';
 import Categories from "./components/categories/Categories.jsx";
 import Form from "./components/Form/Form.jsx";
 import NewPassword from "./components/resetpassword/NewPassword.jsx";
 import Password from "./components/resetpassword/Password.jsx";
-
 import AdminPanel from "./components/UserAdmin/AdminPanel.jsx";
 import AdminProductDetail from "./components/UserAdmin/AdminProductDetail.jsx"
 import GetClients from "./components/UserAdmin/GetClients.jsx";
@@ -24,16 +23,21 @@ import NewCategory from "./components/UserAdmin/NewCategory.jsx";
 import OrdersPanel from "./components/UserAdmin/OrdersPanel.jsx";
 import OrderEdit from "./components/UserAdmin/OrderEdit.jsx";
 import MyAcount from "./components/Navbar/MyAcount.jsx";
-import Shipping from './components/Pasarela/Shipping';
+import Shipping from './components/Pasarela/Shipping.jsx';
 import Checkout from "./components/payment/Checkout.js";
-import Option from "./components/Shipping/Option.jsx";
+import Option from "./components/Pasarela/Option.jsx";
+import Maps from "./components/Pasarela/Maps.jsx";
+import Succes from "./components/succesPayment/Succes.jsx";
 import "./App.css";
-import Maps from "./components/Shipping/Maps.jsx";
+
 const KEY_STRIPE=process.env
+
+
 
 const stripePromise = loadStripe(`${KEY_STRIPE}`);
 
 function App() {
+  
   return (
     <div>
       <BrowserRouter>
@@ -43,7 +47,7 @@ function App() {
         <Route exact path="/cart" component={Cart} />      
         <Route exact path="/form" component={Form} />
         <Route exact path="/categories" component={Categories} />
-        <Route exact path="/resetPassword" component={Password} />
+        <Route exact path="/reset-password" component={Password} />
         <Route exact path="/reset-password/:token" component={NewPassword} /> 
         <Route exact path="/login" component={FormLogin} />
         <Route exact path="/adminPanel" component={AdminPanel} />
@@ -59,7 +63,7 @@ function App() {
         <Route exact path="/option" component={Option} />
         <Route exact path="/shipping" component={Shipping} />
         <Route exact path="/maps" component={Maps} />
-
+        <Route exact path="/succes" component={Succes} />
         <Route
           path="/payment"
           render={() => (

@@ -1,32 +1,34 @@
 import React, { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Input } from "@material-ui/core";
-import {
-  searchQueryProducts,
-} from "../../Redux/actions/actions";
-import styles from "./styles.module.css"
-import {ReactComponent as SearchButton} from '../../assets/149852.svg'
+import { searchQueryProducts } from "../../Redux/actions/actions";
+import { alpha, makeStyles } from "@material-ui/core/styles";
+import { ReactComponent as SearchButton } from "../../assets/149852.svg";
+import SearchBar from "material-ui-search-bar";
+
+const useStyles = makeStyles((theme) => ({
+  searchbar: {
+    width: '50%',
+  }
+}));
 
 const SerchBar = () => {
   const dispatch = useDispatch();
 
   const [name, setName] = useState("");
   const [search, setSearch] = useState(false);
-const globalState = useSelector(state => state.getProducts)
+  const globalState = useSelector((state) => state.getProducts);
+  const classes = useStyles();
 
-  
-
-  
   function searchProduct() {
     dispatch(searchQueryProducts(name));
     setSearch(true);
-  } 
- 
+  }
   useEffect(() => {
     if (name.length > 0) {
       searchProduct();
     }
-     //eslint-disable-next-line react-hooks/exhaustive-deps
+    //eslint-disable-next-line react-hooks/exhaustive-deps
   }, [globalState]);
 
   const onClickXHandler = (e) => {
@@ -35,22 +37,24 @@ const globalState = useSelector(state => state.getProducts)
     // setSearch(false);
   };
   return (
-    <div className={styles.searchBarMainContainer}>
+    <div className={classes.searchbar}>
+    <SearchBar>
       <form onSubmit={onClickXHandler}>
-        <div className={styles.buttonSearchContainer}>
-        <Input className={styles.inputBox} placeholder="Buscar.."
+        <Input
+          placeholder="Buscar.."
           inputProps={{ "aria-label": "description" }}
           value={name}
-          autoComplete='on'
+          autoComplete="on"
           onChange={(e) => setName(e.target.value)}
-        />
-        <div className={styles.backgroundSearchButton}>
-        <SearchButton className={styles.searchIcon} />
-        </div>
+          />
 
-        <input className={styles.inputBtn} name="searchBarButton" type='submit' value="asd" />
-      </div>
+        <input
+          name="searchBarButton"
+          type="submit"
+          value="asd"
+          />
       </form>
+    </SearchBar>
     </div>
   );
 };

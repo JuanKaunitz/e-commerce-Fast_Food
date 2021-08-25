@@ -1,6 +1,6 @@
 import React, { useState } from "react";
-import { useDispatch } from "react-redux";
-import { authUser } from "../../Redux/actions/actions";
+import {useDispatch } from "react-redux";
+import { authUser} from "../../Redux/actions/actions";
 import Avatar from '@material-ui/core/Avatar';
 import Button from '@material-ui/core/Button';
 import CssBaseline from '@material-ui/core/CssBaseline';
@@ -12,9 +12,13 @@ import LockOutlinedIcon from '@material-ui/icons/LockOutlined';
 import Typography from '@material-ui/core/Typography';
 import { makeStyles } from '@material-ui/core/styles';
 import Container from '@material-ui/core/Container';
+<<<<<<< HEAD:client/src/components/LogForm/FormLogin.jsx
 import { useHistory } from "react-router";
 import Swal from 'sweetalert2'
 import withReactContent from 'sweetalert2-react-content'
+=======
+import {useHistory} from 'react-router-dom'
+>>>>>>> 421933bc2048a601a1c334f47618a87204cbe224:client/src/components/login/FormLogin.jsx
 
 
 export function validate(input) {
@@ -57,7 +61,11 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 export default function FormularioLogin() {
+<<<<<<< HEAD:client/src/components/LogForm/FormLogin.jsx
   const dispatch = useDispatch();  
+=======
+  const dispatch = useDispatch(); 
+>>>>>>> 421933bc2048a601a1c334f47618a87204cbe224:client/src/components/login/FormLogin.jsx
   const history = useHistory();
   const [input, setInput] = useState({
     email: "",
@@ -98,16 +106,20 @@ export default function FormularioLogin() {
   }
 
   
-  const handleSubmit =  (e) => {
+  const handleSubmit = async(e) => {
     e.preventDefault();
     showAlert();
     console.log(input);
-    dispatch(authUser(input));
+    await dispatch(authUser(input));
     setInput({
       email: "",
       password: "",
      });
+<<<<<<< HEAD:client/src/components/LogForm/FormLogin.jsx
      history.push("/");
+=======
+    history.push('/')
+>>>>>>> 421933bc2048a601a1c334f47618a87204cbe224:client/src/components/login/FormLogin.jsx
   };
 
   const classes = useStyles();
@@ -166,7 +178,7 @@ export default function FormularioLogin() {
         </form>
         <Grid container>
               <Grid item xs>
-                <Link href="/resetPassword" variant="body2">
+                <Link href="/reset-password" variant="body2">
                   Forgot password?
                 </Link>
               </Grid>

@@ -5,11 +5,22 @@ import "./AdminCategories.css";
 import { Link } from "react-router-dom";
 import CardCategories from "./CardCategories";
 import Grid from "@material-ui/core/Grid";
+import { makeStyles } from "@material-ui/core/styles";
 
+
+const useStyles = makeStyles((theme) => ({
+  list: {
+    flexGrow: 1,
+    backgroundColor: 'black',
+    padding: 0,
+    color:'orange',
+    textAlign:'center'
+  },
+}));
 const AdminCategories = () => {
   const dispatch = useDispatch();
   const categories = useSelector((state) => state.allCategories);
-
+  const classes = useStyles(); 
   useEffect(() => {
     dispatch(getCategories());
   }, [dispatch]);
@@ -20,9 +31,9 @@ const AdminCategories = () => {
   }
 
   return (
-    <div className="list">
+    <div className={classes.list}>
       
-      <h1 className="list">Panel de Categorias</h1>
+      <h1>Panel de Categorias</h1>
       <Link to="/adminPanel">
         <button>Admin Panel</button>
       </Link>
@@ -33,9 +44,9 @@ const AdminCategories = () => {
         <button>New Category</button>
       </Link>
 
-      <div className="list">
+      <div className={classes.list}>
         {categories.map((e) => (
-          <Grid item key={e._id} xs={12}>
+        
             <CardCategories
               id={e._id}
               name={e.name}
@@ -45,7 +56,7 @@ const AdminCategories = () => {
               ))}
               deleteCategory={handleDeleteCategory}
             />
-          </Grid>
+          
         ))}
       </div>
     </div>

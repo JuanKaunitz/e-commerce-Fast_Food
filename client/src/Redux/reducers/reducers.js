@@ -129,6 +129,8 @@ const rootReducer = (state = initialState, action) => {
       };
 
     case LOGIN_CLIENT:
+      localStorage.setItem('token',action.payload.token);
+      localStorage.setItem('client', JSON.stringify(action.payload.user));
       return {
         ...state,
         client: action.payload.user,

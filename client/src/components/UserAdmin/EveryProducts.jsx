@@ -4,10 +4,38 @@ import { deleteProduct, getAllProducts } from "../../Redux/actions/actions";
 import CardAdmin from "./CardAdmin";
 import Grid from "@material-ui/core/Grid";
 //import './EveryProducts.css'
+import { makeStyles } from '@material-ui/core/styles';
 
+const useStyles = makeStyles((theme) => ({
+  list: {
+
+    backgroundColor:'black',
+    color:'white',
+    textAlign:'center',
+    borderRadius:0.5
+  },
+  
+  list1: {
+    backgroundColor:'black',
+    color:'orange',
+    fontSize: '20px',
+    textAlign:'center',
+    borderRadius:0.5
+  },
+  products:{
+    alignItems:'center',
+    display: 'flex',
+    justifyContent: 'space-around',
+
+  },
+  
+
+
+}));
 export default function EveryProducts() {
   const dispatch = useDispatch();
   const getAll = useSelector((state) => state.allProducts);
+  const classes = useStyles();
 
   useEffect(() => {
     dispatch(getAllProducts());
@@ -18,8 +46,10 @@ export default function EveryProducts() {
   }
 
   return (
-    <div className="list">
+    <div className={classes.products}>
+    <div className={classes.list1}>
       <h1>Products List</h1>
+      <div className={classes.list}>
       {getAll.map((e) => (
         <CardAdmin
           key={e._id}
@@ -35,6 +65,8 @@ export default function EveryProducts() {
           deleteCart={handleDeleteProduct}
         />
       ))}
+      </div>
+    </div>
     </div>
   );
 }

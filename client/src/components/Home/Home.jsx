@@ -1,6 +1,5 @@
 import React, { useEffect } from "react";
-import {useSelector, useDispatch} from "react-redux";
-import "./Home.css";
+import { useSelector, useDispatch } from "react-redux";
 import Footer from "../Footer/Footer";
 import GridCardsProducts from "../cards/CardsProducts";
 import { getAllProducts, updateCart, totalProductosCarrito, getTypes, allUsers,
@@ -9,15 +8,33 @@ import Gallery from "../gallery/Gallery";
 import Order from "../order/Order";
 import Otters from "../Otters/Otters";
 import { mergeCart, sumaCantidadTotal } from "../cart/utilsCarts";
+import { Grid } from "@material-ui/core";
+import Maps from "../Map/Maps";
+import { makeStyles } from "@material-ui/core/styles";
 
+
+
+const useStyles = makeStyles((theme) => ({
+  /* container: {
+   backgroundColor:'white',
+  }, */
+  order:{
+    display:'flex',
+    justifyContent:'space-around',
+    alignItems: '',
+  }
+}));
 
 function Home() {
   const dispatch = useDispatch();
-  const client = useSelector(state => state.client);
-  const orderUser = useSelector(state => state.orderUser);
-  const token = useSelector(state => state.clientToken);
-  const band = useSelector(state => state.bandOrderUser);
+  const classes = useStyles();
+  const client = useSelector((state) => state.client);
+  const orderUser = useSelector((state) => state.orderUser);
+  const token = useSelector((state) => state.clientToken);
+  const band = useSelector((state) => state.bandOrderUser);
   //localStorage.removeItem("order");
+
+  
 
     if(client && orderUser.length > 0 && token && band){
       dispatch(bandOrderUser())
@@ -76,7 +93,7 @@ function Home() {
     const cart = JSON.parse(localStorage.getItem('order'));
     if(cart === null){
       dispatch(totalProductosCarrito(0));
-    }else{
+    } else {
       const cantidadTotal = sumaCantidadTotal(cart);
       dispatch(updateCart(cart));
       dispatch(totalProductosCarrito(cantidadTotal));
@@ -85,13 +102,21 @@ function Home() {
   }, [dispatch]);
 
   return (
-    <div className="content">
-      <Gallery />
-      <Otters />
-      <Order />
-      <GridCardsProducts />
-      <Footer />
-    </div>
+    <Grid container>
+      <Grid item lg={12} xl={12} md={10} xs={12} >
+      <div className={classes.container}> 
+        <Gallery />
+        <Otters />
+        <div className={classes.order}>
+        <Order />
+        </div>
+        <GridCardsProducts />
+        {/* <Maps /> */}
+        <Footer />
+        </div>
+        </Grid>
+    </Grid>
   );
 }
+
 export default Home;

@@ -13,19 +13,30 @@ import './GetClients.css'
 
 
 const useStyles = makeStyles((theme) => ({
+  list: {
+    backgroundColor:'black',
+    color:'orange'
+  },
   root: {
     display: 'flex',
+    backgroundColor:'black',
+    color:'white'
   },
   content: {
     flex: '1 0 auto',
+    backgroundColor:'black',
+    color:'white'
   },
   cover: {
     width: 100,
-    height:80
+    height:80,
+    backgroundColor:'black',
+    color:'white'
   },
   controls: {
     display: 'flex',
     alignItems: 'center',
+    color:'white',
     paddingLeft: theme.spacing(1),
     paddingBottom: theme.spacing(1),
   },
@@ -42,9 +53,10 @@ useEffect(()=> {
 
 
   return (
-    <div className='list'>
+    <div className={classes.list}>
     
-    <h1 classname='list'>Clients list</h1>
+    <h1>Clients list</h1>
+    
       {
       clients.length > 0 ? clients.map((e) => (
           <Card key={e._id} className={classes.root}>
@@ -59,23 +71,23 @@ useEffect(()=> {
                   <Typography  variant="h5" component="h2">
                     {e.name}
                   </Typography>
-                  <Typography  color="textSecondary" component="h2">
+                  <Typography   component="h2">
                     {e.email}
                   </Typography>
                 </CardContent>
               </div>
               <div className={classes.controls}>
-                <Typography color="textSecondary" component="h2">
+                <Typography  component="h2">
                 {e.google} 
                 </Typography>
               </div>
               <div className={classes.controls}>
-                <Typography color="textSecondary" component="h2">
+                <Typography  component="h2">
                 {e.status} 
                 </Typography>
               </div>
               <div className={classes.controls}>
-                <Typography color="textSecondary" component="h2">
+                <Typography  component="h2">
                 {e.role} 
                 </Typography>
               </div>

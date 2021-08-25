@@ -35,11 +35,6 @@ const ClientEdit = (props) => {
 
     return (
         <div>
-            <br></br>
-            <br></br>
-            <br></br>
-            <br></br>
-            <br></br>
             <h1 className='list'>Client Edit</h1>
             <Link to='/adminPanel'> <button >Admin Panel</button></Link>
             <Link to='/clients'> <button >Clients Panel</button></Link>

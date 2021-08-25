@@ -11,11 +11,15 @@ import { Link } from "react-router-dom";
 const useStyles = makeStyles((theme) => ({
   root: {
     display: "flex",
+    backgroundColor:'black',
+    color:'white'
   },
   content: {
     flex: "1 0 auto",
+    color:'white'
   },
   cover: {
+    color:'white',
     width: 100,
     height: 80,
   },
@@ -46,7 +50,6 @@ export default function CardOrders({
       <div>
         <CardMedia
           className={classes.cover}
-         /* {orderId} */
           title="Order"
         />
       </div>
@@ -55,34 +58,14 @@ export default function CardOrders({
           <Typography component="h5" variant="h5">
             <Link to={`/orderEdit/${orderId}`}><h4>Op: {orderId} </h4></Link>  
           </Typography>
-          <Typography variant="subtitle1" color="textSecondary">
+          <Typography variant="subtitle1" >
             Status: {status} 
           </Typography>
-          <Typography variant="subtitle1" color="textSecondary">
+          <Typography variant="subtitle1" >
               Total: {total}
           </Typography>
         </CardContent>
       </div>
-      {/* <div className={classes.controls}>
-        <Typography variant="subtitle1" color="textSecondary">
-          <span>${price}</span>
-        </Typography>
-      </div>
-      <div className={classes.controls}>
-        <Typography variant="subtitle1" color="textSecondary">
-          <span>${total}</span>
-        </Typography>
-      </div>
-      <Typography variant="subtitle1" color="textSecondary">
-            {status}
-          </Typography>
-      <div>
-        <IconButton onClick={() => deleteCart(id)}>
-          <DeleteIcon />
-        </IconButton>
- 
-        <Link to={`/admProdDetail/${orderId}`}>Editar</Link>
-      </div> */}
     </Card>
   );
 }

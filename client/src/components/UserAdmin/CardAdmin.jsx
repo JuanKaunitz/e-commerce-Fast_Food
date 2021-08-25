@@ -11,13 +11,18 @@ import { Link } from "react-router-dom";
 const useStyles = makeStyles((theme) => ({
   root: {
     display: "flex",
+    backgroundColor:'black',
+    color:'white',
+    padding:'10px',
+    textAlign:'center'
   },
   content: {
-    flex: "1 0 auto",
+    flex: "1 2 auto",
   },
   cover: {
-    width: 100,
-    height: 80,
+    width: 120,
+    height: 120,
+    backgroundSize:100
   },
   controls: {
     display: "flex",
@@ -25,6 +30,12 @@ const useStyles = makeStyles((theme) => ({
     paddingLeft: theme.spacing(1),
     paddingBottom: theme.spacing(1),
   },
+  root1:{
+    color:'orange'
+  },
+  icon:{
+    color:'white'
+  }
 }));
 
 export default function CardAdmin({
@@ -48,20 +59,22 @@ export default function CardAdmin({
           <Typography component="h5" variant="h5">
             {name}
           </Typography>
-          <Typography variant="subtitle1" color="textSecondary">
+          <Typography variant="subtitle1" >
             {description}
           </Typography>
         </CardContent>
       <div className={classes.controls}>
-        <Typography variant="subtitle1" color="textSecondary">
+        <Typography variant="subtitle1" >
           <span>${price}</span>
         </Typography>
       </div>
-        <IconButton onClick={() => deleteCart(id)}>
-          <DeleteIcon />
+      
+        <IconButton   onClick={() => deleteCart(id)}>
+          <DeleteIcon  className={classes.icon} />
         </IconButton>
+        
 
-        <Link to={`/admProdDetail/${id}`}>Editar</Link>
+        <Link to={`/admProdDetail/${id}`} className={classes.root1}>Editar</Link>
     </Card>
   );
 }

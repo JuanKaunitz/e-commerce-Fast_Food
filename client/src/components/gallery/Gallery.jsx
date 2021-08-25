@@ -26,7 +26,7 @@ const breakPoints = [
   return (
     <div className="Grid-Categorias">
       <Carousel breakPoints={breakPoints}>
-      {categoria.map((item) => {
+      {categoria?.map((item) => {
         return (
           <div className='Grid-Item'  key={item._id}>
             <img
