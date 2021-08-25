@@ -5,6 +5,7 @@ import { makeStyles } from "@material-ui/core/styles";
 import CardProduct from "../card/CardProduct";
 import "../cards/CardsProducts.css";
 import Order from "../order/Order";
+import { Button, ButtonGroup, TextField } from "@material-ui/core";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -16,7 +17,16 @@ const useStyles = makeStyles((theme) => ({
   color:{
     color:"white",
     marginTop:"100px"
-  }
+  },
+  btn_add: {
+    display: "flex",
+    alignItems: "center",
+    
+    height: 40,
+    width: 110,
+    borderRadius: 0,
+    cursor: "pointer",
+  },
 
 }));
 
@@ -93,6 +103,8 @@ const Categories = () => {
                 name={product.name}
                 image={product.image}
                 price={product.price}
+                stock={product.stock}
+                description={product.description}
               />
             </Grid>
           ))
@@ -104,25 +116,42 @@ const Categories = () => {
                 name={product.name}
                 image={product.image}
                 price={product.price}
+                stock={product.stock}
+                description={product.description}
               />
             </Grid>
           ))
         )
         }
       </Grid>
-      <div className="paginado">
-        <button value="prev" onClick={handlePrev} disabled={page <= 0}>
-          Prev
-        </button>
-        <p className="pagina"> {page + 1} </p>
-        <button
-          value="next"
-          onClick={handleNext}
-          disabled={filtro.length < 0 ? filter1.slice(page * 8, page * 8 + 8).length < 8
-          : filtro.slice(page * 8, page * 8 + 8).length < 8}
-        >
-        Next
-        </button>
+      <div className={classes.btn_add}>
+        <ButtonGroup size="small" variant="contained" className={classes.color}>
+          <Button
+            variant="contained"
+            className={classes.color}
+           
+            value="prev"
+            onClick={handlePrev}
+            disabled={page <= 0}
+          >
+            prev
+          </Button>
+          <TextField
+            className="input_text"
+            variant="outlined"
+            value={page + 1}
+          />
+          <Button
+            variant="contained"
+            className={classes.color}
+            value="next"
+            onClick={handleNext}
+            disabled={filtro.length < 0 ? filter1.slice(page * 8, page * 8 + 8).length < 8
+              : filtro.slice(page * 8, page * 8 + 8).length < 8}
+          >
+            next
+          </Button>
+        </ButtonGroup>
       </div>
     </div>
   );

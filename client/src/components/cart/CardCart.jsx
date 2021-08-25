@@ -124,9 +124,6 @@ export default function CardCart({
                 +
               </Button>
             </ButtonGroup>
-          {/* <div className={classes.btn_root} onClick={() => addProduct(id)}>
-            <ExposurePlus1Icon />
-          </div> */}
         </div>
       </div>
       <div className={classes.controls}>
