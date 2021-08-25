@@ -9,9 +9,10 @@ import { Grid } from "@material-ui/core";
 
 const useStyles = makeStyles((theme) => ({
   root: {
+    width:'auto',
     display: 'flex',
-    flexDirection: 'row',
-    minHeight: '20vh',
+    flexDirection: 'column',
+    minHeight: '25vh',
     color:'white'
   },
   main: {
@@ -19,6 +20,7 @@ const useStyles = makeStyles((theme) => ({
     marginBottom: theme.spacing(2),
   },
   footer: {
+    width:'auto',
     padding: theme.spacing(3, 2),
     textAlign:'center',
     marginTop: 'auto',

@@ -13,12 +13,16 @@ import Maps from "../Map/Maps";
 import { makeStyles } from "@material-ui/core/styles";
 
 
+
 const useStyles = makeStyles((theme) => ({
   container: {
-    backgroundColor:'white',
-    padding: '100px',
-    alignItems: 'center',
+   backgroundColor:'white',
   },
+  order:{
+    display:'flex',
+    justifyContent:'space-around',
+    alignItems: '',
+  }
 }));
 
 function Home() {
@@ -97,12 +101,14 @@ function Home() {
   }, [dispatch]);
 
   return (
-    <Grid cointainer>
-      <Grid item lg={12} xl={12} md={8} xs={12} >
+    <Grid container>
+      <Grid item lg={12} xl={12} md={10} xs={12} >
       <div className={classes.container}> 
         <Gallery />
         <Otters />
+        <div className={classes.order}>
         <Order />
+        </div>
         <GridCardsProducts />
         {/* <Maps /> */}
         <Footer />

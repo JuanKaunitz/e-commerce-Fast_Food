@@ -6,20 +6,22 @@ import TabsBtn from "./Tabs_btn";
 import { getAllProducts, getCategories } from "../../Redux/actions/actions";
 import { makeStyles } from "@material-ui/core/styles";
 import "./AdminPanel.css";
-<<<<<<< HEAD
 import { Grid } from "@material-ui/core";
-
-=======
 import { allUsers } from "../../Redux/actions/actions";
->>>>>>> Dev
 
 
 const useStyles = makeStyles((theme) => ({
     root: {
       flexGrow: 1,
-      backgroundColor: '#a18722',
+      backgroundColor: 'black',
       padding: 0,
+      color:'orange',
+      alignItems:'center',
+      textAlign:'center'
     },
+    list: {
+
+    }
   }));
   
 export default function AdminPanel() {
@@ -45,6 +47,8 @@ export default function AdminPanel() {
     setValue(newValue);
   };
   return (
+    
+    
     <Grid cointaner lg={12} md={6} xs={12}>
     <Grid items item >
     <div className="list">

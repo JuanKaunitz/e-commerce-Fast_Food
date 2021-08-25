@@ -43,15 +43,19 @@ const theme = createTheme({
 
 const useStyles = makeStyles(() => ({
   media: {
-    width: 'auto',
-    height:100,
-    paddingTop: "10%", // 16:9
-    backgroundColor:'black'
+    width: '100',
+    height:220,
+    paddingTop: "25%", // 16:9
+    backgroundSize:'80%',
+    backgroundColor:'black',
+  
   },
   cardContent: {
-    maxWidth: "black",
+    width: 200,
+    height:'100%',
+  
     backgroundColor:'black',
-    maxHeigth: 200,
+  
     boxShadow: "3px 4px 8px #0b0c0c1a",
   },
   headerTitle: {
@@ -60,7 +64,8 @@ const useStyles = makeStyles(() => ({
   },
   title:{
     color:'white',
-    textAlign:'center'
+    textAlign:'center',
+  
   },
   button:{
     backgroundColor:'orange'
@@ -186,7 +191,7 @@ export default function CardProduct({
               {name}
             </Typography>
             <Divider />
-            <Typography className={classes.pos} color="textSecondary">
+              <Typography className={classes.pos} color="textSecondary">
              Descrition: {description}
             </Typography>
            
@@ -199,14 +204,7 @@ export default function CardProduct({
               aria-label="contained primary button group"
               component='div'
             >
-              <Button onClick={() => handleRes(id)} color="secondary">
-                --
-              </Button>
-              <TextField
-                variant="outlined"
-                value={counter}
-              />
-              <Button onClick={() => handleAddCart()} className={classes.button}>
+              <Button onClick={() => handleAddCart()} color="primary">
                 +
               </Button>
             </ButtonGroup>
