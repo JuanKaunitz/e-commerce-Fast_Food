@@ -44,9 +44,9 @@ server.get ('/:id',async(req,res,next) =>{
       installments: 3  //Cantidad máximo de cuotas
   },
   back_urls: {
-    success: 'http://localhost:5001/food/api/mercadopago/pagos',
-    failure: 'http://localhost:5001/food/api/mercadopago/pagos',
-    pending: 'http://localhost:5001/food/api/mercadopago/pagos',
+    success: 'http://localhost:5001/food/api/mercadopago',
+    failure: 'http://localhost:5001/food/api/mercadopago',
+    pending: 'http://localhost:5001/food/api/mercadopago',
   },
 
 
@@ -63,66 +63,37 @@ server.get ('/:id',async(req,res,next) =>{
     .catch(function(error){
       console.log("ERROR ACAAA",error);
     })
-
 })
 
 
   //Ruta que recibe la información del pago
-server.get("/pagos", async(req, res)=>{
-      console.info("EN LA RUTA PAGOS ", req)
-     /*  const payment_id= req.query.payment_id
-      console.log("PAYMENT ID", payment_id)
-      const payment_status= req.query.status
-      console.log("PAYMENT STATUS", payment_status)
-      const external_reference = req.query.external_reference
-      console.log("EXTERNAL REFERENCE ", external_reference)
-      const merchant_order_id= req.query.merchant_order_id;
-      console.log("MERCHANT ORDER ID ", merchant_order_id)
-      
-      
-      //Aquí edito el status de mi orden
-      let statusOrder = await Order.findById(external_reference);
-      console.log("ORDER A CAMBIAR", statusOrder)
-      statusOrder.status = payment_status;
-      
-      console.info('STATUS',statusOrder.status )
-        //order.save()
-       
-        console.info('redirect success')
+  server.get('/',async  (req, res)=>{
+   // console.info("EN LA RUTA PAGOS ", req)
+    const payment_id= req.query.payment_id
+   //  console.log("PAYMENT ID", payment_id)
+    const payment_status= req.query.status
+   //console.log("PAYMENT STATUS", payment_status)
+    const external_reference = req.query.external_reference
+   //   console.log("EXTERNAL REFERENCE ", external_reference)
+    const merchant_order_id= req.query.merchant_order_id;
+    //  console.log("MERCHANT ORDER ID ", merchant_order_id)
+    try {
+      let order = await Order.findByIdAndUpdate(
+        { _id: external_reference },
         
-        return res.redirect("http://localhost:3000") */
-      
-        /* .catch((err) =>{
-          console.error('error al salvar', err)
-          return res.redirect(`http://localhost:3000/?error=${err}&where=al+salvar`)
-        })
-     
-      .catch(err =>{
-        console.error('error al buscar', err)
-        return res.redirect(`http://localhost:3000/?error=${err}&where=al+buscar`)
-      }) */
+        {
+          status:"completada",
+        }
+        );
+        
+        //console.log("ORDER ", order);
+    return res.redirect("http://localhost:3000");
+    } catch (error) {
+      console.log(error);
+      next();
+    }
+  });
 
-      //proceso los datos del pago 
-      //redirijo de nuevo a react con mensaje de exito, falla o pendiente
-  })
-  
-  
-   //Busco información de una orden de pago
-   server.get("/pagos/:id", (req, res)=>{
-     const mp = new mercadopago(ACCESS_TOKEN)
-     const id = req.params.id
-     console.info("Buscando el id", id)
-     mp.get(`/v1/payments/search`, {'status': 'pending'}) //{"external_reference":id})
-     .then(resultado  => {
-       console.info('resultado', resultado)
-       res.json({"resultado": resultado})
-     })
-     .catch(err => {
-       console.error('No se consulto:', err)
-       res.json({
-         error: err
-    })
-  })
-})
+    
   
 module.exports = server;

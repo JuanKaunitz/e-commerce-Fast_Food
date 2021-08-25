@@ -23,11 +23,8 @@ import AdminCategoryDetail from "./components/UserAdmin/AdminCategoryDetail.jsx"
 import NewCategory from "./components/UserAdmin/NewCategory.jsx";
 import OrdersPanel from "./components/UserAdmin/OrdersPanel.jsx";
 import OrderEdit from "./components/UserAdmin/OrderEdit.jsx";
-import Mercado from "./components/Pasarela/index.jsx";
 import MyAcount from "./components/Navbar/MyAcount.jsx";
-//import Mercado from "./components/Pasarela/index.jsx";
 import Shipping from './components/Pasarela/Shipping';
-// import EditProduct from "./components/editProduct/EditProduct.jsx";
 import Checkout from "./components/payment/Checkout.js";
 import Option from "./components/Shipping/Option.jsx";
 import "./App.css";
@@ -58,8 +55,7 @@ function App() {
         <Route exact path="/categoryDetail/:id" component={AdminCategoryDetail} />
         <Route exact path="/newCategory" component={NewCategory} />
         <Route exact path="/ordersPanel" component={OrdersPanel} />
-        <Route exact path="/orderEdit/:id" component={OrderEdit} />
-        <Route exact path="/mercadopago" component={Mercado} />
+        <Route exact path="/orderEdit/:id" component={OrderEdit} />        
         <Route exact path="/option" component={Option} />
         <Route exact path="/shipping" component={Shipping} />
         <Route exact path="/maps" component={Maps} />
