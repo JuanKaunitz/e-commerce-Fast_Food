@@ -46,7 +46,7 @@ exports.getUsers = async (req, res, next) => {
 };
 //por id
 exports.getUserById = async (req, res, next) => {
-  console.log(req.params.id)
+  //console.log(req.params.id)
   if(!req.params.id ){
    return res.status(400).json({msg:'id invalido'})
   }

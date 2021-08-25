@@ -92,10 +92,9 @@ export default function FormularioLogin() {
       email: "",
       password: "",
      });
-    history.push('/')
-};
+    //history.push('/')
+  };
 
-  
   const classes = useStyles();
 
   return (

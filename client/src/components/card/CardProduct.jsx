@@ -170,7 +170,7 @@ export default function CardProduct({
             </Typography>
             <Divider />
             <Typography className={classes.pos} color="textSecondary">
-             Descrition: {description}
+             Description: {description}
             </Typography>
            
             <Typography className={classes.pos} color="textSecondary">

@@ -31,7 +31,8 @@ import {
     BAND_ORDER_USER,
     NEW_ORDER_USER,
     RESET_PASSWORD,
-    NEW_PASSWORD
+    NEW_PASSWORD,
+    MERCADOPAGO,
 } from '../constants'
 
 import dotenv from 'dotenv'
@@ -458,6 +459,20 @@ export const changeStatus = (id, input) => async (dispatch) => {
 
     } catch(err) {
         console.log(err)
+    }
+}
+
+export const mercadopago = (id) => async (dispatch) =>{
+    console.log("ID order", id)
+    try {
+        const res = await axios.get(`${URL}/food/api/mercadopago/${id}`)
+        console.log("RESPUESTA MERCADOPAGO", res.data)
+        dispatch({
+            type: MERCADOPAGO,
+            payload: res.data
+        })
+    } catch (error) {
+        
     }
 }
 

@@ -130,22 +130,36 @@ export const Navbar = () => {
                 </NavLink>
               ) : null}
 
-              <IconButton aria-label="add to shopping cart">
-                <NavLink
-                  className={classes.MuiButtonLabel}
-                  to="/cart"
-                  activeClassName="active"
-                >
-                  <Typography>{totalCarrito}</Typography>
-                  <AddShoppingCartIcon />
-                </NavLink>
-              </IconButton>
+                {
+                  totalCarrito > 0?
+                  <IconButton aria-label="add to shopping cart">
+                    <NavLink
+                      className={classes.MuiButtonLabel}
+                      to="/cart"
+                      activeClassName="active"
+                    >
+                      <Typography>{totalCarrito}</Typography>
+                      <AddShoppingCartIcon />
+                    </NavLink>
+                  </IconButton>
+                : 
+                  <IconButton aria-label="add to shopping cart">
+                    <NavLink
+                      className={classes.MuiButtonLabel}
+                      to="/"
+                      activeClassName="active"
+                    >
+                      <Typography>{totalCarrito}</Typography>
+                      <AddShoppingCartIcon />
+                    </NavLink>
+                </IconButton>
+                }
 
               {!token? (
                 <Button color="inherit">
                   <NavLink
                     className={classes.MuiButtonLabel}
-                    to="/register"
+                    to="/login"
                     activeClassName="active"
                   >
                     LOGIN
@@ -166,7 +180,7 @@ export const Navbar = () => {
               <Button color="inherit">
                 <NavLink
                   className={classes.MuiButtonLabel}
-                  to="/formregister"
+                  to="/register"
                   activeClassName="active"
                 >
                   REGISTER
