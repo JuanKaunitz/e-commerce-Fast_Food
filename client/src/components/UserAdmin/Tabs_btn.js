@@ -38,9 +38,16 @@ TabPanel.propTypes = {
 const useStyles = makeStyles((theme) => ({
   root: {
     flexGrow: 1,
-    backgroundColor: '#585858',
+    backgroundColor: 'white',
     padding: 0,
   },
+  productslist:{
+    backgroundColor: 'black',
+  },
+  getclients:{
+    backgroundColor: 'black',
+  },
+  
 }));
 
 export default function SimpleTabs({ value, setvalue }) {
@@ -49,10 +56,10 @@ export default function SimpleTabs({ value, setvalue }) {
   return (
     <div className={classes.root}>
         <TabPanel value={value} index={0}>
-        <EveryProducts/>
+        <EveryProducts className={classes.productslist}/>
         </TabPanel>
         <TabPanel value={value} index={1}>
-          <GetClients />
+          <GetClients className={classes.getclients}/>
         </TabPanel>
         <TabPanel value={value} index={2}>
           <NewCategory />

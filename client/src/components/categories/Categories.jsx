@@ -8,6 +8,7 @@ import Order from "../order/Order";
 
 const useStyles = makeStyles((theme) => ({
   root: {
+    color:'black',
     marginLeft: 80,
     marginTop:20,
     width:'80%',
@@ -16,6 +17,9 @@ const useStyles = makeStyles((theme) => ({
   color:{
     color:"white",
     marginTop:"100px"
+  },
+  button:{
+    backgroundColor:'black',
   }
 
 }));
@@ -87,8 +91,9 @@ const Categories = () => {
       <Grid container className={classes.root} spacing={2}>
         {filtro.length <= 0 ? (
           filter1.slice(page * 8, page * 8 + 8).map((product) => (
-            <Grid item key={product._id} xs={3}>
+            <Grid item lg={6} md={6} xs={12} key={product._id}>
               <CardProduct
+
                 id={product._id}
                 name={product.name}
                 image={product.image}
@@ -98,7 +103,7 @@ const Categories = () => {
           ))
         ) : (
           filtro.slice(page * 8, page * 8 + 8).map((product) => (
-            <Grid item key={product._id} xs={3}>
+            <Grid lg={6} md={6} xs={12} item key={product._id} >
               <CardProduct
                 id={product._id}
                 name={product.name}
@@ -110,11 +115,11 @@ const Categories = () => {
         )
         }
       </Grid>
-      <div className="paginado">
-        <button value="prev" onClick={handlePrev} disabled={page <= 0}>
+      <div >
+        <button className={classes.button} value="prev" onClick={handlePrev} disabled={page <= 0}>
           Prev
         </button>
-        <p className="pagina"> {page + 1} </p>
+        <p > {page + 1} </p>
         <button
           value="next"
           onClick={handleNext}

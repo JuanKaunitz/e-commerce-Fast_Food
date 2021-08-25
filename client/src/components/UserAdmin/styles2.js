@@ -6,7 +6,7 @@ const useStyles2 = makeStyles(()=>({
     paddingLeft:80,
     margin:'auto',
     height:800,
-    backgroundColor:'#c7c9cc29',
+    backgroundColor:'black',
     borderRadius:10,
     padding:5
     
