@@ -1,6 +1,10 @@
-import React from "react";
+import React from 'react'
+import { useSelector, useDispatch } from "react-redux";
+import { mercadopago } from '../../Redux/actions/actions'
+import Checkout from './checkoutMercado'
 import { Button, Typography } from "@material-ui/core";
 import { makeStyles } from "@material-ui/core/styles";
+import {ButtonGroup} from "@material-ui/core";
 
 
 const useStyles = makeStyles((theme) => ({
@@ -43,22 +47,28 @@ const useStyles = makeStyles((theme) => ({
   },
   typography: {
       margin: 30
+  },
+  color:{
+    backgroundColor:"orange",
+    color:"withe",
   }
   
 }));
 
 
-
-
-
 function Maps() {
 
   const classes = useStyles();
-  
+  const dispatch = useDispatch();
 
+  const idMercadopago = useSelector(state => state.idMercadopago)
+  //console.log("id mercado", idMercadopago)
 
-
-
+  function pagoMercadopago(){
+  const idOrder = localStorage.getItem('idOrderUser');
+  //console.log("ID", idOrder)
+  dispatch(mercadopago(idOrder))
+  }
 
   return (
 
@@ -78,14 +88,34 @@ function Maps() {
                   
           <br></br>
           <br></br>
-          <Button 
-             type= "submit"
-             variant="contained" 
-             color="primary"
-             margin= "theme.spacing(3, 0, 2)"
-             >
-            Checkout with Mercado Pago
-          </Button>
+          {
+            idMercadopago.id?
+              <ButtonGroup
+              size="small"
+              variant="contained"
+              aria-label="contained primary button group"
+              component='div'
+              type= "submit"                
+              margin= "theme.spacing(3, 0, 2)"
+              className={classes.color}
+              >
+                <Checkout  data={idMercadopago}/>
+              </ButtonGroup>
+            :
+              <ButtonGroup
+                size="small"
+                variant="contained"
+                aria-label="contained primary button group"
+                component='div'
+                type= "submit"                
+                margin= "theme.spacing(3, 0, 2)"
+                className={classes.color}
+              >
+                <Button onClick={() => pagoMercadopago()} >
+                  Next
+                </Button>
+              </ButtonGroup>
+          }
     </div>
   );
 }

@@ -15,7 +15,7 @@ export const addCarts = (detail) => {
           let cont = e.count;
          return {id: detail._id, name: detail.name, 
           image: detail.image, price: detail.price, count: cont + 1,
-          description: detail.description}
+          description: detail.description, stock: detail.stock}
         }
         return e;
       });
@@ -28,7 +28,7 @@ export const addCarts = (detail) => {
     let order = object;
     order.push({id: detail._id, name: detail.name, 
       image: detail.image, price: detail.price, count: 1,
-      description: detail.description});
+      description: detail.description, stock: detail.stock});
     localStorage.setItem('order', JSON.stringify(order));
     //console.log("PRODUCT ", order)
     return order;
@@ -36,7 +36,7 @@ export const addCarts = (detail) => {
   }else {
     let order = [{id: detail._id, name: detail.name, 
       image: detail.image, price: detail.price, count: 1,
-      description: detail.description}];
+      description: detail.description, stock: detail.stock}];
     localStorage.setItem('order', JSON.stringify(order));
     //console.log("PRODUCT ARRAY VACIO", order)
     return order;
@@ -65,7 +65,7 @@ export const sumProduct = (id) => {
       let cont = e.count;
       return {id: prueba.id, name: prueba.name, 
       image: prueba.image, price: prueba.price, count: cont + 1,
-      description: prueba.description}
+      description: prueba.description, stock: prueba.stock}
     }
     return e;
   });
@@ -86,7 +86,7 @@ export const resProduct = (id) => {
       let cont = e.count;
       return {id: prueba.id, name: prueba.name, 
       image: prueba.image, price: prueba.price, count: cont - 1,
-      description: prueba.description}
+      description: prueba.description, stock: prueba.stock}
     }
     return e;
   });
@@ -110,7 +110,7 @@ export const mergeCart = (cart, orderBack) => {
             let cont = e.count;
            return {id: e.id, name: e.name, 
             image: e.image, price: e.price, count: cont + 1,
-            description: e.description}
+            description: e.description, stock: e.stock}
           }
           band = true
           return e;

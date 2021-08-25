@@ -13,6 +13,7 @@ import {
   ListItemText,
   List,
 } from "@material-ui/core";
+import SupervisorAccountSharpIcon from "@material-ui/icons/SupervisorAccountSharp";
 import ChevronLeftIcon from "@material-ui/icons/ChevronLeft";
 import ChevronRightIcon from "@material-ui/icons/ChevronRight";
 import HomeIcon from "@material-ui/icons/Home";
@@ -22,6 +23,7 @@ import Typography from "@material-ui/core/Typography";
 import useStyles from "./styles";
 import SerchBar from "../serchbar/SerchBar";
 import Profile from "./Profile";
+import Badge from "@material-ui/core/Badge";
 import { useLocation, Link } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import {
@@ -73,16 +75,16 @@ export const Navbar = () => {
       }
       console.log("order para logout", order)
       dispatch(updateOrderFinal(idOrder, order))
-
     }
 
     const id = adminClient._id;
     dispatch(changeStatus(id, input));
     localStorage.removeItem("order");
     localStorage.removeItem("idOrderUser");
+    localStorage.removeItem("token");
+    localStorage.removeItem("client");
     dispatch(orderRedux({
       id: "",
-      token: "",
       order: [],
       status: "",
       date: "",
@@ -94,10 +96,10 @@ export const Navbar = () => {
   return (
     <div>
       <div>
-        <AppBar >
+        <AppBar>
           <Toolbar className={classes.prueba}>
-          <div className={classes.items_left}>
-          <IconButton
+            <div className={classes.itemLeft}> 
+            <IconButton
               color="inherit"
               aria-label="open drawer"
               onClick={handleDrawerOpen}
@@ -107,41 +109,43 @@ export const Navbar = () => {
               <MenuIcon />
             </IconButton>
 
-            <IconButton aria-label="delete" className={classes.homeIcon}>
-              <NavLink className="a" to="/" activeClassName="active">
-                <HomeIcon className={classes.MuiButtonLabel} />
-              </NavLink>
-            </IconButton>
-            <Button>
-              <NavLink className={classes.MuiButtonLabel} to="/aboutUs">
+            <Link to="/">
+                <HomeIcon className={classes.home} />
+              </Link>
+            {/* <Typography variant="h5" >Home</Typography> */}
+            <Button className={classes.button} href="/aboutUs">
                 About Us
-              </NavLink>
-            </Button>
-            <SerchBar />
-          </div>
+              </Button>
+            <SerchBar  />
+            </div>
+            
             <div className={classes.toolbarButtons}>
               {token && adminClient.role === "ADMIN" ? (
-                <NavLink
-                  className={classes.MuiButtonLabel}
-                  to="/AdminPanel"
-                  activeClassName="active"
-                >
-                  Admin Panel
-                </NavLink>
+              <div>
+              <IconButton color="inherit">
+               <Link to="/AdminPanel">
+              <SupervisorAccountSharpIcon className={classes.button} />
+               </Link>
+             </IconButton>
+             </div>
+
               ) : null}
 
                 {
                   totalCarrito > 0?
-                  <IconButton aria-label="add to shopping cart">
-                    <NavLink
-                      className={classes.MuiButtonLabel}
-                      to="/cart"
-                      activeClassName="active"
-                    >
-                      <Typography>{totalCarrito}</Typography>
-                      <AddShoppingCartIcon />
-                    </NavLink>
-                  </IconButton>
+                  <IconButton
+                  style={{ fontSize: 40 }}
+                  aria-label="carrito"
+                  backgroundColor="white"
+                >
+                  <Link to="/cart">
+                    {" "}
+                    <Badge badgeContent={totalCarrito} color="secondary">
+                      <AddShoppingCartIcon className={classes.carrito} />
+                    </Badge>
+                  </Link>
+                </IconButton>
+      
                 : 
                   <IconButton aria-label="add to shopping cart">
                     <NavLink
@@ -156,30 +160,22 @@ export const Navbar = () => {
                 }
 
               {!token? (
-                <Button color="inherit">
-                  <NavLink
-                    className={classes.MuiButtonLabel}
-                    to="/login"
-                    activeClassName="active"
-                  >
-                    LOGIN
-                  </NavLink>
-                </Button>
+                <Button className={classes.button} href="/login">
+                Login
+              </Button>
               ) : (
                 <Profile handleLogout={handleLogout}/>
                
               )}
                
-
-              <Button color="inherit">
-                <NavLink
-                  className={classes.MuiButtonLabel}
-                  to="/register"
-                  activeClassName="active"
-                >
-                  REGISTER
-                </NavLink>
+            {
+              token ? null 
+              :
+              <Button className={classes.button} href="/register">
+                Register
               </Button>
+
+            }
             </div>
           </Toolbar>
         </AppBar>

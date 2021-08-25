@@ -2,13 +2,51 @@ import React, { useState, useEffect } from "react";
 import { createCategory } from "../../Redux/actions/actions";
 import { useDispatch } from "react-redux";
 import { getCategories } from "../../Redux/actions/actions";
-import styles from "./styles.module.css";
 import Typography from '@material-ui/core/Typography';
 import { Button, TextField } from "@material-ui/core";
+import {makeStyles} from '@material-ui/core';
 
+const useStyles = makeStyles(() => ({
+  group:{
+    blackgroundColor:'black',
+    display:'flex',
+    flexDirection: 'column',
+    margin:'5px',
+},
+  items:{
+  cursor: 'pointer',
+  width:'80%',
+  fontSize: '25px',
+  backgroundColor: 'aliceblue',
+  boxShadow: '3px 4px 8px #0864B11A',
+  border: '1.5px solid #616060',
+},
+  content:{
+  maxWidth:1024,
+  paddingLeft:40,
+  margin:'auto',
+  backgroundColor:'black',
+  borderRadius:10,
+  padding:5
+  
+ },
+  save:{
+    display:'flex',
+    alignItems:'center',
+    justifyContent:'center',
+    color:'white',
+    backgroundColor:'orange'
+  },
+  save1:{
+    display:'flex',
+    alignItems:'center',
+    justifyContent:'center',
+  }
+
+}));
 const NewCategory = (props) => {
   const dispatch = useDispatch();
-
+  const classes = useStyles();
   useEffect(() => {
     dispatch(getCategories());
   }, [dispatch]);
@@ -61,16 +99,17 @@ const NewCategory = (props) => {
   };
 
   return (
-    <div className={styles.form_content}>
+  
+    <div className={classes.content}>
       <Typography variant="h4" component="h2">
         Create a new category
       </Typography>
 
       <form onSubmit={handleSubmit}>
-        <div className={styles.form_group}>
+        <div className={classes.group}>
           <label>Name:</label>
           <TextField
-            className={styles.input_items}
+            className={classes.items}
             type="text"
             name="name"
             onChange={handleInputChange}
@@ -79,10 +118,10 @@ const NewCategory = (props) => {
           />
         </div>
 
-        <div className={styles.form_group}>
+        <div className={classes.group}>
           <label>Image:</label>
           <TextField
-            className={styles.input_items}
+            className={classes.items}
             type="text"
             name="image"
             onChange={handleInputChange}
@@ -90,10 +129,10 @@ const NewCategory = (props) => {
           />
         </div>
 
-        <div className={styles.form_group}>
+        <div className={classes.group}>
           <label>Type 1:</label>
           <TextField
-            className={styles.input_items}
+            className={classes.items}
             type="text"
             name="type1"
             rows="5"
@@ -102,10 +141,10 @@ const NewCategory = (props) => {
           />
         </div>
 
-        <div className={styles.form_group}>
+        <div className={classes.group}>
           <label>Type 2:</label>
           <TextField
-            className={styles.input_items}
+            className={classes.items}
             type="text"
             name="type2"
             rows="5"
@@ -114,10 +153,10 @@ const NewCategory = (props) => {
           />
         </div>
 
-        <div className={styles.form_group}>
+        <div className={classes.group}>
           <label>Type 3:</label>
           <TextField
-            className={styles.input_items}
+            className={classes.items}
             type="text"
             name="type3"
             rows="5"
@@ -125,10 +164,11 @@ const NewCategory = (props) => {
             required
           />
         </div>
-
-        <Button className={styles.btn_save} type="submit">
+        <div className={classes.save1}>
+        <Button className={classes.save} type="submit">
           CREATE
         </Button>
+        </div>
       </form>
     </div>
   );

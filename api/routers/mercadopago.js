@@ -1,4 +1,5 @@
  const Order = require('../models/Order');
+ const Product = require('../models/Product');
  const server = require('express').Router();
 
  const mercadopago = require('mercadopago');
@@ -78,16 +79,23 @@ server.get ('/:id',async(req,res,next) =>{
     const merchant_order_id= req.query.merchant_order_id;
     //  console.log("MERCHANT ORDER ID ", merchant_order_id)
     try {
-      let order = await Order.findByIdAndUpdate(
+      let orderUpdate = await Order.findByIdAndUpdate(
         { _id: external_reference },
         
         {
           status:"completada",
         }
         );
+        //console.log("ORDER UPDATE", orderUpdate)
+        let productsUpdate = orderUpdate.order.map(async(e) => {
+          let product = await Product.findOneAndUpdate({_id:e.id},
+            {
+                stock: e.stock && e.stock > 0? e.stock - e.count : 0
+            });
+        })
         
         //console.log("ORDER ", order);
-    return res.redirect("http://localhost:3000");
+    return res.redirect("http://localhost:3000/succes");
     } catch (error) {
       console.log(error);
       next();

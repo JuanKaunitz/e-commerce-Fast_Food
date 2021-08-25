@@ -47,6 +47,10 @@ const useStyles = makeStyles((theme) => ({
     display: "flex",
     alignItems: "center",
   },
+  color: {
+    backgroundColor:"orange",
+    color: "white",
+  },
 }));
 
 export default function CardCart({
@@ -86,11 +90,7 @@ export default function CardCart({
           <Typography variant="subtitle1" color="textSecondary">
             <span>${price}</span>
           </Typography>
-          <div>
-            <IconButton onClick={() => deleteCart(id)}>
-              <DeleteIcon />
-            </IconButton>
-          </div>
+          
         </div>
 
         <div className={classes.btn_add}>
@@ -102,11 +102,11 @@ export default function CardCart({
             >
           {
             count <=1?
-            <Button onClick={() => deleteCart(id)} color="primary">            
+            <Button onClick={() => deleteCart(id)} className={classes.color}>            
               <DeleteIcon />            
             </Button>
               
-          :  <Button onClick={() => resProduct(id)} color="primary">
+          :  <Button onClick={() => resProduct(id)} className={classes.color}>
                 -
              </Button>
           }
@@ -120,7 +120,7 @@ export default function CardCart({
               aria-label="contained primary button group"
               component='div'
             >
-              <Button onClick={() => addProduct(id)} color="primary">
+              <Button onClick={() => addProduct(id)} className={classes.color}>
                 +
               </Button>
             </ButtonGroup>
@@ -134,6 +134,18 @@ export default function CardCart({
           <span>Subtotal $ {price * count}</span>
         </Typography>
       </div>
+      <div >
+          <ButtonGroup
+              size="small"
+              variant="contained"
+              aria-label="contained primary button group"
+              component='div'
+            >
+            <Button onClick={() => deleteCart(id)} className={classes.color}>            
+              <DeleteIcon />            
+            </Button>
+            </ButtonGroup>
+          </div>
     </Card>
   );
 }

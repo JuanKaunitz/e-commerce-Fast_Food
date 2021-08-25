@@ -210,6 +210,16 @@ export const categoryName = (name) => (dispatch) => {
     })    
 };
 
+export const recoveryData = (token, client) => (dispatch) =>{
+    dispatch({
+        type:LOGIN_CLIENT,
+        payload:{
+            token: token,
+            user: client
+        }
+    })
+}
+
 //Autenticación de usuario.  
 export const authUser =  (user) => async (dispatch) => {
     try {
@@ -352,7 +362,7 @@ export const deleteOrden = (id, borrado) => async (dispatch) => {
 export const getOrderById = (id) => async(dispatch) => {
     //console.log('GET BY ID',id) 
     try {
-       /*  const res = */ await axios.get(`${URL}/food/api/order/${id}`)
+        const res =  await axios.get(`${URL}/food/api/order/${id}`)
         //console.log('ORDER POR ID',res.data)        
         dispatch({
             

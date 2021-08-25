@@ -5,13 +5,13 @@ const useStyles = makeStyles((theme)=>({
     maxWidth:1024,
     paddingLeft:40,
     margin:'auto',
-    backgroundColor:'#c7c9cc29',
+    backgroundColor:'black',
     borderRadius:10,
     padding:5
     
    },
    input_text:{
-    backgroundColor:'#ffff'
+    backgroundColor:'black'
   },
    form: {
     width: '100%', // Fix IE 11 issue.

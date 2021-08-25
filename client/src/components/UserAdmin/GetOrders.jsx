@@ -26,9 +26,7 @@ const GetOrders = () => {
     console.log(getAll)
     const options = ['...','carrito', 'creada', 'procesando', 'cancelado', 'completada']
 
-    /* function handleDeleteOrder(id){
-        dispatch(deleteOrder(id))
-    }  */
+   
     return (
         <div>
             <div className='list'>  
@@ -50,7 +48,7 @@ const GetOrders = () => {
                   orderId={ e._id} 
                   status={e.status}                  
                   total={e.total}                       
-                /* deleteOrder={handleDeleteOrder} */   />
+                  />
                 </Grid>
                 )
                 :
@@ -60,7 +58,7 @@ const GetOrders = () => {
                   orderId={ e._id} 
                   status={e.status}                  
                   total={e.total}                       
-                /* deleteOrder={handleDeleteOrder}  */  />
+                 />
                 </Grid>
                 )
             } 

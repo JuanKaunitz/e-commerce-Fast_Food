@@ -8,18 +8,32 @@ const useStyles = makeStyles((theme) => ({
   grow: {
     flexGrow: 1,
   },
+  carrito: {
+    color: "orange",
+  },
+  button: {
+    color: "orange",
+    width: "100px",
+    height: "40px",
+  },
   prueba: {
     backgroundColor:'black',
     color: "white",
-   display:'flex',
-   justifyContent:'space-between',
-   alignItems:'center',
-   width:'97%'
-   
+    display:'flex', 
+    justifyContent: 'space-between',
+    alignItems: 'center',
+    width: '97% '  
   },
-  items_left:{
-width:'50%',
-display:'flex'
+  home: {
+    color: "orange",
+    width: "100px",
+    height: "40px",
+  },
+  itemLeft: {
+    width: '50%',
+    display: 'flex',
+    justifyContent: 'space-between',
+    alignItems: 'center'
   },
   MuiButtonLabel: {
     color: "orange",
@@ -74,10 +88,10 @@ display:'flex'
   homeIcon: {
     marginRight: theme.spacing(2),
   },
-  toolbarButtons: {
+  toolbarButtons: {    
+    display: 'flex', 
+    alignItems: 'center',
 
-display:'flex',
-alignItems:'center'
   },
   search: {
     position: "relative",
