@@ -12,6 +12,10 @@ const useStyles = makeStyles(() => ({
     height: "auto",
     maxWidth: 1024,
   },
+  color: {
+    backgroundColor:"orange",
+    color: "white",
+  },
 }));
 
 export default function GridCardsProducts() {
@@ -80,11 +84,11 @@ export default function GridCardsProducts() {
         )}
       </Grid>
       <div className="pagina">
-        <ButtonGroup size="small" variant="contained" color="primary">
+        <ButtonGroup size="small" variant="contained" className={classes.color}>
           <Button
             variant="contained"
-            color="primary"
-            className="button"
+            className={classes.color}
+           
             value="prev"
             onClick={handlePrev}
             disabled={page <= 0}
@@ -98,7 +102,7 @@ export default function GridCardsProducts() {
           />
           <Button
             variant="contained"
-            color="primary"
+            className={classes.color}
             value="next"
             onClick={handleNext}
             disabled={

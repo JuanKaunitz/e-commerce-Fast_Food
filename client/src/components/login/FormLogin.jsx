@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { useDispatch } from "react-redux";
+import {useSelector, useDispatch } from "react-redux";
 import { authUser } from "../../Redux/actions/actions";
 import Avatar from '@material-ui/core/Avatar';
 import Button from '@material-ui/core/Button';
@@ -56,7 +56,7 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 export default function FormularioLogin() {
-  const dispatch = useDispatch();  
+  const dispatch = useDispatch(); 
   const [input, setInput] = useState({
     email: "",
     password: "",
@@ -87,7 +87,7 @@ export default function FormularioLogin() {
       email: "",
       password: "",
      });
-    //history.push('/')
+    
   };
 
   const classes = useStyles();

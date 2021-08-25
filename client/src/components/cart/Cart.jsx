@@ -34,6 +34,10 @@ const useStyles = makeStyles(() => ({
     maxWidth: 1024,
   },
   color: {
+    color: "black",
+  },
+  color1: {
+    backgroundColor:"orange",
     color: "white",
   },
 }));
@@ -180,7 +184,7 @@ const Cart = (props) => {
 
   const setBuy = () => {
     if(token){
-      props.history.push("/shipping");
+      props.history.push("/option");
     }else{
 
       props.history.push("/login");
@@ -216,7 +220,7 @@ const Cart = (props) => {
           : null}
       </Grid>
       <h1 className={classes.color}>TOTAL: ${precioTotal}</h1>
-      <Button onClick={() => setBuy()} variant="contained" color="primary">
+      <Button onClick={() => setBuy()} variant="contained" className={classes.color1}>
         Checkout
       </Button>
     </div>

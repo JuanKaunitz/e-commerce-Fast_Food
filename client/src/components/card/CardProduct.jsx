@@ -11,20 +11,13 @@ import {
   orderFinal,
   updateOrderFinal,
 } from "../../Redux/actions/actions";
-import {
-  addCarts,  
-  sumaCantidadTotal,  
-} from "../cart/utilsCarts.js";
+import { addCarts, sumaCantidadTotal } from "../cart/utilsCarts.js";
 ////aparte
 import CardContent from "@material-ui/core/CardContent";
 import Typography from "@material-ui/core/Typography";
 import { createTheme } from "@material-ui/core/styles";
 import { ThemeProvider } from "@material-ui/styles";
-import {
-  ButtonGroup,
-  CardActionArea,
-  Divider,  
-} from "@material-ui/core";
+import { ButtonGroup, CardActionArea, Divider } from "@material-ui/core";
 import Button from "@material-ui/core/Button";
 import ReactCardFlip from "react-card-flip";
 import ArrowBackIcon from "@material-ui/icons/ArrowBack";
@@ -39,12 +32,11 @@ const theme = createTheme({
 
 const useStyles = makeStyles(() => ({
   media: {
-    width: 'auto',
-    height:100,
+    width: "auto",
+    height: 100,
     paddingTop: "50%", // 16:9
   },
   cardContent: {
-    
     maxWidth: "250px",
     maxHeigth: 200,
     boxShadow: "3px 4px 8px #0b0c0c1a",
@@ -54,6 +46,7 @@ const useStyles = makeStyles(() => ({
     textDecoration: "none",
   },
   color: {
+    backgroundColor:"orange",
     color: "white",
   },
 }));
@@ -70,12 +63,11 @@ export default function CardProduct({
   const dispatch = useDispatch();
   const [isFlipped, setIsFlipped] = useState(false);
   const [counter, setCounter] = useState(0);
-  const client = useSelector(state => state.client);
-  const token = useSelector(state => state.clientToken);
+  const client = useSelector((state) => state.client);
+  const token = useSelector((state) => state.clientToken);
 
-
-  function cartBack(cart){
-    const idOrder = localStorage.getItem('idOrderUser');
+  function cartBack(cart) {
+    const idOrder = localStorage.getItem("idOrderUser");
     const fecha = new Date();
 
     const order = {
@@ -84,12 +76,12 @@ export default function CardProduct({
       order: cart,
       status: "carrito",
       date: fecha.toUTCString(),
-    }
+    };
     dispatch(orderRedux(order));
-    if(idOrder){
-      dispatch(updateOrderFinal(idOrder, order))
-    }else{
-      dispatch(orderFinal(order))
+    if (idOrder) {
+      dispatch(updateOrderFinal(idOrder, order));
+    } else {
+      dispatch(orderFinal(order));
     }
   }
 
@@ -99,9 +91,8 @@ export default function CardProduct({
     image: image,
     price: price,
     description: description,
-    stock: stock
+    stock: stock,
   };
-
 
   const handleNext = () => {
     setIsFlipped(!isFlipped);
@@ -112,9 +103,9 @@ export default function CardProduct({
     const cart = addCarts(detail);
     const cantidadTotal = sumaCantidadTotal(cart);
     dispatch(updateCart(cart));
-    dispatch(totalProductosCarrito(cantidadTotal))
-    if(token){
-      cartBack(cart)
+    dispatch(totalProductosCarrito(cantidadTotal));
+    if (token) {
+      cartBack(cart);
     }
   }
   //--flippcard--//
@@ -139,14 +130,14 @@ export default function CardProduct({
                 component="p"
                 className={classes.sub_title}
               >
-               Precio: ${price}
+                Precio: ${price}
               </Typography>
               <Button
                 variant="contained"
-                color="secondary"
+                className={classes.color}
                 onClick={handleNext}
               >
-                <AddShoppingCartIcon className={classes.color} />
+                <AddShoppingCartIcon  />
               </Button>
             </CardContent>
           </CardActionArea>
@@ -154,9 +145,9 @@ export default function CardProduct({
         {/* frontal */}
         <Card className={classes.root}>
           <CardContent>
-          <Button onClick={handleNext} variant="contained" color="primary">
-                <ArrowBackIcon />
-              </Button>
+            <Button onClick={handleNext} variant="contained" className={classes.color}>
+              <ArrowBackIcon />
+            </Button>
             <Typography
               className={classes.sub}
               color="textSecondary"
@@ -166,22 +157,21 @@ export default function CardProduct({
             </Typography>
             <Divider />
             <Typography className={classes.pos} color="textSecondary">
-             Description: {description}
+              Description: {description}
             </Typography>
-           
+
             <Typography className={classes.pos} color="textSecondary">
-             Precio: ${price}
+              Precio: ${price}
             </Typography>
             <ButtonGroup
               size="small"
               variant="contained"
               aria-label="contained primary button group"
-              component='div'
+              component="div"
             >
-              <Button onClick={() => handleAddCart()} color="primary">
+              <Button onClick={() => handleAddCart()} className={classes.color}>
                 +
               </Button>
-           
             </ButtonGroup>
           </CardContent>
         </Card>

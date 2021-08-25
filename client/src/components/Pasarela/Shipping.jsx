@@ -1,86 +1,191 @@
-import React from 'react'
+import React, {useState} from 'react';
 import { useSelector, useDispatch } from "react-redux";
+import { Button, TextField, Typography } from "@material-ui/core";
+import { makeStyles } from "@material-ui/core/styles";
 import { mercadopago } from '../../Redux/actions/actions'
-import Checkout from '../Pasarela/checkoutMercado'
-import Button from "@material-ui/core/Button";
+import Checkout from './checkoutMercado'
 import {ButtonGroup} from "@material-ui/core";
 
-export default function Shipping() {
+
+const useStyles = makeStyles((theme) => ({
+    paper: {
+        // marginTop: theme.spacing(2),
+        display: "flex",
+        flexDirection: "column",
+        alignItems: "center",
+        backgroundColor: "#ffff"
+      },
+  
+    form: {
+      width: "100%", // Fix IE 11 issue.
+      marginTop: 1,
+      backgroundColor: "#ffff"
+    },
+  
+    submit: {
+      margin: theme.spacing(3, 0, 2),
+    },
+    input_text: {
+      backgroundColor: "#ffff",
+    },
+      label: {
+      color: "black",
+      fontSize:"18px"
+    },
+    content: {
+        alignItems: 'center',
+        justifyContent: 'center',
+        marginTop: '20px',
+        marginLeft: 'auto',
+        marginRight: 'auto',
+        padding:'60px',
+        maxWidth:'400px',
+        backgroundColor: "#ffff",
+        color:'rgb(246, 245, 245)',
+        borderRadius: '10px',
+        transform: 'translateY(20%)'
+    },
+    typography: {
+        margin: 30
+    }
+    
+  }));
+
+const Shipping = () => {
+
   const dispatch = useDispatch();
+  const classes = useStyles();
 
   const idMercadopago = useSelector(state => state.idMercadopago)
-  console.log("id mercado", idMercadopago)
+  //console.log("id mercado", idMercadopago)
+    
+  const [input, setInput] = useState({
+      address: "",
+      city: "",
+      province: "",
+      zipCode: ""
+  })
+
 
   function pagoMercadopago(){
   const idOrder = localStorage.getItem('idOrderUser');
-  console.log("ID", idOrder)
+  //console.log("ID", idOrder)
   dispatch(mercadopago(idOrder))
-}
-
+  }
+  
+  const handleChange = (e) => {
+      setInput({
+          ...input,
+          [e.target.name]: e.target.value
+      })
+      console.log(input)            
+  }
+  
+  const handleSubmit = (e) => {
+      e.preventDefault();
+      setInput(input)
+      // a quien se lo mando?
+  } 
+  
+  
+  
   return (
-    <div className= { window.screen.width> 430 ?' d-flex justify-content-center rounded p-5 ' : 'containerMain'}>
-      <br></br>
-      <br></br>
-      <br></br>
-      <br></br>
-      <br></br>
-      <br></br>
-      <br></br>
-      <br></br>
-      <br></br>
-      <br></br>
-      <br></br>
-      <br></br>
-      <br></br>
-      <br></br>
-      <br></br>
+      <div className={classes.content}>
+      <Typography variant="h4" color ="textPrimary" className={classes.typography}>Complete the fields</Typography>
 
-				<div className='rounded'>
-					<h2>How would you like to get your order?</h2>
+      <form onSubmit={handleSubmit} className={classes.form}>
+        <div>
+          <label className={classes.label}>Address</label>
+          <TextField
+            className={classes.input_text}
+            variant="outlined"
+            required
+            fullWidth
+            type="text"
+            name="address"
+            onChange={handleChange}
+            value={input.address}
+          />
+        </div>
+        <div className="filedrop">
+          <label className={classes.label}> City</label>
+          <TextField
+            className={classes.input_text}
+            variant="outlined"
+            margin="normal"
+            required
+            fullWidth
+            type="text"
+            name="city"
+            onChange={handleChange}
+            value={input.city}
+          />
+        </div>
 
-					<div className='text-center d-flex justify-content-center'>
-						<div className=''>
-							<label>
-								<input
-									type='radio'
-									name='ship'
-									value='ship'
-									
-								/>
-								Ship to your location
-							</label>
-						</div>
-						<div className=''>
-							<label>
-								<input
-									type='radio'
-									name='ship'
-									value='pick'
-								
-								/>
-								Pick up at the store
-							</label>
-              
-              {
-              idMercadopago.id?
-                <div className="App">
-                  <Checkout  data={idMercadopago}/>
-                </div>
-                :
-                <ButtonGroup
-                  size="small"
-                  variant="contained"
-                  aria-label="contained primary button group"
-                  component='div'
-                >
-                  <Button onClick={() => pagoMercadopago()} color="primary">
-                    Next
-                  </Button>
-                </ButtonGroup>
-              }
-						</div>
-					</div>
-				</div>
-      </div>
-  )
+        <div>
+          <label className={classes.label}>Province</label>
+          <TextField
+            className={classes.input_text}
+            variant="outlined"
+            margin="normal"
+            required
+            fullWidth
+            type="text"
+            name="province"
+            onChange={handleChange}
+            value={input.province}
+          />
+        </div>
+
+        <div>
+          <label className={classes.label}>Zip Code</label>
+          <TextField
+            className={classes.input_text}
+            variant="outlined"
+            margin="normal"
+            required
+            fullWidth
+            type="text"
+            name="zipCode"
+            rows="5"
+            onChange={handleChange}
+            value={input.zipCode}
+          />
+        </div>
+
+        <br></br>
+        <br></br>
+        {
+            idMercadopago.id?
+              <ButtonGroup
+              size="small"
+              variant="contained"
+              aria-label="contained primary button group"
+              component='div'
+              type= "submit"                
+              margin= "theme.spacing(3, 0, 2)"
+              className={classes.color}
+              >
+                <Checkout  data={idMercadopago}/>
+              </ButtonGroup>
+            :
+              <ButtonGroup
+                size="small"
+                variant="contained"
+                aria-label="contained primary button group"
+                component='div'
+                type= "submit"                
+                margin= "theme.spacing(3, 0, 2)"
+                className={classes.color}
+              >
+                <Button onClick={() => pagoMercadopago()} >
+                  Next
+                </Button>
+              </ButtonGroup>
+          }
+      </form>
+    </div>
+  );
 }
+
+export default Shipping
