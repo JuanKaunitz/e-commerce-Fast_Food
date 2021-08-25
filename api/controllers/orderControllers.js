@@ -58,7 +58,7 @@ exports.updateOrder = async (req, res, next) => {
         new: true,
       }
       );
-      console.log("ORDER ", order);
+      //console.log("ORDER ", order);
     res.json(order);
   } catch (error) {
     console.log(error);

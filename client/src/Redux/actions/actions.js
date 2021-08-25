@@ -22,7 +22,7 @@ import {
     CLIENT_UPDATE,
     GOOGLE_LOGIN,
     ALL_ORDERS,
-    EDIT_ORDER,
+    //EDIT_ORDER,
     CLIENT_STATUS,    
     UPDATE_CART,
     TOTAL_CARRITO,
@@ -30,6 +30,9 @@ import {
     GET_USER_BY_ID,
     BAND_ORDER_USER,
     NEW_ORDER_USER,
+    RESET_PASSWORD,
+    NEW_PASSWORD,
+    MERCADOPAGO,
 } from '../constants'
 
 import dotenv from 'dotenv'
@@ -82,13 +85,13 @@ export const getById = (id) => async (dispatch) => {
 
  //Creando un producto.
  export const createProduct = (input) => async (dispatch) => {
-   
+   console.log('INPUT: ', input);
     try {
-        const product = await axios.post(`${URL}/food/api/products`,input);
-        console.log('PRODUCT: ', product);
+        const res = await axios.post(`${URL}/food/api/products`, input);
+        console.log('RES: ', res);
         dispatch({
             type: CREATE_PRODUCT,
-            payload: product.data.product
+            payload: res.data.product
         });
     } catch (err) {
         console.log(err)
@@ -459,4 +462,36 @@ export const changeStatus = (id, input) => async (dispatch) => {
     }
 }
 
+export const mercadopago = (id) => async (dispatch) =>{
+    console.log("ID order", id)
+    try {
+        const res = await axios.get(`${URL}/food/api/mercadopago/${id}`)
+        console.log("RESPUESTA MERCADOPAGO", res.data)
+        dispatch({
+            type: MERCADOPAGO,
+            payload: res.data
+        })
+    } catch (error) {
+        
+    }
+}
+
     
+export const resetPassword= (email)=> async(dispatch)=>{
+    const sendEmail = await axios.post(`${URL}/food/api/auth-sesion/reset-password`,{email});
+    console.log(sendEmail)
+    dispatch({
+        type:RESET_PASSWORD,
+        payload:sendEmail
+    })
+};
+
+export const newPassword = (token,password) => async(dispatch) =>{
+    console.log(token,password)
+    const resp = await axios.post(`${URL}/food/api/auth-sesion/reset-password/${token}`,{password});
+    console.log(resp)
+    dispatch({
+        type:NEW_PASSWORD,
+        payload:resp
+    })
+}

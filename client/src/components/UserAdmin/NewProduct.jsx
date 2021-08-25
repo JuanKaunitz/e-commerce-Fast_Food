@@ -3,10 +3,11 @@ import { createProduct } from "../../Redux/actions/actions";
 import { useDispatch, useSelector } from "react-redux";
 import { getCategories, getTypes } from "../../Redux/actions/actions";
 import styles from "./styles.module.css";
-import FileDrop from "../Form/FileDrop";
+// import FileDrop from "../Form/FileDrop";
 import { makeStyles } from "@material-ui/core/styles";
-import { TextField, Typography } from "@material-ui/core";
-import Creatable from "react-select/creatable";
+import { Button, TextField, Typography } from "@material-ui/core";
+// import Creatable from "react-select/creatable";
+// import Select from "react-select"
 
 const useStyles = makeStyles((theme) => ({
   paper: {
@@ -14,11 +15,13 @@ const useStyles = makeStyles((theme) => ({
     display: "flex",
     flexDirection: "column",
     alignItems: "center",
+    backgroundColor: "#ffff"
   },
 
   form: {
     width: "100%", // Fix IE 11 issue.
-    marginTop: 5,
+    marginTop: 1,
+    backgroundColor: "#ffff"
   },
 
   submit: {
@@ -29,7 +32,20 @@ const useStyles = makeStyles((theme) => ({
   },
   select_types: {
     color: "black",
+    padding: "1px",
+    fontSize: "15px",
+    borderRadius: "4px",
+    borderColor: "black",
+    width: "auto",
+    backgroundColor: "#ffff",
   },
+  label: {
+    color: "black",
+    fontSize:"18px"
+  }
+  
+  
+
 }));
 
 const NewProduct = (props) => {
@@ -37,16 +53,14 @@ const NewProduct = (props) => {
   const dispatch = useDispatch();
   const category = useSelector((state) => state.allCategories);
   const types = useSelector((state) => state.types);
-  const [roleValue, setRoleValue] = useState("");
+
   useEffect(() => {
     dispatch(getCategories());
     dispatch(getTypes());
   }, [dispatch]);
-  const roles = [
-    { label: "Ternera", value: 1 },
-    { label: "veggie", value: 2 },
-    { label: "Pollo", value: 3 },
-  ];
+
+
+
   const [input, setInput] = useState({
     name: "",
     identifier: 2,
@@ -60,47 +74,30 @@ const NewProduct = (props) => {
   const saveProduct = () => {
     dispatch(createProduct(input));
   };
+
   const handleInputChange = (e) => {
     setInput({
       ...input,
       [e.target.name]: e.target.value,
     });
   };
+
   const handleSubmit = (e) => {
-    input.type = roleValue;
     e.preventDefault();
     setInput(input);
     saveProduct();
-    props.history.push("/AdminPanel");
+    window.location.replace("http://localhost:3000/AdminPanel");
   };
 
-  const handleSelect = (field, value) => {
-    switch (field) {
-      case "roles":
-        setRoleValue(value);
-        break;
-      default:
-        break;
-    }
-  };
 
-  const customStyles = {
-    option: (provided, state) => ({
-      ...provided,
-      borderBottom: "1px dotted pink",
-      color: state.isSelected ? "red" : "black",
-      padding: 15,
-      fontSize: 20,
-    }),
-  };
 
   return (
     <div className={styles.form_content}>
-      <Typography variant="h4">Create your own product</Typography>
+      <Typography variant="h4" color ="textPrimary">Create your own product</Typography>
 
       <form onSubmit={handleSubmit} className={classes.form}>
         <div>
-          <label>Name:</label>
+          <label className={classes.label}>Name</label>
           <TextField
             className={classes.input_text}
             variant="outlined"
@@ -114,7 +111,7 @@ const NewProduct = (props) => {
         </div>
         <div className="filedrop">
           {/* <FileDrop onChange={handleInputChange} /> */}
-          <label> Agregue una imagen:</label>
+          <label className={classes.label}> Agregue una imagen</label>
           <TextField
             className={classes.input_text}
             variant="outlined"
@@ -128,7 +125,7 @@ const NewProduct = (props) => {
         </div>
 
         <div className={styles.form_group}>
-          <label>Price:</label>
+          <label className={classes.label}>Price</label>
           <TextField
             className={classes.input_text}
             variant="outlined"
@@ -143,7 +140,7 @@ const NewProduct = (props) => {
         </div>
 
         <div className={styles.form_group}>
-          <label>Description:</label>
+          <label className={classes.label}>Description</label>
           <TextField
             className={classes.input_text}
             variant="outlined"
@@ -158,9 +155,9 @@ const NewProduct = (props) => {
           />
         </div>
 
-        <Typography className="filterName">Category</Typography>
+        <Typography className="filterName"></Typography>
         <select
-          className="boton"
+          className={classes.select_types}
           onChange={handleInputChange}
           name="categories"
         >
@@ -172,21 +169,29 @@ const NewProduct = (props) => {
               </option>
             ))}
         </select>
+         <br></br>
+         <br></br>
+        <Typography className="filterName"></Typography>
 
-        <Typography className="filterName">Types</Typography>
-
-        <Creatable
-          isClearable
-          isMulti
-          onChange={(value) => handleSelect("roles", value)}
-          options={roles}
-          styles={customStyles}
-          value={roleValue}
-          placeholder={"Seleccione un tipo"}
-        />
-        <button className={styles.btn_save} type="submit">
-          CREATE
-        </button>
+        <select className={classes.select_types} onChange={handleInputChange}>
+          <option>Types</option>
+          {types &&
+            types.map((t, i) => (
+              <option key={i} value={t.name}>
+                {t.name}
+              </option>
+            ))}
+        </select>
+        <br></br>
+        <br></br>
+        <Button 
+           type= "submit"
+           variant="contained" 
+           color="primary"
+           margin= "theme.spacing(3, 0, 2)"
+           >
+          Create
+        </Button>
       </form>
     </div>
   );

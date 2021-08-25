@@ -23,8 +23,7 @@ import { ThemeProvider } from "@material-ui/styles";
 import {
   ButtonGroup,
   CardActionArea,
-  Divider,
-  TextField, 
+  Divider,  
 } from "@material-ui/core";
 import Button from "@material-ui/core/Button";
 import ReactCardFlip from "react-card-flip";
@@ -167,22 +166,18 @@ export default function CardProduct({
             </Typography>
             <Divider />
             <Typography className={classes.pos} color="textSecondary">
-             Descrition: {description}
+             Description: {description}
             </Typography>
            
             <Typography className={classes.pos} color="textSecondary">
              Precio: ${price}
             </Typography>
             <ButtonGroup
-                size="small"
-                variant="contained"
-                aria-label="contained primary button group"
-                >              
-             
-              <TextField
-                variant="outlined"
-                value={counter}
-              />
+              size="small"
+              variant="contained"
+              aria-label="contained primary button group"
+              component='div'
+            >
               <Button onClick={() => handleAddCart()} color="primary">
                 +
               </Button>
