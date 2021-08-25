@@ -1,6 +1,6 @@
 import React, { useState } from "react";
-import { useDispatch } from "react-redux";
-import { authUser } from "../../Redux/actions/actions";
+import {useDispatch } from "react-redux";
+import { authUser} from "../../Redux/actions/actions";
 import Avatar from '@material-ui/core/Avatar';
 import Button from '@material-ui/core/Button';
 import CssBaseline from '@material-ui/core/CssBaseline';
@@ -14,6 +14,7 @@ import LockOutlinedIcon from '@material-ui/icons/LockOutlined';
 import Typography from '@material-ui/core/Typography';
 import { makeStyles } from '@material-ui/core/styles';
 import Container from '@material-ui/core/Container';
+import {useHistory} from 'react-router-dom'
 
 
 export function validate(input) {
@@ -56,7 +57,8 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 export default function FormularioLogin() {
-  const dispatch = useDispatch();  
+  const dispatch = useDispatch(); 
+  const history = useHistory();
   const [input, setInput] = useState({
     email: "",
     password: "",
@@ -79,15 +81,15 @@ export default function FormularioLogin() {
     );
   };
   
-  const handleSubmit =  (e) => {
+  const handleSubmit = async(e) => {
     e.preventDefault();
     console.log(input);
-    dispatch(authUser(input));
+    await dispatch(authUser(input));
     setInput({
       email: "",
       password: "",
      });
-    //history.push('/')
+    history.push('/')
   };
 
   const classes = useStyles();

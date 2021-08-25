@@ -75,16 +75,16 @@ export const Navbar = () => {
       }
       console.log("order para logout", order)
       dispatch(updateOrderFinal(idOrder, order))
-
     }
 
     const id = adminClient._id;
     dispatch(changeStatus(id, input));
     localStorage.removeItem("order");
     localStorage.removeItem("idOrderUser");
+    localStorage.removeItem("token");
+    localStorage.removeItem("client");
     dispatch(orderRedux({
       id: "",
-      token: "",
       order: [],
       status: "",
       date: "",

@@ -31,8 +31,11 @@ const useStyles = makeStyles(() => ({
     alignItems:'center',
     textAlign:'center',
     padding:'20px',
-  }
-
+  },
+  color: {
+    backgroundColor:"orange",
+    color: "white",
+  },
 }));
 
 export default function GridCardsProducts() {
@@ -105,11 +108,10 @@ export default function GridCardsProducts() {
         </Grid>
       <Grid item lg={12} md={12} xs={4}>
       <div className="pagina">
-        <ButtonGroup size="small" variant="contained"  >
+        <ButtonGroup size="small" variant="contained" className={classes.color}>
           <Button
             variant="contained"
-            color="inherit"
-            className={classes.button}
+            className={classes.color}
             value="prev"
             onClick={handlePrev}
             disabled={page <= 0}
@@ -123,9 +125,8 @@ export default function GridCardsProducts() {
             />
           <Button
             variant="contained"
-            color="inherit"
+            className={classes.color}
             value="next"
-            className={classes.button}
             onClick={handleNext}
             disabled={
               searchProducts.length > 0

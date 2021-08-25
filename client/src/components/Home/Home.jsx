@@ -15,9 +15,9 @@ import { makeStyles } from "@material-ui/core/styles";
 
 
 const useStyles = makeStyles((theme) => ({
-  container: {
+  /* container: {
    backgroundColor:'white',
-  },
+  }, */
   order:{
     display:'flex',
     justifyContent:'space-around',
@@ -33,6 +33,8 @@ function Home() {
   const token = useSelector((state) => state.clientToken);
   const band = useSelector((state) => state.bandOrderUser);
   //localStorage.removeItem("order");
+
+  
 
     if(client && orderUser.length > 0 && token && band){
       dispatch(bandOrderUser())
