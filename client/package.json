@@ -43,11 +43,8 @@
     "simple-react-google-maps": "^1.1.2",
     "styled-components": "^5.3.0",
     "sweetalert": "^2.1.2",
-<<<<<<< HEAD
     "sweetalert2": "^11.1.4",
     "sweetalert2-react-content": "^4.1.1",
-=======
->>>>>>> 421933bc2048a601a1c334f47618a87204cbe224
     "web-vitals": "^1.1.2"
   },
   "scripts": {

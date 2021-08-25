@@ -110,7 +110,7 @@ export default function FormularioLogin() {
       password: "",
      });
      history.push("/");
-
+    }
 
   const classes = useStyles();
 
