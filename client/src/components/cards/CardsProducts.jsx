@@ -64,14 +64,13 @@ export default function GridCardsProducts() {
     return setPage(pageMax);
   }
   return (
-          <div className={classes.root}  >
     <Grid container >
-     
+      <Grid item lg={12} md={12} xs={12} >
+          <div className={classes.root}  >
 
         {loading ? (
           searchProducts.length > 0 ? (
             searchProducts.map((product) => ( 
-              <Grid item lg={12} md={8} xs={12}>
                 <CardProduct
                   id={product._id}
                   description={product.description}
@@ -81,7 +80,7 @@ export default function GridCardsProducts() {
                   stock={product.stock}
                   available={product.available}
                 />
-              </Grid>
+              
             ))
           ) : (
             <h4>Product not found!</h4>
@@ -100,6 +99,8 @@ export default function GridCardsProducts() {
             
           ))
         )}
+        </div>
+
 
         </Grid>
       <Grid item lg={12} md={12} xs={4}>
@@ -130,16 +131,15 @@ export default function GridCardsProducts() {
               searchProducts.length > 0
               ? searchProducts?.slice(page * 8, page * 8 + 8).length < 8
                 : getAll.slice(page * 8, page * 8 + 8).length < 8
-              }
+            }
             >
             next
           </Button>
         </ButtonGroup>
       </div>
     
-    
+      </Grid>
      </Grid>
-              </div>
 
   );
 }

@@ -44,7 +44,7 @@ const theme = createTheme({
 const useStyles = makeStyles(() => ({
   media: {
     width: '100',
-    height:220,
+    height:210,
     paddingTop: "25%", // 16:9
     backgroundSize:'80%',
     backgroundColor:'black',

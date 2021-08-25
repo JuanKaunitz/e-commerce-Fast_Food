@@ -29,11 +29,15 @@ import Option from "./components/Shipping/Option.jsx";
 import "./App.css";
 import Shipping from "./components/Shipping/Shipping.jsx";
 import Maps from "./components/Shipping/Maps.jsx";
+import { makeStyles } from "@material-ui/core/styles";
 const KEY_STRIPE=process.env
+
+
 
 const stripePromise = loadStripe(`${KEY_STRIPE}`);
 
 function App() {
+  
   return (
     <div>
       <BrowserRouter>
@@ -47,7 +51,7 @@ function App() {
         <Route exact path="/register" component={Register} />
         <Route exact path="/resetPassword" component={Password} /> 
         <Route exact path="/reset-password/:token" component={NewPassword} /> 
-        <Route exact path="/adminPanel" component={AdminPanel} />
+        <Route exact path="/adminPanel" component={AdminPanel}/>
         <Route exact path="/admProdDetail/:id" component={AdminProductDetail} />  
         <Route exact path="/clients" component={GetClients} />   
         <Route exact path="/clientEdit/:id" component={ClientEdit} />    
