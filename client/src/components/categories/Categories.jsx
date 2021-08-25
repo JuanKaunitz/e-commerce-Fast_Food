@@ -29,6 +29,7 @@ const Categories = () => {
   const [filtro, setFiltro] = useState([]);
   
   const filter1 = getAll.filter((product) => product.category === categoryName); 
+  console.log(filter1)
 
   const categoriesTypes = categories.filter(e => {
     if(e.name === categoryName){

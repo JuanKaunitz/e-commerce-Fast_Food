@@ -11,8 +11,15 @@ const useStyles = makeStyles((theme) => ({
   prueba: {
     backgroundColor:'black',
     color: "white",
+   display:'flex',
+   justifyContent:'space-between',
+   alignItems:'center',
+   width:'97%'
    
-   
+  },
+  items_left:{
+width:'50%',
+display:'flex'
   },
   MuiButtonLabel: {
     color: "orange",
@@ -68,7 +75,9 @@ const useStyles = makeStyles((theme) => ({
     marginRight: theme.spacing(2),
   },
   toolbarButtons: {
-    marginLeft: "auto",
+
+display:'flex',
+alignItems:'center'
   },
   search: {
     position: "relative",

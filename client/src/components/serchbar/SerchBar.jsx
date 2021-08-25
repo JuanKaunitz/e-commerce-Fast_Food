@@ -11,6 +11,7 @@ const SerchBar = () => {
   const dispatch = useDispatch();
 
   const [name, setName] = useState("");
+  console.log(name)
   const [search, setSearch] = useState(false);
 const globalState = useSelector(state => state.getProducts)
 

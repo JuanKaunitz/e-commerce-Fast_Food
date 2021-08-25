@@ -1,3 +1,4 @@
+import setOrderName from "../../selectores/setOrdeName";
 import {
   GET_ALL_PRODUCTS,
   GET_BY_ID,
@@ -68,6 +69,7 @@ const initialState = {
   bandOrderUser: true,
   resetPassword: {},
   idMercadopago: {},
+  searchProducts2:[]
 };
 
 const rootReducer = (state = initialState, action) => {
@@ -92,9 +94,10 @@ const rootReducer = (state = initialState, action) => {
         getProducts: [...state.allProducts, action.payload],
       };
     case SEARCH_PRODUCTS:
+      const name = action.payload.map(product => product.name[0])
       return {
         ...state,
-        searchProducts: action.payload,
+        searchProducts:action.payload,
         loading: true,
       };
 

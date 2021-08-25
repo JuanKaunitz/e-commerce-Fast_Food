@@ -62,13 +62,14 @@ const NewProduct = (props) => {
 
 
   const [input, setInput] = useState({
-    name: "",
-    identifier: 2,
-    price: "",
-    description: "",
-    stock: 200,
-    categories: "",
-    type: "",
+    name:"",
+    identifier:2,
+    price:"",
+    image:'',
+    description:"",
+    stock:200,
+    category:"",
+    type:"",
   });
 
   const saveProduct = () => {
@@ -121,6 +122,7 @@ const NewProduct = (props) => {
             type="url"
             name="image"
             onChange={handleInputChange}
+            value={input.image}
           />
         </div>
 
@@ -159,7 +161,7 @@ const NewProduct = (props) => {
         <select
           className={classes.select_types}
           onChange={handleInputChange}
-          name="categories"
+          name="category"
         >
           <option>Categories</option>
           {category &&
@@ -173,7 +175,7 @@ const NewProduct = (props) => {
          <br></br>
         <Typography className="filterName"></Typography>
 
-        <select className={classes.select_types} onChange={handleInputChange}>
+        <select className={classes.select_types} onChange={handleInputChange} name='type'>
           <option>Types</option>
           {types &&
             types.map((t, i) => (

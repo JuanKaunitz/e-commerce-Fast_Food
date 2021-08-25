@@ -3,9 +3,11 @@ import { BrowserRouter as Router, Switch } from "react-router-dom";
 import DashbordRouter from "./DashbordRouter";
 import PrivateRouter from "./PrivateRouter";
 import ViewScreen from "./ViewScreen";
+import { Navbar } from "../components/Navbar/Navbar";
+import PublicRouter from './PublicRouter';
 
 function AppRouter() {
-    const {role} = useSelector(state => state.client);
+    let role = useSelector(state => state.client);
   return (
     <Router>
       <Navbar />
@@ -13,12 +15,13 @@ function AppRouter() {
         <PublicRouter
           path="/"
           component={ViewScreen}
-          isAuthenticated={role='CLIENT'}
+          // isAuthenticated={role='CLIENT'}
         />
      <PrivateRouter
          path="/"
          component={DashbordRouter}
-         isAuthenticated={role='ADMIN'} />
+         isAuthenticated={role='ADMIN'}
+         />
       </Switch>
     </Router>
   );

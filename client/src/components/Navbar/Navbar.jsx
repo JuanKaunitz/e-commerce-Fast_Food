@@ -94,9 +94,10 @@ export const Navbar = () => {
   return (
     <div>
       <div>
-        <AppBar className={classes.prueba}>
-          <Toolbar>
-            <IconButton
+        <AppBar >
+          <Toolbar className={classes.prueba}>
+          <div className={classes.items_left}>
+          <IconButton
               color="inherit"
               aria-label="open drawer"
               onClick={handleDrawerOpen}
@@ -111,13 +112,13 @@ export const Navbar = () => {
                 <HomeIcon className={classes.MuiButtonLabel} />
               </NavLink>
             </IconButton>
-            {/* <Typography variant="h5" >Home</Typography> */}
             <Button>
               <NavLink className={classes.MuiButtonLabel} to="/aboutUs">
                 About Us
               </NavLink>
             </Button>
             <SerchBar />
+          </div>
             <div className={classes.toolbarButtons}>
               {token && adminClient.role === "ADMIN" ? (
                 <NavLink
