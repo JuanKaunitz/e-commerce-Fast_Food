@@ -20,6 +20,11 @@ router.post('/', [
     ],
     authControllers.googleSignIn
   );
-  
+  //resetear password
+  router.post('/reset-password',authControllers.resetPassword);
+  // router.post('/newPassword', authControllers.saveNewPassword);
+  router.post('/reset-password/:token', authControllers.saveNewPassword);
+
+  router
 
 module.exports = router;

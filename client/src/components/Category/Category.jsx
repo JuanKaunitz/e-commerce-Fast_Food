@@ -12,7 +12,7 @@ const Category = () => {
 
   return (
     <div>
-      {categories.map((c,_id) => (
+      {categories?.map((c,_id) => (
         <p key={_id}>{c.name}</p>
       ))}
     </div>
