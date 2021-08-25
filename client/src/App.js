@@ -10,13 +10,9 @@ import Register from "./components/register/Register.jsx";
 import CardDetails from "./components/details/CardDetails.jsx";
 import Categories from "./components/categories/Categories.jsx";
 import Form from "./components/Form/Form.jsx";
-<<<<<<< HEAD
 import NewPassword from "./components/resetpassword/NewPassword.jsx";
 import Password from "./components/resetpassword/Password.jsx";
 import FormNav from "./components/LogForm/FormNav.jsx";
-=======
-import FormNav from "./components/login/FormNav.jsx";
->>>>>>> jc-dev
 import AdminPanel from "./components/UserAdmin/AdminPanel.jsx";
 import AdminProductDetail from "./components/UserAdmin/AdminProductDetail.jsx"
 import GetClients from "./components/UserAdmin/GetClients.jsx";
@@ -31,13 +27,8 @@ import Mercado from "./components/Pasarela/index.jsx";
 import Checkout from "./components/payment/Checkout.js";
 import Option from "./components/Shipping/Option.jsx";
 import "./App.css";
-<<<<<<< HEAD
 import Shipping from "./components/Shipping/Shipping.jsx";
 import Maps from "./components/Shipping/Maps.jsx";
-=======
-import Password from "./components/resetpassword/Password.js";
-import NewPassword from "./components/resetpassword/NewPassword.js";
->>>>>>> jc-dev
 const KEY_STRIPE=process.env
 
 const stripePromise = loadStripe(`${KEY_STRIPE}`);
@@ -54,13 +45,8 @@ function App() {
         <Route exact path="/form" component={Form} />
         <Route exact path="/categories" component={Categories} />
         <Route exact path="/register" component={Register} />
-<<<<<<< HEAD
-        <Route exact path="/resetPassword" component={Password} /> 
-        <Route exact path="/reset-password/:token" component={NewPassword} /> 
-=======
         <Route exact path="/reset-password" component={Password} /> 
         <Route exact path = "/reset-password/:token" component = {NewPassword} />
->>>>>>> jc-dev
         <Route exact path="/adminPanel" component={AdminPanel} />
         <Route exact path="/admProdDetail/:id" component={AdminProductDetail} />  
         <Route exact path="/clients" component={GetClients} />   

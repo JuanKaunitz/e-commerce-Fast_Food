@@ -67,12 +67,8 @@ const initialState = {
   allOrders: [],
   editOrder: {},
   bandOrderUser: true,
-<<<<<<< HEAD
-  resetPassword: {},
-=======
   resetPassword:{},
   newPassword:{}
->>>>>>> jc-dev
 };
 
 const rootReducer = (state = initialState, action) => {
@@ -258,25 +254,6 @@ const rootReducer = (state = initialState, action) => {
         ...state,
         editOrder: action.payload,
       };
-<<<<<<< HEAD
-    case CLIENT_STATUS:
-      return {
-        ...state,
-        clientToken: "",
-        client: {},
-        orderUser: [],
-      };
-    case RESET_PASSWORD:
-      return {
-        ...state,
-        resetPassword: action.payload,
-      };
-    case NEW_PASSWORD:
-      return {
-        resetPassword: action.payload,
-      };
-
-=======
       case CLIENT_STATUS:
         return{
           ...state,
@@ -294,7 +271,6 @@ const rootReducer = (state = initialState, action) => {
             return{
               newPassword: action.payload
             }
->>>>>>> jc-dev
     default:
       return state;
   }

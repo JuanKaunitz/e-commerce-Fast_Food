@@ -1,7 +1,6 @@
 import React, { useState } from "react";
 import { useDispatch } from "react-redux";
 import { authUser } from "../../Redux/actions/actions";
-<<<<<<< HEAD:client/src/components/LogForm/FormLogin.jsx
 import Avatar from '@material-ui/core/Avatar';
 import Button from '@material-ui/core/Button';
 import CssBaseline from '@material-ui/core/CssBaseline';
@@ -19,10 +18,6 @@ import { useHistory } from "react-router-dom";
 import NewPassword from "../resetpassword/NewPassword";
 import Password from "../resetpassword/Password";
 
-=======
-import styles1 from "./styles1.module.css";
-import { Link, useHistory } from "react-router-dom";
->>>>>>> jc-dev:client/src/components/login/FormLogin.jsx
 
 
 export function validate(input) {
@@ -91,10 +86,7 @@ export default function FormularioLogin() {
   
   const handleSubmit =  (e) => {
     e.preventDefault();
-<<<<<<< HEAD:client/src/components/LogForm/FormLogin.jsx
     console.log(input);
-=======
->>>>>>> jc-dev:client/src/components/login/FormLogin.jsx
     dispatch(authUser(input));
     setInput({
       email: "",
@@ -148,7 +140,6 @@ export default function FormularioLogin() {
           />
           {errors.password && <p className={classes.danger}>{errors.password}</p>}
 
-<<<<<<< HEAD:client/src/components/LogForm/FormLogin.jsx
           <FormControlLabel
             control={<Checkbox value="remember" color="primary" />}
             label="Remember me"
@@ -185,11 +176,5 @@ export default function FormularioLogin() {
       <br>
       </br>
     </Container>
-=======
-        <input className={styles1.btnregister} type="submit" value="Submit" />
-      <Link to='/reset-password'>Olvide mi contraseña</Link>
-      </form>
-    </div>
->>>>>>> jc-dev:client/src/components/login/FormLogin.jsx
   );
 }
