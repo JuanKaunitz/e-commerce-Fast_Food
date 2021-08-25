@@ -210,6 +210,16 @@ export const categoryName = (name) => (dispatch) => {
     })    
 };
 
+export const recoveryData = (token, client) => (dispatch) =>{
+    dispatch({
+        type:LOGIN_CLIENT,
+        payload:{
+            token: token,
+            user: client
+        }
+    })
+}
+
 //Autenticación de usuario.  
 export const authUser =  (user) => async (dispatch) => {
     try {

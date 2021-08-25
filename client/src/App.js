@@ -27,6 +27,7 @@ import Shipping from './components/Pasarela/Shipping.jsx';
 import Checkout from "./components/payment/Checkout.js";
 import Option from "./components/Pasarela/Option.jsx";
 import Maps from "./components/Pasarela/Maps.jsx";
+import Succes from "./components/succesPayment/Succes.jsx";
 import "./App.css";
 const KEY_STRIPE=process.env
 
@@ -58,7 +59,7 @@ function App() {
         <Route exact path="/option" component={Option} />
         <Route exact path="/shipping" component={Shipping} />
         <Route exact path="/maps" component={Maps} />
-
+        <Route exact path="/succes" component={Succes} />
         <Route
           path="/payment"
           render={() => (

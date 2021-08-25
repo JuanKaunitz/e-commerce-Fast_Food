@@ -49,6 +49,10 @@ const useStyles = makeStyles(() => ({
     backgroundColor:"orange",
     color: "white",
   },
+  color2: {
+    backgroundColor:"red",
+    color: "white",
+  },
 }));
 
 export default function CardProduct({
@@ -159,20 +163,36 @@ export default function CardProduct({
             <Typography className={classes.pos} color="textSecondary">
               Description: {description}
             </Typography>
-
+            <Typography className={classes.pos} color="textSecondary">
+              Stock: {stock}
+            </Typography>
             <Typography className={classes.pos} color="textSecondary">
               Precio: ${price}
             </Typography>
-            <ButtonGroup
-              size="small"
-              variant="contained"
-              aria-label="contained primary button group"
-              component="div"
-            >
-              <Button onClick={() => handleAddCart()} className={classes.color}>
-                +
-              </Button>
-            </ButtonGroup>
+            {
+              stock > 0?
+                <ButtonGroup
+                  size="small"
+                  variant="contained"
+                  aria-label="contained primary button group"
+                  component="div"
+                >
+                  <Button onClick={() => handleAddCart()} className={classes.color}>
+                    +
+                  </Button>
+                </ButtonGroup>
+              : 
+                <ButtonGroup
+                size="small"
+                variant="contained"
+                aria-label="contained primary button group"
+                component="div"
+                >
+                  <Button  className={classes.color2}>
+                  out of stock
+                  </Button>
+                </ButtonGroup>
+            }
           </CardContent>
         </Card>
       </ReactCardFlip>

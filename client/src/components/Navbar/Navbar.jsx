@@ -41,17 +41,8 @@ export const Navbar = () => {
   const [open, setOpen] = useState(false);
   const categories = useSelector((state) => state.allCategories);
   const totalCarrito = useSelector((state) => state.totalCarrito);
-  let adminClient = useSelector((state) => state.client);
-  let token = useSelector((state) => state.clientToken);
-
-  if(!token && !adminClient.role ){
-    if(localStorage.getItem('token')){
-      token = localStorage.getItem('token')
-    }
-    if(localStorage.getItem('client')){
-      adminClient = localStorage.getItem('client')
-    }
-  }
+  const adminClient = useSelector((state) => state.client);
+  const token = useSelector((state) => state.clientToken);
   
 
   const [input, setInput] = useState({ status: false });
@@ -82,7 +73,6 @@ export const Navbar = () => {
       }
       console.log("order para logout", order)
       dispatch(updateOrderFinal(idOrder, order))
-
     }
 
     const id = adminClient._id;
@@ -93,7 +83,6 @@ export const Navbar = () => {
     localStorage.removeItem("client");
     dispatch(orderRedux({
       id: "",
-      token: "",
       order: [],
       status: "",
       date: "",

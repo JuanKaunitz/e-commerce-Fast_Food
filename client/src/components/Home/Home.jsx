@@ -13,20 +13,13 @@ import { mergeCart, sumaCantidadTotal } from "../cart/utilsCarts";
 
 function Home() {
   const dispatch = useDispatch();
-  let client = useSelector(state => state.client);
+  const client = useSelector(state => state.client);
   const orderUser = useSelector(state => state.orderUser);
-  let token = useSelector(state => state.clientToken);
+  const token = useSelector(state => state.clientToken);
   const band = useSelector(state => state.bandOrderUser);
   //localStorage.removeItem("order");
 
-  if(!token && !client.role ){
-    if(localStorage.getItem('token')){
-      token = localStorage.getItem('token')
-    }
-    if(localStorage.getItem('client')){
-      client = localStorage.getItem('client')
-    }
-  }
+  
 
     if(client && orderUser.length > 0 && token && band){
       dispatch(bandOrderUser())
