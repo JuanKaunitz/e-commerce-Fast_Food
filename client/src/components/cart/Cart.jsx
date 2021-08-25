@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import Checkout from '../Pasarela/checkoutMercado';
-import axios from 'axios'
+import Checkout from "../Pasarela/checkoutMercado";
+import axios from "axios";
 import { makeStyles } from "@material-ui/core/styles";
 import Grid from "@material-ui/core/Grid";
 import CardCart from "./CardCart";
@@ -9,14 +9,15 @@ import DeleteIcon from "@material-ui/icons/Delete";
 import Typography from "@material-ui/core/Typography";
 import IconButton from "@material-ui/core/IconButton";
 import { Button } from "@material-ui/core";
-import { updateCart,
+import {
+  updateCart,
   totalProductosCarrito,
-  orderRedux, 
+  orderRedux,
   orderFinal,
   updateOrderFinal,
   deleteOrden,
   getUserById,
-  bandOrderUser
+  bandOrderUser,
 } from "../../Redux/actions/actions";
 import {
   deleteCart,
@@ -24,9 +25,8 @@ import {
   resProduct,
   sumaPrecioTotal,
   sumaCantidadTotal,
-  mergeCart
+  mergeCart,
 } from "./utilsCarts";
-
 
 const useStyles = makeStyles(() => ({
   root: {
@@ -46,65 +46,65 @@ const Cart = (props) => {
 
   const carts = useSelector((state) => state.cart);
   const client = useSelector((state) => state.client);
-  const token = useSelector(state => state.clientToken);
-  const orderUser = useSelector(state => state.orderUser);
-  const band = useSelector(state => state.bandOrderUser);
+  const token = useSelector((state) => state.clientToken);
+  const orderUser = useSelector((state) => state.orderUser);
+  const band = useSelector((state) => state.bandOrderUser);
 
   //const [datos, setDatos] = useState("")
   //localStorage.removeItem("order");
 
-    if(client && orderUser.length > 0 && token && band){
-      dispatch(bandOrderUser())
-      const orderFiltrado = orderUser.filter(e => e.status === "carrito");
-      //console.log("orderFiltrado", orderFiltrado)
-  
-      if(orderFiltrado.length > 0){
-        //console.log("ENTRO ORDERGILTRADO.LENGTH")
-        const idOrderCarrito = orderFiltrado[0]._id;
-        //console.log("CARRITO", idOrderCarrito);
-        localStorage.setItem('idOrderUser', idOrderCarrito);
-      }
-      
-      if(localStorage.getItem('idOrderUser')){
-       var idOrder = localStorage.getItem('idOrderUser');
-        //console.log("ID ORDER", idOrder)
-      }
-     
-      if(JSON.parse(localStorage.getItem('order'))){
-        var object = JSON.parse(localStorage.getItem('order'));
-        //console.log("CARRITO LOCALSTORAGE", object)
-      }
+  if (client && orderUser.length > 0 && token && band) {
+    dispatch(bandOrderUser());
+    const orderFiltrado = orderUser.filter((e) => e.status === "carrito");
+    //console.log("orderFiltrado", orderFiltrado)
 
-      //console.log("CARRITO BACK", orderFiltrado)
-      const cart = mergeCart(object, orderFiltrado);
-      //console.log("MERGE", cart)
-      localStorage.setItem('order', JSON.stringify(cart));
-      const cantidadTotal = sumaCantidadTotal(cart);
-      dispatch(totalProductosCarrito(cantidadTotal))
-      dispatch(updateCart(cart));
-      const fecha = new Date();
-  
-      const order = {
-        id: client._id,
-        token: token,
-        order: cart,
-        status: "carrito",
-        date: fecha.toUTCString(),
-      }
-      console.log("ORDER PARA ENVIAR", order)
-      dispatch(orderRedux(order));
-      if(idOrder){
-        dispatch(updateOrderFinal(idOrder, order))
-      }else{
-        dispatch(orderFinal(order))
-      }
+    if (orderFiltrado.length > 0) {
+      //console.log("ENTRO ORDERGILTRADO.LENGTH")
+      const idOrderCarrito = orderFiltrado[0]._id;
+      //console.log("CARRITO", idOrderCarrito);
+      localStorage.setItem("idOrderUser", idOrderCarrito);
     }
- 
 
+    if (localStorage.getItem("idOrderUser")) {
+      var idOrder = localStorage.getItem("idOrderUser");
+      //console.log("ID ORDER", idOrder)
+    }
+
+    if (JSON.parse(localStorage.getItem("order"))) {
+      var object = JSON.parse(localStorage.getItem("order"));
+      //console.log("CARRITO LOCALSTORAGE", object)
+    }
+
+    //console.log("CARRITO BACK", orderFiltrado)
+    const cart = mergeCart(object, orderFiltrado);
+    //console.log("MERGE", cart)
+    localStorage.setItem("order", JSON.stringify(cart));
+    const cantidadTotal = sumaCantidadTotal(cart);
+    dispatch(totalProductosCarrito(cantidadTotal));
+    dispatch(updateCart(cart));
+    const fecha = new Date();
+
+    const order = {
+      id: client._id,
+      token: token,
+      order: cart,
+      status: "carrito",
+      date: fecha.toUTCString(),
+    };
+    console.log("ORDER PARA ENVIAR", order);
+    dispatch(orderRedux(order));
+    if (idOrder) {
+      dispatch(updateOrderFinal(idOrder, order));
+    } else {
+      dispatch(orderFinal(order));
+    }
+  }
 
   useEffect(() => {
-    if(client._id && band){dispatch(getUserById(client._id))}
-    if (carts.length <= 0 ) {
+    if (client._id && band) {
+      dispatch(getUserById(client._id));
+    }
+    if (carts.length <= 0) {
       if (localStorage.getItem("order")) {
         let object = JSON.parse(localStorage.getItem("order"));
         dispatch(updateCart(object));
@@ -113,8 +113,8 @@ const Cart = (props) => {
     // eslint-disable-next-line
   }, [dispatch]);
 
-  function cartBack(cart){
-    const idOrder = localStorage.getItem('idOrderUser');
+  function cartBack(cart) {
+    const idOrder = localStorage.getItem("idOrderUser");
     const fecha = new Date();
 
     const order = {
@@ -122,12 +122,12 @@ const Cart = (props) => {
       order: cart,
       status: "carrito",
       date: fecha.toUTCString(),
-    }
+    };
     dispatch(orderRedux(order));
-    if(idOrder){
-      dispatch(updateOrderFinal(idOrder, order))
-    }else{
-      dispatch(orderFinal(order))
+    if (idOrder) {
+      dispatch(updateOrderFinal(idOrder, order));
+    } else {
+      dispatch(orderFinal(order));
     }
   }
 
@@ -137,8 +137,8 @@ const Cart = (props) => {
     //console.log("TOTAL", sumaProductos);
     dispatch(updateCart(delet));
     dispatch(totalProductosCarrito(cantidadTotal));
-    if(token){
-     cartBack(delet);
+    if (token) {
+      cartBack(delet);
     }
   }
 
@@ -148,9 +148,9 @@ const Cart = (props) => {
     //console.log("TOTAL", sumaProductos);
     dispatch(updateCart(sum));
     dispatch(totalProductosCarrito(cantidadTotal));
-    if(token){
+    if (token) {
       cartBack(sum);
-     }
+    }
   }
 
   function handleRes(id) {
@@ -159,21 +159,21 @@ const Cart = (props) => {
     //console.log("TOTAL", sumaProductos);
     dispatch(updateCart(resta));
     dispatch(totalProductosCarrito(cantidadTotal));
-    if(token){
+    if (token) {
       cartBack(resta);
-     }
+    }
   }
 
   function deleteCompleteOrder() {
     localStorage.removeItem("order");
     dispatch(updateCart([]));
     dispatch(totalProductosCarrito(0));
-    if(token){
-      const idOrder = localStorage.getItem('idOrderUser');
+    if (token) {
+      const idOrder = localStorage.getItem("idOrderUser");
       localStorage.removeItem("idOrderUser");
-      const borrado = orderUser.filter(e => e._id !== idOrder) 
-      dispatch(deleteOrden(idOrder, borrado))
-     }
+      const borrado = orderUser.filter((e) => e._id !== idOrder);
+      dispatch(deleteOrden(idOrder, borrado));
+    }
   }
 
   const classes = useStyles();
@@ -181,10 +181,9 @@ const Cart = (props) => {
   const precioTotal = sumaPrecioTotal(carts);
 
   const setBuy = () => {
-    if(token){
+    if (token) {
       props.history.push("/shipping");
-    }else{
-
+    } else {
       props.history.push("/login");
     }
   };
@@ -222,7 +221,7 @@ const Cart = (props) => {
         Checkout
       </Button>
     </div>
-  )
+  );
 };
 
 export default Cart;
