@@ -28,6 +28,8 @@ import {
   TOTAL_CARRITO,
   BAND_ORDER_USER,
   NEW_ORDER_USER,
+  RESET_PASSWORD,
+  NEW_PASSWORD,
   CLEAR_TOKEN,
   RESET_PASSWORD,
   NEW_PASSWORD,
@@ -65,7 +67,12 @@ const initialState = {
   allOrders: [],
   editOrder: {},
   bandOrderUser: true,
+<<<<<<< HEAD
   resetPassword: {},
+=======
+  resetPassword:{},
+  newPassword:{}
+>>>>>>> jc-dev
 };
 
 const rootReducer = (state = initialState, action) => {
@@ -251,6 +258,7 @@ const rootReducer = (state = initialState, action) => {
         ...state,
         editOrder: action.payload,
       };
+<<<<<<< HEAD
     case CLIENT_STATUS:
       return {
         ...state,
@@ -268,6 +276,25 @@ const rootReducer = (state = initialState, action) => {
         resetPassword: action.payload,
       };
 
+=======
+      case CLIENT_STATUS:
+        return{
+          ...state,
+          clientToken: "",
+          client: {},
+          orderUser:[],
+        }
+       
+        case RESET_PASSWORD:
+          return{
+            ...state,
+            resetPassword:action.payload
+          }
+          case NEW_PASSWORD:
+            return{
+              newPassword: action.payload
+            }
+>>>>>>> jc-dev
     default:
       return state;
   }

@@ -3,7 +3,10 @@ import { createProduct } from "../../Redux/actions/actions";
 import { useDispatch, useSelector } from "react-redux";
 import { getCategories, getTypes } from "../../Redux/actions/actions";
 import styles from "./styles.module.css";
+<<<<<<< HEAD
 // import FileDrop from "../Form/FileDrop";
+=======
+>>>>>>> jc-dev
 import { makeStyles } from "@material-ui/core/styles";
 import { Button, TextField, Typography } from "@material-ui/core";
 // import Creatable from "react-select/creatable";
@@ -86,7 +89,11 @@ const NewProduct = (props) => {
     e.preventDefault();
     setInput(input);
     saveProduct();
+<<<<<<< HEAD
     window.location.replace("http://localhost:3000/AdminPanel");
+=======
+    // props.history.push("/AdminPanel");
+>>>>>>> jc-dev
   };
 
 

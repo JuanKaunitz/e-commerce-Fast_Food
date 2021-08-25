@@ -213,10 +213,7 @@ export const categoryName = (name) => (dispatch) => {
 export const authUser =  (user) => async (dispatch) => {
     try {
         const client = await axios.post(`${URL}/food/api/auth-sesion`, user);
-        //const prueba=client.data.user.status=true
-        // console.log("LA RES1",client)
-        // const res = await axios.put(`${URL}/food/api/user/${client.data.user._id}`, prueba);
-        // console.log("LA RES2",res)
+       
         console.log('USUARIO LOGUEADO: ', client.data)
         dispatch({
             type: LOGIN_CLIENT,
@@ -451,9 +448,7 @@ export const changeStatus = (id, input) => async (dispatch) => {
             console.log("respuesta loguot", res.data)
        
         dispatch({
-            type:CLIENT_STATUS,
-            
-            
+            type:CLIENT_STATUS,  
         })
 
     } catch(err) {
