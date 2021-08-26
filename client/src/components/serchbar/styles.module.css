@@ -1,0 +1,87 @@
+@import url("https://fonts.googleapis.com/css2?family=Roboto+Condensed:wght@300&display=swap%22");
+
+.searchBarMainContainer {
+  display: flex;
+  width: auto;
+  min-width: 100px;
+  flex-shrink: 2;
+  border: 2px solid black;
+  border-radius: 3vh;
+}
+
+.searchBarMainContainer > form {
+  width: 440px;
+  min-width: 70px;
+  display: flex;
+  align-items: center;
+}
+
+.searchContainer {
+  display: flex;
+  width: inherit;
+  margin-left: 50px;
+}
+
+.inputBox {
+  display: flex;
+  text-align: center;
+  border: transparent;
+  height: 40px;
+  min-width: 69px;
+  font-family: "Roboto Condensed", sans-serif;
+  font-weight: 500;
+  font-size: 17.5px;
+  outline: none;
+  background-color: white;
+  width: 400px;
+  margin-right: 20px;
+}
+
+.buttonSearchContainer {
+  display: flex;
+  width: max-content;
+  height: max-content;
+}
+
+/* .backgroundSearchButton {
+  width: 35px;
+  height: 35px;
+  background-color: rgb(247, 115, 7);
+  border-radius: 50%;
+  margin-top: 1px;
+} */
+
+.searchIcon {
+  position: absolute;
+  width: 22px;
+  margin-top: 6.8px;
+  margin-left: 6.9px;
+  z-index: 3;
+  visibility: hidden;
+}
+
+.inputBtn {
+  font-family: "Roboto Condensed", sans-serif;
+  font-weight: 500;
+  font-size: 16px;
+  position: absolute;
+  height: 35px;
+  width: max-content;
+  border: none;
+  background-color: transparent;
+  color: transparent;
+  font-weight: 800;
+  transition-duration: 0.4s;
+  border-radius: 50%;
+  z-index: 5;
+  visibility: hidden;
+}
+
+@media (max-width: 960px) {
+  .searchBarMainContainer {
+    width: 250px;
+  }
+  .inputBox {
+    width: 100%;
+  }
+}

@@ -47,7 +47,12 @@ const useStyles = makeStyles((theme) => ({
     },
     typography: {
         margin: 30
+    },
+    btn: {
+      backgroundColor: 'orange',
+      color: 'white'
     }
+
     
   }));
 
@@ -165,6 +170,7 @@ const Shipping = () => {
               type= "submit"                
               margin= "theme.spacing(3, 0, 2)"
               className={classes.color}
+      
               >
                 <Checkout  data={idMercadopago}/>
               </ButtonGroup>
@@ -178,7 +184,7 @@ const Shipping = () => {
                 margin= "theme.spacing(3, 0, 2)"
                 className={classes.color}
               >
-                <Button onClick={() => pagoMercadopago()} >
+                <Button className={classes.btn} onClick={() => pagoMercadopago()} >
                   Next
                 </Button>
               </ButtonGroup>

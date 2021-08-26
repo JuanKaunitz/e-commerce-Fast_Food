@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import clsx from "clsx";
 import { NavLink } from "react-router-dom";
 import {
@@ -25,6 +25,7 @@ import SerchBar from "../serchbar/SerchBar";
 import Profile from "./Profile";
 import Badge from "@material-ui/core/Badge";
 import { useLocation, Link } from "react-router-dom";
+import {sumaCantidadTotal} from '../cart/utilsCarts';
 import { useSelector, useDispatch } from "react-redux";
 import {
   categoryName,
@@ -33,6 +34,7 @@ import {
   totalProductosCarrito,
   updateCart,
   updateOrderFinal,  
+  recoveryData
 } from "../../Redux/actions/actions";
 
 
@@ -92,6 +94,25 @@ export const Navbar = () => {
     dispatch(totalProductosCarrito(0));
     dispatch(updateCart([]));    
    }
+   
+   useEffect(() => {
+    const tokenL = localStorage.getItem('token');
+    const clientL = JSON.parse(localStorage.getItem('client'));
+    if(!adminClient.role && !token && tokenL && clientL.role){
+      console.log("TOKEN", tokenL)
+      console.log("CLIENT", clientL)
+      dispatch(recoveryData(tokenL, clientL))
+    }
+    const cart = JSON.parse(localStorage.getItem('order'));
+    if(cart === null){
+      dispatch(totalProductosCarrito(0));
+    } else {
+      const cantidadTotal = sumaCantidadTotal(cart);
+      dispatch(updateCart(cart));
+      dispatch(totalProductosCarrito(cantidadTotal));
+    }
+      //eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [dispatch])
 
   return (
     <div>
