@@ -1,0 +1,15 @@
+
+.card {
+    width: 100%;
+    height: 100%;
+    box-shadow: 3px 4px 8px #0b0c0c1a;
+}
+
+
+
+
+.card:hover {
+    text-decoration: none;
+    transform: scale(1.15);
+    transition: 0.35s
+  }

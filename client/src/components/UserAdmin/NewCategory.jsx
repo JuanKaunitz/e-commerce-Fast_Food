@@ -2,47 +2,49 @@ import React, { useState, useEffect } from "react";
 import { createCategory } from "../../Redux/actions/actions";
 import { useDispatch } from "react-redux";
 import { getCategories } from "../../Redux/actions/actions";
-import Typography from '@material-ui/core/Typography';
+import Typography from "@material-ui/core/Typography";
 import { Button, TextField } from "@material-ui/core";
-import {makeStyles} from '@material-ui/core';
+import { makeStyles } from "@material-ui/core";
 
 const useStyles = makeStyles(() => ({
-  group:{
-    blackgroundColor:'black',
-    display:'flex',
-    flexDirection: 'column',
-    margin:'5px',
-},
-  items:{
-  cursor: 'pointer',
-  width:'80%',
-  fontSize: '25px',
-  backgroundColor: 'aliceblue',
-  boxShadow: '3px 4px 8px #0864B11A',
-  border: '1.5px solid #616060',
-},
-  content:{
-  maxWidth:1024,
-  paddingLeft:40,
-  margin:'auto',
-  backgroundColor:'black',
-  borderRadius:10,
-  padding:5
-  
- },
-  save:{
-    display:'flex',
-    alignItems:'center',
-    justifyContent:'center',
-    color:'white',
-    backgroundColor:'orange'
-  },
-  save1:{
-    display:'flex',
-    alignItems:'center',
-    justifyContent:'center',
-  }
+  group: {
+    blackgroundColor: "black",
+    display: "flex",
+    flexDirection: "column",
+    margin: "5px",
+    // justifyContent: 'center',
+    // alignItems: 'center'
 
+  },
+  items: {
+    cursor: "pointer",
+    width: "80%",
+    fontSize: "25px",
+    backgroundColor: "#ffff",
+    boxShadow: "3px 4px 8px #0864B11A",
+    justifyContent: 'center'
+    // border: '1.5px solid #616060',
+  },
+  content: {
+    maxWidth: 400,
+    padding: 40,
+    margin: "auto",
+    backgroundColor: "white",
+    borderRadius: 10,
+    // padding:5
+  },
+  save: {
+    display: "flex",
+    alignItems: "center",
+    justifyContent: "center",
+    color: "white",
+    backgroundColor: "orange",
+  },
+  save1: {
+    display: "flex",
+    alignItems: "center",
+    justifyContent: "center",
+  },
 }));
 const NewCategory = (props) => {
   const dispatch = useDispatch();
@@ -62,7 +64,6 @@ const NewCategory = (props) => {
     type2: "",
     type3: "",
   });
-
 
   const saveCategory = () => {
     console.log("INPUT: ", input);
@@ -99,7 +100,6 @@ const NewCategory = (props) => {
   };
 
   return (
-  
     <div className={classes.content}>
       <Typography variant="h4" component="h2">
         Create a new category
@@ -107,9 +107,11 @@ const NewCategory = (props) => {
 
       <form onSubmit={handleSubmit}>
         <div className={classes.group}>
-          <label>Name:</label>
+          <Typography>Name</Typography>
           <TextField
             className={classes.items}
+            fullWidth
+            variant="outlined"
             type="text"
             name="name"
             onChange={handleInputChange}
@@ -119,9 +121,11 @@ const NewCategory = (props) => {
         </div>
 
         <div className={classes.group}>
-          <label>Image:</label>
+          <Typography>Image</Typography>
           <TextField
             className={classes.items}
+            fullWidth
+            variant="outlined"
             type="text"
             name="image"
             onChange={handleInputChange}
@@ -130,9 +134,11 @@ const NewCategory = (props) => {
         </div>
 
         <div className={classes.group}>
-          <label>Type 1:</label>
+          <Typography>Type 1</Typography>
           <TextField
             className={classes.items}
+            fullWidth
+            variant="outlined"
             type="text"
             name="type1"
             rows="5"
@@ -142,9 +148,11 @@ const NewCategory = (props) => {
         </div>
 
         <div className={classes.group}>
-          <label>Type 2:</label>
+          <Typography>Type 2</Typography>
           <TextField
             className={classes.items}
+            fullWidth
+            variant="outlined"
             type="text"
             name="type2"
             rows="5"
@@ -154,9 +162,11 @@ const NewCategory = (props) => {
         </div>
 
         <div className={classes.group}>
-          <label>Type 3:</label>
+          <Typography  color="textPrimary">Type 3</Typography>
           <TextField
             className={classes.items}
+            fullWidth
+            variant="outlined"
             type="text"
             name="type3"
             rows="5"
@@ -165,9 +175,9 @@ const NewCategory = (props) => {
           />
         </div>
         <div className={classes.save1}>
-        <Button className={classes.save} type="submit">
-          CREATE
-        </Button>
+          <Button className={classes.save} type="submit">
+            CREATE
+          </Button>
         </div>
       </form>
     </div>

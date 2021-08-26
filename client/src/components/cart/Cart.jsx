@@ -34,6 +34,7 @@ const useStyles = makeStyles(() => ({
     margin: "auto",
     height: "auto",
     maxWidth: 1024,
+    marginTop: 110
   },
   color: {
     color: "black",
@@ -194,7 +195,7 @@ const Cart = (props) => {
   };
 
   return (
-    <div>
+    <div className={classes.root}>
       <h1 className={classes.color}>THIS IS YOUR CART</h1>
       <IconButton onClick={() => deleteCompleteOrder()}>
         <Typography className={classes.color}>
