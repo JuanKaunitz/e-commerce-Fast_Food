@@ -29,7 +29,7 @@ const useStyles = makeStyles((theme)=>({
     form_group:{
         display:'flex',
         flexDirection: 'column',
-        margin:'5px',
+        // margin:'5px',
         
     },
     btn_save:{
