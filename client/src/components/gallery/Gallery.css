@@ -7,7 +7,7 @@
     margin: auto;
     margin-top: 100px;
     margin-bottom: 10px;
-    border-bottom: 2px solid grey;
+    border-bottom: 2px solid orange;
 
   }
 
@@ -22,8 +22,10 @@
    
 }
 .Grid-Item a{
-    font-size: 25px;
+    font-size: 20px;
     text-decoration: none;
+    font-weight: Roboto;
+    text-align: center;
     font-weight: bold;
     color: #080808;
 }

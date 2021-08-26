@@ -208,7 +208,7 @@ const rootReducer = (state = initialState, action) => {
     case LOADING:
       return {
         ...state,
-        loading: action.payload,
+        loading: false
       };
 
     case ALL_USERS:

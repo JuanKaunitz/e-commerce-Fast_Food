@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import clsx from "clsx";
 import { NavLink } from "react-router-dom";
 import {
@@ -13,6 +13,7 @@ import {
   ListItemText,
   List,
 } from "@material-ui/core";
+import SupervisorAccountSharpIcon from "@material-ui/icons/SupervisorAccountSharp";
 import ChevronLeftIcon from "@material-ui/icons/ChevronLeft";
 import ChevronRightIcon from "@material-ui/icons/ChevronRight";
 import HomeIcon from "@material-ui/icons/Home";
@@ -22,16 +23,18 @@ import Typography from "@material-ui/core/Typography";
 import useStyles from "./styles";
 import SerchBar from "../serchbar/SerchBar";
 import Profile from "./Profile";
+import Badge from "@material-ui/core/Badge";
 import { useLocation, Link } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import {
-  categoryName,
-  changeStatus,
+  categoryName, changeStatus, getCategories,
   orderRedux,
   totalProductosCarrito,
   updateCart,
-  updateOrderFinal,  
+  updateOrderFinal,
+  recoveryData
 } from "../../Redux/actions/actions";
+import { sumaCantidadTotal } from "../cart/utilsCarts";
 
 
 export const Navbar = () => {
@@ -44,10 +47,31 @@ export const Navbar = () => {
   const adminClient = useSelector((state) => state.client);
   const token = useSelector((state) => state.clientToken);
   
-
   const [input, setInput] = useState({ status: false });
 
   const location = useLocation();
+
+  useEffect(() => {
+    dispatch(getCategories());
+   /*  dispatch(allUsers());
+    dispatch(getAllProducts())
+    dispatch(getTypes()) */
+    const tokenL = localStorage.getItem('token');
+    const clientL = JSON.parse(localStorage.getItem('client'));
+    if(!adminClient.role && !token && tokenL && clientL.role){
+      console.log("TOKEN", tokenL)
+      console.log("CLIENT", clientL)
+      dispatch(recoveryData(tokenL, clientL))
+    }
+    const cart = JSON.parse(localStorage.getItem('order'));
+    if(cart === null){
+      dispatch(totalProductosCarrito(0));
+    } else {
+      const cantidadTotal = sumaCantidadTotal(cart);
+      dispatch(updateCart(cart));
+      dispatch(totalProductosCarrito(cantidadTotal));
+    }
+  }, [dispatch])
 
   const handleDrawerOpen = () => {
     setOpen(true);
@@ -94,8 +118,9 @@ export const Navbar = () => {
   return (
     <div>
       <div>
-        <AppBar className={classes.prueba}>
-          <Toolbar>
+        <AppBar>
+          <Toolbar className={classes.prueba}>
+            <div className={classes.itemLeft}> 
             <IconButton
               color="inherit"
               aria-label="open drawer"
@@ -106,41 +131,43 @@ export const Navbar = () => {
               <MenuIcon />
             </IconButton>
 
-            <IconButton aria-label="delete" className={classes.homeIcon}>
-              <NavLink className="a" to="/" activeClassName="active">
-                <HomeIcon className={classes.MuiButtonLabel} />
-              </NavLink>
-            </IconButton>
+            <Link to="/">
+                <HomeIcon className={classes.home} />
+              </Link>
             {/* <Typography variant="h5" >Home</Typography> */}
-            <Button>
-              <NavLink className={classes.MuiButtonLabel} to="/aboutUs">
+            <Button className={classes.button} href="/aboutUs">
                 About Us
-              </NavLink>
-            </Button>
-            <SerchBar />
+              </Button>
+            <SerchBar  />
+            </div>
+            
             <div className={classes.toolbarButtons}>
               {token && adminClient.role === "ADMIN" ? (
-                <NavLink
-                  className={classes.MuiButtonLabel}
-                  to="/AdminPanel"
-                  activeClassName="active"
-                >
-                  Admin Panel
-                </NavLink>
+              <div>
+              <IconButton color="inherit">
+               <Link to="/AdminPanel">
+              <SupervisorAccountSharpIcon className={classes.button} />
+               </Link>
+             </IconButton>
+             </div>
+
               ) : null}
 
                 {
                   totalCarrito > 0?
-                  <IconButton aria-label="add to shopping cart">
-                    <NavLink
-                      className={classes.MuiButtonLabel}
-                      to="/cart"
-                      activeClassName="active"
+                  <IconButton
+                    style={{ fontSize: 40 }}
+                    aria-label="carrito"
+                    backgroundColor="white"
                     >
-                      <Typography>{totalCarrito}</Typography>
-                      <AddShoppingCartIcon />
-                    </NavLink>
-                  </IconButton>
+                  <Link to="/cart">
+                    {" "}
+                    <Badge badgeContent={totalCarrito} color="secondary">
+                      <AddShoppingCartIcon className={classes.carrito} />
+                    </Badge>
+                  </Link>
+                </IconButton>
+      
                 : 
                   <IconButton aria-label="add to shopping cart">
                     <NavLink
@@ -155,30 +182,22 @@ export const Navbar = () => {
                 }
 
               {!token? (
-                <Button color="inherit">
-                  <NavLink
-                    className={classes.MuiButtonLabel}
-                    to="/login"
-                    activeClassName="active"
-                  >
-                    LOGIN
-                  </NavLink>
-                </Button>
+                <Button className={classes.button} href="/login">
+                Login
+              </Button>
               ) : (
                 <Profile handleLogout={handleLogout}/>
                
               )}
                
-
-              <Button color="inherit">
-                <NavLink
-                  className={classes.MuiButtonLabel}
-                  to="/register"
-                  activeClassName="active"
-                >
-                  REGISTER
-                </NavLink>
+            {
+              token ? null 
+              :
+              <Button className={classes.button} href="/register">
+                Register
               </Button>
+
+            }
             </div>
           </Toolbar>
         </AppBar>

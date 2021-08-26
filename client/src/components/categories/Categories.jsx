@@ -9,6 +9,7 @@ import { Button, ButtonGroup, TextField } from "@material-ui/core";
 
 const useStyles = makeStyles((theme) => ({
   root: {
+    color:'black',
     marginLeft: 80,
     marginTop:20,
     width:'80%',
@@ -97,8 +98,9 @@ const Categories = () => {
       <Grid container className={classes.root} spacing={2}>
         {filtro.length <= 0 ? (
           filter1.slice(page * 8, page * 8 + 8).map((product) => (
-            <Grid item key={product._id} xs={3}>
+            <Grid item lg={6} md={6} xs={12} key={product._id}>
               <CardProduct
+
                 id={product._id}
                 name={product.name}
                 image={product.image}
@@ -110,7 +112,7 @@ const Categories = () => {
           ))
         ) : (
           filtro.slice(page * 8, page * 8 + 8).map((product) => (
-            <Grid item key={product._id} xs={3}>
+            <Grid lg={6} md={6} xs={12} item key={product._id} >
               <CardProduct
                 id={product._id}
                 name={product.name}

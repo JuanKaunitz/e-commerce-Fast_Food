@@ -29,11 +29,15 @@ import Option from "./components/Pasarela/Option.jsx";
 import Maps from "./components/Pasarela/Maps.jsx";
 import Succes from "./components/succesPayment/Succes.jsx";
 import "./App.css";
+
 const KEY_STRIPE=process.env
+
+
 
 const stripePromise = loadStripe(`${KEY_STRIPE}`);
 
 function App() {
+  
   return (
     <div>
       <BrowserRouter>

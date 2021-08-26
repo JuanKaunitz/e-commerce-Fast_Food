@@ -32,18 +32,26 @@ const theme = createTheme({
 
 const useStyles = makeStyles(() => ({
   media: {
-    width: "auto",
-    height: 100,
-    paddingTop: "50%", // 16:9
+    width: "100",
+    height: 210,
+    paddingTop: "25%", // 16:9
+    backgroundSize: "80%",  // 16:9
   },
   cardContent: {
-    maxWidth: "250px",
-    maxHeigth: 200,
+    width: "100%",
+    height: "100%",
     boxShadow: "3px 4px 8px #0b0c0c1a",
   },
   headerTitle: {
-    color: "black",
+    color: "white",
     textDecoration: "none",
+  },
+  title: {
+    color: "white",
+    textAlign: "center",
+  },
+  button: {
+    backgroundColor: "orange",
   },
   color: {
     backgroundColor:"orange",
@@ -52,6 +60,10 @@ const useStyles = makeStyles(() => ({
   color2: {
     backgroundColor:"red",
     color: "white",
+    textAlign: "center",
+  },
+  cointanedSecondary: {
+    backgroundColor: "black",
   },
 }));
 
@@ -137,6 +149,7 @@ export default function CardProduct({
                 Precio: ${price}
               </Typography>
               <Button
+                className={classes.button}
                 variant="contained"
                 className={classes.color}
                 onClick={handleNext}

@@ -1,6 +1,6 @@
 import React, { useState } from "react";
-import {useDispatch } from "react-redux";
-import { authUser} from "../../Redux/actions/actions";
+import { useDispatch } from "react-redux";
+import { authUser } from "../../Redux/actions/actions";
 import Avatar from '@material-ui/core/Avatar';
 import Button from '@material-ui/core/Button';
 import CssBaseline from '@material-ui/core/CssBaseline';
@@ -15,7 +15,6 @@ import Container from '@material-ui/core/Container';
 import { useHistory } from "react-router";
 import Swal from 'sweetalert2'
 import withReactContent from 'sweetalert2-react-content'
-
 
 
 export function validate(input) {
@@ -58,8 +57,7 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 export default function FormularioLogin() {
-  const dispatch = useDispatch(); 
-
+  const dispatch = useDispatch();  
   const history = useHistory();
   const [input, setInput] = useState({
     email: "",
@@ -100,17 +98,17 @@ export default function FormularioLogin() {
   }
 
   
-  const handleSubmit = async(e) => {
+  const handleSubmit =  (e) => {
     e.preventDefault();
+    showAlert();
     console.log(input);
-    await dispatch(authUser(input));
+    dispatch(authUser(input));
     setInput({
       email: "",
       password: "",
-    });
-    history.push("/");
-    //showAlert();
-    }
+     });
+     history.push("/");
+  };
 
   const classes = useStyles();
 
@@ -168,7 +166,7 @@ export default function FormularioLogin() {
         </form>
         <Grid container>
               <Grid item xs>
-                <Link href="/reset-password" variant="body2">
+                <Link href="/resetPassword" variant="body2">
                   Forgot password?
                 </Link>
               </Grid>

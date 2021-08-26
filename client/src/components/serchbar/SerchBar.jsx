@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Input } from "@material-ui/core";
 import {
-  searchQueryProducts,
+  searchQueryProducts, loading
 } from "../../Redux/actions/actions";
 import styles from "./styles.module.css"
 import {ReactComponent as SearchButton} from '../../assets/149852.svg'
@@ -12,11 +12,9 @@ const SerchBar = () => {
 
   const [name, setName] = useState("");
   const [search, setSearch] = useState(false);
-const globalState = useSelector(state => state.getProducts)
+  const globalState = useSelector(state => state.getProducts)
 
-  
 
-  
   function searchProduct() {
     dispatch(searchQueryProducts(name));
     setSearch(true);
@@ -26,8 +24,9 @@ const globalState = useSelector(state => state.getProducts)
     if (name.length > 0) {
       searchProduct();
     }
+    dispatch(loading())
      //eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [globalState]);
+  }, [name]);
 
   const onClickXHandler = (e) => {
     e.preventDefault();
@@ -40,7 +39,7 @@ const globalState = useSelector(state => state.getProducts)
         <div className={styles.buttonSearchContainer}>
         <Input className={styles.inputBox} placeholder="Buscar.."
           inputProps={{ "aria-label": "description" }}
-          value={name}
+          
           autoComplete='on'
           onChange={(e) => setName(e.target.value)}
         />
