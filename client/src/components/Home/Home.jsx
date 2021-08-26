@@ -89,15 +89,6 @@ function Home() {
     dispatch(getAllProducts())
     dispatch(getTypes())
     
-    
-    const cart = JSON.parse(localStorage.getItem('order'));
-    if(cart === null){
-      dispatch(totalProductosCarrito(0));
-    } else {
-      const cantidadTotal = sumaCantidadTotal(cart);
-      dispatch(updateCart(cart));
-      dispatch(totalProductosCarrito(cantidadTotal));
-    }
     // eslint-disable-next-line
   }, [dispatch]);
 

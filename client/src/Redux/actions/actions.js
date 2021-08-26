@@ -33,6 +33,7 @@ import {
     RESET_PASSWORD,
     NEW_PASSWORD,
     MERCADOPAGO,
+    LOADING,
 } from '../constants'
 
 import dotenv from 'dotenv'
@@ -499,4 +500,18 @@ export const newPassword = (token,password) => async(dispatch) =>{
         type:NEW_PASSWORD,
         payload:resp
     })
+}
+
+export const loading = () => (dispatch) => {
+    dispatch({
+        type: LOADING
+    })
+}
+
+
+export const getByName = (name) => (dispatch) => {
+  dispatch({
+      type: 'GET_NAME',
+      payload: name
+  })
 }

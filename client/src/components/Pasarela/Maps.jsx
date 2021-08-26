@@ -51,6 +51,10 @@ const useStyles = makeStyles((theme) => ({
   color:{
     backgroundColor:"orange",
     color:"withe",
+  },
+  btn: {
+    backgroundColor: 'orange',
+    color: 'white'
   }
   
 }));
@@ -111,7 +115,7 @@ function Maps() {
                 margin= "theme.spacing(3, 0, 2)"
                 className={classes.color}
               >
-                <Button onClick={() => pagoMercadopago()} >
+                <Button className={classes.btn} onClick={() => pagoMercadopago()} >
                   Next
                 </Button>
               </ButtonGroup>

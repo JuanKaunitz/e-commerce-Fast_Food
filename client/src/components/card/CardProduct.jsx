@@ -47,7 +47,7 @@ const useStyles = makeStyles(() => ({
     textDecoration: "none",
   },
   title: {
-    color: "white",
+    color: "black",
     textAlign: "center",
   },
   button: {
