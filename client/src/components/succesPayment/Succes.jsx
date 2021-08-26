@@ -25,7 +25,7 @@ useEffect(() => {
 
 
   return (
-    <div style={{marginTop: "80px"}}>
+    <div style={{marginTop: "100px"}}>
       <h1>Order Finished</h1>
     </div>
   );

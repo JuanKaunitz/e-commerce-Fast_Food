@@ -471,13 +471,16 @@ export const changeStatus = (id, input) => async (dispatch) => {
 export const mercadopago = (id, date, input) => async (dispatch) =>{
    
     try {
-        const res = await axios.get(`${URL}/food/api/mercadopago/${id}`)
-        const res1 = await axios.get(`${URL}/food/api/mercadopago/name/${date.name}`)
-        const res2 = await axios.get(`${URL}/food/api/mercadopago/email/${date.email}`)
-        if(input !== undefined){
-           // console.log("RESPUESTA 3", res3.data)
-            const res3 = await axios.get(`${URL}/food/api/mercadopago/data?address=${input.address}&city=${input.city}&province=${input.province}&zipCode=${input.zipCode}`)
-            //console.log("RESPUESTA 3", res3.data)
+        if(input === undefined){
+            var res = await axios.get(`${URL}/food/api/mercadopago/${id}`)
+            var res1 = await axios.get(`${URL}/food/api/mercadopago/name/${date.name}`)
+            var res2 = await axios.get(`${URL}/food/api/mercadopago/email/${date.email}`)
+        }else{
+            var res = await axios.get(`${URL}/food/api/mercadopago/${id}`)
+            var res1 = await axios.get(`${URL}/food/api/mercadopago/name/${date.name}`)
+            var res2 = await axios.get(`${URL}/food/api/mercadopago/email/${date.email}`)
+            var res3 = await axios.get(`${URL}/food/api/mercadopago/data?address=${input.address}&city=${input.city}&province=${input.province}&zipCode=${input.zipCode}`)
+            console.log("RESPUESTA 3", res3.data)
         }
        
         dispatch({
