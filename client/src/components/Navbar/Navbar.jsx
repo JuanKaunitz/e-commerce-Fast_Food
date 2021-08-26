@@ -33,12 +33,15 @@ import {
   totalProductosCarrito,
   updateCart,
   updateOrderFinal,
-  recoveryData
+  recoveryData,
+  getUserById
 } from "../../Redux/actions/actions";
+import { useHistory } from "react-router";
 
 
 export const Navbar = () => {
   const dispatch = useDispatch();
+  const history = useHistory();
   const classes = useStyles();
   const theme = useTheme();
   const [open, setOpen] = useState(false);
@@ -62,6 +65,7 @@ export const Navbar = () => {
       console.log("TOKEN", tokenL)
       console.log("CLIENT", clientL)
       dispatch(recoveryData(tokenL, clientL))
+      dispatch(getUserById(clientL._id))
     }
     const cart = JSON.parse(localStorage.getItem('order'));
     if(cart === null){
@@ -112,27 +116,9 @@ export const Navbar = () => {
       date: "",
     }));
     dispatch(totalProductosCarrito(0));
-    dispatch(updateCart([]));    
+    dispatch(updateCart([]));   
+    history.push("/"); 
    }
-   
-   useEffect(() => {
-    const tokenL = localStorage.getItem('token');
-    const clientL = JSON.parse(localStorage.getItem('client'));
-    if(!adminClient.role && !token && tokenL && clientL.role){
-      console.log("TOKEN", tokenL)
-      console.log("CLIENT", clientL)
-      dispatch(recoveryData(tokenL, clientL))
-    }
-    const cart = JSON.parse(localStorage.getItem('order'));
-    if(cart === null){
-      dispatch(totalProductosCarrito(0));
-    } else {
-      const cantidadTotal = sumaCantidadTotal(cart);
-      dispatch(updateCart(cart));
-      dispatch(totalProductosCarrito(cantidadTotal));
-    }
-      //eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [dispatch])
 
   return (
     <div>
@@ -249,7 +235,7 @@ export const Navbar = () => {
           {categories?.map((e) => (
             <ListItem button key={e.name}>
               {/* <ListItemIcon></ListItemIcon> */}
-              <Link to="/categories">
+              <Link to="/categories" style={{textDecoration: "none",color:"black"}}>
                 <ListItemText
                   primary={e.name}
                   onClick={() => handlerCategory(e.name)}

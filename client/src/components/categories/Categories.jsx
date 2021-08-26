@@ -5,7 +5,6 @@ import { makeStyles } from "@material-ui/core/styles";
 import CardProduct from "../card/CardProduct";
 import "../cards/CardsProducts.css";
 import Order from "../order/Order";
-import { Button, ButtonGroup, TextField } from "@material-ui/core";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -35,8 +34,7 @@ const Categories = () => {
   const categoryName = useSelector((state) => state.categoryName);
   const getAll = useSelector((state) => state.getProducts);
   const categories = useSelector((state) => state.allCategories);
-  const [page, setPage] = useState(0);
-  const [type, setType] = useState("");
+  const [type, setType] = useState("Types");
   const [filtro, setFiltro] = useState([]);
   
   const filter1 = getAll.filter((product) => product.category === categoryName); 
@@ -51,32 +49,15 @@ const Categories = () => {
 
   useEffect(() => {
     if(type === "Types"){
-      return setFiltro([]);
+      return setFiltro(filter1);
     }
-
     let tipos = filter1.filter(e => e.type === type)
+    if(tipos.length < 0){
+      setFiltro([])
+    }
     setFiltro(tipos)
     // eslint-disable-next-line
-  },[type]);
-
-
-  function handlePrev() {
-    if (page > 0) {
-      return setPage(page - 1);
-    }
-    return setPage(0);
-  }
-
-  function handleNext() {
-    let pageMax = Math.ceil(filtro.length / 8 - 1);
-    if (pageMax < 0) {
-      return setPage(0);
-    }
-    if (page < pageMax) {
-      return setPage(page + 1);
-    }
-    return setPage(pageMax);
-  }
+  },[type, categoryName]);
 
   const classes = useStyles();
 
@@ -96,22 +77,8 @@ const Categories = () => {
       <br></br>
       <Order />
       <Grid container className={classes.root} spacing={2}>
-        {filtro.length <= 0 ? (
-          filter1.slice(page * 8, page * 8 + 8).map((product) => (
-            <Grid item lg={6} md={6} xs={12} key={product._id}>
-              <CardProduct
-
-                id={product._id}
-                name={product.name}
-                image={product.image}
-                price={product.price}
-                stock={product.stock}
-                description={product.description}
-              />
-            </Grid>
-          ))
-        ) : (
-          filtro.slice(page * 8, page * 8 + 8).map((product) => (
+        {filtro.length > 0 ? (
+          filtro.map((product) => (
             <Grid lg={6} md={6} xs={12} item key={product._id} >
               <CardProduct
                 id={product._id}
@@ -123,38 +90,9 @@ const Categories = () => {
               />
             </Grid>
           ))
-        )
+        ) : <h1>not</h1>
         }
       </Grid>
-      <div className={classes.btn_add}>
-        <ButtonGroup size="small" variant="contained" className={classes.color}>
-          <Button
-            variant="contained"
-            className={classes.color}
-           
-            value="prev"
-            onClick={handlePrev}
-            disabled={page <= 0}
-          >
-            prev
-          </Button>
-          <TextField
-            className="input_text"
-            variant="outlined"
-            value={page + 1}
-          />
-          <Button
-            variant="contained"
-            className={classes.color}
-            value="next"
-            onClick={handleNext}
-            disabled={filtro.length < 0 ? filter1.slice(page * 8, page * 8 + 8).length < 8
-              : filtro.slice(page * 8, page * 8 + 8).length < 8}
-          >
-            next
-          </Button>
-        </ButtonGroup>
-      </div>
     </div>
   );
 };

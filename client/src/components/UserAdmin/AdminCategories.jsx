@@ -11,10 +11,10 @@ import { makeStyles } from "@material-ui/core/styles";
 const useStyles = makeStyles((theme) => ({
   list: {
     flexGrow: 1,
-    backgroundColor: 'black',
+    backgroundColor: 'white',
     padding: 0,
-    color:'orange',
-    textAlign:'center'
+    color:'black',
+    textAlign:'center',
   },
 }));
 const AdminCategories = () => {

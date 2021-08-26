@@ -2,7 +2,7 @@ import React, {useState} from 'react';
 import { useSelector, useDispatch } from "react-redux";
 import { Button, TextField, Typography } from "@material-ui/core";
 import { makeStyles } from "@material-ui/core/styles";
-import { mercadopago } from '../../Redux/actions/actions'
+import { mercadopago, envioData } from '../../Redux/actions/actions'
 import Checkout from './checkoutMercado'
 import {ButtonGroup} from "@material-ui/core";
 
@@ -81,7 +81,8 @@ const Shipping = () => {
     email: client.email
   }
   console.log("NAMEEMAIL", nameEmail)
-  dispatch(mercadopago(idOrder, nameEmail, input))
+  dispatch(mercadopago(idOrder, nameEmail))
+  dispatch(envioData(input))
   }
   
   const handleChange = (e) => {

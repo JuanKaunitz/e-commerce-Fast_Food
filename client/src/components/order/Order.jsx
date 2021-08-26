@@ -21,7 +21,8 @@ const useStyles = makeStyles((theme) => ({
 }));
 export default function Order () {
     const dispatch = useDispatch();  
-    const onOrderChange = (e) => {  
+
+  const onOrderChange = (e) => {  
       if(e.target.value === 'null') {
         dispatch(getAllProducts())
       } else {
@@ -32,10 +33,6 @@ export default function Order () {
   const classes = useStyles();
   const [age, setAge] = React.useState('');
   const [open, setOpen] = React.useState(false);
-
-  const handleChange = (event) => {
-    setAge(event.target.value);
-  };
 
   const handleClose = () => {
     setOpen(false);

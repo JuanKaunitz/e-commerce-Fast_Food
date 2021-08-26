@@ -168,7 +168,7 @@ const rootReducer = (state = initialState, action) => {
       localStorage.setItem("idOrderUser", action.payload._id);
       return {
         ...state,
-        orderUser: state.orderUser.concat(action.payload),
+        orderUser: state.orderUser.concat(action.payload)
       };
 
     case GET_USER_BY_ID:

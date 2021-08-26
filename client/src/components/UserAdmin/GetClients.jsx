@@ -14,24 +14,24 @@ import './GetClients.css'
 
 const useStyles = makeStyles((theme) => ({
   list: {
-    backgroundColor:'black',
-    color:'orange'
+    backgroundColor:'white',
+    color:'black',
+    marginLeft:"400px",
+    marginRight:"550px"
   },
   root: {
     display: 'flex',
-    backgroundColor:'black',
-    color:'white'
+    backgroundColor:'white',
+    color:'black',
   },
   content: {
     flex: '1 0 auto',
-    backgroundColor:'black',
-    color:'white'
+    backgroundColor:'white',
+    color:'black'
   },
   cover: {
     width: 100,
     height:80,
-    backgroundColor:'black',
-    color:'white'
   },
   controls: {
     display: 'flex',
@@ -92,8 +92,8 @@ useEffect(()=> {
                 </Typography>
               </div>
               <div>
-            
-                <Link to={`/clientEdit/${e._id}`}>Editar</Link>
+                <Link to={`/clientEdit/${e._id}`} style={{textDecoration: "none",color:"black"}}
+                >Editar</Link>
               </div>
             
             </Card> 

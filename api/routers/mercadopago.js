@@ -103,7 +103,7 @@ server.get ('/:id',async(req,res,next) =>{
         { _id: external_reference },
         
         {
-          status:"completada",
+          status: "completada",
         }
         );
         //console.log("orden back",orderUpdate )
@@ -122,8 +122,8 @@ server.get ('/:id',async(req,res,next) =>{
           contentHTML = `
           <h1>Your purchase was successful !!!</h1>
           <ul>
-              <li>Username: ${name}</li>
-              <li>User Email: ${email}</li>
+              <li>Name: ${name}</li>
+              <li>Email: ${email}</li>
               <li>OP:${external_reference}</li>
               <li>Date:${date}</li>
               <li>Total:${total}</li>
@@ -136,8 +136,8 @@ server.get ('/:id',async(req,res,next) =>{
           contentHTML = `
           <h1>Your purchase was successful !!!</h1>
           <ul>
-              <li>Username: ${name}</li>
-              <li>User Email: ${email}</li>
+              <li>Name: ${name}</li>
+              <li>Email: ${email}</li>
               <li>OP:${external_reference}</li>
               <li>Date:${date}</li>
               <li>Total:${total}</li>

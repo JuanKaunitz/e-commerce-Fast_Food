@@ -1,6 +1,6 @@
 import React , { useEffect, useState }   from 'react';
 import { useSelector, useDispatch} from 'react-redux';
-import {/*  deleteOrder */ getOrder } from "../../Redux/actions/actions";
+import {/*  deleteOrder */ getOrder, allUsers } from "../../Redux/actions/actions";
 import CardOrders from './CardOrders';
 import Grid from "@material-ui/core/Grid"; 
 
@@ -12,6 +12,7 @@ const GetOrders = () => {
 
     useEffect(() => { 
         dispatch(getOrder())
+        dispatch(allUsers())
       }, [dispatch]);
 
     useEffect(() => {

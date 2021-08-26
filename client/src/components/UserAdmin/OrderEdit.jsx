@@ -42,6 +42,10 @@ const OrderEdit = (props) => {
     const history = useHistory();
     //console.log('EDIT CLIENTS: ', editOrders);
 
+  /*   useEffect(() => {
+        dispatch(allUsers())
+    }, [input]) */
+
     const id = props.match.params.id;
 
     const filterOrders = editOrders.filter((c) => { 
@@ -144,9 +148,9 @@ const OrderEdit = (props) => {
                         <Typography variant="subtitle1" color="textSecondary">
                             isLog: {client?.status.toString()} 
                         </Typography>
-                        <Typography variant="subtitle1" color="textSecondary">
+                       {/*  <Typography variant="subtitle1" color="textSecondary">
                             Order status: {client?.order[0].status} 
-                        </Typography>
+                        </Typography> */}
                     </CardContent>
                 </div>               
             </Card>
