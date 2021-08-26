@@ -68,7 +68,9 @@ const theme = {
 	botBubbleColor: '#FF3C4A',
 	botFontColor: '#fff',
 	userBubbleColor: '#f0f8ff',
-	userFontColor: '#4a4a4a'
+	userFontColor: '#4a4a4a',
+  background: 'white'
+  
 };
 
 export default function Chatbot() {
