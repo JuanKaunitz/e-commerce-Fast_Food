@@ -1,14 +1,12 @@
 .form_content{
     align-items: center;
     justify-content:center;
-    /* margin-top: 20px; */
+    margin-top: 5px;
     margin-left: auto;
     margin-right: auto;
     padding: 60px;
     max-width: 400px;
     background-color: #ffff;
     color:rgb(246, 245, 245);
-    border-radius: 10px;
-    /* transform: translateY(20%); */
-    
+    border-radius: 10px;    
 }

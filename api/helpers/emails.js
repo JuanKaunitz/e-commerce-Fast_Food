@@ -38,4 +38,3 @@ exports.enviar = async (opciones) => {
     const sendMail = util.promisify(transport.sendMail, transport);
     return sendMail.call(transport, opcionesEmail);
 }
-

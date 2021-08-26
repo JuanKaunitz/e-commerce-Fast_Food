@@ -13,8 +13,7 @@ import Typography from '@material-ui/core/Typography';
 import { makeStyles } from '@material-ui/core/styles';
 import Container from '@material-ui/core/Container';
 import { useHistory } from "react-router";
-import Swal from 'sweetalert2'
-import withReactContent from 'sweetalert2-react-content'
+
 
 
 
@@ -83,33 +82,18 @@ export default function FormularioLogin() {
     );
   };
 
-  const MySwal = withReactContent(Swal)
-
-  const showAlert =  () => {
-    MySwal.fire({
-      didOpen: () => {
-        MySwal.clickConfirm()
-      }
-    }).then(() => {
-      return MySwal.fire({
-        title: 'Welcome!',
-        button: 'Aceptar',
-        icon: 'success'
-      })
-    })
-  }
 
   
   const handleSubmit = async(e) => {
     e.preventDefault();
-    showAlert();
     console.log(input);
     await dispatch(authUser(input));
     setInput({
       email: "",
       password: "",
-     });
-     history.push("/");
+    });
+    history.push("/");
+    //showAlert();
     }
 
   const classes = useStyles();

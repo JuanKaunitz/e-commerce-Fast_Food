@@ -69,7 +69,7 @@ const initialState = {
   bandOrderUser: true,
   resetPassword: {},
   idMercadopago: {},
-  searchProducts2:[]
+  getNames: {}
 };
 
 const rootReducer = (state = initialState, action) => {
@@ -211,7 +211,7 @@ const rootReducer = (state = initialState, action) => {
     case LOADING:
       return {
         ...state,
-        loading: action.payload,
+        loading: false
       };
 
     case ALL_USERS:
@@ -283,7 +283,13 @@ const rootReducer = (state = initialState, action) => {
         ...state,
         idMercadopago: action.payload
       }
-       
+    case 'GET_NAME':
+      let response = state.allProducts.filter(p => p.name === action.payload)
+      console.log('RESPONSE: ', response)
+      return{
+        ...state,
+        getNames: response
+      }   
         
     default:
       return state;

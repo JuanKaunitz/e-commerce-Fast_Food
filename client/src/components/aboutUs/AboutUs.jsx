@@ -9,6 +9,7 @@ const aboutUs = () => {
   return (
     <div  className = 'about'>
       <h1 className = 'h1'>Ecommerce fast food</h1>
+      <h1 className = {classes.title}>¿WHO WE ARE?</h1>
       <p className={classes.color}>
         Somos un grupo de 7 integrantes los cuales nos encontramos cursando el
         bootcamp HENRY en la etapa final denominada 'Proyecto Grupal', la cual
@@ -22,7 +23,6 @@ const aboutUs = () => {
         la barra de busqueda entre otras funcionalidades y por ultimo un usuario
         registrado o la opción de poder regstrarse para poder realizar compras.
       </p>
-      <h1 className = 'h1'>¿WHO WE ARE?</h1>
       <div className= 'cards'>
        <div className={classes.listItem}>
        <Link  to= {{

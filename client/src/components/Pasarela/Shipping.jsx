@@ -47,7 +47,12 @@ const useStyles = makeStyles((theme) => ({
     },
     typography: {
         margin: 30
+    },
+    btn: {
+      backgroundColor: 'orange',
+      color: 'white'
     }
+
     
   }));
 
@@ -57,6 +62,7 @@ const Shipping = () => {
   const classes = useStyles();
 
   const idMercadopago = useSelector(state => state.idMercadopago)
+  const client = useSelector(state => state.client)
   //console.log("id mercado", idMercadopago)
     
   const [input, setInput] = useState({
@@ -69,8 +75,13 @@ const Shipping = () => {
 
   function pagoMercadopago(){
   const idOrder = localStorage.getItem('idOrderUser');
-  //console.log("ID", idOrder)
-  dispatch(mercadopago(idOrder))
+  console.log("CLIENT MER", client)
+  const nameEmail = {
+    name: client.name,
+    email: client.email
+  }
+  console.log("NAMEEMAIL", nameEmail)
+  dispatch(mercadopago(idOrder, nameEmail, input))
   }
   
   const handleChange = (e) => {
@@ -165,6 +176,7 @@ const Shipping = () => {
               type= "submit"                
               margin= "theme.spacing(3, 0, 2)"
               className={classes.color}
+      
               >
                 <Checkout  data={idMercadopago}/>
               </ButtonGroup>
@@ -178,7 +190,7 @@ const Shipping = () => {
                 margin= "theme.spacing(3, 0, 2)"
                 className={classes.color}
               >
-                <Button onClick={() => pagoMercadopago()} >
+                <Button className={classes.btn} onClick={() => pagoMercadopago()} >
                   Next
                 </Button>
               </ButtonGroup>

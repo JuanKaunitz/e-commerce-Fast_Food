@@ -51,6 +51,10 @@ const useStyles = makeStyles((theme) => ({
   color:{
     backgroundColor:"orange",
     color:"withe",
+  },
+  btn: {
+    backgroundColor: 'orange',
+    color: 'white'
   }
   
 }));
@@ -62,13 +66,19 @@ function Maps() {
   const dispatch = useDispatch();
 
   const idMercadopago = useSelector(state => state.idMercadopago)
+  const client = useSelector(state => state.client)
   //console.log("id mercado", idMercadopago)
 
   function pagoMercadopago(){
-  const idOrder = localStorage.getItem('idOrderUser');
-  //console.log("ID", idOrder)
-  dispatch(mercadopago(idOrder))
-  }
+    const idOrder = localStorage.getItem('idOrderUser');
+    console.log("CLIENT MER", client)
+    const nameEmail = {
+      name: client.name,
+      email: client.email
+    }
+    console.log("NAMEEMAIL", nameEmail)
+    dispatch(mercadopago(idOrder, nameEmail))
+    }
 
   return (
 
@@ -111,7 +121,7 @@ function Maps() {
                 margin= "theme.spacing(3, 0, 2)"
                 className={classes.color}
               >
-                <Button onClick={() => pagoMercadopago()} >
+                <Button className={classes.btn} onClick={() => pagoMercadopago()} >
                   Next
                 </Button>
               </ButtonGroup>

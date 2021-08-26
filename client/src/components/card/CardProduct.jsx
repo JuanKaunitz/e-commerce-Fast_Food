@@ -13,7 +13,6 @@ import {
   updateOrderFinal,
 } from "../../Redux/actions/actions";
 import { addCarts, sumaCantidadTotal } from "../cart/utilsCarts.js";
-////aparte
 import CardContent from "@material-ui/core/CardContent";
 import Typography from "@material-ui/core/Typography";
 import { createTheme } from "@material-ui/core/styles";
@@ -22,6 +21,9 @@ import { ButtonGroup, CardActionArea, Divider } from "@material-ui/core";
 import Button from "@material-ui/core/Button";
 import ReactCardFlip from "react-card-flip";
 import ArrowBackIcon from "@material-ui/icons/ArrowBack";
+import './CardProduct.css';
+
+import {Rating} from '@material-ui/lab';
 
 const theme = createTheme({
   palette: {
@@ -36,6 +38,7 @@ const useStyles = makeStyles(() => ({
     width: "100",
     height: 210,
     paddingTop: "25%", // 16:9
+<<<<<<< HEAD
     backgroundSize: "80%", // 16:9
    
   },
@@ -44,7 +47,11 @@ const useStyles = makeStyles(() => ({
       backgroundColor:'red'
       
     }
+=======
+    backgroundSize: "80%",
+>>>>>>> Dev
   },
+   
   cardContent: {
     width: "100%",
     height: "100%",
@@ -56,7 +63,7 @@ const useStyles = makeStyles(() => ({
     textDecoration: "none",
   },
   title: {
-    color: "white",
+    color: "black",
     textAlign: "center",
   },
   button: {
@@ -90,7 +97,11 @@ export default function CardProduct({
   const [counter, setCounter] = useState(0);
   const client = useSelector((state) => state.client);
   const token = useSelector((state) => state.clientToken);
+<<<<<<< HEAD
   const [value, setValue] = React.useState(2);
+=======
+  const [value, setValue] = useState(2);
+>>>>>>> Dev
 
   function cartBack(cart) {
     const idOrder = localStorage.getItem("idOrderUser");
@@ -139,7 +150,7 @@ export default function CardProduct({
   return (
     <ThemeProvider theme={theme}>
       <ReactCardFlip isFlipped={isFlipped} flipDirection="horizontal">
-        <Card className={classes.root}>
+        <Card className="card">
           <CardActionArea>
             <CardMedia className={classes.media} image={image} title={name} />
             <CardContent className={classes.cardContent}>
@@ -203,8 +214,26 @@ export default function CardProduct({
             <Typography className={classes.pos} color="textSecondary">
               Precio: ${price}
             </Typography>
+<<<<<<< HEAD
             {stock > 0 ? (
               <ButtonGroup
+=======
+          
+            {
+              stock > 0?
+                <ButtonGroup
+                  size="small"
+                  variant="contained"
+                  aria-label="contained primary button group"
+                  component="div"
+                >
+                  <Button onClick={() => handleAddCart()} className={classes.color}>
+                    +
+                  </Button>
+                </ButtonGroup>
+              : 
+                <ButtonGroup
+>>>>>>> Dev
                 size="small"
                 variant="contained"
                 aria-label="contained primary button group"

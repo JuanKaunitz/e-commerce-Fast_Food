@@ -20,12 +20,17 @@ const useStyles = makeStyles((theme) => ({
 
   form: {
     width: "100%", // Fix IE 11 issue.
-    marginTop: 1,
+    marginTop: '10px',
     backgroundColor: "#ffff"
   },
 
   submit: {
     margin: theme.spacing(3, 0, 2),
+    display: "flex",
+    alignItems: "center",
+    justifyContent: "center",
+    color: "white",
+    backgroundColor: "orange",
   },
   input_text: {
     backgroundColor: "#ffff",
@@ -186,11 +191,8 @@ const NewProduct = (props) => {
         </select>
         <br></br>
         <br></br>
-        <Button 
-           type= "submit"
-           variant="contained" 
-           color="primary"
-           margin= "theme.spacing(3, 0, 2)"
+        <Button className={classes.submit}
+      
            >
           Create
         </Button>

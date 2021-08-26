@@ -4,9 +4,6 @@ const { generateJWT } = require("../helpers/generate-jwt");
 const User = require("../models/User");
 const enviarEmail = require('../helpers/emails');
 
-
-
-
 exports.authLogin = async (req, res) => {
   const { email, password } = req.body;
 

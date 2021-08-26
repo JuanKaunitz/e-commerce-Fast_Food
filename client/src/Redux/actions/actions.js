@@ -33,6 +33,7 @@ import {
     RESET_PASSWORD,
     NEW_PASSWORD,
     MERCADOPAGO,
+    LOADING,
 } from '../constants'
 
 import dotenv from 'dotenv'
@@ -240,7 +241,7 @@ export const authUser =  (user) => async (dispatch) => {
 export const allUsers = () => async (dispatch) => {
     try {
         const res = await axios.get(`${URL}/food/api/user`);
-        console.log('ALL USER: ', res.data)
+        //console.log('ALL USER: ', res.data)
         dispatch({
            type: ALL_USERS,
            payload: res.data
@@ -319,7 +320,7 @@ export const bandOrderUser = () => (dispatch) => {
 export const updateOrderFinal = (id,order) => async(dispatch) => {
         //console.log("ORDEN PARA ACTUALIZAR", order)
     try {
-       /*  const res = */ await axios.put(`${URL}/food/api/order/${id}`, order);
+        const res = await axios.put(`${URL}/food/api/order/${id}`, order);
         //console.log("ORDEN ACTUALIZACION", res)
         
     } catch (err) {
@@ -467,11 +468,18 @@ export const changeStatus = (id, input) => async (dispatch) => {
     }
 }
 
-export const mercadopago = (id) => async (dispatch) =>{
-    console.log("ID order", id)
+export const mercadopago = (id, date, input) => async (dispatch) =>{
+   
     try {
         const res = await axios.get(`${URL}/food/api/mercadopago/${id}`)
-        console.log("RESPUESTA MERCADOPAGO", res.data)
+        const res1 = await axios.get(`${URL}/food/api/mercadopago/name/${date.name}`)
+        const res2 = await axios.get(`${URL}/food/api/mercadopago/email/${date.email}`)
+        if(input !== undefined){
+           // console.log("RESPUESTA 3", res3.data)
+            const res3 = await axios.get(`${URL}/food/api/mercadopago/data?address=${input.address}&city=${input.city}&province=${input.province}&zipCode=${input.zipCode}`)
+            //console.log("RESPUESTA 3", res3.data)
+        }
+       
         dispatch({
             type: MERCADOPAGO,
             payload: res.data
@@ -499,4 +507,18 @@ export const newPassword = (token,password) => async(dispatch) =>{
         type:NEW_PASSWORD,
         payload:resp
     })
+}
+
+export const loading = () => (dispatch) => {
+    dispatch({
+        type: LOADING
+    })
+}
+
+
+export const getByName = (name) => (dispatch) => {
+  dispatch({
+      type: 'GET_NAME',
+      payload: name
+  })
 }

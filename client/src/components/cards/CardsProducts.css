@@ -9,6 +9,7 @@
   display: grid;
   align-items: center;
   justify-content: center;
+  margin-top: 40px;
 }
 .card{
   background-color:red;

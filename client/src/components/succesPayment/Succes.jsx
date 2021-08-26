@@ -1,7 +1,7 @@
-import React, {useEffect} from 'react'
-import { useDispatch } from 'react-redux';
-import swal from 'sweetalert';
-import {recoveryData} from '../../Redux/actions/actions'
+import React, { useEffect } from "react";
+import { useDispatch } from "react-redux";
+import swal from "sweetalert";
+import { recoveryData } from "../../Redux/actions/actions";
 
 export default function Succes() {
   const dispatch = useDispatch();
@@ -16,8 +16,8 @@ export default function Succes() {
   });
 
 useEffect(() => {
-  const token = localStorage.getItem('token')
-  const client = localStorage.getItem('client')
+  const token = localStorage.getItem('token');
+  const client = JSON.parse(localStorage.getItem('client'));
   console.log("TOKEN", token)
   console.log("CLIENT", client)
   dispatch(recoveryData(token, client))
@@ -25,14 +25,8 @@ useEffect(() => {
 
 
   return (
-    <div>
-      <br></br><br></br><br></br>
-      <br></br><br></br><br></br>
-      <br></br><br></br><br></br>
-      <br></br><br></br><br></br>
-      <br></br><br></br><br></br>
-      <h1>order terminada</h1>
-      
+    <div style={{marginTop: "80px"}}>
+      <h1>Order Finished</h1>
     </div>
-  )
+  );
 }

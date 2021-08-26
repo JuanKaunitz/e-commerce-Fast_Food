@@ -12,7 +12,7 @@ import {ButtonGroup} from "@material-ui/core";
 const useStyles = makeStyles((theme) => ({
   root: {
     display: "flex",
-    maxWidth: "80%",
+    maxWidth: "70%",
   },
   btn_root: {
     border: "1px solid",
@@ -124,9 +124,6 @@ export default function CardCart({
                 +
               </Button>
             </ButtonGroup>
-          {/* <div className={classes.btn_root} onClick={() => addProduct(id)}>
-            <ExposurePlus1Icon />
-          </div> */}
         </div>
       </div>
       <div className={classes.controls}>
