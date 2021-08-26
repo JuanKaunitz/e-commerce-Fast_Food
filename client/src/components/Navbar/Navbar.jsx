@@ -137,7 +137,7 @@ export const Navbar = () => {
   return (
     <div>
       <div>
-        <AppBar>
+        <AppBar className={classes.appBar}>
           <Toolbar className={classes.prueba}>
             <div className={classes.itemLeft}> 
             <IconButton
