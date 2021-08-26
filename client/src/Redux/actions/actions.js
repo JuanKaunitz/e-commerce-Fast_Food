@@ -241,7 +241,7 @@ export const authUser =  (user) => async (dispatch) => {
 export const allUsers = () => async (dispatch) => {
     try {
         const res = await axios.get(`${URL}/food/api/user`);
-        console.log('ALL USER: ', res.data)
+        //console.log('ALL USER: ', res.data)
         dispatch({
            type: ALL_USERS,
            payload: res.data
@@ -320,7 +320,7 @@ export const bandOrderUser = () => (dispatch) => {
 export const updateOrderFinal = (id,order) => async(dispatch) => {
         //console.log("ORDEN PARA ACTUALIZAR", order)
     try {
-       /*  const res = */ await axios.put(`${URL}/food/api/order/${id}`, order);
+        const res = await axios.put(`${URL}/food/api/order/${id}`, order);
         //console.log("ORDEN ACTUALIZACION", res)
         
     } catch (err) {
@@ -468,11 +468,22 @@ export const changeStatus = (id, input) => async (dispatch) => {
     }
 }
 
-export const mercadopago = (id) => async (dispatch) =>{
+export const mercadopago = (id, date, input) => async (dispatch) =>{
     console.log("ID order", id)
+    console.log("DATE",date)
+    console.log("input", input)
     try {
         const res = await axios.get(`${URL}/food/api/mercadopago/${id}`)
+        const res1 = await axios.get(`${URL}/food/api/mercadopago/name/${date.name}`)
+        const res2 = await axios.get(`${URL}/food/api/mercadopago/email/${date.email}`)
+        if(input !== undefined){
+            console.log("RESPUESTA 3", res3.data)
+            const res3 = await axios.get(`${URL}/food/api/mercadopago/data?address=${input.address}&city=${input.city}&province=${input.province}&zipCode=${input.zipCode}`)
+            console.log("RESPUESTA 3", res3.data)
+        }
         console.log("RESPUESTA MERCADOPAGO", res.data)
+        console.log("RESPUESTA 1", res1.data)
+        console.log("RESPUESTA 2", res2.data)
         dispatch({
             type: MERCADOPAGO,
             payload: res.data

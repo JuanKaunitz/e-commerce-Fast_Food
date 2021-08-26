@@ -66,13 +66,19 @@ function Maps() {
   const dispatch = useDispatch();
 
   const idMercadopago = useSelector(state => state.idMercadopago)
+  const client = useSelector(state => state.client)
   //console.log("id mercado", idMercadopago)
 
   function pagoMercadopago(){
-  const idOrder = localStorage.getItem('idOrderUser');
-  //console.log("ID", idOrder)
-  dispatch(mercadopago(idOrder))
-  }
+    const idOrder = localStorage.getItem('idOrderUser');
+    console.log("CLIENT MER", client)
+    const nameEmail = {
+      name: client.name,
+      email: client.email
+    }
+    console.log("NAMEEMAIL", nameEmail)
+    dispatch(mercadopago(idOrder, nameEmail))
+    }
 
   return (
 

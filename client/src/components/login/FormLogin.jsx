@@ -91,8 +91,9 @@ export default function FormularioLogin() {
     setInput({
       email: "",
       password: "",
-     });
-     history.push("/");
+    });
+    history.push("/");
+    //showAlert();
     }
 
   const classes = useStyles();

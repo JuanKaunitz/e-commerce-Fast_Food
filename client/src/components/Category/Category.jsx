@@ -7,7 +7,9 @@ const Category = () => {
   const dispatch = useDispatch();
 
   useEffect(() => {
-    dispatch(getCategories());
+    if(!categories){
+      dispatch(getCategories());
+    }
   }, [dispatch]);
 
   return (

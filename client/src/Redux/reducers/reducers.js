@@ -209,7 +209,7 @@ const rootReducer = (state = initialState, action) => {
     case LOADING:
       return {
         ...state,
-        loading: false,
+        loading: false
       };
 
     case ALL_USERS:

@@ -28,12 +28,11 @@ import { useLocation, Link } from "react-router-dom";
 import {sumaCantidadTotal} from '../cart/utilsCarts';
 import { useSelector, useDispatch } from "react-redux";
 import {
-  categoryName,
-  changeStatus,
+  categoryName, changeStatus, getCategories,
   orderRedux,
   totalProductosCarrito,
   updateCart,
-  updateOrderFinal,  
+  updateOrderFinal,
   recoveryData
 } from "../../Redux/actions/actions";
 
@@ -48,10 +47,31 @@ export const Navbar = () => {
   const adminClient = useSelector((state) => state.client);
   const token = useSelector((state) => state.clientToken);
   
-
   const [input, setInput] = useState({ status: false });
 
   const location = useLocation();
+
+  useEffect(() => {
+    dispatch(getCategories());
+   /*  dispatch(allUsers());
+    dispatch(getAllProducts())
+    dispatch(getTypes()) */
+    const tokenL = localStorage.getItem('token');
+    const clientL = JSON.parse(localStorage.getItem('client'));
+    if(!adminClient.role && !token && tokenL && clientL.role){
+      console.log("TOKEN", tokenL)
+      console.log("CLIENT", clientL)
+      dispatch(recoveryData(tokenL, clientL))
+    }
+    const cart = JSON.parse(localStorage.getItem('order'));
+    if(cart === null){
+      dispatch(totalProductosCarrito(0));
+    } else {
+      const cantidadTotal = sumaCantidadTotal(cart);
+      dispatch(updateCart(cart));
+      dispatch(totalProductosCarrito(cantidadTotal));
+    }
+  }, [dispatch])
 
   const handleDrawerOpen = () => {
     setOpen(true);
@@ -155,10 +175,10 @@ export const Navbar = () => {
                 {
                   totalCarrito > 0?
                   <IconButton
-                  style={{ fontSize: 40 }}
-                  aria-label="carrito"
-                  backgroundColor="white"
-                >
+                    style={{ fontSize: 40 }}
+                    aria-label="carrito"
+                    backgroundColor="white"
+                    >
                   <Link to="/cart">
                     {" "}
                     <Badge badgeContent={totalCarrito} color="secondary">

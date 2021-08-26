@@ -15,13 +15,14 @@ export default function Succes() {
     button: "Confirm",
   });
 
-  useEffect(() => {
-    const token = localStorage.getItem("token");
-    const client = JSON.parse(localStorage.getItem("client"));
-    console.log("TOKEN", token);
-    console.log("CLIENT", client);
-    dispatch(recoveryData(token, client));
-  }, [dispatch]);
+useEffect(() => {
+  const token = localStorage.getItem('token');
+  const client = JSON.parse(localStorage.getItem('client'));
+  console.log("TOKEN", token)
+  console.log("CLIENT", client)
+  dispatch(recoveryData(token, client))
+}, [dispatch])
+
 
   return (
     <div>
@@ -40,7 +41,7 @@ export default function Succes() {
       <br></br>
       <br></br>
       <br></br>
-      <h1>order terminada</h1>
+      <h1>Order Finished</h1>
     </div>
   );
 }

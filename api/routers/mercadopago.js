@@ -1,6 +1,7 @@
  const Order = require('../models/Order');
  const Product = require('../models/Product');
  const server = require('express').Router();
+ const enviarEmail = require('../helpers/emails');
 
  const mercadopago = require('mercadopago');
 
@@ -12,16 +13,35 @@
      access_token: ACCESS_TOKEN
 
  });
+var name;
+var email;
+var data;
+server.get('/name/:name', (req,res,next) => {
+  //console.log("name:  ", req.params.name)
+  name= req.params.name;
+  res.send("llego name")
+})
 
+server.get('/email/:email', (req,res,next) => {
+ // console.log("email:  ", req.params.email)
+  email = req.params.email;
+  res.send("llego email")
+})
+
+server.get('/data', (req,res, next) => {
+  data = req.query
+  console.log("DATA...", data)
+  res.send("llego data")
+})
 
 server.get ('/:id',async(req,res,next) =>{
-  //console.log("order id", req.params.id)
+  
   const carrito = await Order.findById(req.params.id);
   if (!carrito) {
     res.status(400).json({ msg: "Esa orden no existe" });
     return next();
   }
-  console.log("ORDEN BACK" ,carrito)
+  //console.log("ORDEN BACK" ,carrito)
   //res.json(order);
 
   const items_ml = carrito.order.map(i =>({
@@ -55,10 +75,10 @@ server.get ('/:id',async(req,res,next) =>{
   mercadopago.preferences.create(preference)
 
     .then(function(response){
-      console.info('RESPONDIO PREFERENCE', response)
+      //console.info('RESPONDIO PREFERENCE', response)
     //Este valor reemplazará el string"<%= global.id %>" en tu HTML
       global.id = response.body.id;
-      console.log("RESPUESTA BODY",response.body)
+      //console.log("RESPUESTA BODY",response.body)
       res.json({ id: global.id });
     })
     .catch(function(error){
@@ -68,15 +88,15 @@ server.get ('/:id',async(req,res,next) =>{
 
 
   //Ruta que recibe la información del pago
-  server.get('/',async  (req, res)=>{
-   // console.info("EN LA RUTA PAGOS ", req)
-    const payment_id= req.query.payment_id
+  server.get('/',async  (req, res,next)=>{
+   console.info("EN LA RUTA PAGOS ", req.query)
+    //const payment_id= req.query.payment_id
    //  console.log("PAYMENT ID", payment_id)
-    const payment_status= req.query.status
+    //const payment_status= req.query.status
    //console.log("PAYMENT STATUS", payment_status)
     const external_reference = req.query.external_reference
    //   console.log("EXTERNAL REFERENCE ", external_reference)
-    const merchant_order_id= req.query.merchant_order_id;
+    //const merchant_order_id= req.query.merchant_order_id;
     //  console.log("MERCHANT ORDER ID ", merchant_order_id)
     try {
       let orderUpdate = await Order.findByIdAndUpdate(
@@ -86,6 +106,65 @@ server.get ('/:id',async(req,res,next) =>{
           status:"completada",
         }
         );
+        //console.log("orden back",orderUpdate )
+        const precioTotal = orderUpdate.order.map(e => {
+          let precio = parseInt(e.price)
+          return precio * e.count
+        });
+        const total = precioTotal.reduce((a,b) => a + b);
+        //console.log("Total", total)
+        //ENVIO DE EMAIL
+        //console.log("namename", name)
+        //console.log("emailllll", email)
+        const date = new Date();
+        var contentHTML;
+        if(data === undefined){
+          contentHTML = `
+          <h1>Your purchase was successful !!!</h1>
+          <ul>
+              <li>Username: ${name}</li>
+              <li>User Email: ${email}</li>
+              <li>OP:${external_reference}</li>
+              <li>Date:${date}</li>
+              <li>Total:${total}</li>
+          </ul>
+          <p>Thanks for buying in our store!</p>
+          <p>We always wait for you in http://localhost:3000/</p>
+          <p>ENJOY YOUR MEAL!!!</p>
+          `;
+        }else{
+          contentHTML = `
+          <h1>Your purchase was successful !!!</h1>
+          <ul>
+              <li>Username: ${name}</li>
+              <li>User Email: ${email}</li>
+              <li>OP:${external_reference}</li>
+              <li>Date:${date}</li>
+              <li>Total:${total}</li>
+          </ul>
+          <h2>Shipping information</h2>
+          <ul>
+            <li>Address: ${data.address}</li>
+            <li>City: ${data.city}</li>
+            <li>Province: ${data.province}</li>
+            <li>Zip Code: ${data.zipCode}</li>
+          </ul>
+          <p>Thanks for buying in our store!</p>
+          <p>We always wait for you in http://localhost:3000/</p>
+          <p>ENJOY YOUR MEAL!!!</p>
+          `;
+        }
+
+
+        await enviarEmail.enviar({
+            email,
+            name,
+            contentHTML
+        })
+        //.then(result => res.json('enviado'))
+        //.catch(error => console.log(error.message))
+
+
         //console.log("ORDER UPDATE", orderUpdate)
         let productsUpdate = orderUpdate.order.map(async(e) => {
           let product = await Product.findOneAndUpdate({_id:e.id},
@@ -93,6 +172,8 @@ server.get ('/:id',async(req,res,next) =>{
                 stock: e.stock && e.stock > 0? e.stock - e.count : 0
             });
         })
+
+        
         
         //console.log("ORDER ", order);
     return res.redirect("http://localhost:3000/succes");

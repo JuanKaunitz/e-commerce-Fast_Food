@@ -17,14 +17,14 @@ const SerchBar = () => {
   function searchProduct() {
     dispatch(searchQueryProducts(name));
     setSearch(true);
-  }
-
+  } 
+ 
   useEffect(() => {
     if (name.length > 0) {
       searchProduct();
     }
-    dispatch(loading());
-    //eslint-disable-next-line react-hooks/exhaustive-deps
+    dispatch(loading())
+     //eslint-disable-next-line react-hooks/exhaustive-deps
   }, [name]);
 
  
