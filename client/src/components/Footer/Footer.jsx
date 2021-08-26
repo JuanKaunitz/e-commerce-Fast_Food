@@ -25,10 +25,10 @@ const useStyles = makeStyles((theme) => ({
     textAlign:'center',
     marginTop: 'auto',
     backgroundColor:'orange',
-    color:'white'
+    color:'black'
   },
   color: {
-    color:'orange'
+    color:'black'
 
   }
 

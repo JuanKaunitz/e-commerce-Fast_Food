@@ -11,10 +11,16 @@ import { makeStyles } from "@material-ui/core/styles";
 const useStyles = makeStyles((theme) => ({
   list: {
     flexGrow: 1,
-    backgroundColor: 'white',
-    padding: 0,
-    color:'black',
-    textAlign:'center',
+    backgroundColor:'black',
+    color:'orange',
+    marginLeft:"400px",
+    marginRight:"550px",
+  },
+  profile:{
+    display:"flex",
+    alignItems:"center",
+    marginLeft:"250px",
+    fontSize:"35px"
   },
 }));
 const AdminCategories = () => {
@@ -33,18 +39,10 @@ const AdminCategories = () => {
   return (
     <div className={classes.list}>
       
-      <h1>Panel de Categorias</h1>
-      <Link to="/adminPanel">
-        <button>Admin Panel</button>
-      </Link>
-      <Link to="/clients">
-        <button>Clients Panel</button>
-      </Link>
-      <Link to="/newCategory">
-        <button>New Category</button>
-      </Link>
+      <div className={classes.profile}>Panel de Categorias</div>
+      
 
-      <div className={classes.list}>
+      <div>
         {categories.map((e) => (
         
             <CardCategories

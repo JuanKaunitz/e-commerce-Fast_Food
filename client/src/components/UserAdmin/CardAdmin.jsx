@@ -49,7 +49,7 @@ export default function CardAdmin({
   const classes = useStyles();
 
   return (
-    <Card className={classes.root}>
+    <Card >
         <CardMedia
           className={classes.cover}
           image={image}

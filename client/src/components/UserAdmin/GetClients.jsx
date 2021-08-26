@@ -14,10 +14,17 @@ import './GetClients.css'
 
 const useStyles = makeStyles((theme) => ({
   list: {
-    backgroundColor:'white',
-    color:'black',
+    backgroundColor:'black',
+    color:'orange',
     marginLeft:"400px",
-    marginRight:"550px"
+    marginRight:"550px",
+    
+  },
+  profile:{
+    display:"flex",
+    alignItems:"center",
+    marginLeft:"250px",
+    fontSize:"35px"
   },
   root: {
     display: 'flex',
@@ -36,7 +43,7 @@ const useStyles = makeStyles((theme) => ({
   controls: {
     display: 'flex',
     alignItems: 'center',
-    color:'white',
+    color:'black',
     paddingLeft: theme.spacing(1),
     paddingBottom: theme.spacing(1),
   },
@@ -54,8 +61,9 @@ useEffect(()=> {
 
   return (
     <div className={classes.list}>
-    
-    <h1>Clients list</h1>
+    <div className={classes.profile}>
+      Clients list
+    </div>
     
       {
       clients.length > 0 ? clients.map((e) => (

@@ -9,7 +9,6 @@ const Otters = () => {
   return (
     <div className="container">
       <Carousel
-        className="carousel"
         autoPlay="true"
         showIndicators="false"
         showArrows="false"

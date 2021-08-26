@@ -9,14 +9,14 @@ import IconButton from "@material-ui/core/IconButton";
 import { Link } from "react-router-dom";
 
 const useStyles = makeStyles((theme) => ({
-  root: {
+  root1: {
     display: "flex",
-    backgroundColor:'black',
-    color:'white'
+    backgroundColor:'white',
+    color:'black'
   },
   content: {
     flex: "1 0 auto",
-    color:'white'
+    color:'black'
   },
   cover: {
     color:'white',
@@ -46,7 +46,7 @@ export default function CardOrders({
   const classes = useStyles();
 
   return (
-    <Card className={classes.root}>
+    <Card className={classes.root1}>
       <div>
         <CardMedia
           className={classes.cover}
@@ -56,7 +56,8 @@ export default function CardOrders({
       <div>
         <CardContent className={classes.content}>
           <Typography component="h5" variant="h5">
-            <Link to={`/orderEdit/${orderId}`}><h4>Op: {orderId} </h4></Link>  
+            <Link to={`/orderEdit/${orderId}`} style={{textDecoration: "none",color:"black"}}
+            ><h4>Op: {orderId} </h4></Link>  
           </Typography>
           <Typography variant="subtitle1" >
             Status: {status} 

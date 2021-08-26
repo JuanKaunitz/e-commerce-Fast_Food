@@ -62,8 +62,7 @@ export const Navbar = () => {
     const tokenL = localStorage.getItem('token');
     const clientL = JSON.parse(localStorage.getItem('client'));
     if(!adminClient.role && !token && tokenL && clientL.role){
-      console.log("TOKEN", tokenL)
-      console.log("CLIENT", clientL)
+ 
       dispatch(recoveryData(tokenL, clientL))
       dispatch(getUserById(clientL._id))
     }
@@ -239,7 +238,9 @@ export const Navbar = () => {
                 <ListItemText
                   primary={e.name}
                   onClick={() => handlerCategory(e.name)}
-                />
+                >
+                  
+                </ListItemText>
               </Link>
             </ListItem>
           ))}

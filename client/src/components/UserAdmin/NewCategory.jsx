@@ -101,7 +101,7 @@ const NewCategory = (props) => {
 
   return (
     <div className={classes.content}>
-      <Typography variant="h4" component="h2">
+      <Typography variant='h4' color ="textPrimary" >
         Create a new category
       </Typography>
 
