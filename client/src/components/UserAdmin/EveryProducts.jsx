@@ -2,8 +2,6 @@ import React, { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { deleteProduct, getAllProducts } from "../../Redux/actions/actions";
 import CardAdmin from "./CardAdmin";
-import Grid from "@material-ui/core/Grid";
-//import './EveryProducts.css'
 import { makeStyles } from '@material-ui/core/styles';
 
 const useStyles = makeStyles((theme) => ({

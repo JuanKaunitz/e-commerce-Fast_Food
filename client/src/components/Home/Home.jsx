@@ -2,23 +2,20 @@ import React, { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import Footer from "../Footer/Footer";
 import GridCardsProducts from "../cards/CardsProducts";
-import { getAllProducts, updateCart, totalProductosCarrito, getTypes, allUsers,recoveryData,
+import { getAllProducts, updateCart, totalProductosCarrito, getTypes, 
   bandOrderUser, getUserById, orderFinal, orderRedux, updateOrderFinal} from "../../Redux/actions/actions";
 import Gallery from "../gallery/Gallery";
 import Order from "../order/Order";
 import Otters from "../Otters/Otters";
 import { mergeCart, sumaCantidadTotal } from "../cart/utilsCarts";
 import { Grid } from "@material-ui/core";
-import Maps from "../Map/Maps";
 import { makeStyles } from "@material-ui/core/styles";
 import Chatbot from '../Chatbot/Chatbot';
 
 
 
 const useStyles = makeStyles((theme) => ({
-  /* container: {
-   backgroundColor:'white',
-  }, */
+
   order:{
     display:'flex',
     justifyContent:'space-around',
@@ -33,7 +30,6 @@ function Home() {
   const orderUser = useSelector((state) => state.orderUser);
   const token = useSelector((state) => state.clientToken);
   const band = useSelector((state) => state.bandOrderUser);
-  //localStorage.removeItem("order");
 
 
     if(client && orderUser.length > 0 && token && band){
@@ -67,7 +63,6 @@ function Home() {
         status: "carrito",
         date: fecha.toUTCString(),
       }
-      console.log("ORDER PARA ENVIAR", order)
       dispatch(orderRedux(order));
       if(idOrder){
         dispatch(updateOrderFinal(idOrder, order))
@@ -78,7 +73,6 @@ function Home() {
     }
 
   useEffect(() => {
-    console.log("use efect id client",client._id)
     if(client._id && band){dispatch(getUserById(client._id))}
     dispatch(getAllProducts())
     dispatch(getTypes())
@@ -97,7 +91,6 @@ function Home() {
         <Chatbot floating={true} opened={true}/>
         </div>
         <GridCardsProducts />
-        {/* <Maps /> */}
         <Footer />
         </div>
         </Grid>

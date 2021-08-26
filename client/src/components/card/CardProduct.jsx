@@ -17,13 +17,11 @@ import CardContent from "@material-ui/core/CardContent";
 import Typography from "@material-ui/core/Typography";
 import { createTheme } from "@material-ui/core/styles";
 import { ThemeProvider } from "@material-ui/styles";
-import { ButtonGroup, CardActionArea, Divider } from "@material-ui/core";
+import { ButtonGroup, Divider } from "@material-ui/core";
 import Button from "@material-ui/core/Button";
 import ReactCardFlip from "react-card-flip";
 import ArrowBackIcon from "@material-ui/icons/ArrowBack";
-import './CardProduct.css';
-
-import {Rating} from '@material-ui/lab';
+import "./CardProduct.css";
 
 const theme = createTheme({
   palette: {
@@ -35,28 +33,15 @@ const theme = createTheme({
 
 const useStyles = makeStyles(() => ({
   media: {
-    width: "100",
-    height: 210,
-    paddingTop: "25%", // 16:9
-<<<<<<< HEAD
-    backgroundSize: "80%", // 16:9
-   
-  },
-  root:{
-    '&: hover':{
-      backgroundColor:'red'
-      
-    }
-=======
+    height: 150,
+    paddingTop: 15, // 16:9
     backgroundSize: "80%",
->>>>>>> Dev
   },
-   
+
   cardContent: {
     width: "100%",
     height: "100%",
     boxShadow: "3px 4px 8px #0b0c0c1a",
-  
   },
   headerTitle: {
     color: "white",
@@ -97,11 +82,7 @@ export default function CardProduct({
   const [counter, setCounter] = useState(0);
   const client = useSelector((state) => state.client);
   const token = useSelector((state) => state.clientToken);
-<<<<<<< HEAD
-  const [value, setValue] = React.useState(2);
-=======
   const [value, setValue] = useState(2);
->>>>>>> Dev
 
   function cartBack(cart) {
     const idOrder = localStorage.getItem("idOrderUser");
@@ -150,23 +131,14 @@ export default function CardProduct({
   return (
     <ThemeProvider theme={theme}>
       <ReactCardFlip isFlipped={isFlipped} flipDirection="horizontal">
-        <Card className="card">
-          <CardActionArea>
+          <Card className="card">
             <CardMedia className={classes.media} image={image} title={name} />
             <CardContent className={classes.cardContent}>
-              <Typography
-                className={classes.title}
-                color="textSecondary"
-                gutterBottom
-              >
+              <Typography className={classes.title} color="textSecondary">
                 {name}
               </Typography>
               <Divider />
-              <Typography
-                variant="body2"
-                component="p"
-                className={classes.sub_title}
-              >
+              <Typography variant="body2" className={classes.sub_title}>
                 Precio: ${price}
               </Typography>
               <Rating
@@ -185,79 +157,54 @@ export default function CardProduct({
                 <AddShoppingCartIcon />
               </Button>
             </CardContent>
-          </CardActionArea>
-        </Card>
-        {/* frontal */}
-        <Card className={classes.root}>
-          <CardContent>
-            <Button
-              onClick={handleNext}
-              variant="contained"
-              className={classes.color}
-            >
-              <ArrowBackIcon />
-            </Button>
-            <Typography
-              className={classes.sub}
-              color="textSecondary"
-              gutterBottom
-            >
-              {name}
-            </Typography>
-            <Divider />
-            <Typography className={classes.pos} color="textSecondary">
-              Description: {description}
-            </Typography>
-            <Typography className={classes.pos} color="textSecondary">
-              Stock: {stock}
-            </Typography>
-            <Typography className={classes.pos} color="textSecondary">
-              Precio: ${price}
-            </Typography>
-<<<<<<< HEAD
-            {stock > 0 ? (
-              <ButtonGroup
-=======
-          
-            {
-              stock > 0?
+          </Card>
+          {/* frontal */}
+          <Card className={classes.root}>
+            <CardContent>
+              <Button
+                onClick={handleNext}
+                variant="contained"
+                className={classes.color}
+              >
+                <ArrowBackIcon />
+              </Button>
+              <Typography className={classes.sub} color="textSecondary">
+                {name}
+              </Typography>
+              <Divider />
+              <Typography className={classes.pos} color="textSecondary">
+                Description: {description}
+              </Typography>
+              <Typography className={classes.pos} color="textSecondary">
+                Stock: {stock}
+              </Typography>
+              <Typography className={classes.pos} color="textSecondary">
+                Precio: ${price}
+              </Typography>
+              {stock > 0 ? (
                 <ButtonGroup
                   size="small"
                   variant="contained"
                   aria-label="contained primary button group"
-                  component="div"
                 >
-                  <Button onClick={() => handleAddCart()} className={classes.color}>
+                  <Button
+                    onClick={() => handleAddCart()}
+                    className={classes.color}
+                  >
                     +
                   </Button>
                 </ButtonGroup>
-              : 
+              ) : (
                 <ButtonGroup
->>>>>>> Dev
-                size="small"
-                variant="contained"
-                aria-label="contained primary button group"
-                component="div"
-              >
-                <Button
-                  onClick={() => handleAddCart()}
-                  className={classes.color}
+                  size="small"
+                  variant="contained"
+                  aria-label="contained primary button group"
                 >
-                  +
-                </Button>
-              </ButtonGroup>
-            ) : (
-              <ButtonGroup
-                size="small"
-                variant="contained"
-                aria-label="contained primary button group"
-                component="div"
-              >
-                <Button className={classes.color2}>out of stock</Button>
-              </ButtonGroup>
-            )}
-          </CardContent>
-        </Card>
+                  <Button className={classes.color2}>out of stock</Button>
+                </ButtonGroup>
+              )}
+            </CardContent>
+          </Card>
       </ReactCardFlip>
     </ThemeProvider>
   );

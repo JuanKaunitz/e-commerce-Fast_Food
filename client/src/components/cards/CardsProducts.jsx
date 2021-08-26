@@ -33,7 +33,7 @@ const useStyles = makeStyles(() => ({
     textAlign:'center',
     padding:'20px',
   },
-  color: {
+  colorText: {
     backgroundColor:"orange",
     color: "white",
   },
@@ -76,6 +76,7 @@ export default function GridCardsProducts() {
           searchProducts.length > 0 ? (
             searchProducts.map((product) => ( 
                 <CardProduct
+                key={product._id}
                   id={product._id}
                   description={product.description}
                   name={product.name}
@@ -92,6 +93,7 @@ export default function GridCardsProducts() {
         ) : (
            getAll.slice(page * 8, page * 8 + 8).map((product) => (
               <CardProduct
+              key={product._id}
                 id={product._id}
                 description={product.description}
                 name={product.name}
@@ -109,10 +111,10 @@ export default function GridCardsProducts() {
         </Grid>
       <Grid item lg={12} md={12} xs={4}>
       <div className="pagina">
-        <ButtonGroup size="small" variant="contained" className={classes.color}>
+        <ButtonGroup size="small" variant="contained" className={classes.colorText}>
           <Button
             variant="contained"
-            className={classes.color}
+            className={classes.colorText}
             value="prev"
             onClick={handlePrev}
             disabled={page <= 0}
@@ -122,11 +124,12 @@ export default function GridCardsProducts() {
           <TextField
             className={classes.text}
             variant="outlined"
-            value={page + 1}
+          
+            label={page+1}
             />
           <Button
             variant="contained"
-            className={classes.color}
+            className={classes.colorText}
             value="next"
             onClick={handleNext}
             disabled={

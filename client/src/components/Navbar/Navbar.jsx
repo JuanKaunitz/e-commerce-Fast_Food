@@ -59,8 +59,7 @@ export const Navbar = () => {
     const tokenL = localStorage.getItem('token');
     const clientL = JSON.parse(localStorage.getItem('client'));
     if(!adminClient.role && !token && tokenL && clientL.role){
-      console.log("TOKEN", tokenL)
-      console.log("CLIENT", clientL)
+ 
       dispatch(recoveryData(tokenL, clientL))
     }
     const cart = JSON.parse(localStorage.getItem('order'));
@@ -248,12 +247,13 @@ export const Navbar = () => {
           {" "}
           {categories?.map((e) => (
             <ListItem button key={e.name}>
-              {/* <ListItemIcon></ListItemIcon> */}
               <Link to="/categories">
                 <ListItemText
                   primary={e.name}
                   onClick={() => handlerCategory(e.name)}
-                />
+                >
+                  
+                </ListItemText>
               </Link>
             </ListItem>
           ))}

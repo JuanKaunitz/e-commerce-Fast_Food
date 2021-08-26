@@ -128,7 +128,7 @@ const useStyles = makeStyles((theme) => ({
     flexDirection: "column",
   },
   appBar: {
-    backgroundColor: 'black'
+    backgroundColor:'black'
   }
 }));
 

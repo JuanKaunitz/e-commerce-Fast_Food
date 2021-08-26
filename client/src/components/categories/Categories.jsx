@@ -5,7 +5,7 @@ import { makeStyles } from "@material-ui/core/styles";
 import CardProduct from "../card/CardProduct";
 import "../cards/CardsProducts.css";
 import Order from "../order/Order";
-import { Button, ButtonGroup, TextField } from "@material-ui/core";
+import { Button, ButtonGroup, TextField, Typography } from "@material-ui/core";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -28,6 +28,9 @@ const useStyles = makeStyles((theme) => ({
     borderRadius: 0,
     cursor: "pointer",
   },
+  root_items:{
+    width:'50%'
+  }
 
 }));
 
@@ -40,7 +43,6 @@ const Categories = () => {
   const [filtro, setFiltro] = useState([]);
   
   const filter1 = getAll.filter((product) => product.category === categoryName); 
-  console.log(filter1)
 
   const categoriesTypes = categories.filter(e => {
     if(e.name === categoryName){
@@ -84,7 +86,7 @@ const Categories = () => {
   return (
     <div>
       <div className={classes.color}>
-        <h2 >filtro por tipo</h2>
+        <Typography color='textSecondary' >filtro por tipo</Typography>
         <select onClick={(e) => setType(e.target.value)}>
           <option value="Types">Types</option>
           {
@@ -99,9 +101,10 @@ const Categories = () => {
       <Grid container className={classes.root} spacing={2}>
         {filtro.length <= 0 ? (
           filter1.slice(page * 8, page * 8 + 8).map((product) => (
-            <Grid item lg={6} md={6} xs={12} key={product._id}>
+            <Grid item lg={4} md={4} xs={8} >
               <CardProduct
-
+              className={classes.root_items}
+                key={product._id}
                 id={product._id}
                 name={product.name}
                 image={product.image}
@@ -113,8 +116,9 @@ const Categories = () => {
           ))
         ) : (
           filtro.slice(page * 8, page * 8 + 8).map((product) => (
-            <Grid lg={6} md={6} xs={12} item key={product._id} >
+            <Grid item lg={4} md={4} xs={8} >
               <CardProduct
+               key={product._id}
                 id={product._id}
                 name={product.name}
                 image={product.image}
@@ -132,7 +136,6 @@ const Categories = () => {
           <Button
             variant="contained"
             className={classes.color}
-           
             value="prev"
             onClick={handlePrev}
             disabled={page <= 0}

@@ -226,7 +226,6 @@ export const authUser =  (user) => async (dispatch) => {
     try {
         const client = await axios.post(`${URL}/food/api/auth-sesion`, user);
        
-        console.log('USUARIO LOGUEADO: ', client.data)
         dispatch({
             type: LOGIN_CLIENT,
             payload: client.data
@@ -256,7 +255,6 @@ export const allUsers = () => async (dispatch) => {
 export const newUser = (user) => async (dispatch) => {
     try {
         const res = await axios.post(`${URL}/food/api/user`, user);        
-        console.log('NEW USER: ', res.data)
         dispatch({
            type: NEW_USER,
            payload: res.data
@@ -271,7 +269,6 @@ export const getUserById = (id) => async(dispatch) => {
     console.log("ID USUARIO PARA BUSCAR ORDEN", id)
     try{
         const res = await axios.get(`${URL}/food/api/user/${id}`);
-        console.log("USUARIO ENCONTRADO POR ID", res.data)
         dispatch({
             type: GET_USER_BY_ID,
             payload: res.data
@@ -377,7 +374,6 @@ export const getOrderById = (id) => async(dispatch) => {
 export const getOrder = () => async(dispatch) => {
     try {
         const res = await axios.get(`${URL}/food/api/order`);
-        console.log("GET ORDER", res.data)
         dispatch({
             type: ALL_ORDERS,
             payload: res.data
@@ -457,7 +453,6 @@ export const changeStatus = (id, input) => async (dispatch) => {
 
     try {
         const res = await axios.put(`${URL}/food/api/user/${id}`,input );
-            console.log("respuesta loguot", res.data)
        
         dispatch({
             type:CLIENT_STATUS,  
@@ -492,7 +487,6 @@ export const mercadopago = (id, date, input) => async (dispatch) =>{
     
 export const resetPassword= (email)=> async(dispatch)=>{
     const sendEmail = await axios.post(`${URL}/food/api/auth-sesion/reset-password`,{email});
-    console.log(sendEmail)
     dispatch({
         type:RESET_PASSWORD,
         payload:sendEmail
@@ -502,7 +496,6 @@ export const resetPassword= (email)=> async(dispatch)=>{
 export const newPassword = (token,password) => async(dispatch) =>{
     console.log(token,password)
     const resp = await axios.post(`${URL}/food/api/auth-sesion/reset-password/${token}`,{password});
-    console.log(resp)
     dispatch({
         type:NEW_PASSWORD,
         payload:resp
