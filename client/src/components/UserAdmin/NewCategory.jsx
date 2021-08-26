@@ -8,26 +8,27 @@ import {makeStyles} from '@material-ui/core';
 
 const useStyles = makeStyles(() => ({
   group:{
-    blackgroundColor:'black',
+    // blackgroundColor:'black',
     display:'flex',
     flexDirection: 'column',
     margin:'5px',
+  maxWidth:500,
+
 },
   items:{
   cursor: 'pointer',
   width:'80%',
   fontSize: '25px',
-  backgroundColor: 'aliceblue',
+  backgroundColor: 'white',
   boxShadow: '3px 4px 8px #0864B11A',
-  border: '1.5px solid #616060',
+  // border: '1.5px solid #616060',
 },
   content:{
-  maxWidth:1024,
-  paddingLeft:40,
+  maxWidth:500,
+  padding:50,
   margin:'auto',
-  backgroundColor:'black',
+  backgroundColor:'white',
   borderRadius:10,
-  padding:5
   
  },
   save:{
@@ -101,15 +102,17 @@ const NewCategory = (props) => {
   return (
   
     <div className={classes.content}>
-      <Typography variant="h4" component="h2">
+      <Typography variant='h4' color ="textPrimary" >
         Create a new category
       </Typography>
 
       <form onSubmit={handleSubmit}>
         <div className={classes.group}>
-          <label>Name:</label>
+          <Typography  color ="textPrimary">Name:</Typography>
           <TextField
             className={classes.items}
+            variant="outlined"
+            fullWidth
             type="text"
             name="name"
             onChange={handleInputChange}
@@ -119,9 +122,10 @@ const NewCategory = (props) => {
         </div>
 
         <div className={classes.group}>
-          <label>Image:</label>
+          <Typography  color ="textPrimary">Image:</Typography>
           <TextField
             className={classes.items}
+            variant="outlined"
             type="text"
             name="image"
             onChange={handleInputChange}
@@ -130,9 +134,10 @@ const NewCategory = (props) => {
         </div>
 
         <div className={classes.group}>
-          <label>Type 1:</label>
+          <Typography  color ="textPrimary">Type 1:</Typography>
           <TextField
             className={classes.items}
+            variant="outlined"
             type="text"
             name="type1"
             rows="5"
@@ -142,9 +147,10 @@ const NewCategory = (props) => {
         </div>
 
         <div className={classes.group}>
-          <label>Type 2:</label>
+          <Typography  color ="textPrimary">Type 2:</Typography>
           <TextField
             className={classes.items}
+            variant="outlined"
             type="text"
             name="type2"
             rows="5"
@@ -154,9 +160,10 @@ const NewCategory = (props) => {
         </div>
 
         <div className={classes.group}>
-          <label>Type 3:</label>
+          <Typography  color ="textPrimary">Type 3:</Typography>
           <TextField
             className={classes.items}
+            variant="outlined"
             type="text"
             name="type3"
             rows="5"

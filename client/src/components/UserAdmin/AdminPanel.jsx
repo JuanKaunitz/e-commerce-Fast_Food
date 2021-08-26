@@ -10,7 +10,7 @@ import { allUsers } from "../../Redux/actions/actions";
 
 const useStyles = makeStyles((theme) => ({
   root: {
-    position: 'absolute',
+    // position: 'absolute',
     display: "flex",
     justifyContent: "center",
     flexGrow: 1,
@@ -18,6 +18,7 @@ const useStyles = makeStyles((theme) => ({
     color: "orange",
     alignItems: "center",
     textAlign: "center",
+    marginTop:100
   },
   list: { 
     padding: "20px",
@@ -53,7 +54,7 @@ export default function AdminPanel() {
   return (
     <Grid cointaner>
       <Grid item lg={12} md={6} xs={12}>
-        <div className="list">
+        {/* <div className="list"> */}
           <Tabs
             className={classes.root}
             value={value}
@@ -68,7 +69,7 @@ export default function AdminPanel() {
             <Tab label="Orders Panel" {...a11yProps(5)} />
           </Tabs>
           <TabsBtn value={value} setValue={setValue} />
-        </div>
+        {/* </div> */}
       </Grid>
     </Grid>
   );

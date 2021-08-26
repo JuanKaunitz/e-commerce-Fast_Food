@@ -4,6 +4,7 @@ import { makeStyles } from "@material-ui/core/styles";
 import Card from "@material-ui/core/Card";
 import CardMedia from "@material-ui/core/CardMedia";
 import AddShoppingCartIcon from "@material-ui/icons/AddShoppingCart";
+import { Rating } from "@material-ui/lab";
 import {
   updateCart,
   totalProductosCarrito,
@@ -35,12 +36,20 @@ const useStyles = makeStyles(() => ({
     width: "100",
     height: 210,
     paddingTop: "25%", // 16:9
-    backgroundSize: "80%",  // 16:9
+    backgroundSize: "80%", // 16:9
+   
+  },
+  root:{
+    '&: hover':{
+      backgroundColor:'red'
+      
+    }
   },
   cardContent: {
     width: "100%",
     height: "100%",
     boxShadow: "3px 4px 8px #0b0c0c1a",
+  
   },
   headerTitle: {
     color: "white",
@@ -54,11 +63,11 @@ const useStyles = makeStyles(() => ({
     backgroundColor: "orange",
   },
   color: {
-    backgroundColor:"orange",
+    backgroundColor: "orange",
     color: "white",
   },
   color2: {
-    backgroundColor:"red",
+    backgroundColor: "red",
     color: "white",
     textAlign: "center",
   },
@@ -81,6 +90,7 @@ export default function CardProduct({
   const [counter, setCounter] = useState(0);
   const client = useSelector((state) => state.client);
   const token = useSelector((state) => state.clientToken);
+  const [value, setValue] = React.useState(2);
 
   function cartBack(cart) {
     const idOrder = localStorage.getItem("idOrderUser");
@@ -148,13 +158,20 @@ export default function CardProduct({
               >
                 Precio: ${price}
               </Typography>
+              <Rating
+                name="simple-controlled"
+                value={value}
+                onChange={(event, newValue) => {
+                  setValue(newValue);
+                }}
+              />
               <Button
                 className={classes.button}
                 variant="contained"
                 className={classes.color}
                 onClick={handleNext}
               >
-                <AddShoppingCartIcon  />
+                <AddShoppingCartIcon />
               </Button>
             </CardContent>
           </CardActionArea>
@@ -162,7 +179,11 @@ export default function CardProduct({
         {/* frontal */}
         <Card className={classes.root}>
           <CardContent>
-            <Button onClick={handleNext} variant="contained" className={classes.color}>
+            <Button
+              onClick={handleNext}
+              variant="contained"
+              className={classes.color}
+            >
               <ArrowBackIcon />
             </Button>
             <Typography
@@ -182,30 +203,30 @@ export default function CardProduct({
             <Typography className={classes.pos} color="textSecondary">
               Precio: ${price}
             </Typography>
-            {
-              stock > 0?
-                <ButtonGroup
-                  size="small"
-                  variant="contained"
-                  aria-label="contained primary button group"
-                  component="div"
-                >
-                  <Button onClick={() => handleAddCart()} className={classes.color}>
-                    +
-                  </Button>
-                </ButtonGroup>
-              : 
-                <ButtonGroup
+            {stock > 0 ? (
+              <ButtonGroup
                 size="small"
                 variant="contained"
                 aria-label="contained primary button group"
                 component="div"
+              >
+                <Button
+                  onClick={() => handleAddCart()}
+                  className={classes.color}
                 >
-                  <Button  className={classes.color2}>
-                  out of stock
-                  </Button>
-                </ButtonGroup>
-            }
+                  +
+                </Button>
+              </ButtonGroup>
+            ) : (
+              <ButtonGroup
+                size="small"
+                variant="contained"
+                aria-label="contained primary button group"
+                component="div"
+              >
+                <Button className={classes.color2}>out of stock</Button>
+              </ButtonGroup>
+            )}
           </CardContent>
         </Card>
       </ReactCardFlip>

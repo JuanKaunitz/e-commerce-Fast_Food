@@ -1,8 +1,6 @@
 const express = require("express");
 const router = express.Router();
-const nodemailer = require("nodemailer");
-const {google} = require('googleapis');
-const {CLIENT_ID,CLIENT_SECRET,CLIENT_URI,REFRESH_TOKEN,USER_EMIAL} = process.env;
+const enviarEmail = require('../helpers/emails')
 
 router.post("/", async (req, res) => {
   const { name, email } = req.body;
@@ -16,48 +14,16 @@ router.post("/", async (req, res) => {
         <p>Iniciaste sesión</p>
     `;
 
-const oAuthClinent = new google.auth.OAuth2(CLIENT_ID,CLIENT_SECRET,CLIENT_URI);
-
-oAuthClinent.setCredentials({refresh_token:REFRESH_TOKEN});
-
-const sendMail = async() =>{
-    try {
-        const  TOKEN = await oAuthClinent.getAccessToken();
-      const transporter=  nodemailer.createTransport({
-            service:"gmail",
-            auth:{
-                type:"OAuth2",
-                user:USER_EMIAL,
-                clientId:CLIENT_ID,
-                clientSecret:CLIENT_SECRET,
-                refreshToken:REFRESH_TOKEN,
-                accessToken:TOKEN
-            },
-            tls: {
-                rejectUnauthorized: false
-            }
-        });
-        const mailOptions ={
-            from:"Pagina Web NodeMailer <ecommercefastfood@gmail.com>",
-            to:`${email}`,
-            subject:"Nodemailer FastFood-Ecommece",
-            html:contentHTML
-        };
-        const envio = await transporter.sendMail(mailOptions)
-        return envio;
-    } catch (error) {
-        console.log(error)
-    }
-};
-
-sendMail()
+await enviarEmail.enviar({
+    email,
+    name,
+    contentHTML
+})
 .then(result => res.json('enviado'))
 .catch(error => console.log(error.message))
 
    
 });
-
-
 
 
 module.exports = router;
