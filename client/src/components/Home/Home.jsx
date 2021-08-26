@@ -11,6 +11,7 @@ import { mergeCart, sumaCantidadTotal } from "../cart/utilsCarts";
 import { Grid } from "@material-ui/core";
 import Maps from "../Map/Maps";
 import { makeStyles } from "@material-ui/core/styles";
+import Chatbot from '../Chatbot/Chatbot';
 
 
 
@@ -93,6 +94,7 @@ function Home() {
         <Otters />
         <div className={classes.order}>
         <Order />
+        <Chatbot floating={true} opened={true}/>
         </div>
         <GridCardsProducts />
         {/* <Maps /> */}

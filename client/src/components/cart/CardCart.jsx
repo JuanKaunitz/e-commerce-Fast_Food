@@ -12,7 +12,7 @@ import {ButtonGroup} from "@material-ui/core";
 const useStyles = makeStyles((theme) => ({
   root: {
     display: "flex",
-    maxWidth: "80%",
+    maxWidth: "70%",
   },
   btn_root: {
     border: "1px solid",

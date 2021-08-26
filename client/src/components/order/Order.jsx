@@ -1,60 +1,3 @@
-// import React from "react";
-// import "./Order.css";
-// import { useDispatch } from "react-redux";
-// import { getAllProducts, orderBy } from '../../Redux/actions/actions'
-// import { makeStyles } from "@material-ui/core/styles";
-// import { Grid } from "@material-ui/core";
-
-
-// const useStyles = makeStyles((theme) => ({
-//   select: {
-
-//     display: 'flex',
-//     textAlignLast:'center',
-//     justifyContent: 'left',
-//     paddingBottom: '10px',
-//     height: '34px',
-//     width: '250px',
-//     fontSize: '20px',
-//     fontWeight: 'roboto',
-// },
-
-// order:{
-//     color:'orangered',
-//     FontSize: '22px',
-//     marginRight: '15px',
-// }
-// }));
-
-// const Order = () => {
-//   const dispatch = useDispatch();  
-//   const classes = useStyles();
-//   const onOrderChange = (e) => {  
-//     if(e.target.value === 'null') {
-//       dispatch(getAllProducts())
-//     } else {
-//       dispatch(orderBy(e.target.value));
-//     }
-//   }  
-
-//   return (
-//     <div className={classes.select}>
-//       <label className={classes.order}>Order </label>
-//       <select  className ={classes.select} name="slct" id="slct" onChange={onOrderChange}>
-//         <option defaultValue value="null">... </option>
-//         <option value="startLowerPrice">Price: Lower to highest</option>
-//         <option value="startHighestPrice">Price: Highest to lowest</option>
-//         <option value="DESC">Ranking: Most recomended </option>
-//         <option value="ASC">Ranking: Less recomended </option>
-//       </select>
-//     </div>
-//   );
-// };
-
-// export default Order;
-
-
-
 import React from 'react';
 import { useDispatch } from "react-redux";
 import { getAllProducts, orderBy } from '../../Redux/actions/actions'
@@ -73,6 +16,7 @@ const useStyles = makeStyles((theme) => ({
   formControl: {
     margin: theme.spacing(1),
     minWidth: 120,
+    marginBottom: '80px' 
   },
 }));
 export default function Order () {

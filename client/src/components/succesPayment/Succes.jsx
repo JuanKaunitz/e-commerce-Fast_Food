@@ -25,22 +25,7 @@ useEffect(() => {
 
 
   return (
-    <div>
-      <br></br>
-      <br></br>
-      <br></br>
-      <br></br>
-      <br></br>
-      <br></br>
-      <br></br>
-      <br></br>
-      <br></br>
-      <br></br>
-      <br></br>
-      <br></br>
-      <br></br>
-      <br></br>
-      <br></br>
+    <div style={{marginTop: "80px"}}>
       <h1>Order Finished</h1>
     </div>
   );

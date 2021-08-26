@@ -469,21 +469,17 @@ export const changeStatus = (id, input) => async (dispatch) => {
 }
 
 export const mercadopago = (id, date, input) => async (dispatch) =>{
-    console.log("ID order", id)
-    console.log("DATE",date)
-    console.log("input", input)
+   
     try {
         const res = await axios.get(`${URL}/food/api/mercadopago/${id}`)
         const res1 = await axios.get(`${URL}/food/api/mercadopago/name/${date.name}`)
         const res2 = await axios.get(`${URL}/food/api/mercadopago/email/${date.email}`)
         if(input !== undefined){
-            console.log("RESPUESTA 3", res3.data)
+           // console.log("RESPUESTA 3", res3.data)
             const res3 = await axios.get(`${URL}/food/api/mercadopago/data?address=${input.address}&city=${input.city}&province=${input.province}&zipCode=${input.zipCode}`)
-            console.log("RESPUESTA 3", res3.data)
+            //console.log("RESPUESTA 3", res3.data)
         }
-        console.log("RESPUESTA MERCADOPAGO", res.data)
-        console.log("RESPUESTA 1", res1.data)
-        console.log("RESPUESTA 2", res2.data)
+       
         dispatch({
             type: MERCADOPAGO,
             payload: res.data
