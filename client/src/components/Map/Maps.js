@@ -3,7 +3,7 @@ import GoogleMaps from "simple-react-google-maps";
 import { Grid } from "@material-ui/core";
 function Maps() {
   return (
-    <Grid cointaner>
+    <Grid container>
       <Grid item lg={12} md={6} xs={4}>
         <GoogleMaps
           apiKey={"AIzaSyBz0VNA94HI9TyuRqg_QwNEW9tVyizsS0"}

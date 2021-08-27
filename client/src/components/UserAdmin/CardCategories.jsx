@@ -12,6 +12,7 @@ import { Button } from "@material-ui/core";
 const useStyles = makeStyles((theme) => ({
   root: {
     display: "flex",
+    backgroundColor:"white"
   },
   content: {
     flex: "1 0 auto",

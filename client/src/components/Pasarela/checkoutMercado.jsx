@@ -1,5 +1,4 @@
-import {useSelector, useEffect} from 'react'
-import s from './styled.css';
+import { useEffect} from 'react'
 
 export default function Comprar({data}){
  

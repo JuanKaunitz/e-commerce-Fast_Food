@@ -15,7 +15,6 @@ router.post("/", async (req, res) => {
         <p>Iniciaste sesión</p>
     `;
 
-
 await enviarEmail.enviar({
     email,
     name,
@@ -26,8 +25,6 @@ await enviarEmail.enviar({
 
    
 });
-
-
 
 
 module.exports = router;

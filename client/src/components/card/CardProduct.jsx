@@ -4,6 +4,7 @@ import { makeStyles } from "@material-ui/core/styles";
 import Card from "@material-ui/core/Card";
 import CardMedia from "@material-ui/core/CardMedia";
 import AddShoppingCartIcon from "@material-ui/icons/AddShoppingCart";
+import { Rating } from "@material-ui/lab";
 import {
   updateCart,
   totalProductosCarrito,
@@ -16,13 +17,11 @@ import CardContent from "@material-ui/core/CardContent";
 import Typography from "@material-ui/core/Typography";
 import { createTheme } from "@material-ui/core/styles";
 import { ThemeProvider } from "@material-ui/styles";
-import { ButtonGroup, CardActionArea, Divider } from "@material-ui/core";
+import { ButtonGroup, Divider } from "@material-ui/core";
 import Button from "@material-ui/core/Button";
 import ReactCardFlip from "react-card-flip";
 import ArrowBackIcon from "@material-ui/icons/ArrowBack";
-import './CardProduct.css';
-
-import {Rating} from '@material-ui/lab';
+import "./CardProduct.css";
 
 const theme = createTheme({
   palette: {
@@ -34,12 +33,11 @@ const theme = createTheme({
 
 const useStyles = makeStyles(() => ({
   media: {
-    width: "100",
-    height: 210,
-    paddingTop: "25%", // 16:9
+    height: 150,
+    paddingTop: 15, // 16:9
     backgroundSize: "80%",
   },
-   
+
   cardContent: {
     width: "100%",
     height: "100%",
@@ -57,11 +55,11 @@ const useStyles = makeStyles(() => ({
     backgroundColor: "orange",
   },
   color: {
-    backgroundColor:"orange",
+    backgroundColor: "orange",
     color: "white",
   },
   color2: {
-    backgroundColor:"red",
+    backgroundColor: "red",
     color: "white",
     textAlign: "center",
   },
@@ -133,23 +131,14 @@ export default function CardProduct({
   return (
     <ThemeProvider theme={theme}>
       <ReactCardFlip isFlipped={isFlipped} flipDirection="horizontal">
-        <Card className="card">
-          <CardActionArea>
+          <Card className="card">
             <CardMedia className={classes.media} image={image} title={name} />
             <CardContent className={classes.cardContent}>
-              <Typography
-                className={classes.title}
-                color="textSecondary"
-                gutterBottom
-              >
+              <Typography className={classes.title} color="textSecondary">
                 {name}
               </Typography>
               <Divider />
-              <Typography
-                variant="body2"
-                component="p"
-                className={classes.sub_title}
-              >
+              <Typography variant="body2" className={classes.sub_title}>
                 Precio: ${price}
               </Typography>
               <Rating
@@ -165,61 +154,57 @@ export default function CardProduct({
                 className={classes.color}
                 onClick={handleNext}
               >
-                <AddShoppingCartIcon  />
+                <AddShoppingCartIcon />
               </Button>
             </CardContent>
-          </CardActionArea>
-        </Card>
-        {/* frontal */}
-        <Card className={classes.root}>
-          <CardContent>
-            <Button onClick={handleNext} variant="contained" className={classes.color}>
-              <ArrowBackIcon />
-            </Button>
-            <Typography
-              className={classes.sub}
-              color="textSecondary"
-              gutterBottom
-            >
-              {name}
-            </Typography>
-            <Divider />
-            <Typography className={classes.pos} color="textSecondary">
-              Description: {description}
-            </Typography>
-            <Typography className={classes.pos} color="textSecondary">
-              Stock: {stock}
-            </Typography>
-            <Typography className={classes.pos} color="textSecondary">
-              Precio: ${price}
-            </Typography>
-          
-            {
-              stock > 0?
+          </Card>
+          {/* frontal */}
+          <Card className={classes.root}>
+            <CardContent>
+              <Button
+                onClick={handleNext}
+                variant="contained"
+                className={classes.color}
+              >
+                <ArrowBackIcon />
+              </Button>
+              <Typography className={classes.sub} color="textSecondary">
+                {name}
+              </Typography>
+              <Divider />
+              <Typography className={classes.pos} color="textSecondary">
+                Description: {description}
+              </Typography>
+              <Typography className={classes.pos} color="textSecondary">
+                Stock: {stock}
+              </Typography>
+              <Typography className={classes.pos} color="textSecondary">
+                Precio: ${price}
+              </Typography>
+              {stock > 0 ? (
                 <ButtonGroup
                   size="small"
                   variant="contained"
                   aria-label="contained primary button group"
-                  component="div"
                 >
-                  <Button onClick={() => handleAddCart()} className={classes.color}>
+                  <Button
+                    onClick={() => handleAddCart()}
+                    className={classes.color}
+                  >
                     +
                   </Button>
                 </ButtonGroup>
-              : 
+              ) : (
                 <ButtonGroup
-                size="small"
-                variant="contained"
-                aria-label="contained primary button group"
-                component="div"
+                  size="small"
+                  variant="contained"
+                  aria-label="contained primary button group"
                 >
-                  <Button  className={classes.color2}>
-                  out of stock
-                  </Button>
+                  <Button className={classes.color2}>out of stock</Button>
                 </ButtonGroup>
-            }
-          </CardContent>
-        </Card>
+              )}
+            </CardContent>
+          </Card>
       </ReactCardFlip>
     </ThemeProvider>
   );

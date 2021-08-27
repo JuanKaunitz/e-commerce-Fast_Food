@@ -35,12 +35,6 @@ const ClientEdit = (props) => {
 
     return (
         <div>
-            <h1 className='list'>Client Edit</h1>
-            <Link to='/adminPanel'> <button >Admin Panel</button></Link>
-            <Link to='/clients'> <button >Clients Panel</button></Link>
-            <Link to='/adminCategories'> <button >Categories Panel</button></Link>
-            <br></br>
-            <br></br>
             <form>
                 <label>Role</label>
                 <select onClick={(e) => roleHandler(e)}>

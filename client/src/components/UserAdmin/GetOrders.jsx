@@ -1,17 +1,34 @@
 import React , { useEffect, useState }   from 'react';
 import { useSelector, useDispatch} from 'react-redux';
-import {/*  deleteOrder */ getOrder } from "../../Redux/actions/actions";
+import {/*  deleteOrder */ getOrder, allUsers } from "../../Redux/actions/actions";
 import CardOrders from './CardOrders';
-import Grid from "@material-ui/core/Grid"; 
+import Grid from "@material-ui/core/Grid";
+import { makeStyles } from '@material-ui/core/styles';
+
+const useStyles = makeStyles((theme) => ({
+  list: {
+    backgroundColor:'black',
+    color:'orange',
+    marginLeft:"400px",
+    marginRight:"550px",
+  },
+  profile:{
+    display:"flex",
+    alignItems:"center",
+    marginLeft:"250px",
+    fontSize:"35px"
+  },
+}));
 
 const GetOrders = () => {
-
+  const classes = useStyles()
     const dispatch = useDispatch(); 
     const [select, setSelect] = useState('')
     const [products, setProducts] = useState([])
 
     useEffect(() => { 
         dispatch(getOrder())
+        dispatch(allUsers())
       }, [dispatch]);
 
     useEffect(() => {
@@ -29,8 +46,8 @@ const GetOrders = () => {
    
     return (
         <div>
-            <div className='list'>  
-            <h1>Orders list: </h1>  
+            <div className={classes.list}>  
+            <div className={classes.profile}>Orders list: </div>  
         <form>
           <select onChange={(e) => setSelect(e.target.value)}>
               {
@@ -38,7 +55,7 @@ const GetOrders = () => {
               }
           </select>    
         </form>   
-            
+          <div >
 
             {
                 products.length > 0 ? 
@@ -62,6 +79,7 @@ const GetOrders = () => {
                 </Grid>
                 )
             } 
+            </div>
             </div>
         </div>
     )

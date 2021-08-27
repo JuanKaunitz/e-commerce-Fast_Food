@@ -15,28 +15,35 @@ import './GetClients.css'
 const useStyles = makeStyles((theme) => ({
   list: {
     backgroundColor:'black',
-    color:'orange'
+    color:'orange',
+    marginLeft:"400px",
+    marginRight:"550px",
+    
+  },
+  profile:{
+    display:"flex",
+    alignItems:"center",
+    marginLeft:"250px",
+    fontSize:"35px"
   },
   root: {
     display: 'flex',
-    backgroundColor:'black',
-    color:'white'
+    backgroundColor:'white',
+    color:'black',
   },
   content: {
     flex: '1 0 auto',
-    backgroundColor:'black',
-    color:'white'
+    backgroundColor:'white',
+    color:'black'
   },
   cover: {
     width: 100,
     height:80,
-    backgroundColor:'black',
-    color:'white'
   },
   controls: {
     display: 'flex',
     alignItems: 'center',
-    color:'white',
+    color:'black',
     paddingLeft: theme.spacing(1),
     paddingBottom: theme.spacing(1),
   },
@@ -54,8 +61,9 @@ useEffect(()=> {
 
   return (
     <div className={classes.list}>
-    
-    <h1>Clients list</h1>
+    <div className={classes.profile}>
+      Clients list
+    </div>
     
       {
       clients.length > 0 ? clients.map((e) => (
@@ -92,8 +100,8 @@ useEffect(()=> {
                 </Typography>
               </div>
               <div>
-            
-                <Link to={`/clientEdit/${e._id}`}>Editar</Link>
+                <Link to={`/clientEdit/${e._id}`} style={{textDecoration: "none",color:"black"}}
+                >Editar</Link>
               </div>
             
             </Card> 

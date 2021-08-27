@@ -93,7 +93,6 @@ export default function FormularioLogin() {
       password: "",
     });
     history.push("/");
-    //showAlert();
     }
 
   const classes = useStyles();

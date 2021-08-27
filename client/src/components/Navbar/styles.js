@@ -127,6 +127,9 @@ const useStyles = makeStyles((theme) => ({
     display: "flex",
     flexDirection: "column",
   },
+  appBar: {
+    backgroundColor:'black'
+  }
 }));
 
 export default useStyles;

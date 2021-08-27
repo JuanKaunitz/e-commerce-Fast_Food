@@ -106,20 +106,20 @@ server.get ('/:id',async(req,res,next) =>{
   //Ruta que recibe la información del pago
   server.get('/',async  (req, res,next)=>{
    console.info("EN LA RUTA PAGOS ", req.query)
-    //const payment_id= req.query.payment_id
+    const payment_id= req.query.payment_id
    //  console.log("PAYMENT ID", payment_id)
-    //const payment_status= req.query.status
+    const payment_status= req.query.status
    //console.log("PAYMENT STATUS", payment_status)
     const external_reference = req.query.external_reference
    //   console.log("EXTERNAL REFERENCE ", external_reference)
-    //const merchant_order_id= req.query.merchant_order_id;
+    const merchant_order_id= req.query.merchant_order_id;
     //  console.log("MERCHANT ORDER ID ", merchant_order_id)
     try {
       let orderUpdate = await Order.findByIdAndUpdate(
         { _id: external_reference },
         
         {
-          status:"completada",
+          status: "completada",
         }
         );
         //console.log("orden back",orderUpdate )
@@ -138,8 +138,8 @@ server.get ('/:id',async(req,res,next) =>{
           contentHTML = `
           <h1>Your purchase was successful !!!</h1>
           <ul>
-              <li>Username: ${name}</li>
-              <li>User Email: ${email}</li>
+              <li>Name: ${name}</li>
+              <li>Email: ${email}</li>
               <li>OP:${external_reference}</li>
               <li>Date:${date}</li>
               <li>Total:${total}</li>
@@ -152,8 +152,8 @@ server.get ('/:id',async(req,res,next) =>{
           contentHTML = `
           <h1>Your purchase was successful !!!</h1>
           <ul>
-              <li>Username: ${name}</li>
-              <li>User Email: ${email}</li>
+              <li>Name: ${name}</li>
+              <li>Email: ${email}</li>
               <li>OP:${external_reference}</li>
               <li>Date:${date}</li>
               <li>Total:${total}</li>

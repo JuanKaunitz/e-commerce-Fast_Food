@@ -1,17 +1,22 @@
+.container {
+  display: flex;
+  justify-content: center;
+}
 
 .carousel {
-    width:80%;
-    height: 90%;
-    background-size: cover;
-    background-repeat: no-repeat;
-    background: cover;
-    z-index: 10;
-  }
-.carousel1{
-    width: 100%;
-    height: 100%;
-    background-size: cover;
-    background-repeat: no-repeat;
-    background: cover;
-
+  width: 100%;
+  height: 80%;
+  background-size: cover;
+  background-repeat: no-repeat;
+  background: cover;
+  /* z-index: -1; */
+  padding: 0px;
+  margin-bottom: -120px;
+}
+.carousel1 {
+  width: 100%;
+  height: 100%;
+  background-size: cover;
+  background-repeat: no-repeat;
+  background: cover;
 }

@@ -60,7 +60,7 @@ export default function Profile({handleLogout}) {
                 TransitionComponent={Fade}
                 >                
                 <MenuItem onClick={handleClose}>{avatar.email}</MenuItem>
-                <Link to='/myAcount'><MenuItem onClick={handleClose}>My account</MenuItem> </Link>
+                <Link style={{textDecoration: "none",color:"black"}} to='/myAcount'><MenuItem onClick={handleClose}>My account</MenuItem> </Link>
                 <MenuItem onClick={handleOut}>Logout</MenuItem>
             </Menu>
         </div>

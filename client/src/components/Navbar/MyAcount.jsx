@@ -11,6 +11,20 @@ import ProfileCard from './ProfileCard';
 const useStyles = makeStyles((theme) => ({
   root: {
     display: 'flex',
+    marginLeft:"400px",
+    marginRight:"550px"
+  },
+  profile:{
+    fontSize:"50px",
+    fontFamily:"roboto",
+    marginBottom: "40px",
+    justifyContent:"center",
+    marginLeft:"500px"
+  },
+  orders:{
+    marginBottom:"20px",
+    marginTop:"20px",
+    justifyContent:"center"
   },
   content: {
     flex: '1 0 auto',
@@ -25,6 +39,9 @@ const useStyles = makeStyles((theme) => ({
     paddingLeft: theme.spacing(1),
     paddingBottom: theme.spacing(1),
   },
+  list:{
+    marginTop:"150px"
+  }
 }));
 
 
@@ -34,22 +51,8 @@ const MyAcount = () => {
     const ordersHistory = useSelector((state) => state.orderUser);
 
     return (
-        <div className='list'> 
-        <br></br>
-        <br></br>
-        <br></br>
-        <br></br>
-        <br></br>
-        <br></br>
-        <br></br>
-        <br></br>
-        <br></br>
-        <br></br>
-        <br></br>
-        <br></br>
-        <br></br>   
-          <h1 classname='list'>My profile</h1>   
-          <br></br>   
+        <div className={classes.list}>    
+          <div className={classes.profile}>My profile</div>    
           <Card key={client._id} className={classes.root}>
               <div>
                 <CardMedia
@@ -83,26 +86,20 @@ const MyAcount = () => {
                 </Typography>
               </div>             
             </Card> 
-            <h1>Orders History</h1>
 
-            <div className="list">
-      <h1>Products List</h1>
-      {ordersHistory.map((e) => (
-        <ProfileCard
-          key={e._id}
-          name={e.name}
-          id={e._id}
-          image={e.image}
-          price={e.price}
-          avalilable={e.available}
-          stock={e.stock}
-          type={e.type}
-          description={e.description}
-          identifier={e.identifier}
-         
-        />
-      ))}
-    </div>
+            <div className={classes.profile}>
+            <div className={classes.orders}>Orders History</div>
+              {
+              ordersHistory.map((e) => (
+                <ProfileCard
+                  key={e._id}
+                  status={e.status}
+                  id={e._id}
+                  order={e.order}
+                
+                />
+              ))}
+            </div>
         </div>
     )
 }

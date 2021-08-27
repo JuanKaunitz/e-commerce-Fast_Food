@@ -7,9 +7,8 @@ import i7 from "../../assets/i7.png";
 
 const Otters = () => {
   return (
-    <div>
+    <div className="container">
       <Carousel
-        className="carousel"
         autoPlay="true"
         showIndicators="false"
         showArrows="false"

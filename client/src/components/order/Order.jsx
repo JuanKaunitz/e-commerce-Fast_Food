@@ -21,7 +21,8 @@ const useStyles = makeStyles((theme) => ({
 }));
 export default function Order () {
     const dispatch = useDispatch();  
-    const onOrderChange = (e) => {  
+
+  const onOrderChange = (e) => {  
       if(e.target.value === 'null') {
         dispatch(getAllProducts())
       } else {
@@ -30,12 +31,7 @@ export default function Order () {
     }  
 // export default function ControlledOpenSelect() {
   const classes = useStyles();
-  const [age, setAge] = React.useState('');
   const [open, setOpen] = React.useState(false);
-
-  const handleChange = (event) => {
-    setAge(event.target.value);
-  };
 
   const handleClose = () => {
     setOpen(false);
@@ -57,7 +53,6 @@ export default function Order () {
           open={open}
           onClose={handleClose}
           onOpen={handleOpen}
-          value={age}
           onChange={onOrderChange}
         >
           <MenuItem value="">
@@ -65,8 +60,8 @@ export default function Order () {
           </MenuItem>
           <MenuItem value="startLowerPrice">Price: Lower to highest</MenuItem>
           <MenuItem value="startHighestPrice">Price: Highest to lowest</MenuItem>
-          <MenuItem value="startHighestPrice">Ranking: Most recomended</MenuItem>
-          <MenuItem value="startHighestPrice">Ranking: Less recomended</MenuItem>
+         {/*  <MenuItem value="startHighestPrice">Ranking: Most recomended</MenuItem>
+          <MenuItem value="startHighestPrice">Ranking: Less recomended</MenuItem> */}
         </Select>
       </FormControl>
     </div>

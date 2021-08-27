@@ -28,6 +28,7 @@ import Checkout from "./components/payment/Checkout.js";
 import Option from "./components/Pasarela/Option.jsx";
 import Maps from "./components/Pasarela/Maps.jsx";
 import Succes from "./components/succesPayment/Succes.jsx";
+import Footer from "./components/Footer/Footer";
 import "./App.css";
 
 const KEY_STRIPE=process.env
@@ -71,10 +72,11 @@ function App() {
               <Checkout />
             </Elements>
           )}
-        />
+          />
         
         <Route exact path="/myAcount" component={MyAcount} />
         <Route exact path="/register" component={Register} />
+          <Footer/>
       </BrowserRouter>
     </div>
   );
