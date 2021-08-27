@@ -192,7 +192,7 @@ const NewProduct = (props) => {
         <br></br>
         <br></br>
         <Button className={classes.submit}
-      
+      type='submit'
            >
           Create
         </Button>

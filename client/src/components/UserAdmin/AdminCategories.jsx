@@ -51,7 +51,11 @@ const AdminCategories = () => {
               name={e.name}
               image={e.image}
               types={e.types?.map((j) => (
-                <ul>{j.name}</ul>
+                <ul>
+                  <li>
+                  {j.name}
+                  </li>
+                </ul>
               ))}
               deleteCategory={handleDeleteCategory}
             />

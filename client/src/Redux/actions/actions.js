@@ -146,11 +146,8 @@ export const getById = (id) => async (dispatch) => {
 
 //Creando una categoria.
 export const createCategory = (input) => async (dispatch) => {
-   
     try {
         const category = await axios.post(`${URL}/food/api/category`,input);
-        // const category = await axios.post(`${URL}/food/api/category`, input)
-     
         dispatch({
             type: CREATE_CATEGORY,
             payload: category.data
@@ -471,7 +468,7 @@ export const mercadopago = (id, date) => async (dispatch) =>{
             const res = await axios.get(`${URL}/food/api/mercadopago/${id}`)
             const res1 = await axios.get(`${URL}/food/api/mercadopago/name/${date.name}`)
             const res2 = await axios.get(`${URL}/food/api/mercadopago/email/${date.email}`)
-           
+
        
         dispatch({
             type: MERCADOPAGO,
