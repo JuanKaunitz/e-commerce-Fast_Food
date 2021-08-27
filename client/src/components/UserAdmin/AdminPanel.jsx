@@ -47,7 +47,7 @@ export default function AdminPanel() {
     setValue(newValue);
   };
   return (
-    <Grid cointaner>
+    <Grid container>
       <Grid item lg={12} md={6} xs={12}>
         
           <Tabs
