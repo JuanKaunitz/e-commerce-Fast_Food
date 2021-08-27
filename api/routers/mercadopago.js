@@ -28,6 +28,12 @@ server.get('/email/:email', (req,res,next) => {
   res.send("llego email")
 })
 
+server.get('/coupon/:cupon', (req,res,next) => {
+  console.log("cupon:  ", req.params)
+  cupon= req.params.cupon;
+  res.send("llego cupon")
+})
+
 server.get('/data', (req,res, next) => {
   data = req.query
   console.log("DATA...", data)
@@ -44,11 +50,21 @@ server.get ('/:id',async(req,res,next) =>{
   //console.log("ORDEN BACK" ,carrito)
   //res.json(order);
 
-  const items_ml = carrito.order.map(i =>({
-      title:i.name,
-      unit_price : parseInt(i.price),
-      quantity : i.count
-  })) 
+  // const items_ml = carrito.order.map(i =>({
+  //     title:i.name,
+  //     unit_price : parseInt(i.price),
+  //     quantity : i.count
+  // })) 
+  const precioTotal = carrito.order.map(e => {
+    let precio = parseInt(e.price)
+    return precio * e.count
+  });
+
+ 
+  const total =  precioTotal.reduce((a,b) => a + b) - cupon;
+  const items_ml=[{ title:'producto',
+  unit_price:total,
+  quantity: 1}]
 
  //Crea un objeto de preferencia 
 
