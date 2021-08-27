@@ -82,7 +82,7 @@ const NewCategory = (props) => {
     console.log("INPUT-SUBMIT: ", input);
     setInput(input);
     saveCategory();
-    props.history.push("/adminCategories");
+    // props.history.push("/adminCategories");
   };
 
   const handleInputChange = function (e) {

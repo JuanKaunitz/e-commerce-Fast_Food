@@ -9,6 +9,7 @@ import DeleteIcon from "@material-ui/icons/Delete";
 import Typography from "@material-ui/core/Typography";
 import IconButton from "@material-ui/core/IconButton";
 import { Button } from "@material-ui/core";
+import swal from "sweetalert";
 import {
   updateCart,
   totalProductosCarrito,
@@ -18,6 +19,8 @@ import {
   deleteOrden,
   getUserById,
   bandOrderUser,
+  mercadopago,
+  couponValue,
 } from "../../Redux/actions/actions";
 import {
   deleteCart,
@@ -27,6 +30,8 @@ import {
   sumaCantidadTotal,
   mergeCart,
 } from "./utilsCarts";
+import Cupon from "./Coupon";
+import { useHistory } from "react-router-dom";
 
 const useStyles = makeStyles(() => ({
   root: {
@@ -34,13 +39,13 @@ const useStyles = makeStyles(() => ({
     margin: "auto",
     height: "auto",
     maxWidth: 1024,
-    marginTop: 110
+    marginTop: 110,
   },
   color: {
     color: "black",
   },
   color1: {
-    backgroundColor:"orange",
+    backgroundColor: "orange",
     color: "white",
   },
 }));
@@ -54,7 +59,8 @@ const Cart = (props) => {
   const token = useSelector((state) => state.clientToken);
   const orderUser = useSelector((state) => state.orderUser);
   const band = useSelector((state) => state.bandOrderUser);
-
+  const coupon = useSelector((state) => state.getDiscount);
+  const history = useHistory();
   //const [datos, setDatos] = useState("")
   //localStorage.removeItem("order");
 
@@ -96,7 +102,7 @@ const Cart = (props) => {
       status: "carrito",
       date: fecha.toUTCString(),
     };
-    console.log("ORDER PARA ENVIAR", order);
+    // console.log("ORDER PARA ENVIAR", order);
     dispatch(orderRedux(order));
     if (idOrder) {
       dispatch(updateOrderFinal(idOrder, order));
@@ -146,6 +152,15 @@ const Cart = (props) => {
       cartBack(delet);
     }
   }
+  const total = sumaPrecioTotal(carts);
+  function resta() {
+    if (coupon.length > 0 && coupon[0].value < total) {
+      const cupon = coupon[0].value;
+      console.log("CUPON DE CART", cupon);
+      dispatch(couponValue(cupon));
+      return total - coupon[0].value;
+    } else return total;
+  }
 
   function handleAdd(id) {
     const sum = sumProduct(id);
@@ -169,7 +184,13 @@ const Cart = (props) => {
     }
   }
 
-  function deleteCompleteOrder() {
+   function deleteCompleteOrder() {
+    swal({
+      title: "Are you sure?",
+      text: "Cart deleted",
+      icon: "warning",
+      button: "Confirm",
+    });
     localStorage.removeItem("order");
     dispatch(updateCart([]));
     dispatch(totalProductosCarrito(0));
@@ -183,24 +204,22 @@ const Cart = (props) => {
 
   const classes = useStyles();
 
-  const precioTotal = sumaPrecioTotal(carts);
-
   const setBuy = () => {
-    if(token){
+    if (token) {
       props.history.push("/option");
-    }else{
-
+    } else {
       props.history.push("/login");
     }
   };
+
+
+
 
   return (
     <div className={classes.root}>
       <h1 className={classes.color}>THIS IS YOUR CART</h1>
       <IconButton onClick={() => deleteCompleteOrder()}>
-        <Typography className={classes.color}>
-          Be carefull, this button erase the entire cart: ==
-        </Typography>
+        <Typography className={classes.color}>Erase all</Typography>
         <DeleteIcon className={classes.color} />
       </IconButton>
       <Grid container className={classes.root} spacing={2}>
@@ -222,8 +241,20 @@ const Cart = (props) => {
             ))
           : null}
       </Grid>
-      <h1 className={classes.color}>TOTAL: ${precioTotal}</h1>
-      <Button onClick={() => setBuy()} variant="contained" className={classes.color1}>
+      <Cupon />
+      {coupon.length > 0 ? (
+        <h1 className={classes.color}>
+          TOTAL:<strike>{total}</strike> ${resta()}
+        </h1>
+      ) : (
+        <h1 className={classes.color}>TOTAL: ${resta()}</h1>
+      )}
+
+      <Button
+        onClick={() => setBuy()}
+        variant="contained"
+        className={classes.color1}
+      >
         Checkout
       </Button>
     </div>
