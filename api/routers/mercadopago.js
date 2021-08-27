@@ -13,6 +13,7 @@
      access_token: ACCESS_TOKEN
 
  });
+ var cupon = 0;
 var name;
 var email;
 var data;
@@ -31,9 +32,12 @@ server.get('/email/:email', (req,res,next) => {
 server.get('/coupon/:cupon', (req,res,next) => {
   console.log("cupon:  ", req.params)
   cupon= req.params.cupon;
+  if(!cupon){
+    cupon = 0;
+    res.send("no llego cupon")
+  }
   res.send("llego cupon")
 })
-
 server.get('/data', (req,res, next) => {
   data = req.query
   console.log("DATA...", data)
@@ -61,7 +65,7 @@ server.get ('/:id',async(req,res,next) =>{
   });
 
  
-  const total =  precioTotal.reduce((a,b) => a + b);
+  const total =  precioTotal.reduce((a,b) => a + b) - cupon;
   const items_ml=[{ title:'producto',
   unit_price:total,
   quantity: 1}]
@@ -126,7 +130,7 @@ server.get ('/:id',async(req,res,next) =>{
           let precio = parseInt(e.price)
           return precio * e.count
         });
-        const total = precioTotal.reduce((a,b) => a + b);
+        const total = precioTotal.reduce((a,b) => a + b) - cupon;
         //console.log("Total", total)
         //ENVIO DE EMAIL
         //console.log("namename", name)
