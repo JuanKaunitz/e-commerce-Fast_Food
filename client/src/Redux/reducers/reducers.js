@@ -70,7 +70,8 @@ const initialState = {
   bandOrderUser: true,
   resetPassword: {},
   idMercadopago: {},
-  getNames: {}
+  getNames: {},
+  getDiscount: {}
 };
 
 const rootReducer = (state = initialState, action) => {
@@ -298,6 +299,11 @@ const rootReducer = (state = initialState, action) => {
           clientToken:action.payload.token,
           bandOrderUser:false
         }
+    case 'GET_DISCOUNT': 
+    return {
+      ...state,
+      getDiscount: action.payload 
+    }  
         
     default:
       return state;

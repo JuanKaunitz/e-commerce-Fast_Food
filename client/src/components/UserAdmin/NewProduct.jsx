@@ -3,11 +3,11 @@ import { createProduct } from "../../Redux/actions/actions";
 import { useDispatch, useSelector } from "react-redux";
 import { getCategories, getTypes } from "../../Redux/actions/actions";
 import styles from "./styles.module.css";
-// import FileDrop from "../Form/FileDrop";
 import { makeStyles } from "@material-ui/core/styles";
 import { Button, TextField, Typography } from "@material-ui/core";
-// import Creatable from "react-select/creatable";
-// import Select from "react-select"
+import { useHistory } from "react-router-dom";
+
+
 
 const useStyles = makeStyles((theme) => ({
   paper: {
@@ -53,7 +53,7 @@ const useStyles = makeStyles((theme) => ({
 
 }));
 
-const NewProduct = (props) => {
+const NewProduct = () => {
   const classes = useStyles();
   const dispatch = useDispatch();
   const category = useSelector((state) => state.allCategories);
@@ -63,9 +63,9 @@ const NewProduct = (props) => {
     dispatch(getCategories());
     dispatch(getTypes());
   }, [dispatch]);
-
-
-
+   
+   const history = useHistory();
+  
   const [input, setInput] = useState({
     name:"",
     identifier:2,
@@ -92,7 +92,7 @@ const NewProduct = (props) => {
     e.preventDefault();
     setInput(input);
     saveProduct();
-    // props.history.push("/AdminPanel");
+    history.push("/AdminPanel");
   };
 
 
@@ -191,8 +191,8 @@ const NewProduct = (props) => {
         </select>
         <br></br>
         <br></br>
-        <Button className={classes.submit}
-      type='submit'
+        <Button type="submit" className={classes.submit}
+      
            >
           Create
         </Button>

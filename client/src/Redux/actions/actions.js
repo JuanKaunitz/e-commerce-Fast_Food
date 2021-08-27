@@ -515,3 +515,30 @@ export const getByName = (name) => (dispatch) => {
       payload: name
   })
 }
+
+
+export const discountCoupon =  (value) => async (dispatch) => {
+    console.log('VALUE', value)
+    try {
+     const res = await axios.get(`${URL}/food/api/coupon/${value}`)
+
+     console.log('RESPUESTA: ', res.data)
+     dispatch({
+
+         type: 'GET_DISCOUNT',
+         payload: res.data
+     })
+    } catch (err){
+        console.log(err)
+    }
+}
+
+export const couponValue =(cupon)=>async(dispatch)=>{
+    try {
+        const res3 = await axios.get(`${URL}/food/api/mercadopago/coupon/${cupon}`)
+        
+    }
+    catch (error) {
+    
+    }
+}
