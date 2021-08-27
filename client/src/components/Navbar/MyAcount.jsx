@@ -11,15 +11,15 @@ import ProfileCard from './ProfileCard';
 const useStyles = makeStyles((theme) => ({
   root: {
     display: 'flex',
-    marginLeft:"400px",
-    marginRight:"550px"
+   
   },
   profile:{
     fontSize:"50px",
     fontFamily:"roboto",
     marginBottom: "40px",
     justifyContent:"center",
-    marginLeft:"500px"
+    marginLeft:"100px"
+  
   },
   orders:{
     marginBottom:"20px",
@@ -40,7 +40,7 @@ const useStyles = makeStyles((theme) => ({
     paddingBottom: theme.spacing(1),
   },
   list:{
-    marginTop:"150px"
+    marginTop:"100px"
   }
 }));
 

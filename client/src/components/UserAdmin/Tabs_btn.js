@@ -8,6 +8,8 @@ import NewProduct from './NewProduct'
 import NewCategory from './NewCategory'
 import AdminCategories from './AdminCategories'
 import OrdersPanel from './OrdersPanel'
+import MyAcount from "../Navbar/MyAcount";
+
 
 function TabPanel(props) {
   const { children, value, index, ...other } = props;
@@ -40,13 +42,8 @@ const useStyles = makeStyles((theme) => ({
     flexGrow: 1,
     // backgroundColor: 'white',
     padding: 0,
-  },
-  productslist:{
-    backgroundColor: 'black',
-  },
-  getclients:{
-    backgroundColor: 'black',
-  },
+    width:'100%'
+  }
   
 }));
 
@@ -72,6 +69,9 @@ export default function SimpleTabs({ value, setvalue }) {
         </TabPanel>
         <TabPanel value={value} index={5}>
           <OrdersPanel />
+        </TabPanel>
+        <TabPanel value={value} index={6}>
+          <MyAcount />
         </TabPanel>
     </div>
   );

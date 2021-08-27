@@ -14,17 +14,18 @@ import './GetClients.css'
 
 const useStyles = makeStyles((theme) => ({
   list: {
-    backgroundColor:'black',
+    // backgroundColor:'black',
+    width:'80%',
     color:'orange',
-    marginLeft:"400px",
-    marginRight:"550px",
+    
     
   },
   profile:{
     display:"flex",
     alignItems:"center",
     marginLeft:"250px",
-    fontSize:"35px"
+    fontSize:"35px",
+    fontWeight:800
   },
   root: {
     display: 'flex',

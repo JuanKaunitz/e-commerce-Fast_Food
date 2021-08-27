@@ -6,24 +6,33 @@ import { makeStyles } from '@material-ui/core/styles';
 
 const useStyles = makeStyles((theme) => ({
   list: {
-
-    backgroundColor:'black',
+    width:'90%',
+    // backgroundColor:'black',
     color:'white',
     textAlign:'center',
     borderRadius:0.5
   },
   
   list1: {
-    backgroundColor:'black',
+    // backgroundColor:'black',
+    width:'100%',
     color:'orange',
     fontSize: '20px',
     textAlign:'center',
-    borderRadius:0.5
+    borderRadius:0.5,
+    '& h1':{
+      display:"flex",
+      alignItems:"center",
+      marginLeft:"250px",
+      fontSize:"35px",
+      fontWeight:800
+    }
   },
   products:{
-    alignItems:'center',
     display: 'flex',
-    justifyContent: 'space-around',
+    alignItems:'center',
+    width:'100%',
+    // justifyContent: 'space-around',
 
   },
   

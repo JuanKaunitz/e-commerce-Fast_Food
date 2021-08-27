@@ -17,7 +17,11 @@ const useStyles = makeStyles((theme) => ({
     color: "orange",
     alignItems: "center",
     textAlign: "center",
-    marginTop: '105px'
+    marginTop: '105px',
+    '& span':{
+    fontSize:15,
+    fontWeight: 800
+    }
   },
 }));
 
@@ -58,6 +62,7 @@ export default function AdminPanel() {
             <Tab label="New Product" {...a11yProps(3)} />
             <Tab label="Categories Panel" {...a11yProps(4)} />
             <Tab label="Orders Panel" {...a11yProps(5)} />
+            <Tab label="My Acount" {...a11yProps(6)} />
           </Tabs>
           <TabsBtn value={value} setValue={setValue} />
     
