@@ -2,8 +2,10 @@ import React, { useEffect } from "react";
 import { useDispatch } from "react-redux";
 import swal from "sweetalert";
 import { recoveryData } from "../../Redux/actions/actions";
+import { useHistory } from "react-router";
 
 export default function Succes() {
+  const history = useHistory()
   const dispatch = useDispatch();
   localStorage.removeItem("order");
   localStorage.removeItem("idOrderUser");
@@ -22,11 +24,10 @@ useEffect(() => {
   console.log("CLIENT", client)
   dispatch(recoveryData(token, client))
 }, [dispatch])
-
+history.push('/');
 
   return (
     <div style={{marginTop: "100px"}}>
-      <h1>Order Finished</h1>
     </div>
   );
 }

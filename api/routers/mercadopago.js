@@ -129,8 +129,11 @@ server.get ('/:id',async(req,res,next) =>{
               <li>Total:${total}</li>
           </ul>
           <p>Thanks for buying in our store!</p>
+          <p>Use this discount coupon in your next shipping</p>
+          <p>159648</p>
           <p>We always wait for you in http://localhost:3000/</p>
           <p>ENJOY YOUR MEAL!!!</p>
+
           `;
         }else{
           contentHTML = `
@@ -150,6 +153,8 @@ server.get ('/:id',async(req,res,next) =>{
             <li>Zip Code: ${data.zipCode}</li>
           </ul>
           <p>Thanks for buying in our store!</p>
+          <p>Use this discount coupon in your next shipping</p>
+          <p>159648</p>
           <p>We always wait for you in http://localhost:3000/</p>
           <p>ENJOY YOUR MEAL!!!</p>
           `;

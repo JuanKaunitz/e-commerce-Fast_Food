@@ -33,6 +33,7 @@ import {
   RESET_PASSWORD,
   NEW_PASSWORD,
   MERCADOPAGO,
+  RECOVERY_DATA
   /* ASC,
   DESC */
 } from "../constants";
@@ -290,6 +291,13 @@ const rootReducer = (state = initialState, action) => {
         ...state,
         getNames: response
       }   
+      case RECOVERY_DATA:
+        return{
+          ...state,
+          client:action.payload.user,
+          clientToken:action.payload.token,
+          bandOrderUser:false
+        }
         
     default:
       return state;

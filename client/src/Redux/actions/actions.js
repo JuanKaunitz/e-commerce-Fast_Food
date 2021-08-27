@@ -34,6 +34,7 @@ import {
     NEW_PASSWORD,
     MERCADOPAGO,
     LOADING,
+    RECOVERY_DATA
 } from '../constants'
 
 import dotenv from 'dotenv'
@@ -212,8 +213,9 @@ export const categoryName = (name) => (dispatch) => {
 };
 
 export const recoveryData = (token, client) => (dispatch) =>{
+    
     dispatch({
-        type:LOGIN_CLIENT,
+        type:RECOVERY_DATA,
         payload:{
             token: token,
             user: client
