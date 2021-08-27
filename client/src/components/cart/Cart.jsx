@@ -241,14 +241,14 @@ const Cart = (props) => {
             ))
           : null}
       </Grid>
-      <Cupon />
-      {coupon.length > 0 ? (
+      {/* <Cupon /> */}
+      <h1 className={classes.color}>TOTAL: ${total}</h1>
+      {/* {coupon.length > 0 ? (
         <h1 className={classes.color}>
           TOTAL:<strike>{total}</strike> ${resta()}
         </h1>
       ) : (
-        <h1 className={classes.color}>TOTAL: ${resta()}</h1>
-      )}
+      )} */}
 
       <Button
         onClick={() => setBuy()}
