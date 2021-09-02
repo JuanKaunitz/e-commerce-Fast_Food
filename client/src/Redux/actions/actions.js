@@ -43,8 +43,8 @@ import axios from 'axios';
 // import { bindActionCreators } from 'redux';
 dotenv.config()
 
-// const URL = process.env.REACT_APP_BACKEND_URL 
-const URL = 'http://localhost:5001';
+const URL = process.env.REACT_APP_BACKEND_URL 
+// const URL = 'http://localhost:5001';
 
 //Obteniendo todos las foods.
 export const getAllProducts = () => async (dispatch) => {
