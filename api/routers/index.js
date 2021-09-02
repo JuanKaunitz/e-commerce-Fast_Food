@@ -10,7 +10,7 @@ const routerTypes = require('./routerTypes')
 const routerEmails = require('./routerEmails');
 const router = express.Router();
 const mercadopago= require('./mercadopago')
-const routerCoupon = require('./routerCoupon');
+// const routerCoupon = require('./routerCoupon');
 module.exports = () => {
   //Users endpoints para crear un ausuario para el sistema
   router.use("/food/api/user", routerUser);
@@ -33,6 +33,6 @@ module.exports = () => {
   // Email
   router.use('/food/api/send-email', routerEmails);
   //Coupon
-  router.use('/food/api/coupon', routerCoupon);
+  // router.use('/food/api/coupon', routerCoupon);
   return router;
 };

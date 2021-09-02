@@ -13,6 +13,7 @@ const useStyles = makeStyles((theme) => ({
   root: {
     display: "flex",
     maxWidth: "70%",
+    backgroundSize: 'contain'
   },
   btn_root: {
     border: "1px solid",
@@ -26,6 +27,7 @@ const useStyles = makeStyles((theme) => ({
   cover: {
     width: 100,
     height: 80,
+    backgroundSize: 'contain'
   },
   controls: {
     display: "flex",
@@ -50,6 +52,7 @@ const useStyles = makeStyles((theme) => ({
   color: {
     backgroundColor:"orange",
     color: "white",
+    backgroundSize: 'contain'
   },
 }));
 

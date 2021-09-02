@@ -22,7 +22,7 @@ const useStyles = makeStyles((theme) => ({
   cover: {
     width: 120,
     height: 120,
-    backgroundSize:100
+    backgroundSize:'contain'
   },
   controls: {
     display: "flex",

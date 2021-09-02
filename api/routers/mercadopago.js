@@ -28,11 +28,11 @@ server.get('/email/:email', (req,res,next) => {
   res.send("llego email")
 })
 
-server.get('/coupon/:cupon', (req,res,next) => {
-  console.log("cupon:  ", req.params)
-  cupon= req.params.cupon;
-  res.send("llego cupon")
-})
+// server.get('/coupon/:cupon', (req,res,next) => {
+//   console.log("cupon:  ", req.params)
+//   cupon= req.params.cupon;
+//   res.send("llego cupon")
+// })
 
 server.get('/data', (req,res, next) => {
   data = req.query
@@ -61,7 +61,7 @@ server.get ('/:id',async(req,res,next) =>{
   });
 
  
-  const total =  precioTotal.reduce((a,b) => a + b) - cupon;
+  const total =  precioTotal.reduce((a,b) => a + b);
   const items_ml=[{ title:'producto',
   unit_price:total,
   quantity: 1}]

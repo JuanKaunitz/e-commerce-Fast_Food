@@ -30,6 +30,7 @@ import Maps from "./components/Pasarela/Maps.jsx";
 import Succes from "./components/succesPayment/Succes.jsx";
 import Footer from "./components/Footer/Footer";
 import "./App.css";
+import ClientReview from "./components/UserAdmin/ClientReview.jsx";
 
 const KEY_STRIPE=process.env
 
@@ -65,6 +66,7 @@ function App() {
         <Route exact path="/shipping" component={Shipping} />
         <Route exact path="/maps" component={Maps} />
         <Route exact path="/succes" component={Succes} />
+        <Route exact path="/review" component={ClientReview} />
         <Route
           path="/payment"
           render={() => (
