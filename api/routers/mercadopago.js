@@ -180,13 +180,13 @@ server.get ('/:id',async(req,res,next) =>{
         }
 
 
-        await enviarEmail.enviar({
-            email,
-            name,
-            contentHTML
-        })
-        //.then(result => res.json('enviado'))
-        //.catch(error => console.log(error.message))
+        // await enviarEmail.enviar({
+        //     email,
+        //     name,
+        //     contentHTML
+        // })
+        // .then(result => res.json('enviado'))
+        // .catch(error => console.log(error.message))
 
 
         //console.log("ORDER UPDATE", orderUpdate)
