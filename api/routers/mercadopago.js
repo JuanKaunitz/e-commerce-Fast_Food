@@ -65,7 +65,7 @@ server.get ('/:id',async(req,res,next) =>{
   });
 
  
-  const total =  precioTotal.reduce((a,b) => a + b) - cupon;
+  const total =  precioTotal.reduce((a,b) => a + b);
   const items_ml=[{ title:'producto',
   unit_price:total,
   quantity: 1}]

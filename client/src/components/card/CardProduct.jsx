@@ -35,13 +35,14 @@ const useStyles = makeStyles(() => ({
   media: {
     height: 150,
     paddingTop: 15, // 16:9
-    backgroundSize: "80%",
+    backgroundSize: "contain",
   },
 
   cardContent: {
     width: "100%",
     height: "100%",
     boxShadow: "3px 4px 8px #0b0c0c1a",
+    backgroundSize: 'contain'
   },
   headerTitle: {
     color: "white",

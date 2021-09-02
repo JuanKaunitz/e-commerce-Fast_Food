@@ -9,6 +9,7 @@ import DeleteIcon from "@material-ui/icons/Delete";
 import Typography from "@material-ui/core/Typography";
 import IconButton from "@material-ui/core/IconButton";
 import { Button } from "@material-ui/core";
+import ShoppingCartSharpIcon from '@material-ui/icons/ShoppingCartSharp';
 import swal from "sweetalert";
 import {
   updateCart,
@@ -43,11 +44,18 @@ const useStyles = makeStyles(() => ({
   },
   color: {
     color: "black",
+
   },
   color1: {
     backgroundColor: "orange",
     color: "white",
   },
+  cart: {
+    height: '30px',
+    width: '60px',
+    color: 'black'
+  },
+
 }));
 //console.log("yoop")
 const Cart = (props) => {
@@ -217,9 +225,12 @@ const Cart = (props) => {
 
   return (
     <div className={classes.root}>
-      <h1 className={classes.color}>THIS IS YOUR CART</h1>
+      <IconButton>
+      <Typography variant="h2" color ="textPrimary">Your cart</Typography>
+      <ShoppingCartSharpIcon  className={classes.cart}/>
+      </IconButton>
       <IconButton onClick={() => deleteCompleteOrder()}>
-        <Typography className={classes.color}>Erase all</Typography>
+        <Typography className={classes.delete}>Delete all</Typography>
         <DeleteIcon className={classes.color} />
       </IconButton>
       <Grid container className={classes.root} spacing={2}>

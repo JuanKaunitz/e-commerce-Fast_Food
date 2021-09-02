@@ -30,6 +30,7 @@ import Maps from "./components/Pasarela/Maps.jsx";
 import Succes from "./components/succesPayment/Succes.jsx";
 import Footer from "./components/Footer/Footer";
 import "./App.css";
+import ClientReview from "./components/UserAdmin/ClientReview.jsx";
 
 const KEY_STRIPE=process.env
 

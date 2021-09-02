@@ -14,15 +14,18 @@ const useStyles = makeStyles((theme) => ({
       display: "flex",
       flexDirection: "column",
       alignItems: "center",
-      maxWidth: 600,
+      maxWidth: 400,
       backgroundColor: "#ffff",
-      minHeight: 300,
+      minHeight: 150,
       borderRadius: 10,
+      justifyContent: 'center'
     },
   
     form: {
       width: "80%", // Fix IE 11 issue.
-      marginTop: theme.spacing(1),
+      marginTop: theme.spacing(0),
+
+    
     },
     submit: {
       margin: theme.spacing(3, 0, 2),
@@ -33,7 +36,7 @@ const Cupon = () => {
     const dispatch = useDispatch();
   // const messages = useSelector(state => state.newPassword);
 
-  const [input,setInput]= useState(0);
+  const [input,setInput]= useState("");
 
 
 
@@ -54,7 +57,7 @@ const Cupon = () => {
     return (
         <div className={classes.paper}>
         <Typography component="h1" variant="h5">
-        Enter your cupon code if you have one 
+        Enter your cupon code
         </Typography>
         <form className={classes.form} noValidate onSubmit={handleSubmit} >
        
