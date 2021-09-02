@@ -3,9 +3,7 @@ import FormRegister from './FormRegister'
 
 const FormNav = () => {
     return (
-        <div>
         <FormRegister />
-        </div>
     )
 }
 

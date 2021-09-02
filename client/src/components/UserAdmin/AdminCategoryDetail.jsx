@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState} from "react";
 import { useDispatch, useSelector } from "react-redux";
 import {  getUpdateCategory,createNewType } from "../../Redux/actions/actions";
 import { Button, Typography } from "@material-ui/core";
@@ -7,7 +7,6 @@ import useStyles from "./styles";
 export default function AdminCategoryDetail(props) {
   const categoryEdit = useSelector((state) => state.editCategory);
   const categories = useSelector((state) => state.allCategories);
-  //const types = useSelector((state) => state.types);
 
   const classes = useStyles();
   const dispatch = useDispatch();

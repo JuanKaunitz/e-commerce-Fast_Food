@@ -41,7 +41,6 @@ const GetOrders = () => {
     }, [select])
 
     const getAll = useSelector((state) => state.allOrders);
-    console.log(getAll)
     const options = ['...','carrito', 'creada', 'procesando', 'cancelado', 'completada']
 
    

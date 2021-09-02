@@ -116,7 +116,6 @@ const NewProduct = () => {
           />
         </div>
         <div className="filedrop">
-          {/* <FileDrop onChange={handleInputChange} /> */}
           <label className={classes.label}> Agregue una imagen</label>
           <TextField
             className={classes.input_text}
@@ -176,8 +175,7 @@ const NewProduct = () => {
               </option>
             ))}
         </select>
-         <br></br>
-         <br></br>
+         
         <Typography className="filterName"></Typography>
 
         <select className={classes.select_types} onChange={handleInputChange} name='type'>
@@ -189,8 +187,7 @@ const NewProduct = () => {
               </option>
             ))}
         </select>
-        <br></br>
-        <br></br>
+       
         <Button type="submit" className={classes.submit}
       
            >

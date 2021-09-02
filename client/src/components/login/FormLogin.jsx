@@ -82,8 +82,6 @@ export default function FormularioLogin() {
     );
   };
 
-
-  
   const handleSubmit = async(e) => {
     e.preventDefault();
     console.log(input);
@@ -96,13 +94,11 @@ export default function FormularioLogin() {
     }
 
   const classes = useStyles();
-
   return (
     <Container component="main" maxWidth="xs">
         <CssBaseline />
       <div className={classes.paper}>
-         <br>
-          </br>
+        
         <Avatar className={classes.avatar}>
           <LockOutlinedIcon />
         </Avatar>
@@ -150,7 +146,7 @@ export default function FormularioLogin() {
           </Button>
         </form>
         <Grid container>
-              <Grid item xs>
+              <Grid item >
                 <Link href="/reset-password" variant="body2">
                   Forgot password?
                 </Link>
@@ -161,15 +157,9 @@ export default function FormularioLogin() {
                 </Link>
               </Grid>
             </Grid>
-            <Box mt={5}>
-            </Box>
+           
       </div>
-      <br>
-      </br>
-      <br>
-      </br>
-      <br>
-      </br>
+   
     </Container>
   );
 }

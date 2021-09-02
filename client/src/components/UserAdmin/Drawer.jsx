@@ -45,7 +45,6 @@ export default function Drawer2() {
   return (
     <div className={classes.root}>
       <CssBaseline />
-      
       <Drawer
         className={classes.drawer}
         variant="permanent"

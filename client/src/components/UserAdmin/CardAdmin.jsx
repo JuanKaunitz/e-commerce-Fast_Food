@@ -67,13 +67,10 @@ export default function CardAdmin({
         <Typography variant="subtitle1" >
           <span>${price}</span>
         </Typography>
-      </div>
-      
+      </div> 
         <IconButton   onClick={() => deleteCart(id)}>
           <DeleteIcon  className={classes.icon} />
         </IconButton>
-        
-
         <Link to={`/admProdDetail/${id}`} className={classes.root1}>Editar</Link>
     </Card>
   );

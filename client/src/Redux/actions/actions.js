@@ -316,9 +316,8 @@ export const bandOrderUser = () => (dispatch) => {
 export const updateOrderFinal = (id,order) => async(dispatch) => {
         //console.log("ORDEN PARA ACTUALIZAR", order)
     try {
-        const res = await axios.put(`${URL}/food/api/order/${id}`, order);
+        await axios.put(`${URL}/food/api/order/${id}`, order);
         //console.log("ORDEN ACTUALIZACION", res)
-        
     } catch (err) {
     console.log(err)
     }
@@ -359,8 +358,9 @@ export const deleteOrden = (id, borrado) => async (dispatch) => {
 export const getOrderById = (id) => async(dispatch) => {
     //console.log('GET BY ID',id) 
     try {
-        const res =  await axios.get(`${URL}/food/api/order/${id}`)
-        //console.log('ORDER POR ID',res.data)        
+       await axios.get(`${URL}/food/api/order/${id}`)
+        //console.log('ORDER POR ID',res.data)      
+
         dispatch({
             
         });
@@ -451,7 +451,7 @@ export const createGoogleUser = (user) => async (dispatch) => {
 export const changeStatus = (id, input) => async (dispatch) => {
 
     try {
-        const res = await axios.put(`${URL}/food/api/user/${id}`,input );
+       await axios.put(`${URL}/food/api/user/${id}`,input );
        
         dispatch({
             type:CLIENT_STATUS,  
@@ -466,8 +466,8 @@ export const mercadopago = (id, date) => async (dispatch) =>{
    
     try {
             const res = await axios.get(`${URL}/food/api/mercadopago/${id}`)
-            const res1 = await axios.get(`${URL}/food/api/mercadopago/name/${date.name}`)
-            const res2 = await axios.get(`${URL}/food/api/mercadopago/email/${date.email}`)
+             await axios.get(`${URL}/food/api/mercadopago/name/${date.name}`)
+            await axios.get(`${URL}/food/api/mercadopago/email/${date.email}`)
 
        
         dispatch({
@@ -480,7 +480,7 @@ export const mercadopago = (id, date) => async (dispatch) =>{
 }
 
 export const envioData = (input) => async() =>{
-    const res3 = await axios.get(`${URL}/food/api/mercadopago/data?address=${input.address}&city=${input.city}&province=${input.province}&zipCode=${input.zipCode}`)
+    await axios.get(`${URL}/food/api/mercadopago/data?address=${input.address}&city=${input.city}&province=${input.province}&zipCode=${input.zipCode}`)
     // console.log("RESPUESTA 3", res3.data)
 }
 
@@ -535,7 +535,7 @@ export const discountCoupon =  (value) => async (dispatch) => {
 
 export const couponValue =(cupon)=>async(dispatch)=>{
     try {
-        const res3 = await axios.get(`${URL}/food/api/mercadopago/coupon/${cupon}`)
+        await axios.get(`${URL}/food/api/mercadopago/coupon/${cupon}`)
         
     }
     catch (error) {

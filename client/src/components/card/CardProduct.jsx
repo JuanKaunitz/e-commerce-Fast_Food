@@ -4,7 +4,7 @@ import { makeStyles } from "@material-ui/core/styles";
 import Card from "@material-ui/core/Card";
 import CardMedia from "@material-ui/core/CardMedia";
 import AddShoppingCartIcon from "@material-ui/icons/AddShoppingCart";
-import { Rating } from "@material-ui/lab";
+// import { Rating } from "@material-ui/lab";
 import {
   updateCart,
   totalProductosCarrito,
@@ -83,7 +83,7 @@ export default function CardProduct({
   const [counter, setCounter] = useState(0);
   const client = useSelector((state) => state.client);
   const token = useSelector((state) => state.clientToken);
-  const [value, setValue] = useState(2);
+  // const [value, setValue] = useState(2);
 
   function cartBack(cart) {
     const idOrder = localStorage.getItem("idOrderUser");
@@ -150,7 +150,6 @@ export default function CardProduct({
                 }}
               /> */}
               <Button
-                className={classes.button}
                 variant="contained"
                 className={classes.color}
                 onClick={handleNext}

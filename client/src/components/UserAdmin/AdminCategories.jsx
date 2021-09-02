@@ -2,9 +2,7 @@ import React, { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { deleteCategory, getCategories } from "../../Redux/actions/actions";
 import "./AdminCategories.css";
-import { Link } from "react-router-dom";
 import CardCategories from "./CardCategories";
-import Grid from "@material-ui/core/Grid";
 import { makeStyles } from "@material-ui/core/styles";
 
 

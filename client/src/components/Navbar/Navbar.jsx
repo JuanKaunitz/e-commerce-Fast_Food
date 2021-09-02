@@ -50,15 +50,13 @@ export const Navbar = () => {
   const adminClient = useSelector((state) => state.client);
   const token = useSelector((state) => state.clientToken);
   
-  const [input, setInput] = useState({ status: false });
+  const [input] = useState({ status: false });
 
   const location = useLocation();
 
   useEffect(() => {
     dispatch(getCategories());
-   /*  dispatch(allUsers());
-    dispatch(getAllProducts())
-    dispatch(getTypes()) */
+  
     const tokenL = localStorage.getItem('token');
     const clientL = JSON.parse(localStorage.getItem('client'));
     if(!adminClient.role && !token && tokenL && clientL.role){
@@ -138,7 +136,6 @@ export const Navbar = () => {
             <Link to="/">
                 <HomeIcon className={classes.home} />
               </Link>
-            {/* <Typography variant="h5" >Home</Typography> */}
             <Button className={classes.button} href="/aboutUs">
                 About Us
               </Button>
@@ -233,7 +230,6 @@ export const Navbar = () => {
           {" "}
           {categories?.map((e) => (
             <ListItem button key={e.name}>
-              {/* <ListItemIcon></ListItemIcon> */}
               <Link to="/categories" style={{textDecoration: "none",color:"black"}}>
                 <ListItemText
                   primary={e.name}

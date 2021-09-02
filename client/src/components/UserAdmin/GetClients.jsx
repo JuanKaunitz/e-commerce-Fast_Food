@@ -1,7 +1,6 @@
 import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { allUsers } from '../../Redux/actions/actions';
-import Grid from "@material-ui/core/Grid";
 import { makeStyles } from '@material-ui/core/styles';
 import Card from '@material-ui/core/Card';
 import CardContent from '@material-ui/core/CardContent';
@@ -14,7 +13,6 @@ import './GetClients.css'
 
 const useStyles = makeStyles((theme) => ({
   list: {
-    // backgroundColor:'black',
     width:'80%',
     color:'orange',
     

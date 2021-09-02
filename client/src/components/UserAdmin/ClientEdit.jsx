@@ -7,18 +7,14 @@ import { Link } from 'react-router-dom'
 
 
 const ClientEdit = (props) => {
-    console.log('CLIENT EDIT PROFILE')
     const dispatch = useDispatch();
     const editClients = useSelector((state) => state.clients);
-    console.log('EDIT CLIENTS: ', editClients);
 
     const id = props.match.params.id;
 
     const filterClients = editClients.filter(c => c._id === id);
-    console.log('FILTER CLIENTS: ', filterClients); //Esto nos devuelve el seleccionado.
 
     const client = filterClients[0];
-    console.log('FILTER CLIENTS[0]', client);
      
 
     const roleHandler = (e) => {

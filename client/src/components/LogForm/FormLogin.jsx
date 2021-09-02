@@ -165,7 +165,7 @@ export default function FormularioLogin() {
           </Button>
         </form>
         <Grid container>
-              <Grid item xs>
+              <Grid item >
                 <Link href="/resetPassword" variant="body2">
                   Forgot password?
                 </Link>
@@ -179,12 +179,7 @@ export default function FormularioLogin() {
             <Box mt={5}>
             </Box>
       </div>
-      <br>
-      </br>
-      <br>
-      </br>
-      <br>
-      </br>
+     
     </Container>
   );
 }

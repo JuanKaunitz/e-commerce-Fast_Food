@@ -1,4 +1,4 @@
-import React, { useState }  from 'react';
+import React from 'react';
 import { useSelector, useDispatch} from 'react-redux';
 import './OrderEdit.css'
 import { updateOrderFinal } from '../../Redux/actions/actions'
@@ -6,9 +6,7 @@ import { makeStyles } from "@material-ui/core/styles";
 import Card from "@material-ui/core/Card";
 import CardContent from "@material-ui/core/CardContent";
 import CardMedia from "@material-ui/core/CardMedia";
-//import DeleteIcon from "@material-ui/icons/Delete";
 import Typography from "@material-ui/core/Typography";
-//import IconButton from "@material-ui/core/IconButton";
 import { Link } from "react-router-dom";
 import { useHistory } from 'react-router-dom';
 
@@ -36,23 +34,17 @@ const useStyles = makeStyles((theme) => ({
 
 
 const OrderEdit = (props) => {
-    //console.log('ORDER EDIT PROFILE')
     const dispatch = useDispatch();
     const editOrders = useSelector((state) => state.clients);
     const history = useHistory();
-    //console.log('EDIT CLIENTS: ', editOrders);
 
-  /*   useEffect(() => {
-        dispatch(allUsers())
-    }, [input]) */
+
 
     const id = props.match.params.id;
 
     const filterOrders = editOrders.filter((c) => { 
        let userOrder = c.order
-       //console.log('userOrder: ',userOrder)
        let orderDetail = userOrder.length > 0 && userOrder.filter((e) => e._id === id)
-        //console.log('orderDetail: ', orderDetail)
         if(orderDetail.length > 0) {
             return {
                 name: c.name,
@@ -68,16 +60,13 @@ const OrderEdit = (props) => {
     });
 
 
-    //console.log('FILTER CLIENTS: ', filterOrders); //Esto nos devuelve el seleccionado.
 
      const client = filterOrders[0];
-     //const options = ['...','carrito', 'creada', 'procesando', 'cancelado', 'completada']
-    //console.log('FILTER ORDERS[0]', client);
+   
      
      const statusHandler = (e) => {
       
         client.status = e.target.value;
-       // console.log('STATUSHANDLER ', client.status)
         
     }  
      const updateStatus = (e) => {
@@ -85,17 +74,11 @@ const OrderEdit = (props) => {
          const updateOrder = {            
             status: client.status,            
           }
-         // console.log('UPDATE ORDER ', updateOrder)
          dispatch(updateOrderFinal(id, updateOrder ))
          history.push('/ordersPanel')
      }
  
-   /*  const resetPassword = () => {
-        // alert('Are you sure?')
-        client.password = '.'
-        dispatch(updateClient(id, client))
-    }
- */
+  
     const classes = useStyles();
 
     return (
@@ -148,9 +131,7 @@ const OrderEdit = (props) => {
                         <Typography variant="subtitle1" color="textSecondary">
                             isLog: {client?.status.toString()} 
                         </Typography>
-                       {/*  <Typography variant="subtitle1" color="textSecondary">
-                            Order status: {client?.order[0].status} 
-                        </Typography> */}
+                     
                     </CardContent>
                 </div>               
             </Card>
@@ -164,10 +145,8 @@ const OrderEdit = (props) => {
                     <option name = "cancelado" value="cancelado">Cancelado</option>
                     <option name = "completada" value="completada">Completada</option>
                 </select>
-                <button type='submit'></button>
-            </form>
-            {/*  <Link to="/adminPanel"><button onClick={() => dispatch(updateClient(id, client))}>SAVE</button></Link>   
-            <Link to="/adminPanel"><button onClick={() => resetPassword()}>Reset your password</button></Link> */}
+                <button type='submit'>status</button>
+            </form> 
         </div>
     )
 }

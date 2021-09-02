@@ -6,7 +6,6 @@ import InputLabel from '@material-ui/core/InputLabel';
 import MenuItem from '@material-ui/core/MenuItem';
 import FormControl from '@material-ui/core/FormControl';
 import Select from '@material-ui/core/Select';
-import { Grid } from "@material-ui/core";
 
 const useStyles = makeStyles((theme) => ({
   button: {
@@ -29,7 +28,6 @@ export default function Order () {
         dispatch(orderBy(e.target.value));
       }
     }  
-// export default function ControlledOpenSelect() {
   const classes = useStyles();
   const [open, setOpen] = React.useState(false);
 
@@ -42,8 +40,7 @@ export default function Order () {
   };
 
   return (
-    <Grid>
-    <Grid>
+  
     <div>
       <FormControl className={classes.formControl}>
         <InputLabel id="demo-controlled-open-select-label">Filter for</InputLabel>
@@ -60,13 +57,11 @@ export default function Order () {
           </MenuItem>
           <MenuItem value="startLowerPrice">Price: Lower to highest</MenuItem>
           <MenuItem value="startHighestPrice">Price: Highest to lowest</MenuItem>
-         {/*  <MenuItem value="startHighestPrice">Ranking: Most recomended</MenuItem>
-          <MenuItem value="startHighestPrice">Ranking: Less recomended</MenuItem> */}
+        
         </Select>
       </FormControl>
     </div>
-    </Grid>
-    </Grid>
+  
   );
 }
 
