@@ -11,16 +11,17 @@ import { makeStyles } from "@material-ui/core/styles";
 const useStyles = makeStyles((theme) => ({
   list: {
     flexGrow: 1,
-    backgroundColor:'black',
+    // backgroundColor:'black',
     color:'orange',
-    marginLeft:"400px",
-    marginRight:"550px",
+    width:'80%'
+   
   },
   profile:{
     display:"flex",
     alignItems:"center",
     marginLeft:"250px",
-    fontSize:"35px"
+    fontSize:"35px",
+    fontWeight:800
   },
 }));
 const AdminCategories = () => {
@@ -50,7 +51,11 @@ const AdminCategories = () => {
               name={e.name}
               image={e.image}
               types={e.types?.map((j) => (
-                <ul>{j.name}</ul>
+                <ul>
+                  <li>
+                  {j.name}
+                  </li>
+                </ul>
               ))}
               deleteCategory={handleDeleteCategory}
             />

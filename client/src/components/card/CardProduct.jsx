@@ -142,13 +142,13 @@ export default function CardProduct({
               <Typography variant="body2" className={classes.sub_title}>
                 Precio: ${price}
               </Typography>
-              <Rating
+              {/* <Rating
                 name="simple-controlled"
                 value={value}
                 onChange={(event, newValue) => {
                   setValue(newValue);
                 }}
-              />
+              /> */}
               <Button
                 className={classes.button}
                 variant="contained"

@@ -34,6 +34,7 @@ import {
     NEW_PASSWORD,
     MERCADOPAGO,
     LOADING,
+    RECOVERY_DATA
 } from '../constants'
 
 import dotenv from 'dotenv'
@@ -89,7 +90,7 @@ export const getById = (id) => async (dispatch) => {
    console.log('INPUT: ', input);
     try {
         const res = await axios.post(`${URL}/food/api/products`, input);
-        console.log('RES: ', res);
+        // console.log('RES: ', res);
         dispatch({
             type: CREATE_PRODUCT,
             payload: res.data.product
@@ -145,11 +146,8 @@ export const getById = (id) => async (dispatch) => {
 
 //Creando una categoria.
 export const createCategory = (input) => async (dispatch) => {
-   
     try {
         const category = await axios.post(`${URL}/food/api/category`,input);
-        // const category = await axios.post(`${URL}/food/api/category`, input)
-     
         dispatch({
             type: CREATE_CATEGORY,
             payload: category.data
@@ -177,7 +175,7 @@ export const getUpdateCategory = (id, input) => async (dispatch) => {
 
 //Borrando una categoria.
 export const deleteCategory = (id) => async (dispatch) => {
-     console.log('ID DELETE',id) 
+    //  console.log('ID DELETE',id) 
     try {
         const res = await axios.delete(`${URL}/food/api/category/${id}`);        
         dispatch({
@@ -212,8 +210,9 @@ export const categoryName = (name) => (dispatch) => {
 };
 
 export const recoveryData = (token, client) => (dispatch) =>{
+    
     dispatch({
-        type:LOGIN_CLIENT,
+        type:RECOVERY_DATA,
         payload:{
             token: token,
             user: client
@@ -413,7 +412,7 @@ export const updateClient = (id, input) => async (dispatch) => {
   
     try {
         const res = await axios.put(`${URL}/food/api/user/${id}`, input);
-        console.log("usuario actualizado", res.data)
+        // console.log("usuario actualizado", res.data)
         dispatch({
             type: CLIENT_UPDATE,
             payload: res.data
@@ -469,7 +468,7 @@ export const mercadopago = (id, date) => async (dispatch) =>{
             const res = await axios.get(`${URL}/food/api/mercadopago/${id}`)
             const res1 = await axios.get(`${URL}/food/api/mercadopago/name/${date.name}`)
             const res2 = await axios.get(`${URL}/food/api/mercadopago/email/${date.email}`)
-           
+
        
         dispatch({
             type: MERCADOPAGO,
@@ -482,7 +481,7 @@ export const mercadopago = (id, date) => async (dispatch) =>{
 
 export const envioData = (input) => async() =>{
     const res3 = await axios.get(`${URL}/food/api/mercadopago/data?address=${input.address}&city=${input.city}&province=${input.province}&zipCode=${input.zipCode}`)
-    console.log("RESPUESTA 3", res3.data)
+    // console.log("RESPUESTA 3", res3.data)
 }
 
     
@@ -495,7 +494,7 @@ export const resetPassword= (email)=> async(dispatch)=>{
 };
 
 export const newPassword = (token,password) => async(dispatch) =>{
-    console.log(token,password)
+    // console.log(token,password)
     const resp = await axios.post(`${URL}/food/api/auth-sesion/reset-password/${token}`,{password});
     dispatch({
         type:NEW_PASSWORD,

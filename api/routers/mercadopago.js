@@ -13,6 +13,7 @@
      access_token: ACCESS_TOKEN
 
  });
+ var cupon = 0;
 var name;
 var email;
 var data;
@@ -28,12 +29,15 @@ server.get('/email/:email', (req,res,next) => {
   res.send("llego email")
 })
 
-// server.get('/coupon/:cupon', (req,res,next) => {
-//   console.log("cupon:  ", req.params)
-//   cupon= req.params.cupon;
-//   res.send("llego cupon")
-// })
-
+server.get('/coupon/:cupon', (req,res,next) => {
+  console.log("cupon:  ", req.params)
+  cupon= req.params.cupon;
+  if(!cupon){
+    cupon = 0;
+    res.send("no llego cupon")
+  }
+  res.send("llego cupon")
+})
 server.get('/data', (req,res, next) => {
   data = req.query
   console.log("DATA...", data)
@@ -105,7 +109,6 @@ server.get ('/:id',async(req,res,next) =>{
 
   //Ruta que recibe la información del pago
   server.get('/',async  (req, res,next)=>{
-   console.info("EN LA RUTA PAGOS ", req.query)
     const payment_id= req.query.payment_id
    //  console.log("PAYMENT ID", payment_id)
     const payment_status= req.query.status
@@ -127,7 +130,7 @@ server.get ('/:id',async(req,res,next) =>{
           let precio = parseInt(e.price)
           return precio * e.count
         });
-        const total = precioTotal.reduce((a,b) => a + b);
+        const total = precioTotal.reduce((a,b) => a + b) - cupon;
         //console.log("Total", total)
         //ENVIO DE EMAIL
         //console.log("namename", name)
@@ -145,8 +148,11 @@ server.get ('/:id',async(req,res,next) =>{
               <li>Total:${total}</li>
           </ul>
           <p>Thanks for buying in our store!</p>
+          <p>Use this discount coupon in your next shipping</p>
+          <p>159648</p>
           <p>We always wait for you in http://localhost:3000/</p>
           <p>ENJOY YOUR MEAL!!!</p>
+
           `;
         }else{
           contentHTML = `
@@ -166,6 +172,8 @@ server.get ('/:id',async(req,res,next) =>{
             <li>Zip Code: ${data.zipCode}</li>
           </ul>
           <p>Thanks for buying in our store!</p>
+          <p>Use this discount coupon in your next shipping</p>
+          <p>159648</p>
           <p>We always wait for you in http://localhost:3000/</p>
           <p>ENJOY YOUR MEAL!!!</p>
           `;

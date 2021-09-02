@@ -24,7 +24,7 @@ import OrdersPanel from "./components/UserAdmin/OrdersPanel.jsx";
 import OrderEdit from "./components/UserAdmin/OrderEdit.jsx";
 import MyAcount from "./components/Navbar/MyAcount.jsx";
 import Shipping from './components/Pasarela/Shipping.jsx';
-import Checkout from "./components/payment/Checkout.js";
+// import Checkout from "./components/payment/Checkout.js";
 import Option from "./components/Pasarela/Option.jsx";
 import Maps from "./components/Pasarela/Maps.jsx";
 import Succes from "./components/succesPayment/Succes.jsx";
@@ -36,7 +36,7 @@ const KEY_STRIPE=process.env
 
 
 
-const stripePromise = loadStripe(`${KEY_STRIPE}`);
+// const stripePromise = loadStripe(`${KEY_STRIPE}`);
 
 function App() {
   
@@ -66,15 +66,14 @@ function App() {
         <Route exact path="/shipping" component={Shipping} />
         <Route exact path="/maps" component={Maps} />
         <Route exact path="/succes" component={Succes} />
-        <Route exact path="/review" component={ClientReview} />
-        <Route
+        {/* <Route
           path="/payment"
           render={() => (
             <Elements stripe={stripePromise}>
               <Checkout />
             </Elements>
           )}
-          />
+          /> */}
         
         <Route exact path="/myAcount" component={MyAcount} />
         <Route exact path="/register" component={Register} />

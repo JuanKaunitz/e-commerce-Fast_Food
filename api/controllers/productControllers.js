@@ -42,7 +42,6 @@ exports.createNewProduct = async (req, res, next) => {
     if(file){
       product.image = req.file.filename;
     }
-    console.log(product)
     await product.save();
     res.json({ msg: "Product created", product });
   } catch (error) {

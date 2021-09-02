@@ -56,17 +56,16 @@ const NewCategory = (props) => {
   const [input, setInput] = useState({
     name: "",
     image: "",
-    types: [],
+    types: [
+      {
+        name:''
+      }
+    ],
   });
 
-  const [type, setType] = useState({
-    type1: "",
-    type2: "",
-    type3: "",
-  });
+  const [type, setType] = useState([]);
 
   const saveCategory = () => {
-    console.log("INPUT: ", input);
     dispatch(createCategory(input));
   };
 
@@ -78,8 +77,8 @@ const NewCategory = (props) => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    typesCategory();
-    console.log("INPUT-SUBMIT: ", input);
+    input.types= type
+    // typesCategory();
     setInput(input);
     saveCategory();
     // props.history.push("/adminCategories");
@@ -140,10 +139,10 @@ const NewCategory = (props) => {
             fullWidth
             variant="outlined"
             type="text"
-            name="type1"
-            rows="5"
+            name="name"
             onChange={handleTypeChange}
             required
+            value={type.name}
           />
         </div>
 
@@ -154,8 +153,7 @@ const NewCategory = (props) => {
             fullWidth
             variant="outlined"
             type="text"
-            name="type2"
-            rows="5"
+            name="name"
             onChange={handleTypeChange}
             required
           />
@@ -168,8 +166,7 @@ const NewCategory = (props) => {
             fullWidth
             variant="outlined"
             type="text"
-            name="type3"
-            rows="5"
+            name="name"
             onChange={handleTypeChange}
             required
           />

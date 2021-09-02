@@ -1,7 +1,7 @@
 import React, { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import Checkout from "../Pasarela/checkoutMercado";
-import axios from "axios";
+// import Checkout from "../Pasarela/checkoutMercado";
+// import axios from "axios";
 import { makeStyles } from "@material-ui/core/styles";
 import Grid from "@material-ui/core/Grid";
 import CardCart from "./CardCart";
@@ -20,7 +20,7 @@ import {
   deleteOrden,
   getUserById,
   bandOrderUser,
-  mercadopago,
+  // mercadopago,
   couponValue,
 } from "../../Redux/actions/actions";
 import {
@@ -68,7 +68,7 @@ const Cart = (props) => {
   const orderUser = useSelector((state) => state.orderUser);
   const band = useSelector((state) => state.bandOrderUser);
   const coupon = useSelector((state) => state.getDiscount);
-  const history = useHistory();
+  // const history = useHistory();
   //const [datos, setDatos] = useState("")
   //localStorage.removeItem("order");
 
@@ -258,7 +258,7 @@ const Cart = (props) => {
           TOTAL:<strike>{total}</strike> ${resta()}
         </h1>
       ) : (
-        <h1 className={classes.color}>TOTAL: ${resta()}</h1>
+        <h1 className={classes.color}>TOTAL: ${total}</h1>
       )}
 
       <Button

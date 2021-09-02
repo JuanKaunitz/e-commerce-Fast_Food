@@ -7,16 +7,17 @@ import { makeStyles } from '@material-ui/core/styles';
 
 const useStyles = makeStyles((theme) => ({
   list: {
-    backgroundColor:'black',
+    // backgroundColor:'black',
     color:'orange',
-    marginLeft:"400px",
-    marginRight:"550px",
+    width:'80%'
+   
   },
   profile:{
     display:"flex",
     alignItems:"center",
     marginLeft:"250px",
-    fontSize:"35px"
+    fontSize:"35px",
+    fontWeight:800
   },
 }));
 

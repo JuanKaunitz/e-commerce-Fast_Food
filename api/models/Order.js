@@ -10,7 +10,7 @@ const OrderSchema = new Schema({
     type: mongoose.Schema.Types.Mixed
   },
   total: {
-    type: Number,
+    type: String,
   },
   status: {
     type: String,

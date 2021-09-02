@@ -51,7 +51,7 @@ export default function AdminProductDetail(props) {
    
       <Link to='/adminPanel'> <button >Admin Panel</button></Link>
       <Link to='/clients'> <button >Clients Panel</button></Link>
-      <Link to='/adminCategories'> <button >Categories Panel</button></Link>
+      <Link to='/adminCategories'> <button >Categories Panel</button></Link> */}
       {input.length !== 0 ? (
         <form onSubmit={handleSubmit}>
           <div className={classes.form_group}>
