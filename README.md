@@ -1,10 +1,6 @@
 # Grupal Project - Fast Food
 
-
-<p align="center">
-    <img height="400" src="./client/src/assets/fast-food.png"/>
-</p>
-
+![i6](https://user-images.githubusercontent.com/70725037/132262125-d6e8ba29-fb88-4efa-a2df-c6b4a859ee33.png)
 
 
 ## Esta aplicación web está destinada a la gestión de procesos de un e-commerce de comidas rápidas.  
