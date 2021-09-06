@@ -9,7 +9,7 @@
 
 ## Esta aplicación web está destinada a la gestión de procesos de un e-commerce de comidas rápidas.  
 
-(https://gracious-davinci-789990.netlify.app/AdminPanel)
+https://gracious-davinci-789990.netlify.app/
 
 ### Stack tecnológico:
 
