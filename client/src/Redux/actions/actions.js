@@ -44,12 +44,12 @@ import axios from 'axios';
 dotenv.config()
 
 const URL = process.env.REACT_APP_BACKEND_URL 
-// const URL = 'http://localhost:5001';
+//const URL = 'http://localhost:5001';
 
 //Obteniendo todos las foods.
 export const getAllProducts = () => async (dispatch) => {
    try {
-       const res = await axios.get(`${URL}/food/api/products`);
+       const res = await axios.get(`${URL}food/api/products`);
        dispatch({
            type: GET_ALL_PRODUCTS,
            payload: res.data
@@ -62,7 +62,7 @@ export const getAllProducts = () => async (dispatch) => {
 //Obteniendo los productos por Query Name.
 export const searchQueryProducts = (name) => async (dispatch) => {
     try {
-        const res = await axios.get(`${URL}/food/api/products/search/${name}`);
+        const res = await axios.get(`${URL}food/api/products/search/${name}`);
         dispatch({            
             type: SEARCH_PRODUCTS, 
             payload: res.data
@@ -75,7 +75,7 @@ export const searchQueryProducts = (name) => async (dispatch) => {
 //Obteniendo productos por ID.
 export const getById = (id) => async (dispatch) => {
     try {
-        const res = await axios.get(`${URL}/food/api/products/${id}`);
+        const res = await axios.get(`${URL}food/api/products/${id}`);
         dispatch({
             type: GET_BY_ID,
             payload: res.data
@@ -89,7 +89,7 @@ export const getById = (id) => async (dispatch) => {
  export const createProduct = (input) => async (dispatch) => {
    console.log('INPUT: ', input);
     try {
-        const res = await axios.post(`${URL}/food/api/products`, input);
+        const res = await axios.post(`${URL}food/api/products`, input);
         // console.log('RES: ', res);
         dispatch({
             type: CREATE_PRODUCT,
@@ -104,7 +104,7 @@ export const getById = (id) => async (dispatch) => {
  export const getUpdate = (id, input) => async (dispatch) => {
      
     try {        
-        const res = await axios.put(`${URL}/food/api/products/${id}`, input) 
+        const res = await axios.put(`${URL}food/api/products/${id}`, input) 
         dispatch({
             type: UPDATE_PRODUCT,
             payload: res.data
@@ -119,7 +119,7 @@ export const getById = (id) => async (dispatch) => {
  export const deleteProduct = (id) => async (dispatch) => {
     
      try {
-         const res = await axios.delete(`${URL}/food/api/products/${id}`);
+         const res = await axios.delete(`${URL}food/api/products/${id}`);
          dispatch({
              type: DELETE_PRODUCT,
              payload: res.data
@@ -133,7 +133,7 @@ export const getById = (id) => async (dispatch) => {
  //Obteniendo las categorías.
  export const getCategories = () => async (dispatch) => {
      try {
-         const res = await axios.get(`${URL}/food/api/category`);
+         const res = await axios.get(`${URL}food/api/category`);
          dispatch({
              type: GET_CATEGORIES,
              payload: res.data
@@ -147,7 +147,7 @@ export const getById = (id) => async (dispatch) => {
 //Creando una categoria.
 export const createCategory = (input) => async (dispatch) => {
     try {
-        const category = await axios.post(`${URL}/food/api/category`,input);
+        const category = await axios.post(`${URL}food/api/category`,input);
         dispatch({
             type: CREATE_CATEGORY,
             payload: category.data
@@ -161,7 +161,7 @@ export const createCategory = (input) => async (dispatch) => {
 export const getUpdateCategory = (id, input) => async (dispatch) => {
 
     try {
-        const res = await axios.put(`${URL}/food/api/category/${id}`, input);
+        const res = await axios.put(`${URL}food/api/category/${id}`, input);
      
         dispatch({
             type: UPDATE_CATEGORY,
@@ -177,7 +177,7 @@ export const getUpdateCategory = (id, input) => async (dispatch) => {
 export const deleteCategory = (id) => async (dispatch) => {
     //  console.log('ID DELETE',id) 
     try {
-        const res = await axios.delete(`${URL}/food/api/category/${id}`);        
+        const res = await axios.delete(`${URL}food/api/category/${id}`);        
         dispatch({
             type: DELETE_CATEGORY,
             payload: res.data
@@ -223,7 +223,7 @@ export const recoveryData = (token, client) => (dispatch) =>{
 //Autenticación de usuario.  
 export const authUser =  (user) => async (dispatch) => {
     try {
-        const client = await axios.post(`${URL}/food/api/auth-sesion`, user);
+        const client = await axios.post(`${URL}food/api/auth-sesion`, user);
        
         dispatch({
             type: LOGIN_CLIENT,
@@ -238,7 +238,7 @@ export const authUser =  (user) => async (dispatch) => {
 //Obtengo lista de clientes(register).
 export const allUsers = () => async (dispatch) => {
     try {
-        const res = await axios.get(`${URL}/food/api/user`);
+        const res = await axios.get(`${URL}food/api/user`);
         //console.log('ALL USER: ', res.data)
         dispatch({
            type: ALL_USERS,
@@ -253,7 +253,7 @@ export const allUsers = () => async (dispatch) => {
 //Crear nuevo usuario(register).
 export const newUser = (user) => async (dispatch) => {
     try {
-        const res = await axios.post(`${URL}/food/api/user`, user);        
+        const res = await axios.post(`${URL}food/api/user`, user);        
         dispatch({
            type: NEW_USER,
            payload: res.data
@@ -267,7 +267,7 @@ export const newUser = (user) => async (dispatch) => {
 export const getUserById = (id) => async(dispatch) => {
     console.log("ID USUARIO PARA BUSCAR ORDEN", id)
     try{
-        const res = await axios.get(`${URL}/food/api/user/${id}`);
+        const res = await axios.get(`${URL}food/api/user/${id}`);
         dispatch({
             type: GET_USER_BY_ID,
             payload: res.data
@@ -316,7 +316,7 @@ export const bandOrderUser = () => (dispatch) => {
 export const updateOrderFinal = (id,order) => async(dispatch) => {
         //console.log("ORDEN PARA ACTUALIZAR", order)
     try {
-        await axios.put(`${URL}/food/api/order/${id}`, order);
+        await axios.put(`${URL}food/api/order/${id}`, order);
         //console.log("ORDEN ACTUALIZACION", res)
     } catch (err) {
     console.log(err)
@@ -328,7 +328,7 @@ export const updateOrderFinal = (id,order) => async(dispatch) => {
   export const orderFinal = (order) => async(dispatch) => {
     //console.log("ORDEN PÀRA CREAR", order)
     try {
-        const res = await axios.post(`${URL}/food/api/order`, order);
+        const res = await axios.post(`${URL}food/api/order`, order);
         //console.log("ORDEN CREADA", res.data)
         dispatch({
             type: NEW_ORDER_USER,
@@ -343,7 +343,7 @@ export const updateOrderFinal = (id,order) => async(dispatch) => {
 export const deleteOrden = (id, borrado) => async (dispatch) => {
     //console.log('ID DELETE',id) 
     try {
-       /*  const res = */ await axios.delete(`${URL}/food/api/order/${id}`); 
+       /*  const res = */ await axios.delete(`${URL}food/api/order/${id}`); 
         //console.log('BORRADO DE ORDEN',res.data)        
         dispatch({
             type: "DELETE_ORDEN",
@@ -358,7 +358,7 @@ export const deleteOrden = (id, borrado) => async (dispatch) => {
 export const getOrderById = (id) => async(dispatch) => {
     //console.log('GET BY ID',id) 
     try {
-       await axios.get(`${URL}/food/api/order/${id}`)
+       await axios.get(`${URL}food/api/order/${id}`)
         //console.log('ORDER POR ID',res.data)      
 
         dispatch({
@@ -372,7 +372,7 @@ export const getOrderById = (id) => async(dispatch) => {
 //Todas las ordenes.
 export const getOrder = () => async(dispatch) => {
     try {
-        const res = await axios.get(`${URL}/food/api/order`);
+        const res = await axios.get(`${URL}food/api/order`);
         dispatch({
             type: ALL_ORDERS,
             payload: res.data
@@ -387,7 +387,7 @@ export const getOrder = () => async(dispatch) => {
 //recuperar el producto de la api para edicion
 export const getProductById = (id) => async(dispatch)=>{
     try{
-        const product = await axios.get(`${URL}/food/api/products/${id}`);        
+        const product = await axios.get(`${URL}food/api/products/${id}`);        
         dispatch({
             type:EDIT_PRODUCT,
             payload:product.data.product
@@ -399,7 +399,7 @@ export const getProductById = (id) => async(dispatch)=>{
 
 //Acceder a los types de categories.
 export const getTypes = () => async(dispatch) => {
-    const types = await axios.get(`${URL}/food/api/types`);
+    const types = await axios.get(`${URL}food/api/types`);
     dispatch({
         type: GET_TYPES,
         payload: types.data
@@ -411,7 +411,7 @@ export const getTypes = () => async(dispatch) => {
 export const updateClient = (id, input) => async (dispatch) => {
   
     try {
-        const res = await axios.put(`${URL}/food/api/user/${id}`, input);
+        const res = await axios.put(`${URL}food/api/user/${id}`, input);
         // console.log("usuario actualizado", res.data)
         dispatch({
             type: CLIENT_UPDATE,
@@ -426,7 +426,7 @@ export const updateClient = (id, input) => async (dispatch) => {
 
 //crear un type
 export const createNewType = (type) => async(dispatch)=>{
-    const types = await axios.post(`${URL}/food/api/types`,type);
+    const types = await axios.post(`${URL}food/api/types`,type);
    
     dispatch({
         type: CREATE_TYPE,
@@ -438,7 +438,7 @@ export const createNewType = (type) => async(dispatch)=>{
 
 export const createGoogleUser = (user) => async (dispatch) => {
     try {
-    const res = await axios.post(`${URL}/food/api/auth-sesion/google`, user);
+    const res = await axios.post(`${URL}food/api/auth-sesion/google`, user);
    
     dispatch({
         type: GOOGLE_LOGIN,
@@ -451,7 +451,7 @@ export const createGoogleUser = (user) => async (dispatch) => {
 export const changeStatus = (id, input) => async (dispatch) => {
 
     try {
-       await axios.put(`${URL}/food/api/user/${id}`,input );
+       await axios.put(`${URL}food/api/user/${id}`,input );
        
         dispatch({
             type:CLIENT_STATUS,  
@@ -465,9 +465,9 @@ export const changeStatus = (id, input) => async (dispatch) => {
 export const mercadopago = (id, date) => async (dispatch) =>{
    
     try {
-            const res = await axios.get(`${URL}/food/api/mercadopago/${id}`)
-             await axios.get(`${URL}/food/api/mercadopago/name/${date.name}`)
-            await axios.get(`${URL}/food/api/mercadopago/email/${date.email}`)
+            const res = await axios.get(`${URL}food/api/mercadopago/${id}`)
+             await axios.get(`${URL}food/api/mercadopago/name/${date.name}`)
+            await axios.get(`${URL}food/api/mercadopago/email/${date.email}`)
 
        
         dispatch({
@@ -480,13 +480,13 @@ export const mercadopago = (id, date) => async (dispatch) =>{
 }
 
 export const envioData = (input) => async() =>{
-    await axios.get(`${URL}/food/api/mercadopago/data?address=${input.address}&city=${input.city}&province=${input.province}&zipCode=${input.zipCode}`)
+    await axios.get(`${URL}food/api/mercadopago/data?address=${input.address}&city=${input.city}&province=${input.province}&zipCode=${input.zipCode}`)
     // console.log("RESPUESTA 3", res3.data)
 }
 
     
 export const resetPassword= (email)=> async(dispatch)=>{
-    const sendEmail = await axios.post(`${URL}/food/api/auth-sesion/reset-password`,{email});
+    const sendEmail = await axios.post(`${URL}food/api/auth-sesion/reset-password`,{email});
     dispatch({
         type:RESET_PASSWORD,
         payload:sendEmail
@@ -495,7 +495,7 @@ export const resetPassword= (email)=> async(dispatch)=>{
 
 export const newPassword = (token,password) => async(dispatch) =>{
     // console.log(token,password)
-    const resp = await axios.post(`${URL}/food/api/auth-sesion/reset-password/${token}`,{password});
+    const resp = await axios.post(`${URL}food/api/auth-sesion/reset-password/${token}`,{password});
     dispatch({
         type:NEW_PASSWORD,
         payload:resp
@@ -520,7 +520,7 @@ export const getByName = (name) => (dispatch) => {
 export const discountCoupon =  (value) => async (dispatch) => {
     console.log('VALUE', value)
     try {
-     const res = await axios.get(`${URL}/food/api/coupon/${value}`)
+     const res = await axios.get(`${URL}food/api/coupon/${value}`)
 
      console.log('RESPUESTA: ', res.data)
      dispatch({
@@ -535,7 +535,7 @@ export const discountCoupon =  (value) => async (dispatch) => {
 
 export const couponValue =(cupon)=>async(dispatch)=>{
     try {
-        await axios.get(`${URL}/food/api/mercadopago/coupon/${cupon}`)
+        await axios.get(`${URL}food/api/mercadopago/coupon/${cupon}`)
         
     }
     catch (error) {
